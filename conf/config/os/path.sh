@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
-# @LastEditTime: 2024-06-02 00:31:33
+# @LastEditTime: 2024-06-06 20:18:25
 # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -49,8 +49,6 @@ for APP_MAN_PATH in "${MAN_PATHS[@]}"; do
     export MANPATH="${APP_MAN_PATH}:${MANPATH}"
   fi
 done
-
-# /home/imxieke/.local/share/nvm/versions/node/v20.13.1/bin
 
 # 加载自定义版本 PHP
 if [[ -d "/usr/local/opt/php@${PHP_VERSION}/bin" ]]; then

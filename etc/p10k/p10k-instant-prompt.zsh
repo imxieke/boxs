@@ -1,7 +1,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2021-12-05 15:48:35
- # @LastEditTime: 2021-12-05 15:51:18
+ # @LastEditTime: 2024-06-06 22:14:46
  # @LastEditors: Cloudflying
  # @Description:
 ###
@@ -21,15 +21,15 @@
      $POWERLEVEL9K_DISABLE_INSTANT_PROMPT != 'true' &&
      $POWERLEVEL9K_INSTANT_PROMPT != 'off' ]] || return
   typeset -g __p9k_instant_prompt_param_sig=$'v126\C-A5.8\C-Azsh-5.8-0-g77d203f\C-A398\C-Aimxieke%\C-A\C-A\C-A\C-A\C-A\C-A\C-A1\C-A0\C-A0\C-A\C-A%B%S%#%s%b\C-A1\C-AUTF-8\C-A\C-A\C-A0\C-A1\C-A/Users/imxieke/.boxs/conf/zplug/repos/romkatv/powerlevel10k\C-A\C-A\C-A\C-A\C-A1\C-A256\C-A0\C-A4\C-A${${${${CONDA_PROMPT_MODIFIER#\\(}% }%\\)}:-${CONDA_PREFIX:t}}\C-A0\C-A7\C-A5\C-A0\C-A5\C-A0\C-A1\C-A0\C-A4\C-A0\C-A0\C-A4\C-A0\C-A3\C-A0\C-A7\C-A1\C-A2\C-A0\C-A4\C-A0\C-A2\C-A0\C-A4\C-A0\C-A5\C-A0\C-A6\C-A0\C-Afalse\C-A4\C-A0\C-A1\C-A0\C-A208\C-A0\C-A\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A*\C-BDEFAULT\C-A${P9K_AWS_PROFILE//\\%/%%}${P9K_AWS_REGION:+ ${P9K_AWS_REGION//\\%/%%}}\C-A1\C-A7\C-A0\C-A2\C-Aaws|awless|terraform|pulumi|terragrunt\C-A4\C-A7\C-Aaz|terraform|pulumi|terragrunt\C-A0\C-A6\C-Afalse\C-A0\C-A2\C-A2\C-A3\C-A1\C-A20\C-A\\uf58d\\uf579\\uf57a\\uf57b\\uf57c\\uf57d\\uf57e\\uf57f\\uf580\\uf581\\uf578\C-Afalse\C-A3\C-A0\C-Ad h m s\C-A0\C-Atook \C-A3\C-A/Users/imxieke/.p10k.zsh\C-A0\C-A\C-A\C-A3\C-Awith \C-A0\C-A3\C-A0\C-A3\C-A%n@%m\C-A%n@%m\C-A0\C-A1\C-A%n@%m\C-A\C-A\C-A%n@%m\C-A0\C-A3\C-Atrue\C-A255\C-A4\C-A254\C-Afalse\C-A80\C-A40\C-A50\C-A250\C-Av3\C-Afalse\C-Atrue\C-A1\C-A7\C-A95\C-A0\C-A3\C-Afalse\C-A3\C-A0\C-A90\C-A5\C-A7\C-Atrue\C-A%{%}\C-A\C-A%{%}\C-A1\C-A3\C-A4\C-A0\C-A4\C-A${P9K_GCLOUD_PROJECT_NAME//\\%/%%}\C-A7\C-A${P9K_GCLOUD_PROJECT_ID//\\%/%%}\C-A60\C-Agcloud|gcs\C-A4\C-A0\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A*\C-BDEFAULT\C-A4\C-A${P9K_GOOGLE_APP_CRED_PROJECT_ID//\\%/%%}\C-A7\C-Aterraform|pulumi|terragrunt\C-A2\C-A255\C-Atrue\C-Atrue\C-A3\C-A0\C-Ashell\C-Blocal\C-A\C-Anone\C-Averbose\C-A4\C-A${P9K_IP_RX_RATE:+⇣$P9K_IP_RX_RATE }${P9K_IP_TX_RATE:+⇡$P9K_IP_TX_RATE }$P9K_IP_IP\C-A0\C-A[ew].*\C-A7\C-A1\C-Afalse\C-Atrue\C-A7\C-A1\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A*\C-BDEFAULT\C-A5\C-A${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}${${:-/$P9K_KUBECONTEXT_NAMESPACE}:#/default}\C-A7\C-Aat \C-Akubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern\C-A7\C-A1\C-Aos_icon\C-Bdir\C-Bvcs\C-Bprompt_char\C-Bcontext\C-Bpublic_ip\C-Bnewline\C-A\\uE0B6\C-A▓▒░\C-A\\uE0B0\C-A\\uE0B1\C-A1\C-A0\C-A2\C-A0\C-A3\C-A0\C-A5\C-A4\C-A0\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A0\C-A3\C-Anerdfont-complete\C-A\C-A─\C-A238\C-A%238F╭─\C-A%238F─╮\C-A%238F╰─\C-A%238F─╯\C-A\C-A%238F├─\C-A%238F─┤\C-A4\C-A0\C-A6\C-A0\C-A0\C-A2\C-A\C-A\C-Afalse\C-A0\C-A2\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A2\C-A7\C-Atrue\C-A4\C-A\C-A\C-A\C-A\C-A\C-A\C-A7\C-A5\C-A0\C-A7\C-A232\C-A6\C-A0\C-A5\C-A0\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A5\C-A0\C-Atrue\C-A4\C-A0\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-Atrue\C-A\C-A❮\C-A196\C-A❯\C-A196\C-A▶\C-A196\C-AV\C-A196\C-A\C-A\C-A\C-A\C-A❮\C-A76\C-A❯\C-A76\C-A▶\C-A76\C-AV\C-A76\C-Atrue\C-A0\C-A4\C-A0\C-A7\C-A4\C-A${P9K_CONTENT}${${P9K_CONTENT:#$P9K_PYENV_PYTHON_VERSION(|/*)}:+ $P9K_PYENV_PYTHON_VERSION}\C-A0\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A3\C-A0\C-A0\C-A3\C-A1\C-A0\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-Astatus\C-Bcommand_execution_time\C-Bbackground_jobs\C-Bdirenv\C-Basdf\C-Bvirtualenv\C-Banaconda\C-Bpyenv\C-Bgoenv\C-Bnodenv\C-Bnvm\C-Bnodeenv\C-Brbenv\C-Brvm\C-Bfvm\C-Bluaenv\C-Bjenv\C-Bplenv\C-Bphpenv\C-Bscalaenv\C-Bhaskell_stack\C-Bkubecontext\C-Bterraform\C-Baws\C-Baws_eb_env\C-Bazure\C-Bgcloud\C-Bgoogle_app_cred\C-Btoolbox\C-Bcontext\C-Bnordvpn\C-Branger\C-Bnnn\C-Bxplr\C-Bvim_shell\C-Bmidnight_commander\C-Bnix_shell\C-Bvi_mode\C-Btodo\C-Btimewarrior\C-Btaskwarrior\C-Btime\C-Bnewline\C-A░▒▓\C-A\\uE0B4\C-A\\uE0B2\C-A\\uE0B3\C-A208\C-A0\C-Atrue\C-A240\C-A0\C-Afalse\C-Afalse\C-A1\C-A0\C-Afalse\C-Atrue\C-Ashell\C-Blocal\C-Bglobal\C-A\C-A1\C-A(.bzr|.citc|.git|.hg|.node-version|.python-version|.go-version|.ruby-version|.lua-version|.java-version|.perl-version|.php-version|.tool-version|.shorten_folder_marker|.svn|.terraform|CVS|Cargo.toml|composer.json|go.mod|package.json|stack.yaml)\C-Atruncate_to_unique\C-Atrue\C-A1\C-A3\C-Atrue\C-A1\C-A3\C-A✘\C-Atrue\C-A1\C-A3\C-A✘\C-A✘\C-Atrue\C-Atrue\C-A0\C-A2\C-Atrue\C-A0\C-A2\C-A✔\C-A✔\C-Afalse\C-A3\C-A0\C-A6\C-A0\C-A*\C-BOTHER\C-A0\C-A4\C-Afalse\C-A0\C-A4\C-Aterraform|tf\C-A8\C-A${P9K_CONTENT:0:24}${${P9K_CONTENT:24}:+…}\C-A255\C-A7\C-A0\C-A%D{%I:%M:%S %p}\C-Aat \C-Afalse\C-A8\C-A0\C-Afalse\C-Atrue\C-A3\C-A${P9K_TOOLBOX_NAME:#fedora-toolbox-*}\C-A0\C-Ain \C-Aalways\C-Agit\C-A\\uF126 \C-A2\C-A-1\C-A-1\C-A3\C-A-1\C-A${$((my_git_formatter()))+${my_git_format}}\C-A~\C-Atrue\C-A8\C-A-1\C-A3\C-Aon \C-A-1\C-A-1\C-A2\C-A?\C-A-1\C-A2\C-A0\C-A4\C-A0\C-A\C-A\C-Afalse\C-Afalse\C-ANORMAL\C-A\C-A0\C-A8\C-A2\C-A3\C-A4\C-AOVERTYPE\C-AVISUAL\C-A6\C-A\C-A0\C-A(gpd|wg|(.*tun)|tailscale)[0-9]*\C-Afalse\C-A4\C-A0\C-A6\C-A0'
-  local gitstatus_dir=~/.boxs/conf/zplug/repos/romkatv/powerlevel10k/gitstatus
+  local gitstatus_dir=${HOME}/.local/share/zinit/plugins/romkatv---powerlevel10k/gitstatus
   local gitstatus_header=\#\ 2
   local -i ZLE_RPROMPT_INDENT=1
   local PROMPT_EOL_MARK=%B%S%\#%s%b
   [[ -n $SSH_CLIENT || -n $SSH_TTY || -n $SSH_CONNECTION ]] && local ssh=1 || local ssh=0
   local cr=$'\r' lf=$'\n' esc=$'\e[' rs=$'\x1e' us=$'\x1f'
   local -i height=1
-#   local prompt_dir=/Users/imxieke/.cache/p10k-imxieke
-  local prompt_dir=~/.boxs/etc/p10k
+#   local prompt_dir=${HOME}/.cache/p10k-imxieke
+  local prompt_dir=${HOME}/.boxs/etc/p10k
 
   (( _z4h_can_save_restore_screen == 1 )) && height=0
 
@@ -262,7 +262,7 @@
     typeset -g _z4h_saved_screen
     -z4h-save-screen
   fi
-  typeset -g __p9k_instant_prompt_dump_file=~/.boxs/etc/10k/p10k-dump-${(%):-%n}.zsh
+  typeset -g __p9k_instant_prompt_dump_file=${BOXS_HOME}/etc/10k/p10k-dump-${(%):-%n}.zsh
   if builtin source $__p9k_instant_prompt_dump_file 2>/dev/null && (( $+functions[_p9k_preinit] )); then
     _p9k_preinit
   fi

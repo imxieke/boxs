@@ -1,20 +1,42 @@
 #!/usr/bin/env bash
 # Boxs Manager Script
 
+# 检查 boxs 依赖
+check() {
+  if [ ! -d ${HOME}/.oh-my-zsh ]; then
+    echo "ohmyzsh not install"
+    exit 1
+  fi
+}
+
+# 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
+_fix_vslink() {
+  if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
+    sudo ln -sf ${BOXS_HOME}/share/bin /usr/local/share/dotboxs/bin
+  fi
+}
+
+_usage() {
+  echo "Usage: boxs install|backup|recovery|init"
+}
+
 case $1 in
-	install )
-		echo "Install"
-		;;
-	backup )
-		echo "backup"
-		;;
-	 remove)
-		echo "Remove"
-		;;
-	 init)
-		echo "Init"
-		;;
-	*)
-		echo "Unknown Options $@"
-		;;
+  install)
+    echo "Install"
+    ;;
+  backup)
+    echo "backup"
+    ;;
+  check)
+    echo "check"
+    ;;
+  remove)
+    echo "Remove"
+    ;;
+  init)
+    echo "Init"
+    ;;
+  *)
+    echo "Unknown Options $@"
+    ;;
 esac

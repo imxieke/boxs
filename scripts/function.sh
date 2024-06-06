@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-03 22:58:44
-# @LastEditTime: 2024-06-02 14:21:38
+# @LastEditTime: 2024-06-06 21:46:33
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -201,35 +201,29 @@ show_terminal_colors() {
 # View infomation
 function vif() {
   case "$1" in
-  *.gpg)
-    gpg --quiet --batch -d $@
-    ;;
-  *.html | html5 | htm)
-    bat --style='numbers' -l html $@
-    ;;
-  *.css)
-    bat --style='numbers' -l css $@
-    ;;
-  *.js)
-    bat --style='numbers' -l javascript $@
-    ;;
-  *.json)
-    bat --style='numbers' -l json $@
-    ;;
-  *.c)
-    bat --style='numbers' -l c $@
-    ;;
-  *.cpp)
-    bat --style='numbers' -l cpp $@
-    ;;
-  *.js)
-    bat --style='numbers' -l javascript $@
-    ;;
-  *.js)
-    bat --style='numbers' -l javascript $@
-    ;;
-  *)
-    bat --style='numbers' $@
-    ;;
+    *.gpg)
+      gpg --quiet --batch -d "$@"
+      ;;
+    *.html | html5 | htm)
+      bat --style='numbers' -l html "$@"
+      ;;
+    *.css)
+      bat --style='numbers' -l css "$@"
+      ;;
+    *.json)
+      bat --style='numbers' -l json "$@"
+      ;;
+    *.c)
+      bat --style='numbers' -l c "$@"
+      ;;
+    *.cpp)
+      bat --style='numbers' -l cpp "$@"
+      ;;
+    *.js)
+      bat --style='numbers' -l javascript "$@"
+      ;;
+    *)
+      bat --style='numbers' "$@"
+      ;;
   esac
 }

@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-06-01 00:40:59
+# @LastEditTime: 2024-06-06 22:10:31
 # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
@@ -14,8 +14,14 @@ source "${BOXS_CONF}/config/os/proxy.sh"
 source "${BOXS_CONF}/config/os/wsl.sh"
 
 # Set up Depends
-[ ! -d "${HOME}/.oh-my-zsh" ] && git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-[ ! -d "${HOME}/.local/share/zinit" ] && git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ~/.local/share/zinit
+
+if [[ "${CURRENT_COUNTRY}" == 'CN' ]]; then
+  [ ! -d "${HOME}/.local/share/zinit" ] && git clone --depth=1 https://e.coding.net/pkgs/mirrors/zinit.git ~/.local/share/zinit
+  [[ ! -d "${HOME}/.oh-my-zsh" ]] && git clone --depth=1 https://e.coding.net/pkgs/mirrors/ohmyzsh.git ~/.oh-my-zsh
+else
+  [[ ! -d "${HOME}/.oh-my-zsh" ]] && git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+  [ ! -d "${HOME}/.local/share/zinit" ] && git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ~/.local/share/zinit
+fi
 
 # Wait for the system to be ready
 source "${BOXS_CONF}/config/os/zinit.sh"
@@ -52,7 +58,7 @@ fi
 
 # 加载自定义 shell
 echo "[+] Loading Shell"
-for shell_lib in "${BOXS_HOME}/libraries/shell"/*.sh; do
+for shell_lib in "${BOXS_HOME}/lib/shell"/*.sh; do
   source "${shell_lib}"
 done
 

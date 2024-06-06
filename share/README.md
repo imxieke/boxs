@@ -1,0 +1,1 @@
+## bin 目录 软连接至 /usr/local/share/dotboxs/bin 用于跨系统调用

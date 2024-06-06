@@ -27,21 +27,21 @@ mkdir -p ~/.bin
 _deps() {
   echo "==> Fix OS Depency"
   case "$OSNAME" in
-  debian | ubuntu)
-    apt update -y && apt install -y --no-install-recommends git procps wget curl ca-certificates
-    ;;
-  Darwin)
-    brew install git wget curl ca-certificates
-    ;;
-  alpine)
-    apk add --no-cache git procps wget curl ca-certificates
-    ;;
-  arch* | manjaro)
-    pacman -S --noconfirm git procps wget curl ca-certificates
-    ;;
-  *)
-    echo default
-    ;;
+    debian | ubuntu)
+      apt update -y && apt install -y --no-install-recommends git procps wget curl ca-certificates
+      ;;
+    Darwin)
+      brew install git wget curl ca-certificates
+      ;;
+    alpine)
+      apk add --no-cache git procps wget curl ca-certificates
+      ;;
+    arch* | manjaro)
+      pacman -S --noconfirm git procps wget curl ca-certificates
+      ;;
+    *)
+      echo default
+      ;;
   esac
 }
 
@@ -56,7 +56,7 @@ _init_check() {
 
   if [[ -n "$(command -v supervisorctl)" ]]; then
     mkdir -p /usr/local/etc
-    [ ! -d /usr/local/etc/supervisor.d ] && ln -s ~/.boxs/conf/supervisor /usr/local/etc/supervisor.d
+    [ ! -d /usr/local/etc/supervisor.d ] && ln -s ~/.boxs/etc/supervisor.d /usr/local/etc/supervisor.d
   fi
 
   chmod -R +x ~/.bin
@@ -92,21 +92,21 @@ function _fetch() {
 
 _init_pkgs() {
   case "${OSNAME}" in
-  alpine)
-    _init_alpine_pkgs
-    ;;
-  arch* | manjaro)
-    _init_pacman_pkgs
-    ;;
-  Darwin)
-    _init_brew_pkgs
-    ;;
-  debian | ubuntu)
-    _init_apt_pkgs
-    ;;
-  *)
-    echo "Unknown ${OSNAME}" && exit 1
-    ;;
+    alpine)
+      _init_alpine_pkgs
+      ;;
+    arch* | manjaro)
+      _init_pacman_pkgs
+      ;;
+    Darwin)
+      _init_brew_pkgs
+      ;;
+    debian | ubuntu)
+      _init_apt_pkgs
+      ;;
+    *)
+      echo "Unknown ${OSNAME}" && exit 1
+      ;;
   esac
 }
 
@@ -179,18 +179,18 @@ _fetch_command_not_found_dict() {
     if [[ -f /etc/os-release ]]; then
       OSNAME=$(grep '^ID=' /etc/os-release | grep '^ID=' | awk -F '=' '{print $2}')
       case "$OSNAME" in
-      alpine)
-        apk list >~/.boxs/etc/command-not-found/dict.txt
-        ;;
-      ubuntu | debian | deepin | uos | linuxmint | ubuntukylin)
-        apt list >~/.boxs/etc/command-not-found/dict.txt
-        ;;
-      arch | manjaro)
-        pacman -Sl | awk -F ' ' '{print $2}' >~/.boxs/etc/command-not-found/dict.txt
-        ;;
-      *)
-        echo "unsupport your os ${OSNAME}"
-        ;;
+        alpine)
+          apk list >~/.boxs/etc/command-not-found/dict.txt
+          ;;
+        ubuntu | debian | deepin | uos | linuxmint | ubuntukylin)
+          apt list >~/.boxs/etc/command-not-found/dict.txt
+          ;;
+        arch | manjaro)
+          pacman -Sl | awk -F ' ' '{print $2}' >~/.boxs/etc/command-not-found/dict.txt
+          ;;
+        *)
+          echo "unsupport your os ${OSNAME}"
+          ;;
       esac
     fi
   fi

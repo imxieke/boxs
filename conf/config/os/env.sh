@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
- # @LastEditTime: 2024-06-04 14:31:43
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-06-06 22:01:36
+# @LastEditors: Cloudflying
 # @Description: Boxs Env
 ###
 
@@ -55,4 +55,10 @@ if [[ -f "${HOME}/.env" ]]; then
 else
   cp -fr ${BOXS_HOME}/.env-example ${HOME}/.env
   source ${HOME}/.env
+fi
+
+# 设定所属国家 否则默认为中国
+# shellcheck disable=SC2143
+if [[ -z "$(grep "CURRENT_COUNTRY" "${HOME}/.env")" ]]; then
+  export CURRENT_COUNTRY='CN'
 fi
