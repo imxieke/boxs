@@ -9,6 +9,11 @@ check() {
   fi
 }
 
+init_boxs()
+{
+    echo "${PWD}"
+}
+
 # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
 _fix_vslink() {
   if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
@@ -28,15 +33,15 @@ case $1 in
     echo "backup"
     ;;
   check)
-    echo "check"
+    check
     ;;
   remove)
     echo "Remove"
     ;;
   init)
-    echo "Init"
+    init_boxs
     ;;
   *)
-    echo "Unknown Options $@"
+    _usage "$@"
     ;;
 esac
