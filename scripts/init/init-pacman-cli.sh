@@ -2,12 +2,11 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-06-05 23:09:57
+# @LastEditTime: 2024-06-08 14:45:59
 # @LastEditors: Cloudflying
-# @Description: Manjaro 和 Archlinux 软件源不同 Manjaro 软件比较多
+# @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
 
-# manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 _install() {
   # Dev
   pacman -S --noconfirm base-devel cmake cppcheck gdb \
@@ -30,12 +29,13 @@ _install() {
   # Network
   # openbsd-netcat: nc command
   # corkscrew: tunneling SSH through HTTP proxies
+  # bandwhich Terminal bandwidth utilization tool
   pacman -S --noconfirm net-tools mtr traceroute dnsutils iputils lsof \
+    bandwhich \
     clash \
-    rsync \
+    syncthing rsync rclone \
     whois \
     openbsd-netcat corkscrew socat \
-    syncthing \
     iperf iperf3
 
   # Language

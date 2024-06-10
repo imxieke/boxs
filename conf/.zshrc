@@ -1,3 +1,5 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
@@ -73,3 +75,6 @@ chpwd_functions=(auto-color-ls $chpwd_functions)
 # alway show quote
 export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
 [ -n "$(command -v fortune)" ] && fortune -s | cowsay
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:02:52
-# @LastEditTime: 2024-06-05 23:15:38
+# @LastEditTime: 2024-06-08 10:37:54
 # @LastEditors: Cloudflying
 # @Description: init package for macOS brew package manager
 ###
@@ -154,8 +154,12 @@ init_pkgs() {
 
   # Network Tools
   # cli dns query
-  brew install curl clash whois dog iperf iperf3 netcat socat doggo \
-    syncthing rsync
+  # bandwhich Terminal bandwidth utilization tool
+  # doggo dog dns client
+  brew install curl clash whois iperf iperf3 netcat socat \
+    dog doggo \
+    syncthing rsync rclone \
+    bandwhich
 
   # Chat
   brew install telegram wechat qq discord

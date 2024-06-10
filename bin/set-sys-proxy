@@ -1,55 +1,39 @@
 #!/usr/bin/env bash
 # 设置 macos 系统全局代理
 
-_PROXY_HOST='127.0.0.1'
-if [[ -n "$(grep -v '^#' ~/.config/clash/config.yaml | grep 'mixed-port' | awk -F ':' '{print $2}' | awk -F ' ' '{print $1}')" ]]; then
-	_PROXY_PORT=$(grep -v '^#' ~/.config/clash/config.yaml | grep 'mixed-port' | awk -F ':' '{print $2}' | awk -F ' ' '{print $1}')
-elif [[ -n "$(grep -v '^#' ~/.config/clash/config.yaml | grep 'redir-port' | awk -F ':' '{print $2}' | awk -F ' ' '{print $1}')" ]]; then
-	_PROXY_PORT=$(grep -v '^#' ~/.config/clash/config.yaml | grep 'redir-port' | awk -F ':' '{print $2}' | awk -F ' ' '{print $1}')
-else
-	echo "can't check clash proxy port, set it manual
-	set-sys-proxy {host} {port}
-	"
-	_PROXY_CHECK_FAIL=true
+if [[ -f "${HOME}/.env" ]]; then
+  . "${HOME}/.env"
 fi
 
-if [[ -n ${_PROXY_CHECK_FAIL} ]]; then
-	if [[ -n "{1}" ]]; then
-		_PROXY_HOST=$1
-	else
-		echo "host can't be null"
-		exit 1
-	fi
+PROXY_HOST=$(echo ${MIXED_PROXY} | awk -F ":" '{print $1}')
+PROXY_PORT=$(echo ${MIXED_PROXY} | awk -F ":" '{print $2}')
 
-	if [[ -n "{2}" ]]; then
-		_PROXY_HOST=$1
-	else
-		echo "host can't be null"
-		exit 1
-	fi
+echo ${PROXY_HOST}
+echo ${PROXY_PORT}
+
+if [ -z "${PROXY_HOST}" ] || [ -z "${PROXY_PORT}" ]; then
+  echo "Proxy Not Set"
+  exit 1
 fi
 
 if [[ "$(uname -s)" == 'Darwin' ]]; then
-	if [[ -n "$(networksetup -listnetworkserviceorder  | grep 'Port: Wi-Fi')" ]]; then
-    	networksetup -setwebproxy Wi-Fi ${_PROXY_HOST} ${_PROXY_PORT}
-    	networksetup -setsecurewebproxy Wi-Fi ${_PROXY_HOST} ${_PROXY_PORT}
-	    networksetup -setsocksfirewallproxy Wi-Fi ${_PROXY_HOST} ${_PROXY_PORT}
-	    echo 'configration all done, enjoy it'
-	elif [[ -n "$(networksetup -listnetworkserviceorder  | grep 'Port: Ethernet')" ]]; then
-	    # http proxy
-	    networksetup -setwebproxy Ethernet ${_PROXY_HOST} ${_PROXY_PORT}
-	    # https proxy
-	    networksetup -setsecurewebproxy Ethernet ${_PROXY_HOST} ${_PROXY_PORT}
-	    # socket5 proxy
-	    networksetup -setsocksfirewallproxy Ethernet ${_PROXY_HOST} ${_PROXY_PORT}
-	    echo 'configration all done, enjoy it'
-	 else
-	 	echo "unknown network device, use networksetup -listnetworkserviceorder check your device and type below command manual
-    	networksetup -setwebproxy {device} ${_PROXY_HOST} ${_PROXY_PORT}
-    	networksetup -setsecurewebproxy {device} ${_PROXY_HOST} ${_PROXY_PORT}
-	    networksetup -setsocksfirewallproxy {device} ${_PROXY_HOST} ${_PROXY_PORT}
-"
-	fi
+  if [[ -n "$(networksetup -listnetworkserviceorder | grep 'Port: Wi-Fi')" ]]; then
+    networksetup -setwebproxy Wi-Fi ${PROXY_HOST} ${PROXY_PORT}
+    networksetup -setsecurewebproxy Wi-Fi ${PROXY_HOST} ${PROXY_PORT}
+    networksetup -setsocksfirewallproxy Wi-Fi ${PROXY_HOST} ${PROXY_PORT}
+    # http proxy
+    networksetup -setwebproxy Ethernet ${PROXY_HOST} ${PROXY_PORT}
+    # https proxy
+    networksetup -setsecurewebproxy Ethernet ${PROXY_HOST} ${PROXY_PORT}
+    # socket5 proxy
+    networksetup -setsocksfirewallproxy Ethernet ${PROXY_HOST} ${PROXY_PORT}
+    echo 'configration all done, enjoy it'
+  else
+    echo "unknown network device, use networksetup -listnetworkserviceorder check your device and type below command manual
+    	networksetup -setwebproxy {device} ${PROXY_HOST} ${PROXY_PORT}
+    	networksetup -setsecurewebproxy {device} ${PROXY_HOST} ${PROXY_PORT}
+	    networksetup -setsocksfirewallproxy {device} ${PROXY_HOST} ${PROXY_PORT}"
+  fi
 else
-	echo 'only for macOS'
+  echo 'only for macOS'
 fi
