@@ -1,12 +1,13 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2024-06-05 21:47:39
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-06-14 22:01:25
+# @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
+
+# Amazon Q pre block. Keep at the top of this file.
+# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 
 # init PATH
 # 前面优先级高 覆盖系统自带的命令
@@ -77,4 +78,4 @@ export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
 [ -n "$(command -v fortune)" ] && fortune -s | cowsay
 
 # Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
