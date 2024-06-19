@@ -20,3 +20,8 @@ alias glfsi='git lfs install'
 alias glfst='git lfs track'
 alias glfsls='git lfs ls-files'
 alias glfsmi='git lfs migrate import --include='
+
+# Remote
+
+alias gitrv="git remote -v"
+alias git-add-orgin="git remote set-url --add origin"
