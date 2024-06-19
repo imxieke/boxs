@@ -26,9 +26,10 @@
   defaultBranch = master
 
 [user]
-  name = Cloudflying
+	name = imxieke
   email = oss@live.hk
   useConfigOnly = true
+	signingkey = 01BD08D7AAD7CCB3
 
 [author]
   name = imxieke
