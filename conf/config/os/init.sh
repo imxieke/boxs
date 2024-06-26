@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-06-06 22:10:31
+# @LastEditTime: 2024-06-25 23:23:35
 # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
@@ -41,6 +41,10 @@ if [[ -n $(command -v nvim) ]]; then
 elif [[ -n $(command -v vim) ]]; then
   export EDITOR='vim'
   export VISUAL='vim'
+fi
+
+if [[ -n "$(command -v gpg)" ]]; then
+  export GPG_TTY=$(tty)
 fi
 
 export CVSEDITOR="${EDITOR}"
