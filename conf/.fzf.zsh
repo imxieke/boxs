@@ -1,9 +1,6 @@
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "${FZF_PATH}/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-# ------------
-
-[ -f "${FZF_PATH}/shell/key-bindings.zsh" ] && source "${FZF_PATH}/shell/key-bindings.zsh"
-
+if [[ -d "/usr/share/fzf" ]]; then
+  # Auto-completion
+  source "${FZF_PATH}/completion.zsh" 2>/dev/null
+  # Key bindings
+  source "${FZF_PATH}/key-bindings.zsh" 2>/dev/null
+fi

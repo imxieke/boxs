@@ -2,10 +2,25 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-06-08 14:45:59
+# @LastEditTime: 2024-07-03 10:32:24
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
+
+_init_user() {
+  RUNUSER='dockenv'
+  PASSWORD='dockpass'
+  if [[ -z "$(grep ${RUNUSER} /etc/passwd)" ]]; then
+    useradd -m -G wheel -s /usr/bin/zsh ${RUNUSER}
+    echo "root:${PASSWORD}" | chpasswd
+    echo "${RUNUSER}:${PASSWORD}" | chpasswd
+    # 设置用户组可以使用 root 权限
+    sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/g' /etc/sudoers
+    echo "${RUNUSER} Created"
+  else
+    echo "NO User Special Or User Has Create"
+  fi
+}
 
 _install() {
   # Dev
@@ -127,8 +142,8 @@ _install() {
   pacman -S --noconfirm neovim
 
   # Format
-  # shellcheck depends on haskell
   pacman -S --noconfirm shfmt yamlfmt
 }
 
+_init_user "$@"
 _install
