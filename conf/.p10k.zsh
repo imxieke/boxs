@@ -1706,7 +1706,7 @@
     fi
 
     ARCH=$(uname -m)
-    HOSTNAME=$(hostname)
+    HOSTNAME=$(uname -n)
 
     if [[ -f "/etc/os-release" ]]; then
       source /etc/os-release
