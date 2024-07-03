@@ -2,12 +2,12 @@
 ###
  # @Author: Cloudflying
  # @Date: 2024-05-31 21:27:10
- # @LastEditTime: 2024-06-05 21:25:29
+ # @LastEditTime: 2024-07-03 14:09:49
  # @LastEditors: Cloudflying
  # @Description: Zinit Init
 ###
 if [[ -f ~/.local/share/zinit/zinit.zsh ]]; then
-  source ~/.local/share/zinit/zinit.zsh
+  . "~/.local/share/zinit/zinit.zsh"
 	autoload -Uz _zinit
 	(( ${+_comps} )) && _comps[zinit]=_zinit
 	# setopt promptsubst

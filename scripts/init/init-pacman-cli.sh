@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-07-03 10:32:24
+# @LastEditTime: 2024-07-03 13:53:23
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -54,9 +54,9 @@ _install() {
     iperf iperf3
 
   # Language
+  # Replace With nvm to install nodejs npm
   pacman -S --noconfirm python python-pip \
     go \
-    nodejs npm \
     jdk-openjdk \
     php \
     deno

@@ -1,4 +1,4 @@
-if [[ -d "/usr/share/fzf" ]]; then
+if [[ -n "${FZF_PATH}" ]]; then
   # Auto-completion
   source "${FZF_PATH}/completion.zsh" 2>/dev/null
   # Key bindings
