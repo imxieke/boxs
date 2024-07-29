@@ -40,11 +40,11 @@ elif [[ "$(uname -s)" == 'Linux' ]]; then
 fi
 
 # Check Local IP
-# export HOST_IP=$(ifconfig en1 | grep inet | grep -v inet6 | awk -F ' ' '{print $2}')
 if [[ "${OSTYPE}" == 'Darwin' ]]; then
   export HOST_IP=$(ifconfig en1 | grep -Eo 'inet\ [0-9]\S+.[0-9]' | sed 's#inet\ ##g')
 elif [[ "${OSTYPE}" == 'Linux' ]]; then
-  export HOST_IP=$(ifconfig eth0 | grep -Eo 'inet\ [0-9]\S+.[0-9]' | sed 's#inet\ ##g')
+  # export HOST_IP=$(ifconfig eth0 | grep -Eo 'inet\ [0-9]\S+.[0-9]' | sed 's#inet\ ##g')
+  export HOST_IP=$(ip addr | grep inet | grep -v inet6 | grep -v '127.0' | grep -v '172.' | awk -F ' ' '{print $2}' | head -n 1 | awk -F '/' '{print $1}')
 else
   export HOST_IP="127.0.0.1"
 fi
