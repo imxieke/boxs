@@ -1,20 +1,20 @@
-exa_params="exa --all --long --icons --group --git --color-scale --classify --group-directories-first --time-style=long-iso"
-alias l=${exa_params}
+eza_params="eza --all --long --icons --group --git --color-scale --classify --group-directories-first --time-style=long-iso"
+alias l=${eza_params}
 
 # case-insensitively
-alias llf="${exa_params}  --sort filename"
+alias llf="${eza_params}  --sort filename"
 # case-sensitively
-alias llfc="${exa_params}  --sort Filename"
+alias llfc="${eza_params}  --sort Filename"
 # sort by size
-alias lls="${exa_params}  --sort size"
-alias llm="${exa_params}  --sort modified"
-alias llc="${exa_params}  --sort created"
+alias lls="${eza_params}  --sort size"
+alias llm="${eza_params}  --sort modified"
+alias llc="${eza_params}  --sort created"
 
 # 文件树🌲
-alias llt="${exa_params} --tree"
+alias llt="${eza_params} --tree"
 
 # 忽略 .gitignore 文件
-alias llg="${exa_params} --git-ignore"
+alias llg="${eza_params} --git-ignore"
 
 # bat Diff
 alias bdiff='bat --diff'

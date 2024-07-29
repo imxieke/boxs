@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
-# @LastEditTime: 2024-06-14 22:01:25
+# @LastEditTime: 2024-07-28 08:43:01
 # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
@@ -67,7 +67,7 @@ source $ZSH/oh-my-zsh.sh
 auto-color-ls() {
   emulate -L zsh
   echo
-  exa --all --header --icons --git
+  eza --all --header --icons --git
 }
 
 chpwd_functions=(auto-color-ls $chpwd_functions)

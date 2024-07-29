@@ -10,3 +10,4 @@ alias bs='brew search'
 alias bu='brew update'
 alias buu='brew upgrade'
 alias bss='brew services'
+alias go-taps="cd /usr/local/Homebrew/Library/Taps"
