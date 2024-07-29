@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:02:52
-# @LastEditTime: 2024-06-08 10:37:54
+# @LastEditTime: 2024-07-28 08:41:59
 # @LastEditors: Cloudflying
 # @Description: init package for macOS brew package manager
 ###
@@ -88,12 +88,12 @@ init_pkgs() {
   brew install git git-lfs git-svn gitleaks subversion gh gitui git-delta lazygit ghq
 
   # lsd rust The next gen ls command
-  # exa rust Modern replacement for ls
+  # eza A modern alternative to ls
   # fd  rust Simple, fast and user-friendly alternative to find
   # fzf Command-line fuzzy finder written in Go
   # duf Disk Usage/Free Utility - a better 'df' alternative
   # ripgrep recursively searches directories for a regex pattern while respecting your gitignore
-  brew install tree lsd exa fd duf fzf ripgrep ripgrep-all the_silver_searcher
+  brew install tree lsd eza fd duf fzf ripgrep ripgrep-all the_silver_searcher
 
   # bitwarden Password Manager
   # balenaetcher flash mirror file to disk or Removable disk
