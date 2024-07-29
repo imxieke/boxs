@@ -55,9 +55,9 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 fi
 
 # Archlinux-Like
-if [[ -d "/etc/pacman.d" ]]; then
-  plugins=(pacman)
-fi
+# if [[ -d "/etc/pacman.d" ]]; then
+#   plugins=(pacman)
+# fi
 
 plugins+=(ag composer colored-man-pages docker docker-compose extract fd fzf gh git history ripgrep rust z)
 

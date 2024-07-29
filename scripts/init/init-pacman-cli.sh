@@ -145,5 +145,5 @@ _install() {
   pacman -S --noconfirm shfmt yamlfmt
 }
 
-_init_user "$@"
+# _init_user "$@"
 _install
