@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-06-25 23:23:35
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-08-02 17:10:40
+ # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
 
@@ -74,3 +74,15 @@ done
 
 # Plugins
 # [ -f ${BOXS_HOME}/scripts/command-not-found.sh ] && source ${BOXS_HOME}/scripts/command-not-found.sh
+
+if [[ ! -f "${HOME}/.zshrc"  ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]];then
+  ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
+fi
+
+if [[ ! -f "${HOME}/.gitconfig"  ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]];then
+  ln -sf ${BOXS_HOME}/conf/.gitconfig ${HOME}/.gitconfig
+fi
+
+if [[ ! -f "${HOME}/.npmrc"  ]] || [[ -z "$(ls -lha ~/.npmrc | grep '.boxs/conf/')" ]];then
+  ln -sf ${BOXS_HOME}/conf/.npmrc ${HOME}/.npmrc
+fi
