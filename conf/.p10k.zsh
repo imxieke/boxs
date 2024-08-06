@@ -1714,7 +1714,7 @@
     elif [[ "$(uname -s)" == 'Darwin' ]]; then
       OSNAME="macOS"
     fi
-    TEXT="${RUNUSER}@${HOSTNAME} On ${OSNAME} ${ARCH}"
+    TEXT="${RUNUSER}@${HOSTNAME} On ${ARCH}"
     p10k segment -b 8 -f 3 -t "${TEXT}"
   }
 
