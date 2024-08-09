@@ -1,8 +1,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2024-08-02 15:13:09
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-08-09 17:57:57
+# @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
 
@@ -17,6 +17,11 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 # Set up the system environment in advance
 source ${HOME}/.boxs/conf/config/os/env.sh
 source ${HOME}/.boxs/conf/config/os/init.sh
+
+if [[ -f "/usr/bin/bash.exe" ]]; then
+  echo "==> Append MinGW64 PATH"
+  export PATH=${PATH}:/mingw64/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+fi
 
 # Check zsh load time for debug
 # zmodload zsh/zprof
