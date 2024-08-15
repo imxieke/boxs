@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-08-15 14:32:18
+# @LastEditTime: 2024-08-15 14:49:26
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -41,3 +41,13 @@ winget install Git.Git
 # winget install GitHub.GitLFS
 winget install dandavison.delta
 winget install Baidu.BaiduPinyin
+
+pacman -S --noconfirm mingw-w64-x86_64-neovim
+pacman -S --noconfirm rsync
+
+pacman -S --noconfirm git \
+    mingw-w64-x86_64-bat \
+    mingw-w64-x86_64-git-lfs \
+    mingw-w64-x86_64-delta \
+    mingw-w64-x86_64-gitui \
+    mingw-w64-x86_64-github-cli
