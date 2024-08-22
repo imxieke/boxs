@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-08-15 14:49:26
+# @LastEditTime: 2024-08-22 17:54:39
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -15,6 +15,12 @@ winget install Mozilla.Firefox.DeveloperEdition
 # Office 365
 winget install 9WZDNCRD29V9
 winget install Kingsoft.WPSOffice.CN
+
+# Terminal
+# Flutter Treminal
+winget install 9P2KRLMFXF9T
+# Windows Terminal
+winget install 9N0DX20HK701
 
 # 火绒
 winget install XPDNH1FMW7NB40
@@ -38,9 +44,13 @@ winget install Apple.iTunes
 winget install Apple.iCloud
 winget install Xiaomi.XiaomiCloud
 winget install Git.Git
+winget install GitHub.cli
 # winget install GitHub.GitLFS
 winget install dandavison.delta
 winget install Baidu.BaiduPinyin
+
+winget install Iterate.Cyberduck
+winget install Microsoft.DotNet.DesktopRuntime.8
 
 pacman -S --noconfirm mingw-w64-x86_64-neovim
 pacman -S --noconfirm rsync
