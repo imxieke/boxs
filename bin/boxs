@@ -1,6 +1,40 @@
 #!/usr/bin/env bash
 # Boxs Manager Script
 
+# 当缺省会使用斜面用户密码
+DEFAULT_USER="imxieke"
+DEFAULT_PASSWD="openssl rand -hex 4"
+
+__permision_check() {
+  if [[ "$(id -u)" -ne 0 ]]; then
+    echo "==> Current User No Permission"
+    exit 1
+  fi
+}
+
+# 解析参数与默认参数
+_parse_params() {
+  __permision_check
+  for PARAM in "$@"; do
+    case "${PARAM}" in
+    --user* | -u*)
+      USERNAME=$(echo ${PARAM} | cut -d '=' -f 2)
+      ;;
+    --password* | -p*)
+      PASSWORD=$(echo ${PARAM} | cut -d '=' -f 2)
+      ;;
+    *)
+      [ -z "${USERNAME}" ] && USERNAME=${DEFAULT_USER}
+      [ -z "${PASSWORD}" ] && PASSWORD=${DEFAULT_PASSWD}
+      ;;
+    esac
+
+    # echo "${PARAM}"
+  done
+}
+
+_parse_params "$@"
+
 # 检查 boxs 依赖
 check() {
   if [ ! -d ${HOME}/.oh-my-zsh ]; then
@@ -9,46 +43,175 @@ check() {
   fi
 }
 
-init_boxs()
-{
-    echo "${PWD}"
-    init_symbol
+# 初始化用户
+init_users() {
+  echo "==>Create User: ${USERNAME}:${PASSWORD} On Wheel Group"
+  if [[ -z "$(grep wheel /etc/group)" ]]; then
+    groupadd wheel
+  fi
+
+  # 赋予 wheel 群组 ROOT 权限
+  if [[ -z "$(grep ^%wheel /etc/sudoers)" ]]; then
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >/etc/sudoers.d/wheel
+  fi
+
+  # 创建用户
+  if [[ -z "$(grep ${USERNAME} /etc/passwd)" ]]; then
+    useradd -m -G wheel -s /usr/bin/bash ${USERNAME}
+    echo "root:${PASSWORD}" | chpasswd
+    echo "${RUNUSER}:${PASSWORD}" | chpasswd
+  fi
 }
 
-init_symbol()
-{
-    if [[ ! -f  "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
-        mkdir -p ${HOME}/.local/share/nvim/databases 
-        touch ${HOME}/.local/share/nvim/databases/telescope_history.sqlite3
-    fi
-
-    # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
-    if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
-      sudo ln -sf ${BOXS_HOME}/share/bin /usr/local/share/dotboxs/bin
-    fi
+__init() {
+  init_boxs
+  init_pkgs
 }
+
+# Packages Init
+init_pkgs() {
+  # Set Git Config
+  if [[ -n "$(command -v git)" ]]; then
+    echo "==> Git configuration"
+    git config --global core.pager delta
+    git config --global interactive.diffFilter 'delta --color-only --features=interactive'
+    git config --global core.fileMode false
+    git config --global core.ignorecase false
+  fi
+
+  # Composer
+  # Offcial
+  # https://repo.packagist.org
+  # https://mirrors.cloud.tencent.com/composer/
+  # https://mirrors.aliyun.com/composer/
+  if [[ -n "$(command -v composer)" ]]; then
+    echo "==> Set Composer Mirrors"
+    composer config -g repos.packagist composer https://mirrors.cloud.tencent.com/composer/
+  fi
+
+  # Offcial
+  # https://registry.npmjs.org/
+  # http://mirrors.cloud.tencent.com/npm/
+  # https://registry.npmmirror.com/
+  # https://r.cnpmjs.org
+  # https://pkgs-npm.pkg.coding.net/mirrors/npm
+  if [[ -n "$(command -v npm)" ]]; then
+    npm config set registry http://mirrors.cloud.tencent.com/npm/
+  fi
+
+  # https://mirrors.aliyun.com/rubygems/
+  # https://mirrors.tuna.tsinghua.edu.cn/rubygems/
+  # https://pods.xie.ke/rubygems/
+  # https://gems.ruby-china.com
+  # https://mirrors.cloud.tencent.com/rubygems/
+  # https://repo.huaweicloud.com/repository/rubygems/
+  # https://mirrors.huaweicloud.com/repository/rubygems/
+  # https://mirrors.ustc.edu.cn/rubygems/
+  if [[ -n "$(command -v gem)" ]]; then
+    gem sources --remove https://rubygems.org/
+    gem sources --add https://mirrors.aliyun.com/rubygems/
+    # bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
+  fi
+
+  # Python pip
+  # Offcial
+  # https://pypi.org/simple/
+  # https://mirrors.bfsu.edu.cn/pypi/
+  # https://pypi.tuna.tsinghua.edu.cn/simple
+  # http://mirrors.cloud.tencent.com/pypi/simple/
+  # https://mirrors.aliyun.com/pypi/simple/
+  if [[ -n "$(command -v pip)" ]]; then
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn
+  fi
+
+  if [[ -n "$(command -v pip2)" ]]; then
+    pip2 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    pip2 config set install.trusted-host pypi.tuna.tsinghua.edu.cn
+  fi
+
+  if [[ -n "$(command -v pip3)" ]]; then
+    pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    pip3 config set install.trusted-host pypi.tuna.tsinghua.edu.cn
+  fi
+}
+
+# 初始化软链接
+init_boxs() {
+  # 初始化 Boxs
+  if [[ ! -d "${HOME}/.boxs" ]]; then
+    # git@gitcode.com:imxieke/boxs.git
+    git clone --depth 1 https://gitcode.com/imxieke/boxs.git
+  fi
+
+  # 初始化 Oh my zsh
+  if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
+    echo "==> Fetch oh my zsh"
+    git clone --depth 1 https://gitcode.com/rsync/ohmyzsh.git ~/.oh-my-zsh
+    echo "==> Create .zshrc config file"
+    ln -sf ${HOME}/.boxs/conf/.zshrc ~/.zshrc
+  fi
+
+  # zsh Plugin Manager
+  if [[ ! -d ~/.local/share/zinit/zinit ]]; then
+    echo "==> zinit configuration"
+    git clone --depth 1 https://gitcode.com/rsync/zinit.git ~/.local/share/zinit
+  fi
+
+  # 初始化 Oh-my-zsh
+  if [[ ! -f "${HOME}/.zshrc" ]]; then
+    echo "==>Link oh my zsh"
+    ln -sf ${HOME}/.boxs/conf/.zshrc ${HOME}/.zshrc
+  fi
+
+  if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
+    echo "==>Init Neovim Telescope SQLite Database"
+    mkdir -p ${HOME}/.local/share/nvim/databases
+    touch ${HOME}/.local/share/nvim/databases/telescope_history.sqlite3
+  fi
+
+  if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
+    git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
+  fi
+
+  # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
+  if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
+    echo "==> Init Cross Platform Binary Command"
+    sudo ln -sf ${HOME}/share/bin /usr/local/share/dotboxs/bin
+  fi
+}
+
+init_user_boxs
 
 _usage() {
   echo "Usage: boxs install|backup|recovery|init"
+  echo "Params Examples:"
+  echo "  boxs user --user|-u=username --password|-p=password"
 }
 
 case $1 in
-  install)
-    echo "Install"
-    ;;
-  backup)
-    echo "backup"
-    ;;
-  check)
-    check
-    ;;
-  remove)
-    echo "Remove"
-    ;;
-  init)
-    init_boxs
-    ;;
-  *)
-    _usage "$@"
-    ;;
+install)
+  echo "Install"
+  ;;
+backup)
+  echo "backup"
+  ;;
+check)
+  check
+  ;;
+remove)
+  echo "Remove"
+  ;;
+user)
+  init_users "$@"
+  ;;
+init)
+  __init
+  ;;
+init-pkgs)
+  init_pkgs
+  ;;
+*)
+  _usage "$@"
+  ;;
 esac
