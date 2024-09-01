@@ -3,7 +3,7 @@
 
 # 当缺省会使用斜面用户密码
 DEFAULT_USER="imxieke"
-DEFAULT_PASSWD="openssl rand -hex 4"
+DEFAULT_PASSWD=$(openssl rand -hex 4)
 
 __permision_check() {
   if [[ "$(id -u)" -ne 0 ]]; then
@@ -14,7 +14,6 @@ __permision_check() {
 
 # 解析参数与默认参数
 _parse_params() {
-  __permision_check
   for PARAM in "$@"; do
     case "${PARAM}" in
     --user* | -u*)
@@ -28,9 +27,9 @@ _parse_params() {
       [ -z "${PASSWORD}" ] && PASSWORD=${DEFAULT_PASSWD}
       ;;
     esac
-
-    # echo "${PARAM}"
   done
+
+  USER_HOME="/home/${USERNAME}"
 }
 
 _parse_params "$@"
@@ -43,8 +42,40 @@ check() {
   fi
 }
 
-# 初始化用户
+# Depends Install
+init_deps() {
+  if [[ "$(uname -s)" == 'Linux' ]]; then
+    [ -z "$(command -v sudo)" ] && install_deps sudo
+  fi
+  [ -z "$(command -v zsh)" ] && install_deps zsh
+  [ -z "$(command -v git)" ] && install_deps git
+  [ -z "$(command -v curl)" ] && install_deps curl
+}
+
+install_deps() {
+  __permision_check
+  echo "==> Install Depends $*"
+  if [[ -f "/etc/os-release" ]]; then
+    . /etc/os-release
+  fi
+
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    brew install "$@"
+  elif [[ "${ID}" == 'ubuntu' ]]; then
+    apt install -y "$@"
+  elif [[ "${ID}" == 'arch' ]]; then
+    pacman -S --noconfirm "$@"
+  elif [[ "${ID}" == 'alpine' ]]; then
+    apk add "$@"
+  else
+    echo "Unknow Platform"
+    exit 1
+  fi
+}
+
+# 初始化用户 在所有操作之前(远程获取脚本操作)
 init_users() {
+  __permision_check
   echo "==>Create User: ${USERNAME}:${PASSWORD} On Wheel Group"
   if [[ -z "$(grep wheel /etc/group)" ]]; then
     groupadd wheel
@@ -57,15 +88,10 @@ init_users() {
 
   # 创建用户
   if [[ -z "$(grep ${USERNAME} /etc/passwd)" ]]; then
-    useradd -m -G wheel -s /usr/bin/bash ${USERNAME}
+    useradd -m -G wheel -s /usr/bin/zsh ${USERNAME}
     echo "root:${PASSWORD}" | chpasswd
-    echo "${RUNUSER}:${PASSWORD}" | chpasswd
+    echo "${USERNAME}:${PASSWORD}" | chpasswd
   fi
-}
-
-__init() {
-  init_boxs
-  init_pkgs
 }
 
 # Packages Init
@@ -138,6 +164,8 @@ init_pkgs() {
 
 # 初始化软链接
 init_boxs() {
+  sudo -u ${USERNAME} echo ${HOME}
+  exit 0
   # 初始化 Boxs
   if [[ ! -d "${HOME}/.boxs" ]]; then
     # git@gitcode.com:imxieke/boxs.git
@@ -181,13 +209,19 @@ init_boxs() {
   fi
 }
 
-init_user_boxs
+__init() {
+  init_users
+  init_boxs
+  # init_pkgs
+}
 
 _usage() {
-  echo "Usage: boxs install|backup|recovery|init"
+  echo "Usage: boxs install|backup|recovery|init|deps"
   echo "Params Examples:"
   echo "  boxs user --user|-u=username --password|-p=password"
 }
+
+init_deps
 
 case $1 in
 install)
@@ -198,6 +232,9 @@ backup)
   ;;
 check)
   check
+  ;;
+deps)
+  init_deps
   ;;
 remove)
   echo "Remove"

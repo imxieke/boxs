@@ -25,3 +25,7 @@
 - upload
   - https://transfer.sh/
   - Coding 制品库
+
+
+## 安装
+bash -c $(curl -sL https://raw.gitcode.com/imxieke/boxs/raw/master/bin/boxs)
