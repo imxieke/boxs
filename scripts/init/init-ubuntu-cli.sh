@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 19:20:44
-# @LastEditTime: 2024-07-28 08:48:03
+# @LastEditTime: 2024-09-01 21:07:46
 # @LastEditors: Cloudflying
 # @Description: Init Ubuntu Cli
 ###
@@ -30,6 +30,10 @@ _install() {
   # Package Manager
   apt install -y --no-install-recommends npm python-pip
 
+  # Code Formater
+  apt install -y --no-install-recommends shfmt
+
+  #  System Tools
   apt install -y --no-install-recommends htop jq aria2 axel cron lsb-release ntp ntpdate diffutils psmisc
 
   # Database Client

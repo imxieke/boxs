@@ -271,7 +271,7 @@ __dko_dotfiles__node__require_nvm() {
     __dko_status "Installing nvm"
     rm "${NVM_DIR}/default-packages"
 
-    git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR" ||
+    git clone https://gitcode.com/rsync/nvm.git "$NVM_DIR" ||
       { __dko_err "Could not install nvm" && return 1; }
     pushd "$NVM_DIR" || return 1
     git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
@@ -435,7 +435,7 @@ __dko_dotfiles__py__update_neovim_python() {
 # pass any arg to silence
 __dko_dotfiles__php__require_composer() {
   __dko_has "composer" && return 0
-  (( $# == 0 )) && __dko_warn "composer is not installed"
+  (($# == 0)) && __dko_warn "composer is not installed"
   return 1
 }
 
@@ -465,7 +465,7 @@ __dko_dotfiles__php__update_composer() {
 # pass any arg to silence
 __dko_dotfiles__php__require_phpcs() {
   __dko_has "phpcs" && return 0
-  (( $# == 0 )) && {
+  (($# == 0)) && {
     __dko_warn "phpcs is not installed. Install via composer global require"
     __dko_warn_ "and run again, or set installed_paths manually"
   }
@@ -617,7 +617,7 @@ __dko_dotfiles__darwin__require_latest_xcode() {
 # pass any arg to silence
 __dko_dotfiles__darwin__require_brew() {
   __dko_has "brew" && return 0
-  (( $# == 0 )) && __dko_warn "Homebrew is not installed"
+  (($# == 0)) && __dko_warn "Homebrew is not installed"
   return 1
 }
 

@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
- # @LastEditTime: 2024-08-02 17:10:40
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-08-02 17:10:40
+# @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
 
@@ -19,8 +19,8 @@ if [[ "${CURRENT_COUNTRY}" == 'CN' ]]; then
   [ ! -d "${HOME}/.local/share/zinit" ] && git clone --depth=1 https://e.coding.net/pkgs/mirrors/zinit.git ~/.local/share/zinit
   [[ ! -d "${HOME}/.oh-my-zsh" ]] && git clone --depth=1 https://e.coding.net/pkgs/mirrors/ohmyzsh.git ~/.oh-my-zsh
 else
-  [[ ! -d "${HOME}/.oh-my-zsh" ]] && git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-  [ ! -d "${HOME}/.local/share/zinit" ] && git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ~/.local/share/zinit
+  [[ ! -d "${HOME}/.oh-my-zsh" ]] && git clone --depth=1 https://gitcode.com/rsync/ohmyzsh.git ~/.oh-my-zsh
+  [ ! -d "${HOME}/.local/share/zinit" ] && git clone --depth=1 https://gitcode.com/rsync/zinit.git ~/.local/share/zinit
 fi
 
 # Wait for the system to be ready
@@ -75,14 +75,14 @@ done
 # Plugins
 # [ -f ${BOXS_HOME}/scripts/command-not-found.sh ] && source ${BOXS_HOME}/scripts/command-not-found.sh
 
-if [[ ! -f "${HOME}/.zshrc"  ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]];then
+if [[ ! -f "${HOME}/.zshrc" ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]]; then
   ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
 fi
 
-if [[ ! -f "${HOME}/.gitconfig"  ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]];then
+if [[ ! -f "${HOME}/.gitconfig" ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]]; then
   ln -sf ${BOXS_HOME}/conf/.gitconfig ${HOME}/.gitconfig
 fi
 
-if [[ ! -f "${HOME}/.npmrc"  ]] || [[ -z "$(ls -lha ~/.npmrc | grep '.boxs/conf/')" ]];then
+if [[ ! -f "${HOME}/.npmrc" ]] || [[ -z "$(ls -lha ~/.npmrc | grep '.boxs/conf/')" ]]; then
   ln -sf ${BOXS_HOME}/conf/.npmrc ${HOME}/.npmrc
 fi
