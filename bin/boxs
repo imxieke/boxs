@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Boxs Manager Script
 
-# 当缺省会使用斜面用户密码
+# 当缺省会使用下面用户密码
 DEFAULT_USER="imxieke"
 DEFAULT_PASSWD=$(openssl rand -hex 4)
 
@@ -94,15 +94,45 @@ init_users() {
   fi
 }
 
+__sudo() {
+  sudo "$@"
+}
+
+__user() {
+  sudo -Hu ${USERNAME} "$@"
+}
+
+init_mirrors() {
+  if [[ -f "/etc/os-release" ]]; then
+    . /etc/os-release
+  else
+    echo "Unknow OS"
+    exit 1
+  fi
+
+  echo "==> Set ${PRETTY_NAME} Source Mirrors"
+  case "${ID}" in
+  ubuntu)
+    sudo cp -fr ${HOME}/.boxs/conf/mirrors/sources.list.ubuntu /etc/apt/sources.list
+    sudo sed -i "s#CODENAME#${VERSION_CODENAME}#g" /etc/apt/sources.list
+    ;;
+  *)
+    echo "Unknow OS"
+    exit 1
+    ;;
+  esac
+}
+
 # Packages Init
 init_pkgs() {
   # Set Git Config
   if [[ -n "$(command -v git)" ]]; then
-    echo "==> Git configuration"
+    echo "==> Set Git Configuration"
     git config --global core.pager delta
     git config --global interactive.diffFilter 'delta --color-only --features=interactive'
     git config --global core.fileMode false
     git config --global core.ignorecase false
+    git config --global credential.helper store
   fi
 
   # Composer
@@ -162,10 +192,8 @@ init_pkgs() {
   fi
 }
 
-# 初始化软链接
+# 初始化依赖及软链接
 init_boxs() {
-  sudo -u ${USERNAME} echo ${HOME}
-  exit 0
   # 初始化 Boxs
   if [[ ! -d "${HOME}/.boxs" ]]; then
     # git@gitcode.com:imxieke/boxs.git
@@ -181,7 +209,7 @@ init_boxs() {
   fi
 
   # zsh Plugin Manager
-  if [[ ! -d ~/.local/share/zinit/zinit ]]; then
+  if [[ ! -d ~/.local/share/zinit ]]; then
     echo "==> zinit configuration"
     git clone --depth 1 https://gitcode.com/rsync/zinit.git ~/.local/share/zinit
   fi
@@ -209,10 +237,38 @@ init_boxs() {
   fi
 }
 
+init_symbol() {
+  if [ ! -f "${HOME}/.zshrc" ] || [ -z "$(ls -lha ${HOME}/.zshrc | grep 'boxs')" ]; then
+    ln -sf ${HOME}/.boxs/conf/.zshrc ${HOME}/.zshrc
+  fi
+
+  if [ ! -f "${HOME}/.gitconfig" ] || [ -z "$(ls -lha ${HOME}/.gitconfig | grep 'boxs')" ]; then
+    ln -sf ${HOME}/.boxs/conf/.gitconfig ${HOME}/.gitconfig
+  fi
+
+  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep 'boxs')" ]; then
+    ln -sf ${HOME}/.boxs/conf/.gemrc ${HOME}/.gemrc
+  fi
+
+  if [ ! -f "${HOME}/.npmrc" ] || [ -z "$(ls -lha ${HOME}/.npmrc | grep 'boxs')" ]; then
+    ln -sf ${HOME}/.boxs/conf/.npmrc ${HOME}/.npmrc
+  fi
+}
+
+__secret() {
+  if [[ -e "${BOXS_HOME}" ]]; then
+    echo "==> Secret Init"
+    git config --global credential.helper store
+    echo "https://${GITCODE_USERNAME}:${GITCODE_TOKEN}@gitcode.com" >>${HOME}/.git-credentials
+    chmod 600 ${HOME}/.git-credentials
+  fi
+}
+
 __init() {
-  init_users
-  init_boxs
+  # init_mirrors
+  # init_boxs
   # init_pkgs
+  init_symbol
 }
 
 _usage() {
