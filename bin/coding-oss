@@ -3,8 +3,8 @@
 # Coding 制品库文件上传
 
 API="https://pkgs-generic.pkg.coding.net/mirrors/oss"
-USER="oss-1640949814382"
-PWD="1f6adea5c628a8b845d0e0acc634bbf63d03d388"
+USER="${CODING_USERNAME}"
+PWD="${CODING_PASSWORD}"
 
 ACT=$1
 FILE=$2

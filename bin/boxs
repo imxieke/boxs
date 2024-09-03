@@ -265,9 +265,9 @@ __secret() {
 }
 
 __init() {
-  # init_mirrors
-  # init_boxs
-  # init_pkgs
+  init_mirrors
+  init_boxs
+  init_pkgs
   init_symbol
 }
 
