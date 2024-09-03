@@ -11,8 +11,7 @@ init_env() {
 
   # NeoCode
   if [[ -n "$(command -v nvim)" ]] && [[ ! -d ~/.config/nvim ]]; then
-    echo "==> Fetch Packer Nvim Plugin Manager"
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
     echo "==> Fetch NeoCode configuration"
     git clone --depth 1 https://github.com/imxieke/NeoCode.git ~/.config/nvim
   fi
