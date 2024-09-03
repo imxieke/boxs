@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -f "/mnt/c/Windows/System32/wslconfig.exe" ]]; then
+  /mnt/c/Windows/System32/wslconfig.exe "$@"
+else
+  echo "$(basename $0) Command Not Found"
+fi

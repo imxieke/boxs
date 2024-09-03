@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-08-22 17:54:39
+# @LastEditTime: 2024-09-03 22:26:20
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -49,6 +49,8 @@ winget install GitHub.cli
 winget install dandavison.delta
 winget install Baidu.BaiduPinyin
 
+winget install Chocolatey.Chocolatey
+
 winget install Iterate.Cyberduck
 winget install Microsoft.DotNet.DesktopRuntime.8
 
@@ -56,8 +58,8 @@ pacman -S --noconfirm mingw-w64-x86_64-neovim
 pacman -S --noconfirm rsync
 
 pacman -S --noconfirm git \
-    mingw-w64-x86_64-bat \
-    mingw-w64-x86_64-git-lfs \
-    mingw-w64-x86_64-delta \
-    mingw-w64-x86_64-gitui \
-    mingw-w64-x86_64-github-cli
+  mingw-w64-x86_64-bat \
+  mingw-w64-x86_64-git-lfs \
+  mingw-w64-x86_64-delta \
+  mingw-w64-x86_64-gitui \
+  mingw-w64-x86_64-github-cli

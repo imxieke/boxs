@@ -255,6 +255,13 @@ init_symbol() {
   fi
 }
 
+# 初始化软件配置
+init_config() {
+  if [[ -f "${HOME}/.env" ]]; then
+    echo ""
+  fi
+}
+
 __secret() {
   if [[ -e "${BOXS_HOME}" ]]; then
     echo "==> Secret Init"
