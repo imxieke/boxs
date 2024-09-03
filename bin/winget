@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [[ ! -f "${HOME}/.env" ]]; then
+  echo "Dot Env Not Found"
+else
+  . ${HOME}/.env
+fi
+
+CMD_PATH="/mnt/c/Users/${WIN_USER}/AppData/Local/Microsoft/WindowsApps/winget.exe"
+
+if [[ -f "${CMD_PATH}" ]]; then
+  ${CMD_PATH} "$@"
+else
+  echo "$(basename ${CMD_PATH:0:-4}) Command Not Found"
+fi

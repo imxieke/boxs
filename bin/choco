@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+CMD_PATH="/mnt/c/ProgramData/chocolatey/choco.exe"
+
+if [[ -f "${CMD_PATH}" ]]; then
+  ${CMD_PATH} "$@"
+else
+  echo "$(basename ${CMD_PATH:0:-4}) Command Not Found"
+fi

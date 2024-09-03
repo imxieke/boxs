@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
-# @LastEditTime: 2024-08-15 14:05:26
+# @LastEditTime: 2024-09-03 22:34:47
 # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
@@ -18,22 +18,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 source ${HOME}/.boxs/conf/config/os/env.sh
 source ${HOME}/.boxs/conf/config/os/init.sh
 
-if [[ -f "/usr/bin/bash.exe" ]]; then
-    echo "[+] Loading MinGW64 PATH"
-    export PATH=${PATH}:/mingw64/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:
-fi
-
-# Winget and wsl pwsh etc ...
-WIN_PREFIX="/c/Users/$(whoami)"
-if [[ -d "${WIN_PREFIX}/AppData/Local/Microsoft/WindowsApps" ]]; then
-    echo "[+] Loading Windows Apps PATH"
-    export PATH=${PATH}:/c/Users/Administrator/AppData/Local/Microsoft/WindowsApps
-fi
-
-if [[ -d "/c/ProgramData/chocolatey/bin" ]]; then
-    export PATH=${PATH}:/c/ProgramData/chocolatey/bin
-fi
-
 # Check zsh load time for debug
 # zmodload zsh/zprof
 
@@ -41,7 +25,7 @@ fi
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh" ]]; then
-    source ${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh
+  source ${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh
 fi
 
 export ZSH=$HOME/.oh-my-zsh
@@ -67,7 +51,7 @@ ZSH_THEME="strug"
 
 # 用户自定义配置
 if [[ $(uname -s) == 'Darwin' ]]; then
-    plugins=(macos brew)
+  plugins=(macos brew)
 fi
 
 plugins+=(ag composer colored-man-pages docker docker-compose extract fd fzf gh git history ripgrep rust z)
@@ -76,11 +60,11 @@ source $ZSH/oh-my-zsh.sh
 
 # 执行切换目录命令行自动执行下面命令
 auto-color-ls() {
-    emulate -L zsh
-    echo
-    if [[ -n "$(command -v eza)" ]]; then
-        eza --all --header --icons --git
-    fi
+  emulate -L zsh
+  echo
+  if [[ -n "$(command -v eza)" ]]; then
+    eza --all --header --icons --git
+  fi
 }
 
 chpwd_functions=(auto-color-ls $chpwd_functions)
