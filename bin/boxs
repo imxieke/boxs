@@ -265,16 +265,16 @@ __secret() {
 }
 
 __init() {
-  init_mirrors
   init_boxs
   init_pkgs
   init_symbol
 }
 
 _usage() {
-  echo "Usage: boxs install|backup|recovery|init|deps"
+  echo "Usage: boxs install|backup|recovery|init|deps|mirrors"
   echo "Params Examples:"
   echo "  boxs user --user|-u=username --password|-p=password"
+  echo "  boxs mirrors  Change Software Mirrors"
 }
 
 init_deps
@@ -297,6 +297,9 @@ remove)
   ;;
 user)
   init_users "$@"
+  ;;
+mirrors | --mirrors | -m)
+  init_mirrors
   ;;
 init)
   __init
