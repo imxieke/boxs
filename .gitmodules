@@ -1,9 +1,0 @@
-[submodule "fonts"]
-	path = conf/.local/share/fonts/fonts
-	url = https://gitcode.com/imxieke/boxs-extra.git
-[submodule "conf/secret"]
-	path = conf/secret
-	url = https://gitcode.com/imxieke/secret.git
-[submodule "conf/.config/nvim"]
-	path = conf/.config/nvim
-	url = https://gitcode.com/imxieke/NeoCode.git

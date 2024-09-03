@@ -230,6 +230,12 @@ init_boxs() {
     git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
   fi
 
+  if [[ -n "$(command -v nvim)" ]]; then
+    echo "==> Fetch Neovim"
+    mkdir -p ${HOME}/.local/share/nvim/site/pack/packer/start
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  fi
+
   # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
   if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
     echo "==> Init Cross Platform Binary Command"
@@ -266,8 +272,11 @@ __secret() {
   if [[ -e "${BOXS_HOME}" ]]; then
     echo "==> Secret Init"
     git config --global credential.helper store
+    echo "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com" >>${HOME}/.git-credentials
     echo "https://${GITCODE_USERNAME}:${GITCODE_TOKEN}@gitcode.com" >>${HOME}/.git-credentials
     chmod 600 ${HOME}/.git-credentials
+
+    git clone --depth 1 https://gitcode.com/imxieke/secret.git ~/.config/secret
   fi
 }
 
@@ -278,7 +287,7 @@ __init() {
 }
 
 _usage() {
-  echo "Usage: boxs install|backup|recovery|init|deps|mirrors"
+  echo "Usage: boxs install|backup|recovery|init|deps|mirrors|secret"
   echo "Params Examples:"
   echo "  boxs user --user|-u=username --password|-p=password"
   echo "  boxs mirrors  Change Software Mirrors"
@@ -298,6 +307,9 @@ check)
   ;;
 deps)
   init_deps
+  ;;
+secret)
+  __secret
   ;;
 remove)
   echo "Remove"
