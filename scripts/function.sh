@@ -74,22 +74,6 @@ ls-char() {
   ls -lha $1 | grep -v "\.$" | grep "^c" | grep ''
 }
 
-opengate() {
-  if [[ $(is_mac) == 'true' ]]; then
-    echo "Opening the gates"
-    sudo spctl --master-disable
-    defaults write com.apple.LaunchServices LSQuarantine -bool NO
-  fi
-}
-
-closegate() {
-  if [[ $(is_mac) == 'true' ]]; then
-    echo "Gatekeeper re-activated"
-    sudo spctl --master-enable
-    defaults write com.apple.LaunchServices LSQuarantine -bool YES
-  fi
-}
-
 # sql()
 # {
 #   if [ -z "$(command -v mysql)" ] && echo 'mysql command not found' && exit 1
@@ -196,34 +180,4 @@ show_terminal_colors() {
   for i in {0..255}; do
     printf "\x1b[38;5;${i}mcolor${i}\n"
   done
-}
-
-# View infomation
-function vif() {
-  case "$1" in
-    *.gpg)
-      gpg --quiet --batch -d "$@"
-      ;;
-    *.html | html5 | htm)
-      bat --style='numbers' -l html "$@"
-      ;;
-    *.css)
-      bat --style='numbers' -l css "$@"
-      ;;
-    *.json)
-      bat --style='numbers' -l json "$@"
-      ;;
-    *.c)
-      bat --style='numbers' -l c "$@"
-      ;;
-    *.cpp)
-      bat --style='numbers' -l cpp "$@"
-      ;;
-    *.js)
-      bat --style='numbers' -l javascript "$@"
-      ;;
-    *)
-      bat --style='numbers' "$@"
-      ;;
-  esac
 }
