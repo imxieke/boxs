@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
-# @LastEditTime: 2024-06-06 20:18:25
+# @LastEditTime: 2024-09-06 13:54:04
 # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -11,6 +11,8 @@
 # PATH 放后头 系统是从前往后搜索
 
 export PNPM_HOME="${HOME}/.local/share/pnpm"
+
+mkdir -p "${PNPM_HOME}"
 
 # "/usr/local/opt/coreutils/bin"
 # "/usr/local/opt/coreutils/libexec/gnubin" 有 env 可执行文件 影响系统
