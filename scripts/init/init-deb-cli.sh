@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 19:20:44
-# @LastEditTime: 2024-09-01 21:07:46
+# @LastEditTime: 2024-09-09 17:20:29
 # @LastEditors: Cloudflying
 # @Description: Init Ubuntu Cli
 ###
@@ -19,7 +19,7 @@ _install() {
   apt install -y --no-install-recommends cowsay fortune-mod fortunes fortunes-zh
 
   # 系统工具
-  apt install -y --no-install-recommends locales
+  apt install -y --no-install-recommends locales procps
 
   # Compress
   apt install -y --no-install-recommends p7zip p7zip-full p7zip-rar zstd gzip unar unrar-free lzma xz-utils bzip2 tar zip unzip lzip lrzip
@@ -31,7 +31,7 @@ _install() {
   apt install -y --no-install-recommends npm python-pip
 
   # Code Formater
-  apt install -y --no-install-recommends shfmt
+  apt install -y --no-install-recommends shfmt shellcheck
 
   #  System Tools
   apt install -y --no-install-recommends htop jq aria2 axel cron lsb-release ntp ntpdate diffutils psmisc
@@ -42,7 +42,12 @@ _install() {
   apt install -y --no-install-recommends mariadb-client
 
   # network
-  apt install -y --no-install-recommends net-tools iproute2 mtr traceroute dnsutils iputils-ping lsof corkscrew netcat-openbsd
+  apt install -y --no-install-recommends curl wget \
+    net-tools iproute2 mtr traceroute dnsutils iputils-ping lsof corkscrew netcat-openbsd
+
+  # File
+  # duf Disk Usage/Free Utility
+  apt install -y duf
 
   # File Share
   apt install -y cifs-utils samba rsync syncthing
