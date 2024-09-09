@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
-# @LastEditTime: 2024-06-05 23:18:28
+# @LastEditTime: 2024-09-06 13:57:45
 # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -43,8 +43,14 @@ _install() {
     sql-language-server
 
   # Language
-  pnpm add -g @prettier/plugin-ruby prettier-plugin-sh prettier-plugin-sql prettier-plugin-java prettier-plugin-solidity \
-    prettier-plugin-kotlin @prettier/plugin-php @prettier/plugin-xml
+  pnpm add -g @prettier/plugin-ruby \
+    prettier-plugin-sh \
+    prettier-plugin-sql \
+    prettier-plugin-java \
+    prettier-plugin-solidity \
+    prettier-plugin-kotlin \
+    @prettier/plugin-php \
+    @prettier/plugin-xml
 
   # Frontend
   pnpm add -g prettier-plugin-wxml @shufo/prettier-plugin-blade

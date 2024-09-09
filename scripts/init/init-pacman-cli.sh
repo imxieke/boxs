@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-09-01 23:30:24
+# @LastEditTime: 2024-09-09 16:53:32
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -54,6 +54,9 @@ _install() {
   # Program Package Manager
   pacman -S --noconfirm composer
 
+  # System Utils
+  pacman -S --noconfirm procps-ng
+
   # File && Code Tools
   # rg A search tool that combines the usability of ag with the raw speed of grep
   # ag Code searching tool similar to Ack, but faster
@@ -74,8 +77,12 @@ _install() {
   # xsv A CLI for indexing, slicing, analyzing, splitting and joining CSV files
   # sysstat a collection of performance monitoring tools (iostat,isag,mpstat,pidstat,sadf,sar)
   # glow markdown preview
-  pacman -S --noconfirm tree jq sudo file less zsh cowsay cowfortune btop htop lsb-release ntp mtools xsv eza \
-    skim fd bat bat-extras syft ncdu \
+  pacman -S --noconfirm tree jq sudo file less zsh cowsay cowfortune btop htop \
+    lsb-release ntp mtools xsv eza \
+    skim fd \
+    gron \
+    bat bat-extras \
+    syft ncdu \
     sysstat \
     glow
 

@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-09-03 22:26:20
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-09-06 13:44:27
+ # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
 
@@ -54,6 +54,7 @@ winget install Chocolatey.Chocolatey
 winget install Iterate.Cyberduck
 winget install Microsoft.DotNet.DesktopRuntime.8
 
+# MSYS2
 pacman -S --noconfirm mingw-w64-x86_64-neovim
 pacman -S --noconfirm rsync
 
