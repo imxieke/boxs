@@ -1,0 +1,3 @@
+[submodule "conf/.local/share/fonts"]
+	path = conf/.local/share/fonts
+	url = https://gitcode.com/pull/fonts.git
