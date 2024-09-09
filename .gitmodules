@@ -1,3 +1,6 @@
 [submodule "conf/.local/share/fonts"]
 	path = conf/.local/share/fonts
 	url = https://gitcode.com/pull/fonts.git
+[submodule "conf/.config/secret"]
+	path = conf/.config/secret
+	url = https://gitcode.com/imxieke/secret.git
