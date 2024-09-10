@@ -9,7 +9,7 @@
 if [[ -f "${HOME}/.local/share/zinit/zinit.zsh" ]]; then
   # shellcheck disable=SC1091
   source "${HOME}/.local/share/zinit/zinit.zsh"
-  autoload -Uz _zinit
+  autoload -U compinit; compinit
   # (( ${+_comps} )) && _comps[zinit]=_zinit
   # setopt promptsubst
   # ZSH_THEME='strug'
@@ -30,10 +30,15 @@ if [[ -f "${HOME}/.local/share/zinit/zinit.zsh" ]]; then
   zinit load zpm-zsh/colors
   # Colorize command output using grc and lscolors
   zinit load unixorn/warhol.plugin.zsh
+  #📎 ZSH plugin that reminds you to use existing aliases for commands you just typed
   zinit load MichaelAquilina/zsh-you-should-use
   zinit load mafredri/zsh-async
   # 🔖 Quickly navigate your work path!
   zinit load wfxr/formarks
+
+  # Git
+  zinit load wfxr/forgit
+
   zinit load zdharma-continuum/history-search-multi-word
   zinit load trystan2k/zsh-tab-title
 
@@ -45,6 +50,7 @@ if [[ -f "${HOME}/.local/share/zinit/zinit.zsh" ]]; then
     # Replace zsh's default completion selection menu with fzf!
     # 似乎和其他插件有功能重复
     zinit load chitoku-k/fzf-zsh-completions
+    # Replace zsh's default completion selection menu with fzf!
     zinit load Aloxaf/fzf-tab
     zinit load unixorn/fzf-zsh-plugin
     zinit load yuki-yano/fzf-preview.zsh
