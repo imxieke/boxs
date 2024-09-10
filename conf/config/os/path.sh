@@ -17,6 +17,12 @@ mkdir -p "${PNPM_HOME}"
 # "/usr/local/opt/coreutils/bin"
 # "/usr/local/opt/coreutils/libexec/gnubin" 有 env 可执行文件 影响系统
 
+# if [[ -d "${$HOME}/.local/share/zinit/plugins/wfxr---forgit/bin" ]]; then
+
+if [[ -d "${HOME}/.local/share/zinit/plugins/wfxr---forgit/bin" ]]; then
+  export PATH="${HOME}/.local/share/zinit/plugins/wfxr---forgit/bin:${PATH}"
+fi
+
 PATHS=(
   "/usr/games"
   "/usr/local/games"

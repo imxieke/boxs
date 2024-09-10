@@ -54,7 +54,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   plugins=(macos brew)
 fi
 
-plugins+=(ag composer colored-man-pages docker docker-compose extract fd fzf gh git history ripgrep rust z)
+plugins+=(composer colored-man-pages docker docker-compose extract fzf gh git history rust z)
 
 source $ZSH/oh-my-zsh.sh
 
