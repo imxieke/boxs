@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
-# @LastEditTime: 2024-09-11 14:04:17
+# @LastEditTime: 2024-09-11 15:56:26
 # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
@@ -54,7 +54,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   plugins=(macos brew)
 fi
 
-plugins+=(composer colored-man-pages docker docker-compose extract fzf gh git history rust z)
+plugins+=(composer colored-man-pages docker docker-compose extract gh git history rust z)
 
 source $ZSH/oh-my-zsh.sh
 

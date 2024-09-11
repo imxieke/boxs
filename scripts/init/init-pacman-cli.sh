@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-09-11 14:10:43
+# @LastEditTime: 2024-09-11 14:48:41
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -48,6 +48,7 @@ _install() {
     lua51 \
     ruby
 
+  # Python Packages
   pacman -S --noconfirm python-beautifulsoup4 python-cchardet python-chardet python-lxml python-html5lib
 
   # Language Server Protocol
