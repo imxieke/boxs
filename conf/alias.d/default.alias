@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
-# @LastEditTime: 2024-06-05 20:45:12
+# @LastEditTime: 2024-09-11 10:11:18
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -47,7 +47,7 @@ elif [[ -n "$(command -v vim)" ]]; then
   EDITOR="vim"
 fi
 
-alias e="${EDITOR}"
+# alias e="${EDITOR}"
 alias vi=${EDITOR}
 # alias vim=${EDITOR}
 alias nano=${EDITOR}

@@ -228,6 +228,13 @@ init_boxs() {
     _info "==> oh-my-zsh Config Success"
   fi
 
+  # 配置 Neovim 輕量模式
+  if [[ ! -f "${HOME}/.config/nvim/full.lua" ]]; then
+    _info "==> Config neovim"
+    mkdir -p "${HOME}/.config"
+    ln -sf "${HOME}/.boxs/conf/.config/nvim" "${HOME}/.config/nvim"
+  fi
+
   # zsh Plugin Manager
   if [[ ! -d ~/.local/share/zinit ]]; then
     echo "==> zinit configuration"
@@ -256,14 +263,6 @@ init_boxs() {
     git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
   else
     _info "==> Nvm Install Success"
-  fi
-
-  if [[ ! -d "${HOME}/.config/nvim" ]]; then
-    echo "==> Fetch Neovim"
-    mkdir -p ${HOME}/.config
-    git clone --depth 1 https://gitcode.com/imxieke/NeoCode.git ${HOME}/.config/nvim
-  else
-    _info "==> Neovim Install Success"
   fi
 
   # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
