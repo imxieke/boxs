@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
-# @LastEditTime: 2024-09-11 10:54:25
+# @LastEditTime: 2024-09-11 14:04:17
 # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
