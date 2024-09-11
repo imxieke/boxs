@@ -1,0 +1,1 @@
+vim.b.enable_format_on_save = false

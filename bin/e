@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Neovim Full Config
+
+if [[ -z "$(command -v nvim)" ]]; then
+  echo "Neovim Not Found"
+  exit 1
+fi
+
+if [[ -f "${HOME}/.config/nvim/full.vim" ]]; then
+  nvim -u "${HOME}/.config/nvim/full.vim" "$@"
+else
+  echo "Neovim Config Not Found"
+  exit 1
+fi
