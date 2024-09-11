@@ -265,6 +265,11 @@ init_boxs() {
     _info "==> Nvm Install Success"
   fi
 
+  if [[ -n "$(command -v fzf)" ]]; then
+    rm -fr ~/.fzf.zsh
+    ln -sf ${HOME}/.boxs/.fzf.zsh ${HOME}/.fzf.zsh
+  fi
+
   # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
   if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
     echo "==> Init Cross Platform Binary Command"
@@ -295,7 +300,7 @@ init_symbol() {
 # https://mirrors.tencent.com/composer/composer.phar
 # https://mirrors.aliyun.com/composer/composer.phar
 
-_composer() {
+__init_composer() {
 
   _cmd_exist composer
 
@@ -331,7 +336,7 @@ _composer() {
   echo "unset mirrors? use $(_red 'composer config -g --unset repos.packagist')"
 }
 
-_pip() {
+__init_pip() {
 
   _cmd_exist pip
 
@@ -390,7 +395,7 @@ _pip() {
   fi
 }
 
-_npm() {
+__init_npm() {
   _cmd_exist npm
 
   case $2 in
@@ -427,7 +432,7 @@ _npm() {
   _green "Configration , Set Completion!"
 }
 
-_ruby_conf() {
+__init_ruby() {
   _cmd_exist gem
 
   case $2 in
@@ -459,8 +464,12 @@ _ruby_conf() {
       ;;
   esac
   if [[ -n "${MIRROR}" ]]; then
-    gem sources --add ${MIRROR} --remove https://rubygems.org/
-    bundle config mirror.https://rubygems.org https://mirrors.huaweicloud.com/repository/rubygems/
+    gem sources --add ${MIRROR}
+    gem sources --remove https://rubygems.org
+    gem sources --remove https://rubygems.org/
+    if [[ -n "$(command -v bundle)" ]]; then
+      bundle config mirror.https://rubygems.org https://mirrors.huaweicloud.com/repository/rubygems/
+    fi
     _green "Configration , Set Completion!"
   fi
 }
@@ -538,16 +547,16 @@ case $1 in
     init_pkgs
     ;;
   composer)
-    _composer "$@"
+    __init_composer "$@"
     ;;
   npm)
-    _npm "$@"
+    __init_npm "$@"
     ;;
   ruby)
-    _ruby_conf "$@"
+    __init_ruby "$@"
     ;;
   pip)
-    _pip "$@"
+    __init_pip "$@"
     ;;
   *)
     _usage "$@"

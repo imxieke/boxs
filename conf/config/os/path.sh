@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
-# @LastEditTime: 2024-09-06 13:54:04
+# @LastEditTime: 2024-09-11 17:53:02
 # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -34,6 +34,7 @@ PATHS=(
   "${HOME}/.composer/vendor/bin"
   "${HOME}/.config/composer/vendor/bin"
   "${HOME}/.cargo/bin"
+  "${HOME}/.local/share/gem/ruby/3.2.0/bin"
   "/usr/local/opt/whois/bin"
   "/usr/local/opt/python3/libexec/bin" # 覆盖系统自带的 python3 (macOS)
   "/usr/local/opt/mtr/sbin"
