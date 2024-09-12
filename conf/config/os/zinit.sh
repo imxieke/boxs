@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:27:10
-# @LastEditTime: 2024-09-10 23:47:36
+# @LastEditTime: 2024-09-12 14:04:54
 # @LastEditors: Cloudflying
 # @Description: Zinit Init
 ###
@@ -53,7 +53,5 @@ if [[ -f "${HOME}/.local/share/zinit/zinit.zsh" ]]; then
     zinit load chitoku-k/fzf-zsh-completions
     # fzf 提供分行参数 一行一个
     zinit load Aloxaf/fzf-tab
-    # ZSH plugin to enable fzf searches of a lot more stuff - docker, tmux, homebrew and more.
-    zinit load unixorn/fzf-zsh-plugin
   fi
 fi

@@ -7,6 +7,10 @@ CMD_NAME="boxs"
 DEFAULT_USER="imxieke"
 DEFAULT_PASSWD=$(openssl rand -hex 4)
 
+if [[ -f "${HOME}/.env" ]]; then
+  . ${HOME}/.env
+fi
+
 _red() {
   printf '\033[1;31;31m%b\033[0m' "$1"
 }
@@ -265,9 +269,9 @@ init_boxs() {
     _info "==> Nvm Install Success"
   fi
 
-  if [[ -n "$(command -v fzf)" ]]; then
-    rm -fr ~/.fzf.zsh
-    ln -sf ${HOME}/.boxs/.fzf.zsh ${HOME}/.fzf.zsh
+  if [[ -n "${PHP_VERSION}" ]]; then
+    _info "==> Set PHP Version To ${PHP_VERSION}"
+    ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
   fi
 
   # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
@@ -508,6 +512,7 @@ __init() {
 _usage() {
   echo "Usage: boxs install|backup|recovery|init|deps|mirrors|secret"
   echo "Usage: boxs composer|gem|pip|npm $(_yellow "(Software Source)")"
+  echo "Usage: boxs install-python-pkgs"
   echo "Params Examples:"
   echo "  boxs user --user|-u=username --password|-p=password"
   echo "  boxs mirrors  Change Software Mirrors"
@@ -545,6 +550,9 @@ case $1 in
     ;;
   init-pkgs)
     init_pkgs
+    ;;
+  install-python-pkgs)
+    _install_python_pkgs "$@"
     ;;
   composer)
     __init_composer "$@"
