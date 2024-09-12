@@ -232,13 +232,6 @@ init_boxs() {
     _info "==> oh-my-zsh Config Success"
   fi
 
-  # 配置 Neovim 輕量模式
-  if [[ ! -f "${HOME}/.config/nvim/full.lua" ]]; then
-    _info "==> Config neovim"
-    mkdir -p "${HOME}/.config"
-    ln -sf "${HOME}/.boxs/conf/.config/nvim" "${HOME}/.config/nvim"
-  fi
-
   # zsh Plugin Manager
   if [[ ! -d ~/.local/share/zinit ]]; then
     echo "==> zinit configuration"
@@ -247,31 +240,10 @@ init_boxs() {
     _info "==> zinit Config Success"
   fi
 
-  # 初始化 Oh-my-zsh
-  if [[ ! -f "${HOME}/.zshrc" ]]; then
-    echo "==>Link oh my zsh"
-    ln -sf ${HOME}/.boxs/conf/.zshrc ${HOME}/.zshrc
-  else
-    _info "==> oh-my-zsh Config Success"
-  fi
-
-  if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
-    echo "==>Init Neovim Telescope SQLite Database"
-    mkdir -p ${HOME}/.local/share/nvim/databases
-    touch ${HOME}/.local/share/nvim/databases/telescope_history.sqlite3
-  else
-    _info "==> Telescope Initialize Success"
-  fi
-
   if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
     git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
   else
     _info "==> Nvm Install Success"
-  fi
-
-  if [[ -n "${PHP_VERSION}" ]]; then
-    _info "==> Set PHP Version To ${PHP_VERSION}"
-    ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
   fi
 
   # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
@@ -280,24 +252,6 @@ init_boxs() {
     sudo ln -sf ${HOME}/share/bin /usr/local/share/dotboxs/bin
   else
     _info "==> Cross Platform Config Success"
-  fi
-}
-
-init_symbol() {
-  if [ ! -f "${HOME}/.zshrc" ] || [ -z "$(ls -lha ${HOME}/.zshrc | grep 'boxs')" ]; then
-    ln -sf ${HOME}/.boxs/conf/.zshrc ${HOME}/.zshrc
-  fi
-
-  if [ ! -f "${HOME}/.gitconfig" ] || [ -z "$(ls -lha ${HOME}/.gitconfig | grep 'boxs')" ]; then
-    ln -sf ${HOME}/.boxs/conf/.gitconfig ${HOME}/.gitconfig
-  fi
-
-  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep 'boxs')" ]; then
-    ln -sf ${HOME}/.boxs/conf/.gemrc ${HOME}/.gemrc
-  fi
-
-  if [ ! -f "${HOME}/.npmrc" ] || [ -z "$(ls -lha ${HOME}/.npmrc | grep 'boxs')" ]; then
-    ln -sf ${HOME}/.boxs/conf/.npmrc ${HOME}/.npmrc
   fi
 }
 
@@ -506,7 +460,6 @@ __init() {
 
   init_boxs
   init_pkgs
-  init_symbol
 }
 
 _usage() {
