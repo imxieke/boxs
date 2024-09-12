@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-09-12 14:20:06
+# @LastEditTime: 2024-09-12 15:52:39
 # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
@@ -51,6 +51,12 @@ export CVSEDITOR="${EDITOR}"
 export SVN_EDITOR="${EDITOR}"
 export GIT_EDITOR="${EDITOR}"
 
+# alias e="${EDITOR}"
+alias vi=${EDITOR}
+# alias vim=${EDITOR}
+alias nano=${EDITOR}
+alias emacs=${EDITOR}
+
 # Java (macOS)
 if [[ -d "/usr/local/opt/java11" ]]; then
   export JAVA_HOME="/usr/local/opt/java11"
@@ -75,6 +81,7 @@ done
 # Plugins
 # [ -f ${BOXS_HOME}/scripts/command-not-found.sh ] && source ${BOXS_HOME}/scripts/command-not-found.sh
 
+# 初始化 Oh-my-zsh
 if [[ ! -f "${HOME}/.zshrc" ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]]; then
   ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
 fi
@@ -85,4 +92,26 @@ fi
 
 if [[ ! -f "${HOME}/.npmrc" ]] || [[ -z "$(ls -lha ~/.npmrc | grep '.boxs/conf/')" ]]; then
   ln -sf ${BOXS_HOME}/conf/.npmrc ${HOME}/.npmrc
+fi
+
+if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep 'boxs')" ]; then
+  ln -sf ${HOME}/.boxs/conf/.gemrc ${HOME}/.gemrc
+fi
+
+# 配置 Neovim 輕量模式
+if [[ ! -f "${HOME}/.config/nvim/full.lua" ]]; then
+  _info "==> Config neovim"
+  mkdir -p "${HOME}/.config"
+  ln -sf "${HOME}/.boxs/conf/.config/nvim" "${HOME}/.config/nvim"
+fi
+
+if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
+  # echo "==>Init Neovim Telescope SQLite Database"
+  mkdir -p ${HOME}/.local/share/nvim/databases
+  touch ${HOME}/.local/share/nvim/databases/telescope_history.sqlite3
+fi
+
+if [[ -n "${PHP_VERSION}" ]]; then
+  echo "==> Set PHP Version To ${PHP_VERSION}"
+  ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
 fi

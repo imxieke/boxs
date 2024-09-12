@@ -1,8 +1,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
-# @LastEditTime: 2024-09-11 10:11:18
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-09-12 15:21:30
+ # @LastEditors: Cloudflying
 # @Description:
 ###
 
@@ -39,19 +39,6 @@ alias vivsc="sle ~/Library/Application\ Support/Code/"
 if [[ -n "$(command -v batcat)" ]]; then
   alias bat='batcat'
 fi
-
-if [[ -n "$(command -v nvim)" ]]; then
-  EDITOR=nvim
-  alias vim=${EDITOR}
-elif [[ -n "$(command -v vim)" ]]; then
-  EDITOR="vim"
-fi
-
-# alias e="${EDITOR}"
-alias vi=${EDITOR}
-# alias vim=${EDITOR}
-alias nano=${EDITOR}
-alias emacs=${EDITOR}
 
 # GNU Command
 [ -n "$(command -v gsed)" ] && alias sed='gsed'
