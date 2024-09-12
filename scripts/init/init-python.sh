@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:25:19
- # @LastEditTime: 2024-09-12 10:01:41
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-09-12 23:43:31
+# @LastEditors: Cloudflying
 # @Description:
 ###
 
@@ -19,11 +19,10 @@ _install_python_pkgs() {
 
   _pipadd protobuf msgpack requests
   _pipadd neovim python-lsp-server pygls pynvim
-  _pipadd python-language-server
   _pipadd nginx-language-server
   # deps
   # pyls
-  _pipadd jedi==0.18.0
+  _pipadd jedi
   _pipadd "python-lsp-server[all]"
 
   # Lint
@@ -40,3 +39,5 @@ _install_python_pkgs() {
   # HTTPie is making APIs simple and intuitive for those building the tools of our time.
   _pipadd httpie
 }
+
+_install_python_pkgs

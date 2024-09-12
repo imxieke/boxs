@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-09-11 14:48:41
+# @LastEditTime: 2024-09-12 23:57:16
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -49,7 +49,12 @@ _install() {
     ruby
 
   # Python Packages
-  pacman -S --noconfirm python-beautifulsoup4 python-cchardet python-chardet python-lxml python-html5lib
+  pacman -S --noconfirm python-pipx \
+    python-beautifulsoup4 \
+    python-cchardet \
+    python-chardet \
+    python-lxml \
+    python-html5lib
 
   # Language Server Protocol
   pacman -S --noconfirm gopls stylua
@@ -102,7 +107,8 @@ _install() {
 
   # Security
   # osv-scanner Vulnerability scanner
-  pacman -S --noconfirm nmap rustscan osv-scanner sqlmap masscan
+  # trivy A Simple and Comprehensive Vulnerability Scanner for Containers
+  pacman -S --noconfirm nmap rustscan osv-scanner sqlmap masscan trivy
 
   # Virtual Machine && Container
   # Docker
