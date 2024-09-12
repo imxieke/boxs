@@ -56,6 +56,14 @@ _cmd_exist() {
   fi
 }
 
+__sudo() {
+  sudo "$@"
+}
+
+__user() {
+  sudo -Hu ${USERNAME} "$@"
+}
+
 # 解析参数与默认参数
 _parse_params() {
   for PARAM in "$@"; do
@@ -164,14 +172,6 @@ init_users() {
     echo "root:${PASSWORD}" | chpasswd
     echo "${USERNAME}:${PASSWORD}" | chpasswd
   fi
-}
-
-__sudo() {
-  sudo "$@"
-}
-
-__user() {
-  sudo -Hu ${USERNAME} "$@"
 }
 
 init_mirrors() {

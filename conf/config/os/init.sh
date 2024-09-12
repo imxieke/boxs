@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-09-12 15:52:39
+# @LastEditTime: 2024-09-12 23:40:16
 # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
@@ -98,11 +98,15 @@ if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep 'boxs')" ]
   ln -sf ${HOME}/.boxs/conf/.gemrc ${HOME}/.gemrc
 fi
 
+if [[ -n "$(command -v pip)" ]]; then
+  ln -sf ${HOME}/.boxs/conf/.config/pip ${HOME}/.config
+fi
+
 # 配置 Neovim 輕量模式
 if [[ ! -f "${HOME}/.config/nvim/full.lua" ]]; then
-  _info "==> Config neovim"
+  # echo "==> Config neovim"
   mkdir -p "${HOME}/.config"
-  ln -sf "${HOME}/.boxs/conf/.config/nvim" "${HOME}/.config/nvim"
+  ln -sf "${HOME}/.boxs/conf/.config/nvim" "${HOME}/.config"
 fi
 
 if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
@@ -112,6 +116,8 @@ if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; t
 fi
 
 if [[ -n "${PHP_VERSION}" ]]; then
-  echo "==> Set PHP Version To ${PHP_VERSION}"
-  ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
+  if [[ -f "${HOME}/.bin/php${PHP_VERSION}" ]]; then
+    echo "==> Set PHP Version To ${PHP_VERSION}"
+    ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
+  fi
 fi

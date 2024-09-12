@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:23:30
-# @LastEditTime: 2024-09-12 11:04:01
+# @LastEditTime: 2024-09-12 23:59:46
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -30,11 +30,8 @@ _install() {
   go install github.com/liamg/scout/cmd/scout@latest
   go install github.com/liamg/gifwrap/cmd/gifwrap@latest
   go install github.com/aquasecurity/tfsec/cmd/tfsec@latest
-  go install github.com/aquasecurity/tfsec/cmd/tfsec-skeleton@latest
-  go install github.com/aquasecurity/tfsec/cmd/tfsec-pr-lint@latest
   go install github.com/aquasecurity/tfsec/cmd/tfsec-docs@latest
   go install github.com/aquasecurity/tfsec/cmd/tfsec-checkgen@latest
-  go install github.com/aquasecurity/trivy/cmd/trivy@latest
   go install github.com/acarl005/ls-go@latest
   go install github.com/jaytaylor/html2text/cmd/html2text@latest
 
