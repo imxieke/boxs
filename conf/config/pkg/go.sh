@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 23:18:43
-# @LastEditTime: 2024-05-31 23:18:48
+# @LastEditTime: 2024-09-12 11:01:43
 # @LastEditors: Cloudflying
 # @Description: Golang
 ###
@@ -37,7 +37,7 @@ if [[ -n $(command -v go) ]]; then
   # https://goproxy.cn
   # Baidu
   # https://goproxy.bj.bcebos.com
-  export GOPROXY=https://goproxy.io,direct
+  export GOPROXY=https://goproxy.cn,direct
   # 设置不走 proxy 的私有仓库或组，多个用逗号相隔
   # export GOPRIVATE=*.corp.example.com,git.mycompany.com,github.com/my/private
   # export GOSUMDB=gosum.io+ce6e7565+AY5qEHUk/qmHc5btzW45JVoENfazw8LielDsaI+lEbq6

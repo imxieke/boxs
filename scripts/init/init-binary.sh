@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:01:41
- # @LastEditTime: 2024-06-04 15:19:18
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-09-12 13:46:15
+# @LastEditors: Cloudflying
 # @Description: 可执行文件初始化 如 二进制文件 Shell Python 脚本
 ###
 
@@ -109,15 +109,14 @@ _install_jar() {
 # 无法直接执行的脚本
 _install_lib() {
   echo "==> Fetch nvm.sh"
-  curl -fsSL "${GITHUB_MIRROR}https://raw.githubusercontent.com/nvm-sh/nvm/master/nvm.sh" 			--output ${SHELL_PATH}/nvm.sh
+  curl -fsSL "${GITHUB_MIRROR}https://raw.githubusercontent.com/nvm-sh/nvm/master/nvm.sh" --output ${SHELL_PATH}/nvm.sh
 }
 
-install_spc()
-{
+install_spc() {
   VERSIONS=(
-    "8.3.7"
-    "8.2.19"
-    "8.1.28"
+    "8.3.9"
+    "8.2.23"
+    "8.1.29"
     "8.0.30"
   )
   for version in "${VERSIONS[@]}"; do
@@ -129,38 +128,39 @@ install_spc()
   done
 
   for version in "${VERSIONS[@]}"; do
-    tar -xvf "/tmp/php-${version}.tar.gz" -C ~/.bin > /dev/null
-    mv ~/.bin/php ~/.bin/php"${version:0:3}"
+    mkdir -p /tmp/php-bin
+    tar -xvf "/tmp/php-${version}.tar.gz" -C /tmp/php-bin >/dev/null
+    mv /tmp/php-bin/php ~/.bin/php"${version:0:3}"
   done
 }
 
 case "$1" in
-scripts | -s)
-  _install_scripts
-  ;;
-jar | -j)
-  _install_jar
-  ;;
-os | -j)
-  install_spc
-  if [[ "$(uname -s)" == 'Darwin' ]]; then
-    _install_macos
-  elif [[ "$(uname -s)" == 'Linux' ]]; then
-    _install_linux
-  else
+  scripts | -s)
+    _install_scripts
+    ;;
+  jar)
+    _install_jar
+    ;;
+  os)
+    install_spc
+    # if [[ "$(uname -s)" == 'Darwin' ]]; then
+    #   _install_macos
+    # elif [[ "$(uname -s)" == 'Linux' ]]; then
+    #   _install_linux
+    # else
     echo "UnSupport OS"
     exit 1
-  fi
-  ;;
-lib | -l)
-  _install_lib
-  ;;
-*)
-  echo "Usage:
+    # fi
+    ;;
+  lib | -l)
+    _install_lib
+    ;;
+  *)
+    echo "Usage:
 <cmd> os                os Package
 <cmd> scripts|-s        Shell Scripts Or Python ,PHP And More
 <cmd> jar|-j            Jar File
 <cmd> lib|-l            Library
 "
-  ;;
+    ;;
 esac

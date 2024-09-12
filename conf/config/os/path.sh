@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
-# @LastEditTime: 2024-09-11 17:53:02
+# @LastEditTime: 2024-09-12 09:46:28
 # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -29,6 +29,7 @@ PATHS=(
   "${PNPM_HOME}"
   "${HOME}/.bin"
   "${HOME}/.boxs/bin"
+  "${HOME}/.local/bin"
   "${HOME}/.local/share/boxs/bin"
   "${HOME}/.local/share/zinit/polaris/bin"
   "${HOME}/.composer/vendor/bin"

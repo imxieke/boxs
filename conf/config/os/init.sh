@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-08-02 17:10:40
+# @LastEditTime: 2024-09-12 14:20:06
 # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
@@ -70,7 +70,7 @@ done
 # [ -f ${BOXS_HOME}/scripts/zplug.sh ] && source ${BOXS_HOME}/scripts/zplug.sh
 # [ -f ${BOXS_HOME}/scripts/macos-build-env-conf.sh ] && source ${BOXS_HOME}/scripts/macos-build-env-conf.sh
 
-# [ -d ${BOXS_CONF}/completion/zsh ] && fpath=(${BOXS_CONF}/completion/zsh $fpath)
+# [ -d ${BOXS_CONF}/.local/share/completion/zsh ] && fpath=(${BOXS_CONF}/.local/share/completion/zsh $fpath)
 
 # Plugins
 # [ -f ${BOXS_HOME}/scripts/command-not-found.sh ] && source ${BOXS_HOME}/scripts/command-not-found.sh
