@@ -255,9 +255,6 @@ init_boxs() {
   fi
 }
 
-# https://mirrors.tencent.com/composer/composer.phar
-# https://mirrors.aliyun.com/composer/composer.phar
-
 __init_composer() {
 
   _cmd_exist composer
