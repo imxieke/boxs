@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-09-12 23:40:16
+# @LastEditTime: 2024-09-13 09:54:57
 # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
@@ -99,6 +99,7 @@ if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep 'boxs')" ]
 fi
 
 if [[ -n "$(command -v pip)" ]]; then
+  rm -fr ${HOME}/.config/pip
   ln -sf ${HOME}/.boxs/conf/.config/pip ${HOME}/.config
 fi
 
@@ -120,4 +121,11 @@ if [[ -n "${PHP_VERSION}" ]]; then
     echo "==> Set PHP Version To ${PHP_VERSION}"
     ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
   fi
+fi
+
+if [[ ! -f "${HOME}/.bin/composer" ]]; then
+  echo "==> Install Composer"
+  # https://mirrors.aliyun.com/composer/composer.phar
+  wget -cq https://mirrors.tencent.com/composer/composer.phar -O ${HOME}/.bin/composer
+  chmod +x ${HOME}/.bin/composer
 fi
