@@ -231,28 +231,6 @@ init_boxs() {
   else
     _info "==> oh-my-zsh Config Success"
   fi
-
-  # zsh Plugin Manager
-  if [[ ! -d ~/.local/share/zinit ]]; then
-    echo "==> zinit configuration"
-    git clone --depth 1 https://gitcode.com/rsync/zinit.git ~/.local/share/zinit
-  else
-    _info "==> zinit Config Success"
-  fi
-
-  if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
-    git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
-  else
-    _info "==> Nvm Install Success"
-  fi
-
-  # 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
-  if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
-    echo "==> Init Cross Platform Binary Command"
-    sudo ln -sf ${HOME}/share/bin /usr/local/share/dotboxs/bin
-  else
-    _info "==> Cross Platform Config Success"
-  fi
 }
 
 __init_composer() {

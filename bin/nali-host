@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-host $@ | nali
+# Host with nali
+
+host "$@" | nali

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ping6 -c 6 $@ | nali
+ping6 -c 6 "$@" | nali

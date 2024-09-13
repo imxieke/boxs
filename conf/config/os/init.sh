@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-09-13 09:54:57
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-09-13 22:22:02
+ # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
 
@@ -124,8 +124,31 @@ if [[ -n "${PHP_VERSION}" ]]; then
 fi
 
 if [[ ! -f "${HOME}/.bin/composer" ]]; then
+  mkdir -p ${HOME}/.bin
   echo "==> Install Composer"
   # https://mirrors.aliyun.com/composer/composer.phar
   wget -cq https://mirrors.tencent.com/composer/composer.phar -O ${HOME}/.bin/composer
   chmod +x ${HOME}/.bin/composer
+fi
+
+# 修复 settings 里面用到的可执行文件 用于跨系统调用(Linux macOS)
+if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
+  echo "==> Init Cross Platform Binary Command"
+  sudo ln -sf ${HOME}/share/bin /usr/local/share/dotboxs/bin
+else
+  echo "==> Cross Platform Config Success"
+fi
+
+if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
+  git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
+else
+  echo "==> Nvm Install Success"
+fi
+
+# zsh Plugin Manager
+if [[ ! -d ~/.local/share/zinit ]]; then
+  echo "==> zinit configuration"
+  git clone --depth 1 https://gitcode.com/rsync/zinit.git ~/.local/share/zinit
+else
+  echo "==> zinit Config Success"
 fi
