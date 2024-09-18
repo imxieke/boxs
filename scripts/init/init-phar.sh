@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-08-22 23:46:22
- # @LastEditTime: 2024-05-23 11:26:31
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-09-18 17:56:20
+# @LastEditors: Cloudflying
 # @Description: Phar Manager {install update remove}
 ###
 
@@ -22,7 +22,8 @@ GIT_HOST="https://github.com"
 # GIT_HOST="https://gh-proxy.com"
 
 # username/repo
-get_github_latest_version() {
+get_github_latest_version()
+{
   repo=$1
   url="${GIT_HOST}/${repo}/releases/latest"
   version=$(curl -sI "${url}" | grep -Ei "${GIT_HOST}/\S+releases/tag/" | awk -F 'releases/tag/' '{print $2}')
@@ -33,7 +34,8 @@ get_github_latest_version() {
 
 # 从远程获取文件
 # _fetch url save
-function _fetch() {
+function _fetch()
+{
   DOWNLOADER='wget'
   if [[ -n "${2}" ]]; then
     _WGET_OUTPUT="-O $2"
@@ -47,7 +49,8 @@ function _fetch() {
   fi
 }
 
-add_bin() {
+add_bin()
+{
   mkdir -p ${HOME}/.bin
   cd "${HOME}/.bin" || exit 1
   if [[ ! -f "$2" ]]; then
@@ -58,7 +61,8 @@ add_bin() {
   fi
 }
 
-fetch_latest_version_phar() {
+fetch_latest_version_phar()
+{
   repo=$1
   filename=$2
   save=$3
@@ -79,20 +83,20 @@ fetch_latest_version_phar() {
 }
 
 # A tool for quickly measuring the size of a PHP project.
-add_bin https://mirrors.xie.ke/pkgs/phar/phploc.phar         ${BIN_PATH}/phploc
-add_bin https://mirrors.xie.ke/pkgs/phar/phpcpd.phar       ${BIN_PATH}/phpcpd
-add_bin https://mirrors.xie.ke/pkgs/phar/phpmd.phar  ${BIN_PATH}/phpmd
-add_bin https://mirrors.xie.ke/pkgs/phar/phive.phar         ${BIN_PATH}/phive
-add_bin https://mirrors.xie.ke/pkgs/phar/phpunit.phar 			${BIN_PATH}/phpunit
-add_bin https://mirrors.xie.ke/pkgs/phar/phpbu.phar            ${BIN_PATH}/phpbu
+add_bin https://mirrors.xie.ke/pkgs/phar/phpactor.phar ${BIN_PATH}/phpactor
+add_bin https://mirrors.xie.ke/pkgs/phar/phploc.phar ${BIN_PATH}/phploc
+add_bin https://mirrors.xie.ke/pkgs/phar/phpcpd.phar ${BIN_PATH}/phpcpd
+add_bin https://mirrors.xie.ke/pkgs/phar/phpmd.phar ${BIN_PATH}/phpmd
+add_bin https://mirrors.xie.ke/pkgs/phar/phive.phar ${BIN_PATH}/phive
+add_bin https://mirrors.xie.ke/pkgs/phar/phpunit.phar ${BIN_PATH}/phpunit
+add_bin https://mirrors.xie.ke/pkgs/phar/phpbu.phar ${BIN_PATH}/phpbu
 # 运行 PHPUnit 单元测试（包括测试结果和覆盖率报告）、文件转换（例如令牌替换、XSLT 转换、模板转换）
 # 文件系统操作、交互式构建支持、SQL 执行、SCM 操作（Git、Subversion 和 Mercurial）、文档生成（PhpDocumentor、ApiGen）等等
-add_bin https://mirrors.xie.ke/pkgs/phar/phing.phar  ${BIN_PATH}/phing
-add_bin https://mirrors.xie.ke/pkgs/phar/phpDocumentor.phar         ${BIN_PATH}/phpDocumentor
+add_bin https://mirrors.xie.ke/pkgs/phar/phing.phar ${BIN_PATH}/phing
+add_bin https://mirrors.xie.ke/pkgs/phar/phpDocumentor.phar ${BIN_PATH}/phpDocumentor
 
-add_bin https://mirrors.xie.ke/pkgs/phar/doctum.phar   ${BIN_PATH}/doctum
-add_bin https://mirrors.xie.ke/pkgs/phar/security-checker.phar      ${BIN_PATH}/security-checker
-
+add_bin https://mirrors.xie.ke/pkgs/phar/doctum.phar ${BIN_PATH}/doctum
+add_bin https://mirrors.xie.ke/pkgs/phar/security-checker.phar ${BIN_PATH}/security-checker
 
 # last update on May 9, 2021
 # Detect flaws in your architecture, before they drag you down into the depths of dependency hell ...
@@ -124,18 +128,18 @@ add_bin https://mirrors.xie.ke/pkgs/phar/parallel-lint.phar ${BIN_PATH}/parallel
 add_bin https://mirrors.xie.ke/pkgs/phar/php-cs-fixer.phar ${BIN_PATH}/php-cs-fixer
 
 # PHP Benchmarking framework
-add_bin https://mirrors.xie.ke/pkgs/phar/phpbench.phar   ${BIN_PATH}/phpbench
+add_bin https://mirrors.xie.ke/pkgs/phar/phpbench.phar ${BIN_PATH}/phpbench
 # # PHP Static Analysis Tool - discover bugs in your code without running it!
-add_bin https://mirrors.xie.ke/pkgs/phar/phpstan.phar 		${BIN_PATH}/phpstan
-add_bin https://mirrors.xie.ke/pkgs/phar/deployer.phar   ${BIN_PATH}/deployer
-add_bin https://mirrors.xie.ke/pkgs/phar/grumphp.phar    ${BIN_PATH}/grumphp
-add_bin https://mirrors.xie.ke/pkgs/phar/psalm.phar 			${BIN_PATH}/psalm
-add_bin https://mirrors.xie.ke/pkgs/phar/phan.phar 			${BIN_PATH}/phan
+add_bin https://mirrors.xie.ke/pkgs/phar/phpstan.phar ${BIN_PATH}/phpstan
+add_bin https://mirrors.xie.ke/pkgs/phar/deployer.phar ${BIN_PATH}/deployer
+add_bin https://mirrors.xie.ke/pkgs/phar/grumphp.phar ${BIN_PATH}/grumphp
+add_bin https://mirrors.xie.ke/pkgs/phar/psalm.phar ${BIN_PATH}/psalm
+add_bin https://mirrors.xie.ke/pkgs/phar/phan.phar ${BIN_PATH}/phan
 
 # https://github.com/PHPCSStandards/PHP_CodeSniffer
 # PHP_CodeSniffer tokenizes PHP files and detects violations of a defined set of coding standards.
-add_bin https://mirrors.xie.ke/pkgs/phar/phpcbf.phar 		${BIN_PATH}/phpcbf
-add_bin https://mirrors.xie.ke/pkgs/phar/phpcs.phar 			${BIN_PATH}/phpcs
+add_bin https://mirrors.xie.ke/pkgs/phar/phpcbf.phar ${BIN_PATH}/phpcbf
+add_bin https://mirrors.xie.ke/pkgs/phar/phpcs.phar ${BIN_PATH}/phpcs
 
 # PHP Mutation Testing library
 add_bin https://mirrors.xie.ke/pkgs/phar/infection.phar ${BIN_PATH}/infection
