@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
- # @LastEditTime: 2024-09-13 22:22:02
+ # @LastEditTime: 2024-09-19 11:15:06
  # @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
@@ -118,7 +118,7 @@ fi
 
 if [[ -n "${PHP_VERSION}" ]]; then
   if [[ -f "${HOME}/.bin/php${PHP_VERSION}" ]]; then
-    echo "==> Set PHP Version To ${PHP_VERSION}"
+    echo "[+] Set PHP Version To ${PHP_VERSION}"
     ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
   fi
 fi
@@ -135,20 +135,15 @@ fi
 if [[ ! -f "${HOME}/.boxs/share/bin/shfmt.sh" ]]; then
   echo "==> Init Cross Platform Binary Command"
   sudo ln -sf ${HOME}/share/bin /usr/local/share/dotboxs/bin
-else
-  echo "==> Cross Platform Config Success"
 fi
 
 if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
+  echo "==> Install Nvm"
   git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
-else
-  echo "==> Nvm Install Success"
 fi
 
 # zsh Plugin Manager
 if [[ ! -d ~/.local/share/zinit ]]; then
-  echo "==> zinit configuration"
+  echo "==> Zinit Configuration"
   git clone --depth 1 https://gitcode.com/rsync/zinit.git ~/.local/share/zinit
-else
-  echo "==> zinit Config Success"
 fi
