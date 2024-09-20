@@ -2,13 +2,14 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:02:52
-# @LastEditTime: 2024-07-28 08:41:59
+# @LastEditTime: 2024-09-20 17:58:23
 # @LastEditors: Cloudflying
 # @Description: init package for macOS brew package manager
 ###
 
 # 初始化 brew 使用 大陆镜像 提高下载速度
-init_brew() {
+init_brew()
+{
   # https://mirrors.cloud.tencent.com/homebrew/
   # http://mirrors.ustc.edu.cn/
   [ -z "$(command -v brew)" ] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -70,7 +71,8 @@ init_brew() {
   fi
 }
 
-init_pkgs() {
+init_pkgs()
+{
   # System Depency
   brew install coreutils
 
@@ -231,8 +233,8 @@ init_pkgs() {
   brew install innoextract
 
   # Documents && Markdown
+  # pandoc pandoc-plot \
   brew install mdv mdp koodo-reader \
-    pandoc pandoc-plot \
     tldr
 
   # Virtual Box
@@ -267,7 +269,8 @@ init_pkgs() {
   mas install 944848654 1352778147 747648890 451108668 1119452668 1443749478 1314842898 408981434 409183694 409203825 409201541 836500024
 }
 
-init_bin() {
+init_bin()
+{
   # Use AirPlay to stream to UPnP/Sonos & Chromecast devices
   if [[ ! -f ~/.bin/aircast ]]; then
     echo "==> Fetch AirCast"
