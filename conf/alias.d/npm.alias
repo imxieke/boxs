@@ -1,0 +1,2 @@
+alias npm-outdated="npm -g outdated"
+alias npm-upgrade="npm -g update"
