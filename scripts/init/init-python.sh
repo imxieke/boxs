@@ -2,16 +2,18 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:25:19
-# @LastEditTime: 2024-09-12 23:43:31
+# @LastEditTime: 2024-09-27 14:35:32
 # @LastEditors: Cloudflying
 # @Description:
 ###
 
-_pipadd() {
+_pipadd()
+{
   pip install --break-system-packages "$@"
 }
 
-_install_python_pkgs() {
+_install_python_pkgs()
+{
   _pipadd psutil pip-search
 
   # Static Type Checker
@@ -38,6 +40,8 @@ _install_python_pkgs() {
   _pipadd pip-audit
   # HTTPie is making APIs simple and intuitive for those building the tools of our time.
   _pipadd httpie
+
+  _pipadd you-dl youtube-dl yt-dlp
 }
 
 _install_python_pkgs
