@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2024-09-20 17:58:14
+ # @LastEditTime: 2024-10-08 17:16:10
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -104,7 +104,8 @@ _install()
   pacman -S --noconfirm ffmpeg
 
   # Documents
-  # pacman -S --noconfirm pandoc pandoc-plot
+  # So Large pandoc-cli pandoc-plot
+  pacman -S --noconfirm poppler poppler-data
 
   # Security
   # osv-scanner Vulnerability scanner
@@ -119,6 +120,12 @@ _install()
 
   # Virtual Machine && Container Depency
   # pacman -S --noconfirm fuse-overlayfs
+
+  # Image Process
+  pacman -S --noconfirm graphicsmagick jasper libwmf libxml2 ghostscript libheif libjxl
+
+  # OCR
+  pacman -S --noconfirm tesseract tesseract-data-chi_sim
 
   # Docker Tools
   # ctop like linux top
