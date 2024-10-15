@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:01:41
-# @LastEditTime: 2024-09-12 13:46:15
+# @LastEditTime: 2024-10-15 09:04:03
 # @LastEditors: Cloudflying
 # @Description: 可执行文件初始化 如 二进制文件 Shell Python 脚本
 ###
@@ -20,7 +20,8 @@ SHELL_PATH="${ROOT_PATH}/shell"
 GITHUB_MIRROR='https://gh-proxy.com/'
 
 # macOS 可执行脚本
-_install_scripts() {
+_install_scripts()
+{
   echo "==> Fetch neofetch"
   curl -sL https://github.com/dylanaraps/neofetch/raw/master/neofetch --output "${BIN_PATH}/neofetch"
 
@@ -44,7 +45,8 @@ _install_scripts() {
 }
 
 # linux 二进制文件
-_install_linux() {
+_install_linux()
+{
   echo "==> Fetch Next Trace"
   curl -fsSL "${GITHUB_MIRROR}https://github.com/sjlleo/nexttrace/releases/latest/download/nexttrace_linux_amd64" --output ${BIN_PATH}/nexttrace
 
@@ -69,7 +71,8 @@ _install_linux() {
 }
 
 # macOS 二进制文件
-_install_macos() {
+_install_macos()
+{
   # static php cli (spc)
   echo "==> Fetch Next Trace"
   curl -fsSL "${GITHUB_MIRROR}https://github.com/sjlleo/nexttrace/releases/latest/download/nexttrace_darwin_amd64" --output ${BIN_PATH}/nexttrace
@@ -92,7 +95,8 @@ _install_macos() {
 }
 
 # java 二进制文件 配合 alias 或自定义脚本使用
-_install_jar() {
+_install_jar()
+{
   echo "==> Fetch dex2jar"
   curl -fsSL "${GITHUB_MIRROR}https://github.com/pxb1988/dex2jar/releases/download/v2.1/dex2jar-2.1.zip" --output /tmp/dex2jar-2.1.zip
   unzip -qo /tmp/dex2jar-2.1.zip -d ${JAVA_PATH}
@@ -107,16 +111,18 @@ _install_jar() {
 }
 
 # 无法直接执行的脚本
-_install_lib() {
+_install_lib()
+{
   echo "==> Fetch nvm.sh"
   curl -fsSL "${GITHUB_MIRROR}https://raw.githubusercontent.com/nvm-sh/nvm/master/nvm.sh" --output ${SHELL_PATH}/nvm.sh
 }
 
-install_spc() {
+install_spc()
+{
   VERSIONS=(
-    "8.3.9"
-    "8.2.23"
-    "8.1.29"
+    "8.3.12"
+    "8.2.24"
+    "8.1.30"
     "8.0.30"
   )
   for version in "${VERSIONS[@]}"; do
