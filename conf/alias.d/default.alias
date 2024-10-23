@@ -1,8 +1,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
- # @LastEditTime: 2024-09-12 15:21:30
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-10-23 16:40:15
+# @LastEditors: Cloudflying
 # @Description:
 ###
 
@@ -116,7 +116,7 @@ fi
 
 # 区分操作系统
 if [[ "${OSTYPE}" == 'Darwin' ]]; then
-  alias sdu='/usr/bin/du -h -d 1 -I ~/Library -I /Applications -I /dev'
+  alias sdu='/usr/bin/du -h -d 1 -I ~/Library -I /Applications -I /dev -I node_modules'
   # VSCode
   if [[ -f "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ]]; then
     alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
@@ -166,7 +166,7 @@ if [[ "${OSTYPE}" == 'Darwin' ]]; then
 
 else
   alias ssh="ssh -o ServerAliveInterval=60"
-  alias sdu='du -h -d 1 --exclude="/proc" --exclude="/dev"'
+  alias sdu='du -h -d 1 --exclude="/proc" --exclude="/dev" --exclude="node_modules"'
   if [[ -f "/usr/share/code/bin/code" ]]; then
     alias code="/usr/share/code/bin/code"
     alias code-tunnel="/usr/share/code/bin/code-tunnel"
