@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
-# @LastEditTime: 2024-10-23 16:40:15
+# @LastEditTime: 2024-10-24 14:30:56
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -166,7 +166,7 @@ if [[ "${OSTYPE}" == 'Darwin' ]]; then
 
 else
   alias ssh="ssh -o ServerAliveInterval=60"
-  alias sdu='du -h -d 1 --exclude="/proc" --exclude="/dev" --exclude="node_modules"'
+  alias sdu='du -h -d 1 --exclude="/proc" --exclude="/dev" --exclude="node_modules" --exclude="vendor"'
   if [[ -f "/usr/share/code/bin/code" ]]; then
     alias code="/usr/share/code/bin/code"
     alias code-tunnel="/usr/share/code/bin/code-tunnel"
