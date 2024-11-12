@@ -1,4 +1,0 @@
-deb https://mirrors.huaweicloud.com/ubuntu/ CODENAME main multiverse universe restricted
-deb https://mirrors.huaweicloud.com/ubuntu/ CODENAME-backports main multiverse universe restricted
-deb https://mirrors.huaweicloud.com/ubuntu/ CODENAME-updates main multiverse universe restricted
-deb https://mirrors.huaweicloud.com/ubuntu/ CODENAME-security main multiverse universe restricted
