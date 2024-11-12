@@ -11,61 +11,125 @@ if [[ -f "${HOME}/.env" ]]; then
   . ${HOME}/.env
 fi
 
-_red() {
+[ -f '/etc/os-release' ] && . /etc/os-release
+
+case "${ID}" in
+  ubuntu)
+    echo "${PRETTY_NAME}"
+    ;;
+  debian)
+    echo "${PRETTY_NAME}"
+    ;;
+  kali)
+    echo "${PRETTY_NAME}"
+    ;;
+  arch)
+    echo "${PRETTY_NAME}"
+    ;;
+  manjaro)
+    echo "${PRETTY_NAME}"
+    ;;
+  clear-linux-os)
+    echo "${PRETTY_NAME}"
+    ;;
+  alpine)
+    echo "${PRETTY_NAME}"
+    ;;
+  fedora)
+    echo "${PRETTY_NAME}"
+    ;;
+  opensuse-tumbleweed)
+    echo "${PRETTY_NAME}"
+    ;;
+  ol)
+    echo "${PRETTY_NAME}"
+    ;;
+  rocky)
+    echo "${PRETTY_NAME}"
+    ;;
+  rhel)
+    echo "${PRETTY_NAME}"
+    ;;
+  alinux)
+    echo "${PRETTY_NAME}"
+    ;;
+  almalinux)
+    echo "${PRETTY_NAME}"
+    ;;
+  centos)
+    echo "${PRETTY_NAME}"
+    ;;
+  *)
+    echo "Unknow OS"
+    ;;
+esac
+
+_red()
+{
   printf '\033[1;31;31m%b\033[0m' "$1"
 }
 
-_green() {
+_green()
+{
   printf '\033[1;31;32m%b\033[0m' "$1"
 }
 
-_yellow() {
+_yellow()
+{
   printf '\033[1;31;33m%b\033[0m' "$1"
 }
 
-_info() {
+_info()
+{
   _green "[Info] "
   printf -- "%s" "$1"
   printf "\n"
 }
 
-_warn() {
+_warn()
+{
   _yellow "[Warning] "
   printf -- "%s" "$1"
   printf "\n"
 }
 
-_error() {
+_error()
+{
   _red "[Error] "
   printf -- "%s" "$1"
   printf "\n"
   exit 1
 }
 
-__permision_check() {
+__rootness()
+{
   if [[ "$(id -u)" -ne 0 ]]; then
     echo "==> Current User No Permission"
     exit 1
   fi
 }
 
-_cmd_exist() {
+_cmd_exist()
+{
   if [[ -z "$(command -v $1)" ]]; then
     _warn "command $1 not found"
     exit 1
   fi
 }
 
-__sudo() {
+__sudo()
+{
   sudo "$@"
 }
 
-__user() {
+__user()
+{
   sudo -Hu ${USERNAME} "$@"
 }
 
 # 解析参数与默认参数
-_parse_params() {
+_parse_params()
+{
   for PARAM in "$@"; do
     case "${PARAM}" in
       --user* | -u*)
@@ -87,43 +151,103 @@ _parse_params() {
 _parse_params "$@"
 
 # 检查 boxs 依赖
-check() {
+check()
+{
   if [ ! -d ${HOME}/.oh-my-zsh ]; then
     echo "ohmyzsh not install"
     exit 1
   fi
 }
 
+__arch_repo()
+{
+  MIRRORS_FILE='/etc/pacman.d/mirrorlist'
+  echo "Server = https://mirrors.nju.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.zju.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch
+Server = https://mirrors.huaweicloud.com/archlinux/\$repo/os/\$arch
+Server = https://mirrors.tencent.com/archlinux/\$repo/os/\$arch" >${MIRRORS_FILE}
+}
+
+__debian_repo()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/debian/"
+  MIRRORS_HOST_SECURITY="https://mirrors.ustc.edu.cn/debian-security/"
+  echo "deb ${MIRRORS_HOST} ${VERSION_CODENAME} main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed-updates main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST_SECURITY} ${VERSION_CODENAME}-security main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME} main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed-updates main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST_SECURITY} ${VERSION_CODENAME}-security main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main contrib non-free non-free-firmware" >${MIRRORS_FILE}
+}
+
+__ubuntu_repo()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/ubuntu/"
+  echo "deb ${MIRRORS_HOST} ${VERSION_CODENAME} main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-security main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME} main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-security main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main restricted universe multiverse" >${MIRRORS_FILE}
+}
+
+__kali_repo()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/kali/"
+  echo "deb ${MIRRORS_HOST} kali-rolling main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} kali-rolling main contrib non-free non-free-firmware" >${MIRRORS_FILE}
+}
+
 # 安装 微软软件仓库签名
-_init_deb_microsoft_keyring() {
+_init_deb_microsoft_keyring()
+{
   curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
   sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
   rm -f packages.microsoft.gpg
 }
 
 # 安装 VSCode Debian 系仓库
-_init_deb_vscode() {
+_init_deb_vscode()
+{
   _init_deb_microsoft_keyring
   echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
 }
 
 # 安装 Microsoft Edge Browser Debian 系仓库
-_init_deb_edge() {
+_init_deb_edge()
+{
   _init_deb_microsoft_keyring
   echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/edge/ stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
 }
 
-init_platpak() {
+init_platpak()
+{
   flatpak install flathub com.usebottles.bottles
   flatpak run com.usebottles.bottles
 }
 
-init_snap() {
+init_snap()
+{
   snap install snap-store
 }
 
 # Depends Install
-init_deps() {
+init_deps()
+{
   if [[ "$(uname -s)" == 'Linux' ]]; then
     [ -z "$(command -v sudo)" ] && install_deps sudo
   fi
@@ -132,8 +256,9 @@ init_deps() {
   [ -z "$(command -v curl)" ] && install_deps curl
 }
 
-install_deps() {
-  __permision_check
+install_deps()
+{
+  __rootness
   echo "==> Install Depends $*"
   if [[ -f "/etc/os-release" ]]; then
     . /etc/os-release
@@ -154,8 +279,9 @@ install_deps() {
 }
 
 # 初始化用户 在所有操作之前(远程获取脚本操作)
-init_users() {
-  __permision_check
+init_users()
+{
+  __rootness
   echo "==>Create User: ${USERNAME}:${PASSWORD} On Wheel Group"
   if [[ -z "$(grep wheel /etc/group)" ]]; then
     groupadd wheel
@@ -174,7 +300,8 @@ init_users() {
   fi
 }
 
-init_mirrors() {
+init_mirrors()
+{
   if [[ -f "/etc/os-release" ]]; then
     . /etc/os-release
   else
@@ -199,7 +326,8 @@ init_mirrors() {
 }
 
 # Packages Init
-init_pkgs() {
+init_pkgs()
+{
   # Set Git Config
   if [[ -n "$(command -v git)" ]]; then
     _info "==> Set Git Configuration"
@@ -212,7 +340,8 @@ init_pkgs() {
 }
 
 # 初始化依赖及软链接
-init_boxs() {
+init_boxs()
+{
   # 初始化 Boxs
   if [[ ! -d "${HOME}/.boxs" ]]; then
     _yellow "==> Fetch Boxs"
@@ -233,7 +362,8 @@ init_boxs() {
   fi
 }
 
-__init_composer() {
+__init_composer()
+{
 
   _cmd_exist composer
 
@@ -269,7 +399,8 @@ __init_composer() {
   echo "unset mirrors? use $(_red 'composer config -g --unset repos.packagist')"
 }
 
-__init_pip() {
+__init_pip()
+{
 
   _cmd_exist pip
 
@@ -328,7 +459,8 @@ __init_pip() {
   fi
 }
 
-__init_npm() {
+__init_npm()
+{
   _cmd_exist npm
 
   case $2 in
@@ -365,7 +497,8 @@ __init_npm() {
   _green "Configration , Set Completion!"
 }
 
-__init_ruby() {
+__init_ruby()
+{
   _cmd_exist gem
 
   case $2 in
@@ -408,13 +541,15 @@ __init_ruby() {
 }
 
 # 初始化软件配置
-init_config() {
+init_config()
+{
   if [[ -f "${HOME}/.env" ]]; then
     echo ""
   fi
 }
 
-__secret() {
+__secret()
+{
   if [[ -e "${BOXS_HOME}" ]]; then
     echo "==> Secret Init"
     git config --global credential.helper store
@@ -426,7 +561,8 @@ __secret() {
   fi
 }
 
-__init() {
+__init()
+{
 
   if [[ ! -f "${HOME}/.env" ]]; then
     _warn "Dot Env Not Fond"
@@ -437,7 +573,8 @@ __init() {
   init_pkgs
 }
 
-_usage() {
+_usage()
+{
   echo "Usage: boxs install|backup|recovery|init|deps|mirrors|secret"
   echo "Usage: boxs composer|gem|pip|npm $(_yellow "(Software Source)")"
   echo "Usage: boxs install-python-pkgs"
