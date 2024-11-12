@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-11-11 16:20:31
-# @LastEditTime: 2024-11-11 17:24:04
+# @LastEditTime: 2024-11-12 11:09:56
 # @LastEditors: Cloudflying
 # @Description: Mirrors Set
 ###
@@ -59,37 +59,55 @@ case "${ID}" in
     ;;
 esac
 
-if [[ "${ID}" == 'ubuntu' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'debian' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'kali' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'arch' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'manjaro' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'clear-linux-os' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'alpine' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'fedora' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'opensuse-tumbleweed' ]]; then
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'ol' ]]; then
-  # Oracle Linux Server
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'rocky' ]]; then
-  # rhel
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'rhel' ]]; then
-  # rhel
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'alinux' ]]; then
-  # rhel
-  echo "${PRETTY_NAME}"
-elif [[ "${ID}" == 'almalinux' ]]; then
-  # rhel
-  echo "${PRETTY_NAME}"
-fi
+_set_arch()
+{
+  MIRRORS_FILE='/etc/pacman.d/mirrorlist'
+  echo "Server = https://mirrors.nju.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.zju.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/\$repo/os/\$arch
+Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch
+Server = https://mirrors.huaweicloud.com/archlinux/\$repo/os/\$arch
+Server = https://mirrors.tencent.com/archlinux/\$repo/os/\$arch" >${MIRRORS_FILE}
+}
+
+_set_ubuntu()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/ubuntu/"
+  echo "deb ${MIRRORS_HOST} ${VERSION_CODENAME} main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-security main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME} main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-security main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main restricted universe multiverse" >${MIRRORS_FILE}
+}
+
+_set_debian()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/debian/"
+  MIRRORS_HOST_SECURITY="https://mirrors.ustc.edu.cn/debian-security/"
+  echo "deb ${MIRRORS_HOST} ${VERSION_CODENAME} main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed-updates main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST_SECURITY} ${VERSION_CODENAME}-security main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME} main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed-updates main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST_SECURITY} ${VERSION_CODENAME}-security main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main contrib non-free non-free-firmware" >${MIRRORS_FILE}
+}
+
+_set_kali()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/kali/"
+  echo "deb ${MIRRORS_HOST} kali-rolling main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} kali-rolling main contrib non-free non-free-firmware" >${MIRRORS_FILE}
+}
