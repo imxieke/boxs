@@ -6,7 +6,18 @@ else
   . ${HOME}/.env
 fi
 
-CMD_PATH="/mnt/c/Users/${WIN_USER}/AppData/Local/Microsoft/WindowsApps/winget.exe"
+if [[ -z "${WIN_USER}" ]]; then
+  APP_PATH="/AppData/Local/Microsoft/WindowsApps/winget.exe"
+  if [[ -f "/mnt/c/Users/imxieke${APP_PATH}" ]]; then
+    WIN_USER='imxieke'
+  elif [[ -f "/mnt/c/Users/oss${APP_PATH}" ]]; then
+    WIN_USER='oss'
+  elif [[ -f "/mnt/c/Users/Administrator${APP_PATH}" ]]; then
+    WIN_USER='Administrator'
+  fi
+fi
+
+CMD_PATH="/mnt/c/Users/${WIN_USER}${APP_PATH}"
 
 if [[ -f "${CMD_PATH}" ]]; then
   ${CMD_PATH} "$@"
