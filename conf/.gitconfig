@@ -51,7 +51,7 @@
 [core]
   editor = nvim
 	pager = delta
-	fileMode = false
+	fileMode = true
   quotepath = false
 	ignorecase = false
   bare = false
