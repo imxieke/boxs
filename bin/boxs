@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
-# @LastEditTime: 2024-11-13 17:23:08
+# @LastEditTime: 2024-11-13 21:32:03
 # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -72,7 +72,7 @@ _cmd_exist()
   fi
 }
 
-__sudo()
+_sudo()
 {
   sudo "$@"
 }
@@ -100,6 +100,7 @@ _parse_params()
     esac
   done
 
+  # shellcheck disable=SC2034
   USER_HOME="/home/${USERNAME}"
 }
 
@@ -297,6 +298,9 @@ _set_mirrors()
       ;;
     ruby)
       __init_ruby ${PKG_SOURCE}
+      ;;
+    docker | -d)
+      __set_docker ${PKG_SOURCE}
       ;;
     *)
       echo "Unknow Source"
@@ -589,18 +593,30 @@ __init_npm()
 
 __set_docker()
 {
-  __rootness
-  mkdir -p /etc/systemd/system/docker.service.d
+  DOCKER_CONFIG=${HOME}/.docker/config.json
+  sudo mkdir -p /etc/systemd/system/docker.service.d
   if [[ ! -f '/etc/systemd/system/docker.service.d/proxy.conf' ]]; then
-    touch /etc/systemd/system/docker.service.d/proxy.conf
+    sudo touch /etc/systemd/system/docker.service.d/proxy.conf
   fi
 
+  # docker pull
   echo "[Service]
-Environment=\"HTTP_PROXY=http://${http_proxy}:7890/\"
-Environment=\"HTTPS_PROXY=http://${http_proxy}:7890/\"
-Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" >/etc/systemd/system/docker.service.d/proxy.conf
+Environment=\"HTTP_PROXY=${http_proxy}\"
+Environment=\"HTTPS_PROXY=${http_proxy}\"
+Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/systemd/system/docker.service.d/proxy.conf >/dev/null
 
+  if [[ ! -f "${DOCKER_CONFIG}" ]]; then
+    touch ${DOCKER_CONFIG}
+  fi
+
+  # docker run
+  cat ${DOCKER_CONFIG} | jq ".proxies.default.httpProxy = \"${http_proxy}\" | .proxies.default.httpsProxy = \"${http_proxy}\" | .proxies.default.noProxy = \"localhost,127.0.0.1,.example.com\"" >/tmp/docker-config.json
+  mv /tmp/docker-config.json ${DOCKER_CONFIG}
+
+  sudo systemctl daemon-reload
+  sudo systemctl restart docker
 }
+
 __init_ruby()
 {
   _cmd_exist gem
