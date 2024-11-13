@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:01:41
-# @LastEditTime: 2024-10-15 09:04:03
+# @LastEditTime: 2024-11-13 09:17:54
 # @LastEditors: Cloudflying
 # @Description: 可执行文件初始化 如 二进制文件 Shell Python 脚本
 ###
@@ -120,8 +120,8 @@ _install_lib()
 install_spc()
 {
   VERSIONS=(
-    "8.3.12"
-    "8.2.24"
+    "8.3.13"
+    "8.2.25"
     "8.1.30"
     "8.0.30"
   )
@@ -136,7 +136,8 @@ install_spc()
   for version in "${VERSIONS[@]}"; do
     mkdir -p /tmp/php-bin
     tar -xvf "/tmp/php-${version}.tar.gz" -C /tmp/php-bin >/dev/null
-    mv /tmp/php-bin/php ~/.bin/php"${version:0:3}"
+    version=${version//./}
+    mv /tmp/php-bin/php ~/.bin/php"${version:0:2}"
   done
 }
 
