@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
-# @LastEditTime: 2024-11-13 11:57:00
+# @LastEditTime: 2024-11-13 17:23:08
 # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -587,6 +587,20 @@ __init_npm()
   _green "Configration , Set Completion!"
 }
 
+__set_docker()
+{
+  __rootness
+  mkdir -p /etc/systemd/system/docker.service.d
+  if [[ ! -f '/etc/systemd/system/docker.service.d/proxy.conf' ]]; then
+    touch /etc/systemd/system/docker.service.d/proxy.conf
+  fi
+
+  echo "[Service]
+Environment=\"HTTP_PROXY=http://${http_proxy}:7890/\"
+Environment=\"HTTPS_PROXY=http://${http_proxy}:7890/\"
+Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" >/etc/systemd/system/docker.service.d/proxy.conf
+
+}
 __init_ruby()
 {
   _cmd_exist gem
