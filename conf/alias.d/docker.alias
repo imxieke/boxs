@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-07-01 01:00:37
-# @LastEditTime: 2024-06-03 00:31:40
+# @LastEditTime: 2024-11-13 20:42:42
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -35,7 +35,7 @@ alias di="docker images --digests | grep -v '^REPOSITORY' | sort"
 alias dri='docker rmi'
 
 # docker build
-alias dbu="docker build . --build-arg \"HTTP_PROXY=http://${MIXED_PROXY}\" --build-arg \"HTTPS_PROXY=http://${MIXED_PROXY}\" --build-arg \"NO_PROXY=localhost,127.0.0.1,.example.com\" -t"
+alias dbu="docker build . --build-arg \"HTTP_PROXY=${http_proxy}\" --build-arg \"HTTPS_PROXY=${http_proxy}\" --build-arg \"NO_PROXY=localhost,127.0.0.1,.example.com\" -t"
 
 # Get container IP
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
@@ -57,7 +57,10 @@ alias dvrm_all='docker volume rm $(docker volume ls -q)'
 alias dip='docker inspect --format "{{ .NetworkSettings.IPAddress }}" $*'
 
 # Stop all containers
-docker-stop-all() { docker stop $(docker ps -a -q); }
+docker-stop-all()
+{
+  docker stop $(docker ps -a -q)
+}
 
 # Remove all containers
 # drm() { docker rm $(docker ps -a -q); }
@@ -66,10 +69,19 @@ docker-stop-all() { docker stop $(docker ps -a -q); }
 alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 # Remove all images
-docker-rm-all-images() { docker rmi $(docker images -q); }
+docker-rm-all-images()
+{
+  docker rmi $(docker images -q)
+}
 
 # Show all alias related docker
-docker-alias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/" | sed "s/['|\']//g" | sort; }
+docker-alias()
+{
+  alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/" | sed "s/['|\']//g" | sort
+}
 
 # Bash into running container
-dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
+dbash()
+{
+  docker exec -it $(docker ps -aqf "name=$1") bash
+}
