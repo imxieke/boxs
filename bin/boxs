@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-# Boxs Manager Script
+###
+# @Author: Cloudflying
+# @Date: 2024-3-18 18:06:18
+# @LastEditTime: 2024-11-13 09:56:27
+# @LastEditors: Cloudflying
+# @Description: Boxs Manager Script(init os, set mirros,os check etc)
+###
 
 CMD_NAME="boxs"
 
@@ -157,6 +163,42 @@ check()
     echo "ohmyzsh not install"
     exit 1
   fi
+}
+
+__cmd_yes_no()
+{
+  if [[ -n "$(command -v $1)" ]]; then
+    echo "✓"
+  else
+    echo "x"
+  fi
+}
+
+__osenv()
+{
+  [ $(__cmd_yes_no php) == '✓' ] && echo "PHP: $(php --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no php74) == '✓' ] && echo "PHP74: $(php74 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no php80) == '✓' ] && echo "PHP80: $(php80 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no php81) == '✓' ] && echo "PHP81: $(php81 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no php82) == '✓' ] && echo "PHP82: $(php82 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no php83) == '✓' ] && echo "PHP83: $(php83 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no php84) == '✓' ] && echo "PHP84: $(php84 --version | head -n 1 | awk -F ' ' '{print $2}')" || echo "PHP84: x"
+  [ $(__cmd_yes_no composer) == '✓' ] && echo "Composer: $(composer --version 2>&1 | head -n 1 | awk -F ' ' '{print $3}')"
+  [ $(__cmd_yes_no ruby) == '✓' ] && echo "Ruby: $(ruby --version | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no gem) == '✓' ] && echo "Gem: $(gem --version)"
+  [ $(__cmd_yes_no python) == '✓' ] && echo "Python: $(python --version | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no pip) == '✓' ] && echo "Pip: $(pip --version | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no node) == '✓' ] && echo "Node: $(node --version | sed "s#v##g")"
+  [ $(__cmd_yes_no npm) == '✓' ] && echo "Npm: $(npm --version)"
+  [ $(__cmd_yes_no pnpm) == '✓' ] && echo "Pnpm: $(pnpm --version)"
+  [ $(__cmd_yes_no git) == '✓' ] && echo "Git: $(git --version | awk -F ' ' '{print $3}')"
+  [ $(__cmd_yes_no zsh) == '✓' ] && echo "Zsh: $(zsh --version | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no vim) == '✓' ] && echo "Vim: $(vim --version | head -n 1 | awk -F ' ' '{print $5}')"
+  [ $(__cmd_yes_no nvim) == '✓' ] && echo "Neovim: $(nvim --version | head -n 1 | awk -F ' ' '{print $2}' | sed "s#v##g")"
+  [ $(__cmd_yes_no wget) == '✓' ] && echo "Wget: $(wget --version | head -n 1 | awk -F ' ' '{print $3}')"
+  [ $(__cmd_yes_no curl) == '✓' ] && echo "Curl: $(curl --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no tree) == '✓' ] && echo "Tree: $(tree --version | awk -F ' ' '{print $2}')"
+  [ $(__cmd_yes_no htop) == '✓' ] && echo "Htop: $(htop --version | awk -F ' ' '{print $2}')"
 }
 
 __arch_repo()
@@ -593,7 +635,7 @@ case $1 in
     echo "backup"
     ;;
   check)
-    check
+    __osenv
     ;;
   deps)
     init_deps
