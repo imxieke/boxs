@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
-# @LastEditTime: 2024-11-13 21:32:03
+# @LastEditTime: 2024-11-14 08:39:53
 # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -593,6 +593,7 @@ __init_npm()
 
 __set_docker()
 {
+  mkdir -p ${HOME}/.docker
   DOCKER_CONFIG=${HOME}/.docker/config.json
   sudo mkdir -p /etc/systemd/system/docker.service.d
   if [[ ! -f '/etc/systemd/system/docker.service.d/proxy.conf' ]]; then
