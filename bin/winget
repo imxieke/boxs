@@ -6,8 +6,8 @@ else
   . ${HOME}/.env
 fi
 
+APP_PATH="/AppData/Local/Microsoft/WindowsApps/winget.exe"
 if [[ -z "${WIN_USER}" ]]; then
-  APP_PATH="/AppData/Local/Microsoft/WindowsApps/winget.exe"
   if [[ -f "/mnt/c/Users/imxieke${APP_PATH}" ]]; then
     WIN_USER='imxieke'
   elif [[ -f "/mnt/c/Users/oss${APP_PATH}" ]]; then
