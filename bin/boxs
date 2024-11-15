@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
-# @LastEditTime: 2024-11-14 08:39:53
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-11-15 09:24:01
+ # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
 
@@ -591,6 +591,8 @@ __init_npm()
   _green "Configration , Set Completion!"
 }
 
+# Docker Mirrors
+#
 __set_docker()
 {
   mkdir -p ${HOME}/.docker
