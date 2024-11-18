@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+###
+# @Author: Cloudflying
+# @Date: 2024-11-18 20:59:20
+# @LastEditTime: 2024-11-18 21:01:49
+# @LastEditors: Cloudflying
+# @Description: Remove All Special File From Git History
+###
+
+FILE=$1
+
+if [[ -n "${FILE}" ]]; then
+  git filter-branch --force --index-filter "git rm -rf --cached --ignore-unmatch ${FILE}" --prune-empty --tag-name-filter cat -- --all
+else
+  echo "remove git file from all history"
+  echo "git-rm-all <file>"
+fi
