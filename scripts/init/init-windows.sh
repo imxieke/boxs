@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2024-09-06 13:44:27
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-11-18 10:55:58
+# @LastEditors: Cloudflying
 # @Description: MinGW
 ###
 
@@ -21,6 +21,8 @@ winget install Kingsoft.WPSOffice.CN
 winget install 9P2KRLMFXF9T
 # Windows Terminal
 winget install 9N0DX20HK701
+
+winget install Telegram.TelegramDesktop
 
 # 火绒
 winget install XPDNH1FMW7NB40
@@ -51,16 +53,15 @@ winget install Baidu.BaiduPinyin
 
 winget install Chocolatey.Chocolatey
 
-winget install Iterate.Cyberduck
 winget install Microsoft.DotNet.DesktopRuntime.8
 
-# MSYS2
-pacman -S --noconfirm mingw-w64-x86_64-neovim
-pacman -S --noconfirm rsync
+# # MSYS2
+# pacman -S --noconfirm mingw-w64-x86_64-neovim
+# pacman -S --noconfirm rsync
 
-pacman -S --noconfirm git \
-  mingw-w64-x86_64-bat \
-  mingw-w64-x86_64-git-lfs \
-  mingw-w64-x86_64-delta \
-  mingw-w64-x86_64-gitui \
-  mingw-w64-x86_64-github-cli
+# pacman -S --noconfirm git \
+#   mingw-w64-x86_64-bat \
+#   mingw-w64-x86_64-git-lfs \
+#   mingw-w64-x86_64-delta \
+#   mingw-w64-x86_64-gitui \
+#   mingw-w64-x86_64-github-cli
