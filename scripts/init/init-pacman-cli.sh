@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2024-10-08 17:16:10
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-11-18 16:04:26
+# @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
 
@@ -64,7 +64,7 @@ _install()
   pacman -S --noconfirm composer luarocks
 
   # System Utils
-  pacman -S --noconfirm procps-ng
+  pacman -S --noconfirm procps-ng jwt-cli
 
   # File && Code Tools
   # rg A search tool that combines the usability of ag with the raw speed of grep
