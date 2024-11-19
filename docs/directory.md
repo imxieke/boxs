@@ -1,5 +1,6 @@
 |目录|用途|备注|
 |-|-|-|
+|conf|${HOME}目录下配置文件|会覆盖原文件|
 |~/.bin|可执行文件|可能某些情况会用到 添加到 boxs 的 `PATH`|
 |${BOXS_HOME}/bin|可执行文件|自编写脚本|
 |~/.local/boxs/bin|可执行文件|`Shell Python PHP` 等可执行文件|
