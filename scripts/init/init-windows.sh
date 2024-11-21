@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-11-18 10:55:58
+# @LastEditTime: 2024-11-21 20:06:20
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -23,6 +23,7 @@ winget install 9P2KRLMFXF9T
 winget install 9N0DX20HK701
 
 winget install Telegram.TelegramDesktop
+winget install Microsoft.PowerToys
 
 # 火绒
 winget install XPDNH1FMW7NB40
