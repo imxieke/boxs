@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-11-21 20:06:20
+# @LastEditTime: 2024-11-29 10:09:02
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -24,6 +24,10 @@ winget install 9N0DX20HK701
 
 winget install Telegram.TelegramDesktop
 winget install Microsoft.PowerToys
+winget install Microsoft.devtunnel
+
+# Remote Tunnel Access
+winget install Cloudflare.cloudflared
 
 # 火绒
 winget install XPDNH1FMW7NB40
@@ -55,6 +59,20 @@ winget install Baidu.BaiduPinyin
 winget install Chocolatey.Chocolatey
 
 winget install Microsoft.DotNet.DesktopRuntime.8
+winget install Microsoft.VCRedist.2015+.x86
+winget install Microsoft.VCRedist.2015+.x64
+winget install Microsoft.VCRedist.2013.x64
+winget install Microsoft.VCRedist.2013.x86
+winget install Microsoft.VCRedist.2012.x64
+winget install Microsoft.VCRedist.2012.x86
+winget install Microsoft.VCRedist.2010.x64
+winget install Microsoft.VCRedist.2010.x86
+winget install Microsoft.VCRedist.2008.x64
+winget install Microsoft.VCRedist.2008.x86
+winget install
+
+# Nuget Package Manager
+winget install Microsoft.NuGet
 
 # # MSYS2
 # pacman -S --noconfirm mingw-w64-x86_64-neovim
