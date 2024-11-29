@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-11-18 16:04:26
+# @LastEditTime: 2024-11-28 19:46:08
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -24,7 +24,7 @@ _install()
 
   # Compress
   # GUI Archive: file-roller
-  pacman -S --noconfirm bzip2 unzip unarchiver gzip tar p7zip unrar lzip lrzip xz zip zstd file-roller \
+  pacman -S --noconfirm arj bzip2 bzip3 cdrtools cpio lhasa rpmextract unzip unarchiver gzip tar p7zip unrar lzip lrzip xz zip zstd \
     squashfs-tools unace
 
   # Network
