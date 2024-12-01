@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-11-29 10:09:02
+# @LastEditTime: 2024-11-30 20:51:11
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -73,6 +73,8 @@ winget install
 
 # Nuget Package Manager
 winget install Microsoft.NuGet
+
+winget install FilesCommunity.Files
 
 # # MSYS2
 # pacman -S --noconfirm mingw-w64-x86_64-neovim
