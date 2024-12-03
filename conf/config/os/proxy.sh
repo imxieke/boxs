@@ -2,9 +2,9 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:20:10
-# @LastEditTime: 2024-05-31 21:20:31
+# @LastEditTime: 2024-12-03 17:11:35
 # @LastEditors: Cloudflying
-# @Description:
+# @Description: System Proxy Config
 ###
 
 # Proxy
@@ -15,5 +15,5 @@ if [[ -n "${MIXED_PROXY}" ]]; then
   export rsync_proxy=http://${MIXED_PROXY}
   export ftp_proxy=http://${MIXED_PROXY}
   export all_proxy=http://${MIXED_PROXY}
-  export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+  export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.haixuanyun.cc,.dev.xie.ke"
 fi
