@@ -2,12 +2,13 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:23:30
-# @LastEditTime: 2024-09-12 23:59:46
+# @LastEditTime: 2024-12-03 11:57:24
 # @LastEditors: Cloudflying
 # @Description:
 ###
 
-_install() {
+_install()
+{
   mkdir -p ~/.go/bin     # 包含可执行文件，如：编译器，Go 工具
   mkdir -p ~/.go/src     # 包含源代码构建脚本和标准库的包的完整源代码
   mkdir -p ~/.go/doc     # 包含示例程序，代码工具，本地文档等
@@ -53,8 +54,6 @@ _install() {
   go install github.com/itchyny/mkrg/cmd/mkrg@latest
 
   # 给IP加上地理信息的命令行小工具
-  # go install github.com/imxieke/nali-go@latest
-  go install github.com/Mikubill/nali-go@latest
   go install github.com/zu1k/nali@latest
 
   # A Docker manager for the terminal
