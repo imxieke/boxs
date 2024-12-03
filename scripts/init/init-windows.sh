@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-11-30 20:51:11
+# @LastEditTime: 2024-12-03 09:50:19
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -25,6 +25,7 @@ winget install 9N0DX20HK701
 winget install Telegram.TelegramDesktop
 winget install Microsoft.PowerToys
 winget install Microsoft.devtunnel
+winget install Microsoft.PowerShell
 
 # Remote Tunnel Access
 winget install Cloudflare.cloudflared
