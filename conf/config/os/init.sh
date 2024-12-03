@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
- # @LastEditTime: 2024-09-19 11:15:06
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-12-03 10:30:17
+# @LastEditors: Cloudflying
 # @Description: Init Boxs Env
 ###
 
@@ -146,4 +146,10 @@ fi
 if [[ ! -d ~/.local/share/zinit ]]; then
   echo "==> Zinit Configuration"
   git clone --depth 1 https://gitcode.com/rsync/zinit.git ~/.local/share/zinit
+fi
+
+# 私有配置文件信息
+if [[ ! -d "${HOME}/.config/secret" ]]; then
+  echo "==> Init Secret Config"
+  git clone --depth 1 https://gitcode.com/imxieke/secret.git ${HOME}/.config/secret
 fi
