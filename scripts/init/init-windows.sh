@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-12-03 09:50:19
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-12-03 10:02:36
+ # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
 
@@ -26,12 +26,13 @@ winget install Telegram.TelegramDesktop
 winget install Microsoft.PowerToys
 winget install Microsoft.devtunnel
 winget install Microsoft.PowerShell
+# Install-Module -Name Microsoft.WinGet.Client
 
 # Remote Tunnel Access
 winget install Cloudflare.cloudflared
 
 # 火绒
-winget install XPDNH1FMW7NB40
+winget install --accept-package-agreements XPDNH1FMW7NB40
 
 # Windows Terminal Preview
 winget install 9N8G5RFZ9XK3
