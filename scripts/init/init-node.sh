@@ -2,12 +2,13 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
-# @LastEditTime: 2024-09-06 13:57:45
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-12-03 11:29:56
+ # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
 
-_install() {
+_install()
+{
   # Fabulously kill processes. Cross-platform
   npm i -g pnpm
 
@@ -19,7 +20,6 @@ _install() {
   pnpm add -g grunt gulp-cli webpack webpack-cli rollup esbuild vite
   pnpm add -g fkill-cli
   pnpm add -g fx
-  pnpm add -g nali-cli
   pnpm add -g tldr @electron/asar apidoc
 
   # bug scanner
