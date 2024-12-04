@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-11-28 19:46:08
+# @LastEditTime: 2024-12-04 16:13:28
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -139,6 +139,7 @@ _install()
   # Git Tools
   # onefetch: like neofetch but for git
   # gitg GUI client to view git repositories.
+  pacman -S --noconfirm tcl tk # depend by git gui
   pacman -S --noconfirm git git-lfs github-cli git-delta onefetch gitg gitui
 
   # Blockchain
