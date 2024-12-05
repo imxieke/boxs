@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2024-12-03 11:29:56
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-12-05 14:01:47
+# @LastEditors: Cloudflying
 # @Description: Node Init
 ###
 
@@ -22,12 +22,13 @@ _install()
   pnpm add -g fx
   pnpm add -g tldr @electron/asar apidoc
 
-  # bug scanner
+  # Bug Scanner
   # pnpm add -g snyk@latest
 
   pnpm add -g prettier
 
   pnpm add -g neovim
+  pnpm add -g pm2
 
   # intelephense php autocomplete PHP language server
   # tsserver typescript-language-server
