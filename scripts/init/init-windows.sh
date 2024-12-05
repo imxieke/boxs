@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2024-12-03 10:02:36
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-12-05 14:01:34
+# @LastEditors: Cloudflying
 # @Description: MinGW
 ###
 
@@ -71,7 +71,6 @@ winget install Microsoft.VCRedist.2010.x64
 winget install Microsoft.VCRedist.2010.x86
 winget install Microsoft.VCRedist.2008.x64
 winget install Microsoft.VCRedist.2008.x86
-winget install
 
 # Nuget Package Manager
 winget install Microsoft.NuGet
