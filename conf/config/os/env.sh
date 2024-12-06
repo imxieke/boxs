@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-06-06 22:01:36
+# @LastEditTime: 2024-12-06 14:57:44
 # @LastEditors: Cloudflying
 # @Description: Boxs Env
 ###
@@ -61,4 +61,9 @@ fi
 # shellcheck disable=SC2143
 if [[ -z "$(grep "CURRENT_COUNTRY" "${HOME}/.env")" ]]; then
   export CURRENT_COUNTRY='CN'
+fi
+
+# Github Cli
+if [[ -n "${GITHUB_TOKEN}" ]]; then
+  export GH_TOKEN=${GITHUB_TOKEN}
 fi
