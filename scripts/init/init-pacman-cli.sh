@@ -86,6 +86,7 @@ _install()
   # xsv A CLI for indexing, slicing, analyzing, splitting and joining CSV files
   # sysstat a collection of performance monitoring tools (iostat,isag,mpstat,pidstat,sadf,sar)
   # glow markdown preview
+  # yazi Blazing fast terminal file manager written in Rust, based on async I/O
   pacman -S --noconfirm tree jq sudo file less zsh cowsay cowfortune btop htop \
     lsb-release ntp mtools xsv eza \
     skim fd \
@@ -93,7 +94,8 @@ _install()
     bat bat-extras \
     syft ncdu \
     sysstat \
-    glow
+    glow \
+    yazi
 
   # Package management
   # App Store
