@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-12-05 14:01:34
+# @LastEditTime: 2024-12-15 15:33:04
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -28,6 +28,13 @@ winget install Microsoft.devtunnel
 winget install Microsoft.PowerShell
 # Install-Module -Name Microsoft.WinGet.Client
 
+# Microsoft PC Manager
+winget install --accept-package-agreements 9PM860492SZD
+# Microsoft Remote Desktop
+winget install --accept-package-agreements 9WZDNCRFJ3PS
+# Microsoft Whiteboard
+winget install --accept-package-agreements 9MSPC6MP8FM4
+
 # Remote Tunnel Access
 winget install Cloudflare.cloudflared
 
@@ -52,15 +59,18 @@ winget install Mozilla.Thunderbird
 winget install Apple.iTunes
 winget install Apple.iCloud
 winget install Xiaomi.XiaomiCloud
-winget install Git.Git
-winget install GitHub.cli
+# winget install Git.Git
+# winget install GitHub.cli
 # winget install GitHub.GitLFS
-winget install dandavison.delta
+# winget install dandavison.delta
 winget install Baidu.BaiduPinyin
 
 winget install Chocolatey.Chocolatey
 
 winget install Microsoft.DotNet.DesktopRuntime.8
+winget install Microsoft.DotNet.DesktopRuntime.9
+winget install Microsoft.DotNet.Runtime.8
+winget install Microsoft.DotNet.Runtime.9
 winget install Microsoft.VCRedist.2015+.x86
 winget install Microsoft.VCRedist.2015+.x64
 winget install Microsoft.VCRedist.2013.x64
@@ -71,9 +81,12 @@ winget install Microsoft.VCRedist.2010.x64
 winget install Microsoft.VCRedist.2010.x86
 winget install Microsoft.VCRedist.2008.x64
 winget install Microsoft.VCRedist.2008.x86
+winget install Microsoft.WindowsAppRuntime.1.5
 
 # Nuget Package Manager
 winget install Microsoft.NuGet
+# Microsoft Network Monitor
+winget install Microsoft.NetMon
 
 winget install FilesCommunity.Files
 
