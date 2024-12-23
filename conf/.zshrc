@@ -1,8 +1,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
-# @LastEditTime: 2024-09-11 15:56:26
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-12-23 15:13:44
+ # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
 
@@ -13,6 +13,10 @@
 # 前面优先级高 覆盖系统自带的命令
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 # export MANPATH=''
+
+if [[ -f "/mingw64.exe" ]]; then
+  export APTH="/mingw64/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
+fi
 
 # Set up the system environment in advance
 source ${HOME}/.boxs/conf/config/os/env.sh
@@ -59,7 +63,8 @@ plugins+=(composer colored-man-pages docker docker-compose extract gh git histor
 source $ZSH/oh-my-zsh.sh
 
 # 执行切换目录命令行自动执行下面命令
-auto-color-ls() {
+auto-color-ls()
+{
   emulate -L zsh
   echo
   if [[ -n "$(command -v eza)" ]]; then
