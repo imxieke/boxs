@@ -2,10 +2,17 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-12-15 15:33:04
+# @LastEditTime: 2024-12-23 09:17:06
 # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
+
+winget source remove winget
+# https://storeedgefd.dsx.mp.microsoft.com/v9.0 msstore
+# https://cdn.winget.microsoft.com/cache
+winget source add winget https://mirrors.ustc.edu.cn/winget-source --trust-level trusted
+# Reset
+# winget source reset winget
 
 winget install Google.Chrome.EXE
 winget install Microsoft.Edge
