@@ -2,9 +2,9 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-12-06 14:57:44
+# @LastEditTime: 2024-12-25 23:46:10
 # @LastEditors: Cloudflying
-# @Description: Boxs Env
+# @Description: Boxs Env Config
 ###
 
 # Set locale and language
@@ -30,24 +30,6 @@ export BOXS_CONF="${BOXS_HOME}/conf"
 export BOXS_LOGS="${BOXS_HOME}/logs"
 
 # Config System Environment
-# Darwin or Linux
-if [[ "$(uname -s)" == 'Darwin' ]]; then
-  OSTYPE='Darwin'
-  OSNAME='Darwin'
-elif [[ "$(uname -s)" == 'Linux' ]]; then
-  OSTYPE='Linux'
-  OSNAME=$(grep '^ID=' /etc/os-release | grep '^ID=' | awk -F '=' '{print $2}')
-fi
-
-# Check Local IP
-if [[ "${OSTYPE}" == 'Darwin' ]]; then
-  export HOST_IP=$(ifconfig en1 | grep -Eo 'inet\ [0-9]\S+.[0-9]' | sed 's#inet\ ##g')
-elif [[ "${OSTYPE}" == 'Linux' ]]; then
-  # export HOST_IP=$(ifconfig eth0 | grep -Eo 'inet\ [0-9]\S+.[0-9]' | sed 's#inet\ ##g')
-  export HOST_IP=$(ip addr | grep inet | grep -v inet6 | grep -v '127.0' | grep -v '172.' | awk -F ' ' '{print $2}' | head -n 1 | awk -F '/' '{print $1}')
-else
-  export HOST_IP="127.0.0.1"
-fi
 
 # 加载本地自定义变量
 if [[ -f "${HOME}/.env" ]]; then
@@ -57,6 +39,15 @@ else
   source ${HOME}/.env
 fi
 
+# Set Default Editor
+if [[ -n $(command -v nvim) ]]; then
+  export EDITOR='nvim'
+  export VISUAL='nvim'
+elif [[ -n $(command -v vim) ]]; then
+  export EDITOR='vim'
+  export VISUAL='vim'
+fi
+
 # 设定所属国家 否则默认为中国
 # shellcheck disable=SC2143
 if [[ -z "$(grep "CURRENT_COUNTRY" "${HOME}/.env")" ]]; then
@@ -64,6 +55,69 @@ if [[ -z "$(grep "CURRENT_COUNTRY" "${HOME}/.env")" ]]; then
 fi
 
 # Github Cli
-if [[ -n "${GITHUB_TOKEN}" ]]; then
+if [[ -n ${GITHUB_TOKEN} ]]; then
   export GH_TOKEN=${GITHUB_TOKEN}
+fi
+
+# Gnupg
+if [[ -n "$(command -v gpg)" ]]; then
+  export GPG_TTY=$(tty)
+fi
+
+export CVSEDITOR="${EDITOR}"
+export SVN_EDITOR="${EDITOR}"
+export GIT_EDITOR="${EDITOR}"
+
+# alias e="${EDITOR}"
+alias vi=${EDITOR}
+# alias vim=${EDITOR}
+alias nano=${EDITOR}
+alias emacs=${EDITOR}
+
+# 初始化 Oh my zsh
+if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
+  echo "==> Fetch oh my zsh"
+  git clone --depth 1 https://gitcode.com/rsync/ohmyzsh.git ~/.oh-my-zsh
+  echo "==> Create .zshrc config file"
+  ln -sf ${HOME}/.boxs/conf/.zshrc ~/.zshrc
+fi
+
+# zsh Plugin Manager
+if [[ ! -d ~/.local/share/zinit ]]; then
+  echo "==> Zinit Configuration"
+  git clone --depth 1 https://gitcode.com/rsync/zinit.git ${HOME}/.local/share/zinit
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ -f "${BOXS_HOME}/conf/.p10k.zsh" ]] && echo "[+] Loading p10k" && source "${BOXS_HOME}/conf/.p10k.zsh"
+
+# echo "[+] Loading Config"
+# for config in "${BOXS_CONF}/config/pkg/"*.sh; do
+#   source "${config}"
+# done
+
+# if [[ -n ${PHP_VERSION} ]]; then
+#   if [[ -f "${HOME}/.bin/php${PHP_VERSION}" ]]; then
+#     echo "[+] Set PHP Version To ${PHP_VERSION}"
+#     ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
+#   fi
+# fi
+
+# WSL Block Notify
+if [[ -f '/etc/wsl.conf' ]] || [[ -d "/mnt/d" ]]; then
+  export DONT_PROMPT_WSL_INSTALL=true
+fi
+
+# Linux Operating System Config
+if [[ "$(uname -s)" == 'Linux' ]]; then
+
+  # Compilation flags
+  export ARCHFLAGS="-arch $(uname -m)"
+
+  # Linux Input Method
+  if [[ -n "$(command -v fcitx)" ]]; then
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS="@im=fcitx"
+  fi
 fi
