@@ -1,18 +1,14 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2024-12-23 15:13:44
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-12-26 00:06:26
+# @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
-
-# Amazon Q pre block. Keep at the top of this file.
-# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 
 # init PATH
 # 前面优先级高 覆盖系统自带的命令
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-# export MANPATH=''
 
 if [[ -f "/mingw64.exe" ]]; then
   export APTH="/mingw64/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
@@ -20,7 +16,12 @@ fi
 
 # Set up the system environment in advance
 source ${HOME}/.boxs/conf/config/os/env.sh
-source ${HOME}/.boxs/conf/config/os/init.sh
+
+# High Priority
+source "${BOXS_CONF}/config/os/path.sh"
+source "${BOXS_CONF}/config/os/alias.sh"
+source "${BOXS_CONF}/config/os/proxy.sh"
+source "${BOXS_CONF}/config/os/zinit.sh"
 
 # Check zsh load time for debug
 # zmodload zsh/zprof
@@ -28,16 +29,20 @@ source ${HOME}/.boxs/conf/config/os/init.sh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh" ]]; then
-  source ${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh
-fi
+# if [[ -r "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh" ]]; then
+#   source ${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh
+# fi
 
 export ZSH=$HOME/.oh-my-zsh
 # If you come from bash you might have to change your $PATH.
 
+zstyle ':omz:update' mode reminder
+
 HISTFILE="$HOME/.zsh_history" # The path to the history file.
 HISTSIZE=50000                # The maximum number of events to save in the internal history.
 SAVEHIST=50000                # The maximum number of events to save in the history file.
+
+# CASE_SENSITIVE="true" # Case-sensitive completion.
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -72,12 +77,9 @@ auto-color-ls()
   fi
 }
 
-chpwd_functions=(auto-color-ls $chpwd_functions)
+# chpwd_functions=(auto-color-ls $chpwd_functions)
 
 # hacker quotes
 # alway show quote
-export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
-[ -n "$(command -v fortune)" ] && fortune -s | cowsay
-
-# Amazon Q post block. Keep at the bottom of this file.
-# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+# export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
+# [ -n "$(command -v fortune)" ] && fortune -s | cowsay

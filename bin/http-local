@@ -2,10 +2,6 @@
 # Ref: http://blog.kamipo.net/entry/2013/02/20/122225
 
 port=8000
-while netstat -vanp tcp | grep "$port" >/dev/null 2>&1; do
-  port=$((port + 1))
-done
-
 if command -v python >/dev/null 2>&1; then
   if python -V 2>&1 | grep -qm1 'Python 3\.'; then
     python -m http.server $port

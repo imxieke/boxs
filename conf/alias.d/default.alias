@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
-# @LastEditTime: 2024-10-24 14:30:56
+# @LastEditTime: 2024-12-25 23:58:56
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -47,30 +47,20 @@ alias history-top="history | awk -F ' ' '{print $2}' | sort | uniq -c | sort -n 
 alias ezsh="nvim ~/.zshrc"
 
 # Supercharge Custom Alias
-# Network alias
-alias sdl="axel -n 16 -c -k -a -U Mozilla/5.0"
-alias surl='curl -sL'
-
+# Path List
+alias pls='echo ${PATH} | tr ':' "\n" | sort'
 alias dfh='df -h'
 
 alias timestamp="date +%s"
-alias now="date \"+%Y-%m-%d %H:%I:%S\""
-alias dl="wget -c --no-check-certificate"
+alias now='date "+%Y-%m-%d %H:%I:%S"'
 alias pdl="proxychains4 wget"
 alias genpass="openssl rand -hex "
-alias pyweb='python -m SimpleHTTPServer 8000'
 alias myip="curl -sL http://myip.ipip.net"
 # alias myrawip="curl -sL https://ip.sb"
-alias locip='ipconfig getifaddr en0'
-alias locrawip="ifconfig | grep -v '127.0.0.1' | grep inet | grep -v :: | grep -v inet6| awk '{print $2}'"
 alias vidotfile='subl ~/.config/dotfile'
 alias viclash='sle ~/.config/clash'
 alias visubl='sle ~/Library/Application\ Support/Sublime\ Text'
 alias aria2web='open http://127.0.0.1:6801'
-alias site-mirror="wget -H 'user-agent: Mozilla' -H 'Referer: https://www.google.com/search?q=coin' -U 'Mozilla' --recursive --page-requisites --no-parent --convert-links --tries=3 --continue --timeout=3 --no-check-certificate"
-alias swget='wget -c --content-disposition --no-check-certificate --user-agent="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0"'
-alias get='aria2c -c -x 4'
-alias cdduck='cd /Users/imxieke/Library/Group\ Containers/G69SCX94XU.duck/Library/Application\ Support/duck/Volumes/'
 
 alias jobl='jobs -l'
 alias cgrep='grep --color=auto'
@@ -81,6 +71,14 @@ alias diffu='diff -u'
 alias tailf='tail -f'
 alias myip="wget -qO- https://wtfismyip.com/text"
 alias enjoke='curl https://icanhazdadjoke.com'
+
+# Downloader
+alias get='aria2c -c -x 4'
+alias sdl='axel -n 16 -c -k -a -U "Mozilla/5.0"'
+alias surl='curl -sL'
+alias dl="wget -c --no-check-certificate"
+alias swget='wget -c --content-disposition --no-check-certificate --user-agent="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0"'
+alias site-mirror="wget -H 'user-agent: Mozilla' -H 'Referer: https://www.google.com/search?q=coin' -U 'Mozilla' --recursive --page-requisites --no-parent --convert-links --tries=3 --continue --timeout=3 --no-check-certificate"
 
 alias unproxy='unset http_proxy;unset https_proxy;unset all_proxy;unset rsync_proxy;unset ftp_proxy;unset;unset no_proxy;'
 
@@ -115,7 +113,7 @@ elif [[ -n $(command -v proxychains-ng) ]]; then
 fi
 
 # 区分操作系统
-if [[ "${OSTYPE}" == 'Darwin' ]]; then
+if [[ ${OSTYPE} == 'Darwin' ]]; then
   alias sdu='/usr/bin/du -h -d 1 -I ~/Library -I /Applications -I /dev -I node_modules'
   # VSCode
   if [[ -f "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ]]; then

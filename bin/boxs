@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2024-11-15 09:24:01
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-12-25 23:38:01
+# @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
 
@@ -209,13 +209,13 @@ __arch_repo()
 {
   __rootness
   MIRRORS_FILE='/etc/pacman.d/mirrorlist'
-  echo "Server = https://mirrors.nju.edu.cn/archlinux/\$repo/os/\$arch
-Server = https://mirrors.zju.edu.cn/archlinux/\$repo/os/\$arch
-Server = https://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/\$repo/os/\$arch
-Server = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch
-Server = https://mirrors.huaweicloud.com/archlinux/\$repo/os/\$arch
-Server = https://mirrors.tencent.com/archlinux/\$repo/os/\$arch" >${MIRRORS_FILE}
+  echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
+Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
+Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' >${MIRRORS_FILE}
 
   sed -i "s/#\[multilib\]/\[multilib\]/g" /etc/pacman.conf
   sed -i "s/#\[extra\]/\[extra\]/g" /etc/pacman.conf
@@ -288,16 +288,16 @@ _set_mirrors()
       __os_repo ${PKG_SOURCE}
       ;;
     composer)
-      __init_composer ${PKG_SOURCE}
+      __config_composer ${PKG_SOURCE}
       ;;
     pip)
-      __init_pip ${PKG_SOURCE}
+      __config_pip ${PKG_SOURCE}
       ;;
     npm)
-      __init_npm ${PKG_SOURCE}
+      __config_npm ${PKG_SOURCE}
       ;;
     ruby)
-      __init_ruby ${PKG_SOURCE}
+      __config_ruby ${PKG_SOURCE}
       ;;
     docker | -d)
       __set_docker ${PKG_SOURCE}
@@ -363,11 +363,11 @@ _pkg_add()
 
   if [[ "$(uname -s)" == "Darwin" ]]; then
     brew install "$@"
-  elif [[ "${ID}" == 'ubuntu' ]]; then
+  elif [[ ${ID} == 'ubuntu' ]]; then
     apt install -y "$@"
-  elif [[ "${ID}" == 'arch' ]]; then
+  elif [[ ${ID} == 'arch' ]]; then
     pacman -S --noconfirm "$@"
-  elif [[ "${ID}" == 'alpine' ]]; then
+  elif [[ ${ID} == 'alpine' ]]; then
     apk add "$@"
   else
     echo "Unknow Platform"
@@ -431,6 +431,41 @@ init_pkgs()
     git config --global core.ignorecase false
     git config --global credential.helper store
   fi
+
+  if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
+    echo "==> Install Nvm"
+    git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
+  fi
+
+  if [[ ! -f "${HOME}/.bin/composer" ]]; then
+    mkdir -p ${HOME}/.bin
+    echo "==> Install Composer"
+    # https://mirrors.aliyun.com/composer/composer.phar
+    wget -cq https://mirrors.tencent.com/composer/composer.phar -O ${HOME}/.bin/composer
+    chmod +x ${HOME}/.bin/composer
+  fi
+
+  # 初始化 Oh-my-zsh
+  if [[ ! -f "${HOME}/.zshrc" ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]]; then
+    ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
+  fi
+
+  if [[ ! -f "${HOME}/.gitconfig" ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]]; then
+    ln -sf ${BOXS_HOME}/conf/.gitconfig ${HOME}/.gitconfig
+  fi
+
+  if [[ ! -f "${HOME}/.npmrc" ]] || [[ -z "$(ls -lha ~/.npmrc | grep '.boxs/conf/')" ]]; then
+    ln -sf ${BOXS_HOME}/conf/.npmrc ${HOME}/.npmrc
+  fi
+
+  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep 'boxs')" ]; then
+    ln -sf ${HOME}/.boxs/conf/.gemrc ${HOME}/.gemrc
+  fi
+
+  if [[ -n "$(command -v pip)" ]]; then
+    rm -fr ${HOME}/.config/pip
+    ln -sf ${HOME}/.boxs/conf/.config/pip ${HOME}/.config
+  fi
 }
 
 # 初始化依赖及软链接
@@ -444,19 +479,9 @@ init_boxs()
   else
     _info "==> Boxs Config Success"
   fi
-
-  # 初始化 Oh my zsh
-  if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
-    echo "==> Fetch oh my zsh"
-    git clone --depth 1 https://gitcode.com/rsync/ohmyzsh.git ~/.oh-my-zsh
-    echo "==> Create .zshrc config file"
-    ln -sf ${HOME}/.boxs/conf/.zshrc ~/.zshrc
-  else
-    _info "==> oh-my-zsh Config Success"
-  fi
 }
 
-__init_composer()
+__config_composer()
 {
   _cmd_exist composer
 
@@ -493,7 +518,7 @@ __init_composer()
   echo "unset mirrors? use $(_red 'composer config -g --unset repos.packagist')"
 }
 
-__init_pip()
+__config_pip()
 {
 
   _cmd_exist pip
@@ -534,7 +559,7 @@ __init_pip()
       ;;
   esac
 
-  if [[ -n "${MIRROR}" ]]; then
+  if [[ -n ${MIRROR} ]]; then
     TRUST_HOST=$(echo "${MIRROR}" | awk -F '/' '{print $3}')
     if [[ -n "$(command -v pip)" ]]; then
       pip config set global.index-url "${MIRROR}"
@@ -553,7 +578,7 @@ __init_pip()
   fi
 }
 
-__init_npm()
+__config_npm()
 {
   _cmd_exist npm
 
@@ -591,6 +616,22 @@ __init_npm()
   _green "Configration , Set Completion!"
 }
 
+__config_neovim()
+{
+  # 配置 Neovim 輕量模式
+  if [[ ! -f "${HOME}/.config/nvim/full.lua" ]]; then
+    # echo "==> Config neovim"
+    mkdir -p "${HOME}/.config"
+    ln -sf "${HOME}/.boxs/conf/.config/nvim" "${HOME}/.config"
+  fi
+
+  if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
+    # echo "==>Init Neovim Telescope SQLite Database"
+    mkdir -p ${HOME}/.local/share/nvim/databases
+    touch ${HOME}/.local/share/nvim/databases/telescope_history.sqlite3
+  fi
+}
+
 # Docker Mirrors
 #
 __set_docker()
@@ -608,7 +649,7 @@ Environment=\"HTTP_PROXY=${http_proxy}\"
 Environment=\"HTTPS_PROXY=${http_proxy}\"
 Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/systemd/system/docker.service.d/proxy.conf >/dev/null
 
-  if [[ ! -f "${DOCKER_CONFIG}" ]]; then
+  if [[ ! -f ${DOCKER_CONFIG} ]]; then
     touch ${DOCKER_CONFIG}
   fi
 
@@ -620,7 +661,7 @@ Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/syste
   sudo systemctl restart docker
 }
 
-__init_ruby()
+__config_ruby()
 {
   _cmd_exist gem
 
@@ -652,7 +693,7 @@ __init_ruby()
       echo "provider: [offcial|aliyun|huawei|ustc|nju|tuna]"
       ;;
   esac
-  if [[ -n "${MIRROR}" ]]; then
+  if [[ -n ${MIRROR} ]]; then
     gem sources --add ${MIRROR}
     gem sources --remove https://rubygems.org
     gem sources --remove https://rubygems.org/
@@ -671,9 +712,10 @@ init_config()
   fi
 }
 
+# 私有配置文件信息
 __secret()
 {
-  if [[ -e "${BOXS_HOME}" ]]; then
+  if [[ -e ${BOXS_HOME} ]]; then
     echo "==> Secret Init"
     git config --global credential.helper store
     echo "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com" >>${HOME}/.git-credentials
@@ -743,13 +785,13 @@ case $1 in
     _install_python_pkgs "$@"
     ;;
   npm)
-    __init_npm "$@"
+    __config_npm "$@"
     ;;
   ruby)
-    __init_ruby "$@"
+    __config_ruby "$@"
     ;;
   pip)
-    __init_pip "$@"
+    __config_pip "$@"
     ;;
   *)
     _usage "$@"
