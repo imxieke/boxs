@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-12-25 23:46:10
+# @LastEditTime: 2024-12-26 14:45:50
 # @LastEditors: Cloudflying
 # @Description: Boxs Env Config
 ###
@@ -91,10 +91,10 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ -f "${BOXS_HOME}/conf/.p10k.zsh" ]] && echo "[+] Loading p10k" && source "${BOXS_HOME}/conf/.p10k.zsh"
 
-# echo "[+] Loading Config"
-# for config in "${BOXS_CONF}/config/pkg/"*.sh; do
-#   source "${config}"
-# done
+echo "[+] Loading Config"
+for config in "${BOXS_CONF}/config/pkg/"*.sh; do
+  source "${config}"
+done
 
 # if [[ -n ${PHP_VERSION} ]]; then
 #   if [[ -f "${HOME}/.bin/php${PHP_VERSION}" ]]; then

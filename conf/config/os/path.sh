@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
-# @LastEditTime: 2024-12-26 14:36:05
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-12-26 14:46:50
+ # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
 
@@ -18,8 +18,6 @@ fi
 export PNPM_HOME="${HOME}/.local/share/pnpm"
 
 mkdir -p "${PNPM_HOME}"
-
-# if [[ -d "${$HOME}/.local/share/zinit/plugins/wfxr---forgit/bin" ]]; then
 
 if [[ -d "${HOME}/.local/share/zinit/plugins/wfxr---forgit/bin" ]]; then
   export PATH="${HOME}/.local/share/zinit/plugins/wfxr---forgit/bin:${PATH}"
