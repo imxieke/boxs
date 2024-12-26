@@ -2,13 +2,18 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
-# @LastEditTime: 2024-12-25 22:43:15
+# @LastEditTime: 2024-12-26 14:36:05
 # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
 
 # 加载自定义目录二进制文件 垃圾的 macOS 还不能删
 # PATH 放后头 系统是从前往后搜索
+
+# Load Node Version Manager
+if [[ -f "${HOME}/.local/share/nvm/nvm.sh" ]]; then
+  source ${HOME}/.local/share/nvm/nvm.sh
+fi
 
 export PNPM_HOME="${HOME}/.local/share/pnpm"
 
