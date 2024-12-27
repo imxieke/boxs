@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:01:41
-# @LastEditTime: 2024-11-13 09:17:54
+# @LastEditTime: 2024-12-27 17:27:15
 # @LastEditors: Cloudflying
 # @Description: 可执行文件初始化 如 二进制文件 Shell Python 脚本
 ###
@@ -68,6 +68,11 @@ _install_linux()
 
   echo "==> Fetch Hadolint Dockerfile Lint"
   curl -fsSL "${GITHUB_MIRROR}https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64" --output ${BIN_PATH}/hadolint
+
+  echo "==> Fetch Qodana"
+  curl -fsSL "${GITHUB_MIRROR}https://github.com/JetBrains/qodana-cli/releases/latest/download/qodana_linux_x86_64" --output ${BIN_PATH}/qodana
+
+  chmod +x ${HOME}/.bin/*
 }
 
 # macOS 二进制文件
