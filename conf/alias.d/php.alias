@@ -1,7 +1,14 @@
-alias php56="/usr/local/opt/php@5.6/bin/php"
-alias php74="/usr/local/opt/php@7.4/bin/php"
-alias php81="/usr/local/opt/php@8.1/bin/php"
-alias php82="/usr/local/opt/php@8.2/bin/php"
+[ -f "${HOME}/.bin/php56" ] && alias php56="${HOME}/.bin/php56"
+[ -f "${HOME}/.bin/php70" ] && alias php70="${HOME}/.bin/php70"
+[ -f "${HOME}/.bin/php71" ] && alias php71="${HOME}/.bin/php71"
+[ -f "${HOME}/.bin/php72" ] && alias php72="${HOME}/.bin/php72"
+[ -f "${HOME}/.bin/php73" ] && alias php73="${HOME}/.bin/php73"
+[ -f "${HOME}/.bin/php74" ] && alias php74="${HOME}/.bin/php74"
+[ -f "${HOME}/.bin/php80" ] && alias php80="${HOME}/.bin/php80"
+[ -f "${HOME}/.bin/php81" ] && alias php81="${HOME}/.bin/php81"
+[ -f "${HOME}/.bin/php82" ] && alias php82="${HOME}/.bin/php82"
+[ -f "${HOME}/.bin/php83" ] && alias php83="${HOME}/.bin/php83"
+[ -f "${HOME}/.bin/php84" ] && alias php84="${HOME}/.bin/php84"
 
 # add `d` debug -vvv
 alias cmpa="composer require --optimize-autoloader"
@@ -21,3 +28,6 @@ alias create-symfony-project="composer create-project symfony/skeleton"
 
 alias phpstan-analyse-composer="php -d memory_limit=1G ~/.bin/phpstan analyze -l 7 --autoload-file=./vendor/autoload.php"
 alias phpcs-stand="phpcs --standard=PSR12"
+
+alias artisan="php artisan"
+alias lsrv="php artisan serve"
