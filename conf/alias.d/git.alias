@@ -7,6 +7,9 @@ alias git-ignore-files='git check-ignore -v'
 alias delta-config="delta --diff-so-fancy --show-config"
 alias glogls="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
+# Diff
+alias gdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
+
 # GPG Sign Commit
 alias gsc="git commit -S -m"
 
