@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-12-04 16:13:28
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-12-30 09:05:07
+ # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
 
@@ -21,6 +21,14 @@ _install()
     tree-sitter-python \
     tree-sitter-query \
     tree-sitter-rust
+
+  # Libarary
+  pacman -S --noconfirm libpng \
+    libheif \
+    libjxl \
+    libwmf \
+    libxml2 \
+    libjpeg-turbo
 
   # Compress
   # GUI Archive: file-roller
@@ -124,7 +132,7 @@ _install()
   # pacman -S --noconfirm fuse-overlayfs
 
   # Image Process
-  pacman -S --noconfirm graphicsmagick jasper libwmf libxml2 ghostscript libheif libjxl
+  pacman -S --noconfirm graphicsmagick jasper ghostscript
 
   # OCR
   pacman -S --noconfirm tesseract tesseract-data-chi_sim
