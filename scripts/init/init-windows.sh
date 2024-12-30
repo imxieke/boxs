@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2024-12-23 09:17:06
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2024-12-30 15:35:09
+ # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
 
@@ -96,6 +96,7 @@ winget install Microsoft.NuGet
 winget install Microsoft.NetMon
 
 winget install FilesCommunity.Files
+winget install CoreyButler.NVMforWindows
 
 # # MSYS2
 # pacman -S --noconfirm mingw-w64-x86_64-neovim
