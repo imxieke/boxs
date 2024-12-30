@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:23:30
-# @LastEditTime: 2024-12-03 11:57:24
+# @LastEditTime: 2024-12-30 11:29:25
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -62,6 +62,9 @@ _install()
   go install github.com/itchyny/base58-go/cmd/base58@latest
   # Binary editor written in Go
   go install github.com/itchyny/bed/cmd/bed@latest
+
+  go install github.com/olivere/iterm2-imagetools/cmd/imgcat@latest
+  go install github.com/olivere/iterm2-imagetools/cmd/imgls@latest
 
   # NetWork
   # 🐶 Command-line DNS Client for Humans. Written in Golang

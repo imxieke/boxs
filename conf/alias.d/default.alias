@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
-# @LastEditTime: 2024-12-25 23:58:56
+# @LastEditTime: 2024-12-30 14:35:54
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -63,10 +63,6 @@ alias visubl='sle ~/Library/Application\ Support/Sublime\ Text'
 alias aria2web='open http://127.0.0.1:6801'
 
 alias jobl='jobs -l'
-alias cgrep='grep --color=auto'
-alias cfgrep='fgrep --color=auto'
-alias cegrep='egrep --color=auto'
-alias diffu='diff -u'
 
 alias tailf='tail -f'
 alias myip="wget -qO- https://wtfismyip.com/text"
@@ -83,7 +79,6 @@ alias site-mirror="wget -H 'user-agent: Mozilla' -H 'Referer: https://www.google
 alias unproxy='unset http_proxy;unset https_proxy;unset all_proxy;unset rsync_proxy;unset ftp_proxy;unset;unset no_proxy;'
 
 alias flushdns="dscacheutil -flushcache"
-alias disk-usage-top="du -sh $@ | sort -r -n | head -10"
 
 # open application
 alias st='open -a "Sublime Text"'
@@ -91,7 +86,7 @@ alias font="open -a 'Font Book'"
 
 if [[ -f ~/.acme.sh/acme.sh ]]; then
   alias acme="~/.acme.sh/acme.sh"
-  export LE_WORKING_DIR="~/.acme.sh"
+  export LE_WORKING_DIR="${HOME}/.acme.sh"
 fi
 
 # Grep
@@ -178,3 +173,10 @@ fi
 # VSCode
 alias vsc="code"
 alias vsc-tunnel="code-tunnel"
+
+# man page
+alias bathelp='bat --plain --language=help'
+help()
+{
+  "$@" --help 2>&1 | bathelp
+}

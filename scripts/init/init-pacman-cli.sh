@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2024-12-30 09:05:07
- # @LastEditors: Cloudflying
+# @LastEditTime: 2024-12-30 11:21:51
+# @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
 
@@ -28,7 +28,8 @@ _install()
     libjxl \
     libwmf \
     libxml2 \
-    libjpeg-turbo
+    libjpeg-turbo \
+    libavif
 
   # Compress
   # GUI Archive: file-roller
@@ -79,7 +80,8 @@ _install()
   # ag Code searching tool similar to Ack, but faster
   # # duf Disk Usage/Free Utility
   # ripgrep-all ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.
-  pacman -S --noconfirm ripgrep the_silver_searcher duf fzf ripgrep-all
+  # chafa 📺🗿 Terminal graphics for the 21st century.
+  pacman -S --noconfirm ripgrep the_silver_searcher duf fzf ripgrep-all chafa
 
   # Tools
   # flameshot screenshot

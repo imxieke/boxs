@@ -18,6 +18,11 @@ alias llg="${eza_params} --git-ignore"
 
 # bat Diff
 alias bdiff='bat --diff'
+alias ndiff='nvim --diff'
+
+alias cgrep='grep --color=auto'
+alias cfgrep='fgrep --color=auto'
+alias cegrep='egrep --color=auto'
 
 # replace df
 alias ldf="duf"
@@ -31,3 +36,11 @@ alias .....='cd ../../../../'
 
 alias ':q'="exit"
 alias gdu='grc du -h'
+
+alias fsv='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+# rsync
+alias rsync-copy="rsync -avz --progress -h"
+alias rsync-move="rsync -avz --progress -h --remove-source-files"
+alias rsync-update="rsync -avzu --progress -h"
+alias rsync-synchronize="rsync -avzu --delete --progress -h"
