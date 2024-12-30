@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-sk --ansi -i -c 'ag --color "{}"' --preview "preview.sh {}"
