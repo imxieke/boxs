@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
-# @LastEditTime: 2024-12-05 14:01:47
+# @LastEditTime: 2024-12-31 10:10:02
 # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -80,6 +80,20 @@ _install()
   pnpm add -g jsonlint
 
   pnpm add -g npm-run-all
+}
+
+_proxy()
+{
+  npm config set proxy=http://127.0.0.1:7890
+  npm config set https-proxy http://127.0.0.1:7890
+
+  pnpm config set proxy http://127.0.0.1:7890
+  pnpm config set https-proxy https://127.0.0.1:7890
+
+  yarn config set proxy http://127.0.0.1:7890
+  yarn config set https-proxy http://127.0.0.1:7890
+
+  npm config set registry=https://registry.npmmirror.com
 }
 
 _install
