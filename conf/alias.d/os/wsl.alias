@@ -1,0 +1,24 @@
+WIN_SYSTEM32="${/mnt/c/Windows/System32}"
+# shellcheck disable=SC1003
+WINUSER="$(/mnt/c/Windows/System32/whoami.exe | cut -d '\' -f2 | sed "s#\r##g")"
+WIN_HOME="/mnt/c/Users/${WINUSER}"
+WIN_APPDATA="${WIN_HOME}/AppData/Roaming"
+WIN_LOCAL_APPDATA="${WIN_HOME}/AppData/Local"
+WIN_WINDOWS_APPS="${WIN_LOCAL_APPDATA}/Microsoft/WindowsApps"
+
+if [[ -d "/mnt/c/Program Files/Microsoft VS Code/bin" ]]; then
+  alias we="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code"
+fi
+
+alias wsl="${WIN_SYSTEM32}/wsl.exe"
+alias wslconfig="${WIN_SYSTEM32}/wslconfig.exe"
+
+if [[ -f '/mnt/c/Program Files/WSL/wslg.exe' ]]; then
+  alias wslg='/mnt/c/Program\ Files/WSL/wslg.exe'
+elif [[ -f "${WIN_SYSTEM32}/wslg.exe" ]]; then
+  alias wslg="${WIN_SYSTEM32}/wslg.exe"
+fi
+
+if [[ -f "${WIN_WINDOWS_APPS}/winget.exe" ]]; then
+  alias winget="${WIN_WINDOWS_APPS}/winget.exe"
+fi

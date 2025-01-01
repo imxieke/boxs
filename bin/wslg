@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if [[ -f "/mnt/c/Windows/System32/wslg.exe" ]]; then
-  /mnt/c/Windows/System32/wslg.exe "$@"
-else
-  echo "$(basename $0) Command Not Found"
-fi

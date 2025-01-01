@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2024-12-30 15:35:09
- # @LastEditors: Cloudflying
+# @LastEditTime: 2025-01-01 12:21:11
+# @LastEditors: Cloudflying
 # @Description: MinGW
 ###
 
@@ -20,14 +20,16 @@ winget install Vivaldi.Vivaldi
 winget install Mozilla.Firefox.DeveloperEdition
 
 # Office 365
-winget install 9WZDNCRD29V9
+winget install --accept-package-agreements 9WZDNCRD29V9
 winget install Kingsoft.WPSOffice.CN
 
 # Terminal
 # Flutter Treminal
-winget install 9P2KRLMFXF9T
+winget install --accept-package-agreements 9P2KRLMFXF9T
 # Windows Terminal
-winget install 9N0DX20HK701
+winget install --accept-package-agreements 9N0DX20HK701
+# Windows Terminal Preview
+winget install --accept-package-agreements 9N8G5RFZ9XK3
 
 winget install Telegram.TelegramDesktop
 winget install Microsoft.PowerToys
@@ -47,11 +49,6 @@ winget install Cloudflare.cloudflared
 
 # 火绒
 winget install --accept-package-agreements XPDNH1FMW7NB40
-
-# Windows Terminal Preview
-winget install 9N8G5RFZ9XK3
-# Flutter Terminal
-winget install 9P2KRLMFXF9T
 
 winget install Microsoft.OneDrive
 winget install Tencent.WeCom
@@ -97,14 +94,3 @@ winget install Microsoft.NetMon
 
 winget install FilesCommunity.Files
 winget install CoreyButler.NVMforWindows
-
-# # MSYS2
-# pacman -S --noconfirm mingw-w64-x86_64-neovim
-# pacman -S --noconfirm rsync
-
-# pacman -S --noconfirm git \
-#   mingw-w64-x86_64-bat \
-#   mingw-w64-x86_64-git-lfs \
-#   mingw-w64-x86_64-delta \
-#   mingw-w64-x86_64-gitui \
-#   mingw-w64-x86_64-github-cli

@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
-# @LastEditTime: 2024-12-25 23:38:01
+# @LastEditTime: 2025-01-01 12:50:11
 # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -423,13 +423,60 @@ __os_repo()
 init_pkgs()
 {
   # Set Git Config
+  # Priority: local > global > system
   if [[ -n "$(command -v git)" ]]; then
     _info "==> Set Git Configuration"
+
+    # User
+    git config --global user.name imxieke
+    git config --global user.email oss@live.hk
+
+    # Author
+    git config --global author.name imxieke
+    git config --global author.email oss@live.hk
+
     git config --global core.pager delta
     git config --global interactive.diffFilter 'delta --color-only --features=interactive'
-    git config --global core.fileMode false
+    # 文件权限变更
+    git config --global core.fileMode true
+    # 忽略大小写 会造成代码异常错误很容易疏忽导致难以查找
     git config --global core.ignorecase false
     git config --global credential.helper store
+    # 裸库
+    git config --global core.bare false
+    # 避免中文转义成 xxx\xxx\xxx
+    git config --global core.quotepath false
+    git config --global core.editor nvim
+
+    git config --global color.status auto
+    git config --global color.diff auto
+    git config --global color.branch auto
+    git config --global color.interactive auto
+    git config --global color.pager auto
+    git config --global color.ui auto
+
+    git config --global color.status.added green
+    git config --global color.status.changed red bold
+    git config --global color.status.untracked magenta bold
+
+    git config --global color.branch.remote yellow
+
+    git config --global color.diff.meta yellow
+    git config --global color.diff.frag magenta bold
+    git config --global color.diff.commit yellow bold
+    git config --global color.diff.old red bold
+    git config --global color.diff.new green bold
+    git config --global color.diff.whitespace red bold
+
+    # Specify a .gitignore file which applies to every git repo (useful for things like Thumbs.db or .DS_Store)
+    # git config --global core.excludesfile ~/.boxs/conf/gitignore
+
+    # 只对 github.com 生效
+    # git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+    # git config --global http.proxy socks5://127.0.0.1:7890
+    # git config --global https.proxy socks5://127.0.0.1:7890
+    # git config --global http.proxy http://127.0.0.1:7890
+    # git config --global https.proxy https://127.0.0.1:7890
   fi
 
   if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
@@ -466,6 +513,7 @@ init_pkgs()
     rm -fr ${HOME}/.config/pip
     ln -sf ${HOME}/.boxs/conf/.config/pip ${HOME}/.config
   fi
+  echo "Configration ✿✿ヽ(°▽°)ノ✿ ❀ All Done !"
 }
 
 # 初始化依赖及软链接
@@ -581,6 +629,15 @@ __config_pip()
 __config_npm()
 {
   _cmd_exist npm
+
+  npm config set proxy=http://127.0.0.1:7890
+  npm config set https-proxy http://127.0.0.1:7890
+
+  pnpm config set proxy http://127.0.0.1:7890
+  pnpm config set https-proxy https://127.0.0.1:7890
+
+  yarn config set proxy http://127.0.0.1:7890
+  yarn config set https-proxy http://127.0.0.1:7890
 
   case $1 in
     offcial)

@@ -2,9 +2,9 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:18:43
-# @LastEditTime: 2024-12-25 23:47:27
+# @LastEditTime: 2025-01-01 09:45:39
 # @LastEditors: Cloudflying
-# @Description: Node Version Manager
+# @Description: Node Config
 ###
 
 # export NVM_NODEJS_ORG_MIRROR=http://mirrors.ustc.edu.cn/node
@@ -12,3 +12,5 @@
 export NVM_NODEJS_ORG_MIRROR=https://cdn.npmmirror.com/binaries/node
 export NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
 export NVM_DIR="${HOME}/.local/share/nvm"
+export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
+export NO_STRIP=true
