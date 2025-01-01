@@ -21,6 +21,9 @@ registry = "sparse+https://rsproxy.cn/index/"
 [source.aliyun]
 registry = "sparse+https://mirrors.aliyun.com/crates.io-index/"
 
+[source.cernet]
+registry = "sparse+https://mirrors.cernet.edu.cn/crates.io-index/"
+
 # [registries.rsproxy]
 # index = "https://rsproxy.cn/crates.io-index"
 

@@ -1,3 +1,5 @@
+export PATH="/mingw64/bin:/mingw64/libexec:/ucrt64/bin:/clang64/bin:${PATH}"
+
 if [[ -n ${USERNAME} ]]; then
   WIN_HOME="/c/Users/${USERNAME}"
 elif [[ -n ${USER} ]]; then
@@ -28,4 +30,16 @@ fi
 
 if [[ -f "${WIN_WINDOWS_APPS}/winget.exe" ]]; then
   alias winget="${WIN_WINDOWS_APPS}/winget.exe"
+fi
+
+if [[ -f "${WIN_APPDATA}/nvm/nvm.exe" ]]; then
+  alias nvm="${WIN_APPDATA}/nvm/nvm.exe"
+fi
+
+if [[ -f "/c/Program Files/nodejs/node.exe" ]]; then
+  export PATH="/c/Program Files/nodejs:${PATH}"
+fi
+
+if [[ -f "${WIN_HOME}/.cargo/bin/rustup.exe" ]]; then
+  export PATH="${WIN_HOME}/.cargo/bin:${PATH}"
 fi
