@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2024-12-30 11:21:51
+# @LastEditTime: 2025-01-01 10:03:28
 # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -10,7 +10,8 @@
 _install()
 {
   # Dev
-  pacman -S --noconfirm base-devel cmake cppcheck gdb \
+  pacman -S --noconfirm base-devel cmake cppcheck gdb clang lld \
+    mingw-w64-gcc \
     tree-sitter \
     tree-sitter-bash \
     tree-sitter-c \
@@ -29,7 +30,13 @@ _install()
     libwmf \
     libxml2 \
     libjpeg-turbo \
-    libavif
+    libavif \
+    webkit2gtk-4.1 \
+    webkit2gtk \
+    appmenu-gtk-module \
+    gtk3 \
+    libappindicator-gtk3 \
+    librsvg
 
   # Compress
   # GUI Archive: file-roller
@@ -57,6 +64,11 @@ _install()
     deno \
     lua51 \
     ruby
+
+  # Rust
+  pacman -S --noconfirm rustup \
+    rust-analyzer \
+    rust-bindgen
 
   # Python Packages
   pacman -S --noconfirm python-pipx \
@@ -97,7 +109,8 @@ _install()
   # sysstat a collection of performance monitoring tools (iostat,isag,mpstat,pidstat,sadf,sar)
   # glow markdown preview
   # yazi Blazing fast terminal file manager written in Rust, based on async I/O
-  pacman -S --noconfirm tree jq sudo file less zsh cowsay cowfortune btop htop \
+  pacman -S --noconfirm tree jq sudo file less zsh btop htop \
+    cowsay cowfortune lolcat \
     lsb-release ntp mtools xsv eza \
     skim fd \
     gron \

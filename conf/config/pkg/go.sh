@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 23:18:43
-# @LastEditTime: 2024-09-12 11:01:43
+# @LastEditTime: 2025-01-01 01:00:57
 # @LastEditors: Cloudflying
 # @Description: Golang
 ###
@@ -26,6 +26,10 @@ if [[ -n $(command -v go) ]]; then
   # sum.golang.org
   export GOSUMDB=sum.golang.google.cn
   # index.golang.org
+
+  # export GO111MODULE=on
+  # export GOPROXY=https://mirrors.huaweicloud.com/repository/goproxy/
+  # export GONOSUMDB=*
 
   # 配置 GOPROXY 环境变量
   # https://mirrors.cloud.tencent.com/go/

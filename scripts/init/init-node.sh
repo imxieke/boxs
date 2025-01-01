@@ -82,18 +82,4 @@ _install()
   pnpm add -g npm-run-all
 }
 
-_proxy()
-{
-  npm config set proxy=http://127.0.0.1:7890
-  npm config set https-proxy http://127.0.0.1:7890
-
-  pnpm config set proxy http://127.0.0.1:7890
-  pnpm config set https-proxy https://127.0.0.1:7890
-
-  yarn config set proxy http://127.0.0.1:7890
-  yarn config set https-proxy http://127.0.0.1:7890
-
-  npm config set registry=https://registry.npmmirror.com
-}
-
 _install

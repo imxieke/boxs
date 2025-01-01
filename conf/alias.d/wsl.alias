@@ -1,3 +1,0 @@
-if [[ -d "/mnt/c/Program Files/Microsoft VS Code/bin" ]]; then
-  alias we="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code"
-fi
