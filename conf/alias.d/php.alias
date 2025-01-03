@@ -29,5 +29,6 @@ alias create-symfony-project="composer create-project symfony/skeleton"
 alias phpstan-analyse-composer="php -d memory_limit=1G ~/.bin/phpstan analyze -l 7 --autoload-file=./vendor/autoload.php"
 alias phpcs-stand="phpcs --standard=PSR12"
 
+alias think="php think"
 alias artisan="php artisan"
 alias lsrv="php artisan serve"
