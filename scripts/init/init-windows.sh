@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
-# @LastEditTime: 2025-01-01 12:21:11
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-01-06 23:53:29
+ # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
 
@@ -30,6 +30,8 @@ winget install --accept-package-agreements 9P2KRLMFXF9T
 winget install --accept-package-agreements 9N0DX20HK701
 # Windows Terminal Preview
 winget install --accept-package-agreements 9N8G5RFZ9XK3
+
+winget install JanDeDobbeleer.OhMyPosh -s winget
 
 winget install Telegram.TelegramDesktop
 winget install Microsoft.PowerToys
