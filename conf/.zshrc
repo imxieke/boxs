@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
-# @LastEditTime: 2024-12-26 14:39:22
+# @LastEditTime: 2025-01-02 08:34:09
 # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
@@ -82,4 +82,4 @@ chpwd_functions=(auto-color-ls $chpwd_functions)
 # hacker quotes
 # alway show quote
 # export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
-[ -n "$(command -v fortune)" ] && fortune -s | cowsay
+[ -n "$(command -v fortune)" ] && fortune | cowsay | lolcat
