@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-01-07 08:37:32
+ # @LastEditTime: 2025-01-07 23:24:01
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -97,4 +97,12 @@ winget install Microsoft.NetMon
 winget install FilesCommunity.Files
 winget install CoreyButler.NVMforWindows
 
+# Launcher Tools
 winget install Flow-Launcher.Flow-Launcher
+# Fluent Search
+winget install --accept-package-agreements 9NK1HLWHNP8S
+
+# Program
+winget install Python.Python.3.12
+winget install Rustlang.Rustup
+winget install GoLang.Go
