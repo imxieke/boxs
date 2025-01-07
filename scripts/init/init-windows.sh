@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-01-06 23:53:29
+ # @LastEditTime: 2025-01-07 08:37:32
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -96,3 +96,5 @@ winget install Microsoft.NetMon
 
 winget install FilesCommunity.Files
 winget install CoreyButler.NVMforWindows
+
+winget install Flow-Launcher.Flow-Launcher
