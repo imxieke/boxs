@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
-# @LastEditTime: 2025-01-09 23:53:52
+# @LastEditTime: 2025-01-10 23:04:53
 # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -29,7 +29,7 @@ _install()
   # kmouth 语音合成
   # kmousetool 似乎是鼠标自动化
   # kmag 屏幕放大器
-  pacman -S --noconfirm psmisc lolcat flameshot shutter jp2a d-feet kweather \
+  pacman -S --noconfirm psmisc flameshot shutter jp2a d-feet kweather \
     marble-maps \
     activity-log-manager asciinema vokoscreen \
     gnome-multi-writer \

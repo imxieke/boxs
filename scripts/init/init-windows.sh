@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-01-07 23:24:01
+ # @LastEditTime: 2025-01-11 09:57:58
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -106,3 +106,19 @@ winget install --accept-package-agreements 9NK1HLWHNP8S
 winget install Python.Python.3.12
 winget install Rustlang.Rustup
 winget install GoLang.Go
+
+# Drive
+winget install 123.123pan
+winget install Alibaba.QuarkCloudDrive
+winget install Alibaba.aDrive
+winget install Apple.iCloud
+winget install Google.GoogleDrive
+# winget install Xiaomi.XiaomiCloud
+winget install Rclone.Rclone
+winget install AList.AList
+
+# Tools
+winget install voidtools.Everything.Alpha
+
+# Chat
+winget install Tencent.WeChat
