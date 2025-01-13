@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
-# @LastEditTime: 2024-12-31 10:10:02
+# @LastEditTime: 2025-01-11 22:56:05
 # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -12,23 +12,32 @@ _install()
   # Fabulously kill processes. Cross-platform
   npm i -g pnpm
 
-  pnpm add -g typescript
-
-  pnpm add -g bower yarn bun
+  # vsce VSCode Extension Manager
+  pnpm add -g typescript \
+    bower \
+    bun \
+    fkill-cli \
+    fx \
+    tldr \
+    @electron/asar \
+    apidoc \
+    neovim \
+    pm2 \
+    @vscode/vsce
 
   # Pack
-  pnpm add -g grunt gulp-cli webpack webpack-cli rollup esbuild vite
-  pnpm add -g fkill-cli
-  pnpm add -g fx
-  pnpm add -g tldr @electron/asar apidoc
+  pnpm add -g grunt \
+    gulp-cli \
+    webpack \
+    webpack-cli \
+    rollup \
+    esbuild \
+    vite
 
   # Bug Scanner
   # pnpm add -g snyk@latest
-
-  pnpm add -g prettier
-
-  pnpm add -g neovim
-  pnpm add -g pm2
+  # TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files
+  pnpm add -g tsx
 
   # intelephense php autocomplete PHP language server
   # tsserver typescript-language-server
@@ -44,42 +53,40 @@ _install()
     sql-language-server
 
   # Language
-  pnpm add -g @prettier/plugin-ruby \
+  pnpm add -g prettier \
+    @prettier/plugin-ruby \
+    @prettier/plugin-php \
+    @prettier/plugin-xml \
     prettier-plugin-sh \
     prettier-plugin-sql \
     prettier-plugin-java \
     prettier-plugin-solidity \
-    prettier-plugin-kotlin \
-    @prettier/plugin-php \
-    @prettier/plugin-xml
+    prettier-plugin-kotlin
 
   # Frontend
-  pnpm add -g prettier-plugin-wxml @shufo/prettier-plugin-blade
-
-  # Lint
-  pnpm add -g dockerfile_lint dockerlint dockerfilelint
-
-  # Conf
-  pnpm add -g prettier-plugin-nginx
-
-  # Documents
-  pnpm add -g prettier-plugin-latex
-
   # Salesforce Apex
-  pnpm add -g prettier-plugin-apex
-
-  # Other
-  pnpm add -g prettier-plugin-ssh-config prettier-plugin-ini prettier-plugin-pkg prettier-plugin-toml
+  pnpm add -g prettier-plugin-wxml \
+    @shufo/prettier-plugin-blade \
+    prettier-plugin-nginx \
+    prettier-plugin-latex \
+    prettier-plugin-apex \
+    prettier-plugin-ssh-config \
+    prettier-plugin-ini \
+    prettier-plugin-pkg \
+    prettier-plugin-toml
 
   # 用不到
   # @shopify/prettier-plugin-liquid prettier-plugin-go-template eslint-plugin-prettier-vue prettier-plugin-tvmsolidity @prettier/plugin-pug
-  pnpm add -g eslint eslint-plugin-jsonc eslint-plugin-json
+  pnpm add -g eslint \
+    eslint-plugin-jsonc \
+    eslint-plugin-json
 
   # Lint
-  pnpm add -g sql-lint
-  pnpm add -g jsonlint
-
-  pnpm add -g npm-run-all
+  pnpm add -g sql-lint \
+    jsonlint \
+    dockerlint \
+    dockerfilelint \
+    dockerfile_lint
 }
 
 _install

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# sudo with env
+
+# shellcheck disable=SC2154
+sudo env http_proxy=${http_proxy} https_proxy=${https_proxy} rsync_proxy=${rsync_proxy} ftp_proxy=${ftp_proxy} all_proxy=${all_proxy} no_proxy=${no_proxy} "$@"
