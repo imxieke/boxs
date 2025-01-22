@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:25:19
- # @LastEditTime: 2024-09-29 09:44:12
+ # @LastEditTime: 2025-01-21 12:32:49
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -42,6 +42,12 @@ _install_python_pkgs()
   _pipadd httpie
 
   _pipadd you-dl youtube-dl yt-dlp
+
+  # Bandit is a tool designed to find common security issues in Python code.
+  _pipadd bandit
+
+  # Prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages with Checkov by Bridgecrew.
+  _pipadd checkov
 }
 
 _install_python_pkgs
