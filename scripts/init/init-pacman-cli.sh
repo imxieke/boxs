@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
-# @LastEditTime: 2025-01-01 10:03:28
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-01-21 12:45:57
+ # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
 
@@ -178,6 +178,14 @@ _install()
 
   # Format
   pacman -S --noconfirm shfmt yamlfmt
+
+  # Lint
+  pacman -S --noconfirm shellcheck
+
+  # trivy Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
+  # gitleaks Find secrets with Gitleaks 🔑
+  pacman -S --noconfirm trivy \
+    gitleaks
 }
 
 _install
