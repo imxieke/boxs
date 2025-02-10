@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
-# @LastEditTime: 2024-12-26 14:45:50
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-02-10 10:47:49
+ # @LastEditors: Cloudflying
 # @Description: Boxs Env Config
 ###
 
@@ -41,9 +41,11 @@ fi
 
 # Set Default Editor
 if [[ -n $(command -v nvim) ]]; then
+  export SYSTEMD_EDITOR='nvim'
   export EDITOR='nvim'
   export VISUAL='nvim'
 elif [[ -n $(command -v vim) ]]; then
+  export SYSTEMD_EDITOR='vim'
   export EDITOR='vim'
   export VISUAL='vim'
 fi
