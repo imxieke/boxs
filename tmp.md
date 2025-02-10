@@ -1,0 +1,251 @@
+
+## Uknow
+- [ ] elrepo
+- [ ] erlang-solutions
+- [ ] exim
+- [ ] finnix
+- [ ] flutter
+- [ ] gutenberg
+- [ ] hackage
+- [ ] harmonyos
+- [ ] ius
+- [ ] jenkins
+- [ ] kernel
+- [ ] kodi
+- [ ] kde
+- [ ] kde-application
+- [ ] libreboot
+- [ ] mediawiki
+- [ ] libreoffice
+- [ ] nix
+- [ ] nixos-images
+- [ ] nuget
+- [ ] osmc
+- [ ] osdn
+- [ ] ovirt
+- [ ] packman
+- [ ] rfcs
+- [ ] rocky
+- [ ] ros
+- [ ] ros2
+- [ ] roswiki
+- [ ] rpmfusion
+- [ ] rustup
+- [ ] sabayonlinux
+- [ ] sage
+- [ ] sugarlabs
+- [ ] tldp
+- [ ] tor
+- [ ] turnkeylinux
+- [ ] oracle
+- [ ] python
+- [ ] qubes
+- [ ] openvz
+- [ ] qemu
+- [ ] rpm
+- [ ] vlc
+- [ ] termux
+- [ ] tinycorelinux
+- [ ] videolan
+- [ ] virtualbox
+- [ ] wikimedia-dumps
+- [ ] zorin-images
+- [ ] vim
+- [ ] gnualpha
+- [ ] lede
+- [ ] kdeftp
+- [ ] tdf
+- [ ] runtu
+- [ ] opnsense
+- [ ] pfsense
+- [ ] linuxlite
+- [ ] ipfire
+- [ ] x.org
+- [ ] salix
+- [ ] solusvm-templates
+- [ ] qemu-linux
+- [ ] qemu-windows
+- [ ] opera
+- [ ] juliahub
+- [ ] lxc-images
+- [ ] zabbix
+- [ ] iina
+- [ ] influxdata
+- [ ] julia
+- [ ] julia-releases
+- [ ] kde-neon
+- [ ] kubernetes
+- [ ] kunpeng
+- [ ] loongson
+- [ ] postmarketOS
+- [ ] saltstack
+- [ ] yocto
+
+## Fonts
+- [ ] adobe-fonts
+
+## Operating System
+
+- [x] almalinux
+- [x] alpine
+- [ ] anthon
+- [ ] archstrike
+- [ ] archstrike
+- [ ] armbian
+- [ ] armbian-releases
+- [ ] archlinuxcn
+- [ ] arch4edu
+- [x] archlinux
+- [x] archlinuxarm
+- [ ] bioarchlinux
+- [x] blackarch
+- [x] centos
+- [x] centos-altarch
+- [x] centos-stream
+- [ ] cygwin
+- [x] debian
+- [x] debiancn
+- [x] debian-archive
+- [x] debian-backports
+- [x] debian-cd
+- [x] debian-cd-archive
+- [x] debian-cloud-images
+- [x] debian-multimedia
+- [x] debian-ports
+- [x] debian-security
+- [x] deepin
+- [x] deepin-cd
+- [x] devuan
+- [x] devuan-cd
+- [x] dragonflybsd-dports
+- [x] dragonflybsd-snapshots
+- [x] dragonflybsd-images
+- [x] dragonflybsd-older-images
+- [x] fedora
+- [x] fedora-altarch
+- [x] fedora-epel
+- [x] fedora-secondary
+- [x] freebsd
+- [x] freebsd-pkg
+- [x] freebsd-ports
+- [x] gentoo
+- [x] gentoo-distfiles
+- [x] gentoo-portage
+- [x] kali
+- [x] kali-cdimage
+- [ ] kaos
+- [x] linuxmint
+- [x] linuxmint-images
+- [x] linuxmint-packages
+- [ ] macports
+- [x] mageia
+- [ ] manjaro
+- [ ] manjaro-arm
+- [ ] mxlinux
+- [ ] mxlinux-iso
+- [ ] neurodebian
+- [x] netbsd
+- [x] netbsd-pkgsrc
+- [x] openbsd
+- [ ] opensuse
+- [ ] openwrt
+- [ ] raspbian
+- [ ] raspbian-images
+- [ ] redhat
+- [x] ubuntu
+- [x] ubuntu-cdimage
+- [x] ubuntu-cloud-images
+- [x] ubuntu-ports
+- [x] ubuntu-ports-releases
+- [x] ubuntu-releases
+- [ ] ubuntudde
+- [ ] ubuntudde-releases
+- [ ] ubuntukylin
+- [ ] ubuntukylin-cdimage
+- [ ] xubuntu-releases
+- [ ] openeuler
+- [x] tails
+- [x] slackware
+- [x] slackware-iso
+- [ ] lfs
+- [ ] lfs-livecd
+- [ ] HardenedBSD
+- [x] voidlinux
+- [ ] artix-linux
+- [ ] antergos
+
+
+## Package Manager
+
+- [x] cpan(Perl)
+- [ ] cran
+- [ ] ctan
+- [ ] cocoapods
+- [ ] composer
+- [ ] rubygems
+- [ ] npm
+- [ ] homebrew-bottles
+
+## Android AppStore
+- [ ] fdroid
+
+## Android System Release
+- [ ] lineageos
+
+## Software
+
+- [ ] apache
+- [ ] apache-old
+- [ ] eclipse
+- [ ] elasticstack
+- [ ] gimp
+- [ ] gnome
+- [ ] hhvm
+- [ ] mariadb
+- [ ] mariadb-archive
+- [ ] mariadb-repo
+- [ ] microsoft
+- [ ] mysql
+- [ ] mongodb
+- [ ] mozdev
+- [ ] mozilla
+- [ ] nginx
+- [ ] nginx-packages
+- [ ] nginx-unit
+- [ ] nodejs
+- [ ] nongnu
+- [ ] openssh
+- [ ] openssl
+- [ ] percona
+- [ ] putty
+- [ ] qt
+- [x] gnu
+- [ ] msys2
+- [x] sourceware
+- [ ] ruby
+- [ ] redis
+- [ ] ppa
+- [ ] nodesource
+- [ ] wireshark
+- [ ] winehq
+- [ ] proxmox
+- [ ] maven-atlassian
+- [ ] maven-central
+- [ ] maven-jcenter
+- [ ] maven-public
+- [ ] maven-google
+- [ ] maven-gradle-plugins
+- [ ] maven-spring
+- [ ] maven-spring-plugins
+- [ ] maven-apache-snapshots
+- [ ] maven-grails-core
+- [ ] openresty
+- [ ] postgresql
+
+
+## Mirrors
+- [ ] avatar
+- [ ] goproxy
+- [ ] gosum
+- [ ] goindex
+- [ ] gopkg
