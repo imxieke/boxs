@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-01-11 09:57:58
+ # @LastEditTime: 2025-02-11 11:45:34
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -35,7 +35,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 winget install Telegram.TelegramDesktop
 winget install Microsoft.PowerToys
-winget install Microsoft.devtunnel
+# winget install Microsoft.devtunnel
 winget install Microsoft.PowerShell
 # Install-Module -Name Microsoft.WinGet.Client
 
@@ -60,7 +60,7 @@ winget install Iterate.Cyberduck
 winget install Ruihu.Apifox
 winget install Alibaba.QuarkCloudDrive
 
-winget install Mozilla.Thunderbird
+# winget install Mozilla.Thunderbird
 
 winget install Apple.iTunes
 winget install Apple.iCloud
@@ -71,7 +71,7 @@ winget install Xiaomi.XiaomiCloud
 # winget install dandavison.delta
 winget install Baidu.BaiduPinyin
 
-winget install Chocolatey.Chocolatey
+# winget install Chocolatey.Chocolatey
 
 winget install Microsoft.DotNet.DesktopRuntime.8
 winget install Microsoft.DotNet.DesktopRuntime.9
@@ -118,7 +118,7 @@ winget install Rclone.Rclone
 winget install AList.AList
 
 # Tools
-winget install voidtools.Everything.Alpha
+# winget install voidtools.Everything.Alpha
 
 # Chat
 winget install Tencent.WeChat
