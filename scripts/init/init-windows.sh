@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-02-11 11:45:34
+ # @LastEditTime: 2025-02-17 14:44:21
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -77,6 +77,8 @@ winget install Microsoft.DotNet.DesktopRuntime.8
 winget install Microsoft.DotNet.DesktopRuntime.9
 winget install Microsoft.DotNet.Runtime.8
 winget install Microsoft.DotNet.Runtime.9
+winget install Microsoft.DotNet.SDK.8
+winget install Microsoft.DotNet.SDK.9
 winget install Microsoft.VCRedist.2015+.x86
 winget install Microsoft.VCRedist.2015+.x64
 winget install Microsoft.VCRedist.2013.x64
@@ -87,7 +89,14 @@ winget install Microsoft.VCRedist.2010.x64
 winget install Microsoft.VCRedist.2010.x86
 winget install Microsoft.VCRedist.2008.x64
 winget install Microsoft.VCRedist.2008.x86
+winget install Microsoft.VCRedist.2005.x64
+winget install Microsoft.VCRedist.2005.x86
 winget install Microsoft.WindowsAppRuntime.1.5
+winget install Microsoft.WindowsAppRuntime.1.6
+winget install Microsoft.DotNet.Framework.DeveloperPack_4
+
+winget install EclipseAdoptium.Temurin.21.JDK
+winget install EclipseAdoptium.Temurin.21.JRE
 
 # Nuget Package Manager
 winget install Microsoft.NuGet
