@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:25:19
- # @LastEditTime: 2025-02-10 14:28:39
+ # @LastEditTime: 2025-02-19 00:09:03
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -49,9 +49,13 @@ _install_python_pkgs()
   # Prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages with Checkov by Bridgecrew.
   _pipadd checkov
 
+  _pipadd numpy
+
 
   _pipadd transformers
   _pipadd vllm
+  _pipadd modelscope
+  _pipadd "huggingface_hub[cli]"
 }
 
 _install_python_pkgs
