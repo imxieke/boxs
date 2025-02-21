@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-02-17 14:44:21
+ # @LastEditTime: 2025-02-22 01:04:00
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -109,7 +109,7 @@ winget install CoreyButler.NVMforWindows
 # Launcher Tools
 winget install Flow-Launcher.Flow-Launcher
 # Fluent Search
-winget install --accept-package-agreements 9NK1HLWHNP8S
+winget install BlastApps.FluentSearch
 
 # Program
 winget install Python.Python.3.12
