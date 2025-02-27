@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
- # @LastEditTime: 2024-12-26 14:46:50
- # @LastEditors: Cloudflying
+# @LastEditTime: 2025-02-27 10:36:25
+# @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
 
@@ -13,6 +13,12 @@
 # Load Node Version Manager
 if [[ -f "${HOME}/.local/share/nvm/nvm.sh" ]]; then
   source ${HOME}/.local/share/nvm/nvm.sh
+fi
+
+if [[ -z "$(command -v node)" ]]; then
+  if [ -n "$NODE_VERSION" ]; then
+    export PATH="${HOME}/.local/share/nvm/versions/node/${NODE_VERSION}/bin:${PATH}"
+  fi
 fi
 
 export PNPM_HOME="${HOME}/.local/share/pnpm"
