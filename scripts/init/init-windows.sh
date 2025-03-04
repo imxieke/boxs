@@ -126,6 +126,9 @@ winget install Google.GoogleDrive
 winget install Rclone.Rclone
 winget install AList.AList
 
+# Dict && Translate
+winget install Youdao.YoudaoTranslate
+
 # Tools
 # winget install voidtools.Everything.Alpha
 
