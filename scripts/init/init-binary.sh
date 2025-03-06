@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:01:41
-# @LastEditTime: 2024-12-27 17:27:15
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-03-06 11:43:43
+ # @LastEditors: Cloudflying
 # @Description: 可执行文件初始化 如 二进制文件 Shell Python 脚本
 ###
 
@@ -125,9 +125,10 @@ _install_lib()
 install_spc()
 {
   VERSIONS=(
-    "8.3.13"
-    "8.2.25"
-    "8.1.30"
+    "8.4.4"
+    "8.3.17"
+    "8.2.27"
+    "8.1.31"
     "8.0.30"
   )
   for version in "${VERSIONS[@]}"; do
