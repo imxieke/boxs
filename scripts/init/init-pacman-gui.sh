@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
-# @LastEditTime: 2025-01-10 23:04:53
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-03-06 11:13:34
+ # @LastEditors: Cloudflying
 # @Description:
 ###
 
@@ -80,7 +80,7 @@ _install()
   pacman -S --noconfirm diffutils easytag meld nautilus gnome-disk-utility
 
   # Database Client
-  pacman -S --noconfirm mariadb-clients sqlitebrowser
+  pacman -S --noconfirm sqlitebrowser
 
   # Chat
   # aur slack-desktop
@@ -224,7 +224,12 @@ _install()
 
   # 修复缺失库
   pacman -S --noconfirm libvoikko nuspell hspell
+
   # pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-chinese-addons
+
+  # xorg
+  pacman -S --noconfirm xorg xorg-apps
+  pacman -S --noconfirm xdg-utils
 
   # KDE Application
   # labplot graphing and analysis of scientific data
@@ -248,7 +253,7 @@ _install()
   # TODO: 待研究 似乎不是全部都有用
   # not found apper
   pacman -S --noconfirm labplot kdenlive kdevelop kile okteta krusader calligra index-fm \
-    alligator pix kclock kalk kweather calligra-plan kbibtex
+    alligator pix kclock kalk kweather calligra-plan kbibtex kde-cli-tools
 
   # 图像处理 3D 建模等
   # blender 创建 3D 模型和动画场景
