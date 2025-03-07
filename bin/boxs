@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
-# @LastEditTime: 2025-01-01 12:50:11
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-03-07 11:20:49
+ # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
 
@@ -14,7 +14,7 @@ DEFAULT_USER="imxieke"
 DEFAULT_PASSWD=$(openssl rand -hex 4)
 
 if [[ -f "${HOME}/.env" ]]; then
-  . ${HOME}/.env
+  . "${HOME}/.env"
 fi
 
 [ -f '/etc/os-release' ] && . /etc/os-release
@@ -337,6 +337,16 @@ init_platpak()
   flatpak run com.usebottles.bottles
 }
 
+__init_arch()
+{
+  __rootness
+  pacman-key --init
+  pacman-key --populate
+  pacman-key --populate
+  pacman -Sy --noconfirm archlinux-keyring
+  # pacman -Sy --noconfirm archlinuxcn-keyring
+}
+
 init_snap()
 {
   snap install snap-store
@@ -375,25 +385,52 @@ _pkg_add()
   fi
 }
 
-# 初始化用户 在所有操作之前(远程获取脚本操作)
-init_users()
+# Init SUDO Group (wheel)
+__init_sudo()
 {
   __rootness
-  echo "==>Create User: ${USERNAME}:${PASSWORD} On Wheel Group"
+  [ -z "$(command -v sudo)" ] && { echo "sudo Command Not Found，install sudo first"; exit 1; }
+  [ ! -f "/etc/sudoers" ] && { echo "sudo Config File Not Found，install sudo first"; exit 1; }
+
   if [[ -z "$(grep wheel /etc/group)" ]]; then
+    echo "==>Create User: ${USERNAME}:${PASSWORD} On Wheel Group"
     groupadd wheel
   fi
 
   # 赋予 wheel 群组 ROOT 权限
-  if [[ -z "$(grep ^%wheel /etc/sudoers)" ]]; then
-    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >/etc/sudoers.d/wheel
+  if [[ -z "$(grep -v "#" /etc/sudoers | grep "wheel")" ]]; then
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/wheel >/dev/null
+  else
+    sed -i 's@^%wheel@#%wheel@g' /etc/sudoers
+    sed -i 's@^wheel@#wheel@g' /etc/sudoers
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/wheel >/dev/null
+  fi
+}
+
+# 初始化用户 在所有操作之前(远程获取脚本操作)
+__add_sudo_users()
+{
+  __rootness
+
+  USERNAME=${1}
+  PASSWORD=${2}
+
+  if [[ -z "${USERNAME}" ]]; then
+    read -p "Input User Name: " USERNAME
+  fi
+
+  if [[ -z "${PASSWORD}" ]]; then
+    read -s -p "Input ${USERNAME}'s Password: " PASSWORD
   fi
 
   # 创建用户
   if [[ -z "$(grep ${USERNAME} /etc/passwd)" ]]; then
-    useradd -m -G wheel -s /usr/bin/zsh ${USERNAME}
-    echo "root:${PASSWORD}" | chpasswd
+    echo "==>Create ${USERNAME} with sudo"
+    useradd -m -s /bin/bash -g wheel ${USERNAME}
     echo "${USERNAME}:${PASSWORD}" | chpasswd
+  else
+    echo "${USERNAME} exists"
+    exit 1
   fi
 }
 
@@ -826,14 +863,17 @@ case $1 in
   remove)
     echo "Remove"
     ;;
-  user)
-    init_users "$@"
+  add-user|--add-user)
+    __add_sudo_users $2 $3
     ;;
   mirrors | --mirrors | -m)
     _set_mirrors "$@"
     ;;
   init)
     __init
+    ;;
+  init-sudo|--init-sudo )
+    __init_sudo
     ;;
   init-pkgs)
     init_pkgs
