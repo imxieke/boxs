@@ -3,7 +3,7 @@
 # @Date: 2021-09-19 01:49:42
 # @LastEditTime: 2025-01-02 08:34:09
 # @LastEditors: Cloudflying
-# @Description: zsh config file
+# @Description: zsh config filea
 ###
 
 # init PATH

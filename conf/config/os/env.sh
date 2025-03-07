@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
- # @LastEditTime: 2025-02-10 10:47:49
+ # @LastEditTime: 2025-03-07 11:30:33
  # @LastEditors: Cloudflying
 # @Description: Boxs Env Config
 ###
@@ -117,9 +117,15 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
   export ARCHFLAGS="-arch $(uname -m)"
 
   # Linux Input Method
-  if [[ -n "$(command -v fcitx)" ]]; then
+  if [[ -n "$(command -v fcitx5)" ]]; then
     export GTK_IM_MODULE=fcitx
+    export GTK_IM_MODULE_DEFAULT=fcitx
     export QT_IM_MODULE=fcitx
-    export XMODIFIERS="@im=fcitx"
+    export QT_IM_MODULE_DEFAULT=fcitx
+    # export XMODIFIERS="@im=fcitx"
+    export XMODIFIERS=@im=fcitx
+    export XMODIFIERS_DEFAULT=@im=fcitx
+    export SDL_IM_MODULE_DEFAULT=fcitx
+    export DefaultIMModule=fcitx
   fi
 fi
