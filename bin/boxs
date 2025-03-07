@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2025-03-07 11:20:49
+ # @LastEditTime: 2025-03-07 16:33:01
  # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -341,7 +341,6 @@ __init_arch()
 {
   __rootness
   pacman-key --init
-  pacman-key --populate
   pacman-key --populate
   pacman -Sy --noconfirm archlinux-keyring
   # pacman -Sy --noconfirm archlinuxcn-keyring
