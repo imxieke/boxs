@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
- # @LastEditTime: 2025-03-06 11:13:34
+ # @LastEditTime: 2025-03-09 09:36:26
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -23,7 +23,6 @@ _install()
   # shutter screenshot
   # jp2a A small utility for converting JPG images to ASCII
   # d-feet D-Bus debugger for GNOME
-  # asciinema Record and share terminal sessions
   # vokoscreen 录屏
   # gnome-multi-writer Write an ISO file to multiple USB devices at once
   # kmouth 语音合成
@@ -31,7 +30,7 @@ _install()
   # kmag 屏幕放大器
   pacman -S --noconfirm psmisc flameshot shutter jp2a d-feet kweather \
     marble-maps \
-    activity-log-manager asciinema vokoscreen \
+    activity-log-manager vokoscreen \
     gnome-multi-writer \
     kmouth kmousetool kmag \
     bitwarden
