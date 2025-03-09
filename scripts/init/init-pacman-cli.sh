@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2025-03-06 09:51:11
+ # @LastEditTime: 2025-03-09 09:36:33
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -116,6 +116,7 @@ _install()
     cowsay cowfortune lolcat \
     lsb-release ntp mtools xsv eza \
     skim fd \
+    asciinema \
     gron \
     bat bat-extras \
     syft ncdu \
