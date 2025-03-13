@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-07-01 01:00:37
- # @LastEditTime: 2025-03-12 21:09:07
+ # @LastEditTime: 2025-03-13 21:18:19
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -51,6 +51,7 @@ alias dki="docker run -i -t -P"
 
 # Execute interactive container
 alias drun="docker exec -it"
+alias dep="docker exec -it -e http_proxy=${PROXY_ADDR} -e https_proxy=${PROXY_ADDR} -e all_proxy=${PROXY_ADDR} -e HTTP_PROXY=${PROXY_ADDR} -e HTTPS_PROXY=${PROXY_ADDR} -e ALL_PROXY=${PROXY_ADDR}"
 
 # docker volume
 alias dvls='docker volume ls $*'
