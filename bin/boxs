@@ -2,16 +2,18 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2025-03-07 16:33:01
+ # @LastEditTime: 2025-03-14 14:09:12
  # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
 
-CMD_NAME="boxs"
-
 # 当缺省会使用下面用户密码
 DEFAULT_USER="imxieke"
 DEFAULT_PASSWD=$(openssl rand -hex 4)
+
+BOXS_PREFIX=${BOXS_PREFIX:-boxs}
+
+BOXS_HOME=$(dirname $(dirname $(realpath $0)))
 
 if [[ -f "${HOME}/.env" ]]; then
   . "${HOME}/.env"
@@ -455,69 +457,40 @@ __os_repo()
   esac
 }
 
+is_boxs_path()
+{
+  FILE=$1
+  if [[ ! -f "${FILE}" ]]; then
+    echo false
+  elif [[ -z "$(ls -lha ${FILE} | grep ${BOXS_HOME})" ]]; then
+    echo false
+  fi
+}
+
 # Packages Init
-init_pkgs()
+__init_pkgs()
 {
   # Set Git Config
   # Priority: local > global > system
-  if [[ -n "$(command -v git)" ]]; then
-    _info "==> Set Git Configuration"
+  # if [[ -n "$(command -v git)" ]]; then
+  #   _info "==> Set Git Configuration"
 
-    # User
-    git config --global user.name imxieke
-    git config --global user.email oss@live.hk
-
-    # Author
-    git config --global author.name imxieke
-    git config --global author.email oss@live.hk
-
-    git config --global core.pager delta
-    git config --global interactive.diffFilter 'delta --color-only --features=interactive'
-    # 文件权限变更
-    git config --global core.fileMode true
-    # 忽略大小写 会造成代码异常错误很容易疏忽导致难以查找
-    git config --global core.ignorecase false
-    git config --global credential.helper store
-    # 裸库
-    git config --global core.bare false
-    # 避免中文转义成 xxx\xxx\xxx
-    git config --global core.quotepath false
-    git config --global core.editor nvim
-
-    git config --global color.status auto
-    git config --global color.diff auto
-    git config --global color.branch auto
-    git config --global color.interactive auto
-    git config --global color.pager auto
-    git config --global color.ui auto
-
-    git config --global color.status.added green
-    git config --global color.status.changed red bold
-    git config --global color.status.untracked magenta bold
-
-    git config --global color.branch.remote yellow
-
-    git config --global color.diff.meta yellow
-    git config --global color.diff.frag magenta bold
-    git config --global color.diff.commit yellow bold
-    git config --global color.diff.old red bold
-    git config --global color.diff.new green bold
-    git config --global color.diff.whitespace red bold
-
-    # Specify a .gitignore file which applies to every git repo (useful for things like Thumbs.db or .DS_Store)
-    # git config --global core.excludesfile ~/.boxs/conf/gitignore
-
-    # 只对 github.com 生效
-    # git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
-    # git config --global http.proxy socks5://127.0.0.1:7890
-    # git config --global https.proxy socks5://127.0.0.1:7890
-    # git config --global http.proxy http://127.0.0.1:7890
-    # git config --global https.proxy https://127.0.0.1:7890
-  fi
+  #   # 只对 github.com 生效
+  #   git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+  #   git config --global http.proxy socks5://127.0.0.1:7890
+  #   git config --global https.proxy socks5://127.0.0.1:7890
+  #   git config --global http.proxy http://127.0.0.1:7890
+  #   git config --global https.proxy https://127.0.0.1:7890
+  # fi
 
   if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
     echo "==> Install Nvm"
     git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
+  fi
+
+  if [[ ! -d "${HOME}/.config/systemd/user" ]]; then
+    echo "Set User Systemd Service"
+    ln -sf ${BOXS_HOME}/conf/.config/systemd ${HOME}/.config/systemd/user
   fi
 
   if [[ ! -f "${HOME}/.bin/composer" ]]; then
@@ -529,25 +502,30 @@ init_pkgs()
   fi
 
   # 初始化 Oh-my-zsh
-  if [[ ! -f "${HOME}/.zshrc" ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]]; then
+  if [[ "$(is_boxs_path "${HOME}/.zshrc")" == "false" ]]; then
+    echo "Init Oh my zsh"
     ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
   fi
 
-  if [[ ! -f "${HOME}/.gitconfig" ]] || [[ -z "$(ls -lha ~/.zshrc | grep '.boxs/conf/')" ]]; then
+  if [[ "$(is_boxs_path "${HOME}/.gitconfig")" == "false" ]]; then
+    echo "Init Global Git Config"
     ln -sf ${BOXS_HOME}/conf/.gitconfig ${HOME}/.gitconfig
   fi
 
-  if [[ ! -f "${HOME}/.npmrc" ]] || [[ -z "$(ls -lha ~/.npmrc | grep '.boxs/conf/')" ]]; then
+  if [[ "$(is_boxs_path "${HOME}/.npmrc")" == "false" ]]; then
+    echo "Init Global Node Config"
     ln -sf ${BOXS_HOME}/conf/.npmrc ${HOME}/.npmrc
   fi
 
-  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep 'boxs')" ]; then
-    ln -sf ${HOME}/.boxs/conf/.gemrc ${HOME}/.gemrc
+  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep ${BOXS_HOME})" ]; then
+    echo "Init Ruby Gem Config"
+    ln -sf ${BOXS_HOME}/conf/.gemrc ${HOME}/.gemrc
   fi
 
   if [[ -n "$(command -v pip)" ]]; then
+    echo "Init Python Pip Config"
     rm -fr ${HOME}/.config/pip
-    ln -sf ${HOME}/.boxs/conf/.config/pip ${HOME}/.config
+    ln -sf ${BOXS_HOME}/conf/.config/pip ${HOME}/.config
   fi
   echo "Configration ✿✿ヽ(°▽°)ノ✿ ❀ All Done !"
 }
@@ -556,7 +534,7 @@ init_pkgs()
 init_boxs()
 {
   # 初始化 Boxs
-  if [[ ! -d "${HOME}/.boxs" ]]; then
+  if [[ ! -d "${BOXS_HOME}" ]]; then
     _yellow "==> Fetch Boxs"
     # git@gitcode.com:imxieke/boxs.git
     git clone --depth 1 https://gitcode.com/imxieke/boxs.git
@@ -568,8 +546,7 @@ init_boxs()
 __config_composer()
 {
   _cmd_exist composer
-
-  case $1 in
+  case $2 in
     offcial)
       composer config -g repo.packagist composer https://repo.packagist.org
       ;;
@@ -593,13 +570,13 @@ __config_composer()
       composer config -g repo.packagist composer https://packagist.phpcomposer.com
       ;;
     *)
-      echo "Usage: $(_yellow "${CMD_NAME} composer aliyun")"
-      echo ""
+      echo "Usage: $(_yellow "${BOXS_PREFIX} composer source")"
       echo "provider: [offcial|aliyun|tencent|huawei|sjtug|cloudflare(cf)|phpcomposer(pc)]"
+      echo "unset mirrors? use $(_red 'composer config -g --unset repos.packagist')"
+      exit 0
       ;;
   esac
   _green "Configration , Set Completion!"
-  echo "unset mirrors? use $(_red 'composer config -g --unset repos.packagist')"
 }
 
 __config_pip()
@@ -607,7 +584,7 @@ __config_pip()
 
   _cmd_exist pip
 
-  case "$1" in
+  case "$2" in
     offcial)
       MIRROR="https://pypi.org/simple"
       ;;
@@ -636,7 +613,7 @@ __config_pip()
       MIRROR="https://mirrors.zju.edu.cn/pypi/web/simple"
       ;;
     *)
-      _green "Usage: $(_yellow "${CMD_NAME} pip aliyun")"
+      _green "Usage: $(_yellow "${BOXS_PREFIX} pip aliyun")"
       echo
       _green "Provider: [offcial|aliyun|tencent|huawei|ustc|nju|zju|bfsu|tuna]"
       echo ""
@@ -702,11 +679,55 @@ __config_npm()
       npm config set registry composer https://mirrors.zju.edu.cn/npm
       ;;
     *)
-      echo "Usage: $(_yellow "${CMD_NAME} npm aliyun")"
+      echo "Usage: $(_yellow "${BOXS_PREFIX} npm aliyun")"
       echo "provider: [offcial|aliyun|tencent|huawei|ustc|nju|zju]"
       ;;
   esac
   _green "Configration , Set Completion!"
+}
+
+__config_ruby()
+{
+  _cmd_exist gem
+
+  case $2 in
+    offcial)
+      MIRROR=https://rubygems.org/
+      ;;
+    aliyun)
+      MIRROR=https://mirrors.aliyun.com/rubygems/
+      ;;
+    huawei)
+      # MIRROR=https://repo.huaweicloud.com/repository/rubygems/
+      MIRROR=https://mirrors.huaweicloud.com/repository/rubygems/
+      ;;
+    ustc)
+      MIRROR=https://mirrors.ustc.edu.cn/rubygems/
+      ;;
+    tuna)
+      MIRROR=https://mirrors.tuna.tsinghua.edu.cn/rubygems/
+      ;;
+    rubycn)
+      MIRROR=https://gems.ruby-china.com
+      ;;
+    nju)
+      MIRROR=https://mirror.nju.edu.cn/rubygems/
+      ;;
+    *)
+      echo "Usage: $(_yellow "${BOXS_PREFIX} ruby aliyun")"
+      echo "provider: [offcial|aliyun|huawei|ustc|tuna|rubycn|nju]"
+      exit 1
+      ;;
+  esac
+  if [[ -n ${MIRROR} ]]; then
+    gem sources --add ${MIRROR}
+    gem sources --remove https://rubygems.org
+    gem sources --remove https://rubygems.org/
+    if [[ -n "$(command -v bundle)" ]]; then
+      bundle config mirror.https://rubygems.org https://mirrors.huaweicloud.com/repository/rubygems/
+    fi
+    _green "Configration , Set Completion!"
+  fi
 }
 
 __config_neovim()
@@ -715,7 +736,7 @@ __config_neovim()
   if [[ ! -f "${HOME}/.config/nvim/full.lua" ]]; then
     # echo "==> Config neovim"
     mkdir -p "${HOME}/.config"
-    ln -sf "${HOME}/.boxs/conf/.config/nvim" "${HOME}/.config"
+    ln -sf "${BOXS_HOME}/conf/.config/nvim" "${HOME}/.config"
   fi
 
   if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
@@ -754,49 +775,6 @@ Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/syste
   sudo systemctl restart docker
 }
 
-__config_ruby()
-{
-  _cmd_exist gem
-
-  case $1 in
-    offcial)
-      MIRROR=https://rubygems.org/
-      ;;
-    aliyun)
-      MIRROR=https://mirrors.aliyun.com/rubygems/
-      ;;
-    huawei)
-      # MIRROR=https://repo.huaweicloud.com/repository/rubygems/
-      MIRROR=https://mirrors.huaweicloud.com/repository/rubygems/
-      ;;
-    ustc)
-      MIRROR=https://mirrors.ustc.edu.cn/rubygems/
-      ;;
-    tuna)
-      MIRROR=https://mirrors.tuna.tsinghua.edu.cn/rubygems/
-      ;;
-    rubycn)
-      MIRROR=https://gems.ruby-china.com
-      ;;
-    nju)
-      MIRROR=https://mirror.nju.edu.cn/rubygems/
-      ;;
-    *)
-      echo "Usage: $(_yellow "${CMD_NAME} npm aliyun")"
-      echo "provider: [offcial|aliyun|huawei|ustc|nju|tuna]"
-      ;;
-  esac
-  if [[ -n ${MIRROR} ]]; then
-    gem sources --add ${MIRROR}
-    gem sources --remove https://rubygems.org
-    gem sources --remove https://rubygems.org/
-    if [[ -n "$(command -v bundle)" ]]; then
-      bundle config mirror.https://rubygems.org https://mirrors.huaweicloud.com/repository/rubygems/
-    fi
-    _green "Configration , Set Completion!"
-  fi
-}
-
 # 初始化软件配置
 init_config()
 {
@@ -827,8 +805,7 @@ __init()
     exit 1
   fi
 
-  init_boxs
-  init_pkgs
+  # __init_pkgs
 }
 
 _usage()
@@ -875,10 +852,13 @@ case $1 in
     __init_sudo
     ;;
   init-pkgs)
-    init_pkgs
+    __init_pkgs
     ;;
   install-python-pkgs)
     _install_python_pkgs "$@"
+    ;;
+  composer)
+    __config_composer "$@"
     ;;
   npm)
     __config_npm "$@"
