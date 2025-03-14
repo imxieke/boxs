@@ -18,7 +18,7 @@ Type=notify
 ExecStartPre=/usr/bin/mkdir -p %h/.local/volumes/%i
 ExecStart= \
   /usr/bin/rclone mount \
-    %i: %h/.local/volumes/%i \
+    %i:/ %h/.local/volumes/%i \
     --vfs-cache-mode full \
     --vfs-cache-max-age 72h \
     --vfs-cache-max-size 512M \
