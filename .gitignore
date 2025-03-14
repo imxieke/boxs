@@ -11,6 +11,8 @@
 *.ttc
 *.otf
 
+default.target.wants
+
 /.env.conf
 /conf/nvim/plugged/*
 /opt
