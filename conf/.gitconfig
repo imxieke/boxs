@@ -51,7 +51,9 @@
 [core]
   editor = nvim
   pager = delta
+  # File Permission Modify
   fileMode = true
+  # 避免中文被转义
   quotepath = false
   ignorecase = false
   bare = false
@@ -67,14 +69,21 @@
   status = auto
   branch = auto
   diff = auto
+  interactive = auto
 
 [color "diff"]
   meta = magenta bold
-  new = green bold
+  new = green
   old = red italic
+  frag = magenta
+  commit = yellow
+  old = red
+  whitespace = red
 
 [color "status"]
   added = green
+  changed = red
+  untracked = magenta
 
 [color "branch"]
   remote = yellow
