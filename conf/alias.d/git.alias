@@ -13,6 +13,9 @@ alias gdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
 # GPG Sign Commit
 alias gsc="git commit -S -m"
 
+# GPG Sign All Commits
+alias gsac="git commit --all --gpg-sign -m"
+
 # Git log all
 alias glogla='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
 # Git log stat
