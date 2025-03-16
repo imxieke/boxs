@@ -2,10 +2,12 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-12-31 08:56:41
-# @LastEditTime: 2024-12-31 09:08:01
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-03-14 23:57:30
+ # @LastEditors: Cloudflying
 # @Description: Rust Config
 ###
+
+cargo install cargo-update
 
 rustup target add aarch64-apple-ios
 rustup target add aarch64-apple-ios-macabi
