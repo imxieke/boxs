@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-02-22 01:04:00
+ # @LastEditTime: 2025-03-14 23:58:59
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -116,6 +116,9 @@ winget install Python.Python.3.12
 winget install Rustlang.Rustup
 winget install GoLang.Go
 
+# Sound Editor
+winget install FxSound.FxSound
+
 # Drive
 winget install 123.123pan
 winget install Alibaba.QuarkCloudDrive
@@ -134,3 +137,6 @@ winget install Youdao.YoudaoTranslate
 
 # Chat
 winget install Tencent.WeChat
+
+# App Store
+winget install --exact --id MartiCliment.UniGetUI --source winget
