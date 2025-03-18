@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2025-03-14 14:09:12
+ # @LastEditTime: 2025-03-18 19:00:12
  # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -390,8 +390,14 @@ _pkg_add()
 __init_sudo()
 {
   __rootness
-  [ -z "$(command -v sudo)" ] && { echo "sudo Command Not Found，install sudo first"; exit 1; }
-  [ ! -f "/etc/sudoers" ] && { echo "sudo Config File Not Found，install sudo first"; exit 1; }
+  [ -z "$(command -v sudo)" ] && {
+    echo "sudo Command Not Found，install sudo first"
+    exit 1
+  }
+  [ ! -f "/etc/sudoers" ] && {
+    echo "sudo Config File Not Found，install sudo first"
+    exit 1
+  }
 
   if [[ -z "$(grep wheel /etc/group)" ]]; then
     echo "==>Create User: ${USERNAME}:${PASSWORD} On Wheel Group"
@@ -416,11 +422,11 @@ __add_sudo_users()
   USERNAME=${1}
   PASSWORD=${2}
 
-  if [[ -z "${USERNAME}" ]]; then
+  if [[ -z ${USERNAME} ]]; then
     read -p "Input User Name: " USERNAME
   fi
 
-  if [[ -z "${PASSWORD}" ]]; then
+  if [[ -z ${PASSWORD} ]]; then
     read -s -p "Input ${USERNAME}'s Password: " PASSWORD
   fi
 
@@ -460,11 +466,29 @@ __os_repo()
 is_boxs_path()
 {
   FILE=$1
-  if [[ ! -f "${FILE}" ]]; then
+  if [[ ! -f ${FILE} ]]; then
     echo false
   elif [[ -z "$(ls -lha ${FILE} | grep ${BOXS_HOME})" ]]; then
     echo false
   fi
+}
+
+__init_systemd()
+{
+  __rootness
+  SYSTEMD_SERVICE=(
+    wslg
+    wsl-wayland-socket
+  )
+
+  for service in "${SYSTEMD_SERVICE[@]}" ; do
+    if [[ ! -f "/etc/systemd/system/${service}.service" ]]; then
+      echo "Enable ${service}"
+      ln -sf ${BOXS_HOME}/etc/systemd/system/${service}.service /etc/systemd/system/${service}.service
+    fi
+  done
+
+  systemctl daemon-reload
 }
 
 # Packages Init
@@ -534,7 +558,7 @@ __init_pkgs()
 init_boxs()
 {
   # 初始化 Boxs
-  if [[ ! -d "${BOXS_HOME}" ]]; then
+  if [[ ! -d ${BOXS_HOME} ]]; then
     _yellow "==> Fetch Boxs"
     # git@gitcode.com:imxieke/boxs.git
     git clone --depth 1 https://gitcode.com/imxieke/boxs.git
@@ -839,7 +863,7 @@ case $1 in
   remove)
     echo "Remove"
     ;;
-  add-user|--add-user)
+  add-user | --add-user)
     __add_sudo_users $2 $3
     ;;
   mirrors | --mirrors | -m)
@@ -848,7 +872,10 @@ case $1 in
   init)
     __init
     ;;
-  init-sudo|--init-sudo )
+  --init-systemd)
+    __init_systemd
+    ;;
+  init-sudo | --init-sudo)
     __init_sudo
     ;;
   init-pkgs)
