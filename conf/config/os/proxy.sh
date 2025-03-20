@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:20:10
-# @LastEditTime: 2024-12-03 17:11:35
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-03-20 22:41:45
+ # @LastEditors: Cloudflying
 # @Description: System Proxy Config
 ###
 
@@ -17,3 +17,5 @@ if [[ -n "${MIXED_PROXY}" ]]; then
   export all_proxy=http://${MIXED_PROXY}
   export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.haixuanyun.cc,.dev.xie.ke"
 fi
+
+export PROXY_ADDR="http://$(ip addr | grep "inet " | grep -Ev "docker|host lo| global lo|br-|/16|/8" | awk -F " " '{print $2}' | awk -F "/" '{print $1}'):7890"
