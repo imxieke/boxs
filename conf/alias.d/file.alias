@@ -1,5 +1,5 @@
 eza_params="eza --all --long --icons --group --git --color-scale --classify --group-directories-first --time-style=long-iso"
-alias l=${eza_params}
+alias lla=${eza_params}
 
 # case-insensitively
 alias llf="${eza_params}  --sort filename"
