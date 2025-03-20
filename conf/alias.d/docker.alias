@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-07-01 01:00:37
- # @LastEditTime: 2025-03-13 21:18:19
+ # @LastEditTime: 2025-03-20 22:42:34
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -35,7 +35,7 @@ alias di="docker images --digests | grep -v '^REPOSITORY' | sort"
 alias dri='docker rmi'
 
 # docker build
-alias dbu="docker build . --build-arg \"HTTP_PROXY=${http_proxy}\" --build-arg \"HTTPS_PROXY=${http_proxy}\" --build-arg \"NO_PROXY=localhost,127.0.0.1,.example.com\" -t"
+alias dbu="docker build . --build-arg \"HTTP_PROXY=${PROXY_ADDR}\" --build-arg \"HTTPS_PROXY=${PROXY_ADDR}\" --build-arg \"NO_PROXY=localhost,127.0.0.1,.example.com\" -t"
 
 alias drp="docker run -it --rm -e http_proxy=${PROXY_ADDR} -e https_proxy=${PROXY_ADDR} -e all_proxy=${PROXY_ADDR} -e HTTP_PROXY=${PROXY_ADDR} -e HTTPS_PROXY=${PROXY_ADDR} -e ALL_PROXY=${PROXY_ADDR}"
 
