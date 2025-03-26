@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:01:41
- # @LastEditTime: 2025-03-06 11:43:43
+ # @LastEditTime: 2025-03-26 17:57:17
  # @LastEditors: Cloudflying
 # @Description: 可执行文件初始化 如 二进制文件 Shell Python 脚本
 ###
@@ -138,7 +138,7 @@ install_spc()
       wget -c "https://dl.static-php.dev/static-php-cli/bulk/php-${version}-cli-linux-x86_64.tar.gz" -O "/tmp/php-${version}.tar.gz"
     fi
   done
-
+  mkdir -p ${HOME}/.bin
   for version in "${VERSIONS[@]}"; do
     mkdir -p /tmp/php-bin
     tar -xvf "/tmp/php-${version}.tar.gz" -C /tmp/php-bin >/dev/null

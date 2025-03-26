@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2025-03-09 09:36:33
+ # @LastEditTime: 2025-03-26 17:55:31
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -175,7 +175,7 @@ _install()
   # pacman -S --noconfirm go-ethereum openethereum
 
   # Downloader
-  pacman -S --noconfirm axel wget curl aria2 youtube-dl
+  pacman -S --noconfirm axel wget curl aria2 yt-dlp
 
   # Editor
   pacman -S --noconfirm neovim
