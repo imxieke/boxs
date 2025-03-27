@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2025-03-18 19:00:12
+ # @LastEditTime: 2025-03-27 10:11:56
  # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -512,9 +512,9 @@ __init_pkgs()
     git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
   fi
 
-  if [[ ! -d "${HOME}/.config/systemd/user" ]]; then
+  if [[ ! -d "${HOME}/.config/systemd" ]]; then
     echo "Set User Systemd Service"
-    ln -sf ${BOXS_HOME}/conf/.config/systemd ${HOME}/.config/systemd/user
+    ln -sf "${BOXS_HOME}/conf/.config/systemd" "${HOME}/.config/systemd"
   fi
 
   if [[ ! -f "${HOME}/.bin/composer" ]]; then
@@ -533,23 +533,23 @@ __init_pkgs()
 
   if [[ "$(is_boxs_path "${HOME}/.gitconfig")" == "false" ]]; then
     echo "Init Global Git Config"
-    ln -sf ${BOXS_HOME}/conf/.gitconfig ${HOME}/.gitconfig
+    ln -sf "${BOXS_HOME}/conf/.gitconfig" "${HOME}/.gitconfig"
   fi
 
   if [[ "$(is_boxs_path "${HOME}/.npmrc")" == "false" ]]; then
     echo "Init Global Node Config"
-    ln -sf ${BOXS_HOME}/conf/.npmrc ${HOME}/.npmrc
+    ln -sf "${BOXS_HOME}/conf/.npmrc" "${HOME}/.npmrc"
   fi
 
   if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep ${BOXS_HOME})" ]; then
     echo "Init Ruby Gem Config"
-    ln -sf ${BOXS_HOME}/conf/.gemrc ${HOME}/.gemrc
+    ln -sf "${BOXS_HOME}/conf/.gemrc" "${HOME}/.gemrc"
   fi
 
-  if [[ -n "$(command -v pip)" ]]; then
+  if [[ ! -f "${HOME}/.config/pip/pip.conf" ]]; then
     echo "Init Python Pip Config"
-    rm -fr ${HOME}/.config/pip
-    ln -sf ${BOXS_HOME}/conf/.config/pip ${HOME}/.config
+    rm -fr "${HOME}/.config/pip"
+    ln -sf "${BOXS_HOME}/conf/.config/pip" "${HOME}/.config"
   fi
   echo "Configration ✿✿ヽ(°▽°)ノ✿ ❀ All Done !"
 }
