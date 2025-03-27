@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-03-14 23:58:59
+ # @LastEditTime: 2025-03-27 17:20:47
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -55,7 +55,7 @@ winget install --accept-package-agreements XPDNH1FMW7NB40
 winget install Microsoft.OneDrive
 winget install Tencent.WeCom
 winget install Youqu.ToDesk
-winget install Tencent.WeCom
+# winget install Tencent.WeCom
 winget install Iterate.Cyberduck
 winget install Ruihu.Apifox
 winget install Alibaba.QuarkCloudDrive
@@ -69,7 +69,7 @@ winget install Xiaomi.XiaomiCloud
 # winget install GitHub.cli
 # winget install GitHub.GitLFS
 # winget install dandavison.delta
-winget install Baidu.BaiduPinyin
+# winget install Baidu.BaiduPinyin
 
 # winget install Chocolatey.Chocolatey
 
@@ -103,7 +103,7 @@ winget install Microsoft.NuGet
 # Microsoft Network Monitor
 winget install Microsoft.NetMon
 
-winget install FilesCommunity.Files
+# winget install FilesCommunity.Files
 winget install CoreyButler.NVMforWindows
 
 # Launcher Tools
@@ -113,21 +113,21 @@ winget install BlastApps.FluentSearch
 
 # Program
 winget install Python.Python.3.12
-winget install Rustlang.Rustup
+# winget install Rustlang.Rustup
 winget install GoLang.Go
 
 # Sound Editor
-winget install FxSound.FxSound
+# winget install FxSound.FxSound
 
 # Drive
 winget install 123.123pan
 winget install Alibaba.QuarkCloudDrive
 winget install Alibaba.aDrive
 winget install Apple.iCloud
-winget install Google.GoogleDrive
+# winget install Google.GoogleDrive
 # winget install Xiaomi.XiaomiCloud
-winget install Rclone.Rclone
-winget install AList.AList
+# winget install Rclone.Rclone
+# winget install AList.AList
 
 # Dict && Translate
 winget install Youdao.YoudaoTranslate
