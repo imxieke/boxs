@@ -5,7 +5,7 @@
 # As your normal user, run
 #   systemctl --user daemon-reload
 # You can now start/enable each remote by using rclone@<remote>
-#   systemctl --user enable --now rclone@dropbox
+#   systemctl --user enable --now rclone-nocache@dropbox
 
 [Unit]
 Description=rclone: Remote FUSE filesystem for cloud storage config %i
@@ -19,19 +19,13 @@ ExecStartPre=/usr/bin/mkdir -p %h/.local/volumes/%i
 ExecStart= \
   /usr/bin/rclone mount \
     %i:/ %h/.local/volumes/%i \
-    --vfs-cache-mode full \
-    --vfs-cache-max-age 72h \
-    --vfs-cache-max-size 512M \
-    --vfs-read-chunk-size 256M \
-    --vfs-read-chunk-size-limit off \
-    --buffer-size 1G \
-    --dir-cache-time 72h \
-    --log-file /tmp/rclone-%i.log \
+    --log-file /tmp/rclone-no-cache%i.log \
     --log-level INFO \
-    --copy-links \
-    --vfs-refresh
+    --vfs-cache-mode off \
+    --allow-non-empty \
+    --direct-io
 
-ExecStop=/bin/fusermount3 -u %h/.local/volumes/%i
+ExecStop=/bin/fusermountd -u %h/.local/volumes/%i
 
 [Install]
 WantedBy=default.target

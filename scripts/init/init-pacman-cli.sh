@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2025-03-26 17:55:31
+ # @LastEditTime: 2025-03-31 22:04:36
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -179,6 +179,9 @@ _install()
 
   # Editor
   pacman -S --noconfirm neovim
+
+  # File System
+  pacman -S --noconfirm fuse3
 
   # Format
   pacman -S --noconfirm shfmt yamlfmt
