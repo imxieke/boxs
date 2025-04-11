@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2025-03-27 13:58:59
+ # @LastEditTime: 2025-04-10 11:30:12
  # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
@@ -512,10 +512,12 @@ __init_pkgs()
     git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
   fi
 
-  if [[ ! -d "${HOME}/.config/systemd/user" ]]; then
-    echo "Set User Systemd Service"
-    mkdir -p "${HOME}/.config/systemd"
-    ln -sf "${BOXS_HOME}/conf/.config/systemd/user" "${HOME}/.config/systemd/user"
+  if [[ "$(uname -s)" == 'Linux' ]]; then
+    if [[ ! -d "${HOME}/.config/systemd/user" ]]; then
+      echo "Set User Systemd Service"
+      mkdir -p "${HOME}/.config/systemd"
+      ln -sf "${BOXS_HOME}/conf/.config/systemd/user" "${HOME}/.config/systemd/user"
+    fi
   fi
 
   if [[ ! -f "${HOME}/.bin/composer" ]]; then
