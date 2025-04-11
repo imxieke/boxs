@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
-# @LastEditTime: 2025-02-27 10:36:25
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-04-11 11:00:08
+ # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
 
@@ -51,7 +51,7 @@ for APP_PATH in "${PATHS[@]}"; do
 done
 
 # macOS Path
-if [[ "$(uname -s)" == 'Darin' ]]; then
+if [[ "$(uname -s)" == 'Darwin' ]]; then
 
   MAN_PATHS=(
     "/usr/local/opt/coreutils/libexec/gnuman"
