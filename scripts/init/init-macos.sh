@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:02:52
-# @LastEditTime: 2024-09-20 17:58:23
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-04-11 10:49:21
+ # @LastEditors: Cloudflying
 # @Description: init package for macOS brew package manager
 ###
 
@@ -68,6 +68,8 @@ init_brew()
     # Remove a formula and its unused dependencies
     # brew tap beeftornado/rmtree
     # brew tap symfony-cli/homebrew-tap
+    # brew tap shivammathur/php
+    # brew tap shivammathur/extensions
   fi
 }
 
@@ -78,6 +80,9 @@ init_pkgs()
 
   # Dev
   brew install gcc make cmake xmake autoconf automake
+
+  # Package Docs
+  brew install cmake-docs
 
   # System Resource Monitor
   brew install htop
@@ -115,7 +120,7 @@ init_pkgs()
   brew install vnc-viewer telnet cloudflared devtunnel tailscale
 
   # gron Make JSON greppable!
-  brew install jq ccat gron ctop grex sd xsv jo
+  brew install jq ccat gron ctop grex sd xsv jo lolcat
 
   # Database
   brew install mysql@5.7 redis sqlite
@@ -129,7 +134,8 @@ init_pkgs()
   # Tools
   # grc Colorize logfiles and command output
   # fortune show quotes
-  brew install zsh meofetch squashfs whois cowsay grc fortune procs supervisor syft
+  # neofetch deprecated
+  brew install zsh squashfs whois cowsay grc fortune procs supervisor syft
 
   # Server
   brew install openssh
@@ -149,7 +155,7 @@ init_pkgs()
   brew install mountain-duck cyberduck
 
   # Dict && Translation
-  brew install eudic easydict
+  brew install --cask eudic easydict
 
   # News && Feed
   brew install netnewswire
@@ -158,13 +164,15 @@ init_pkgs()
   # cli dns query
   # bandwhich Terminal bandwidth utilization tool
   # doggo dog dns client
-  brew install curl clash whois iperf iperf3 netcat socat \
-    dog doggo \
+  # clash dog Deprecated
+  brew install curl whois iperf iperf3 netcat socat \
+    doggo \
     syncthing rsync rclone \
     bandwhich
 
   # Chat
-  brew install telegram wechat qq discord
+  # discord: replace with web
+  brew install --cask telegram wechat qq
 
   # Fonts
   brew install font-fontawesome font-fira-mono-nerd-font font-hack-nerd-font font-jetbrains-mono-nerd-font font-mononoki-nerd-font \
@@ -189,13 +197,109 @@ init_pkgs()
     node@20 \
     deno
 
-  brew install shivammathur/php/php@7.4 shivammathur/extensions/amqp@7.4 shivammathur/extensions/event@7.4 shivammathur/extensions/grpc@7.4 shivammathur/extensions/imagick@7.4 shivammathur/extensions/imap@7.4 shivammathur/extensions/mcrypt@7.4 shivammathur/extensions/memcache@7.4 shivammathur/extensions/memcached@7.4 shivammathur/extensions/mongodb@7.4 shivammathur/extensions/msgpack@7.4 shivammathur/extensions/phalcon5@7.4 shivammathur/extensions/protobuf@7.4 shivammathur/extensions/rdkafka@7.4 shivammathur/extensions/redis@7.4 shivammathur/extensions/snmp@7.4 shivammathur/extensions/ssh2@7.4 shivammathur/extensions/swoole@7.4 shivammathur/extensions/vips@7.4 shivammathur/extensions/xlswriter@7.4 shivammathur/extensions/yaml@7.4 shivammathur/extensions/zmq@7.4 shivammathur/extensions/apcu@7.4
+  brew install \
+    shivammathur/php/php@7.4 \
+    shivammathur/extensions/amqp@7.4 \
+    shivammathur/extensions/apcu@7.4 \
+    shivammathur/extensions/event@7.4 \
+    shivammathur/extensions/grpc@7.4 \
+    shivammathur/extensions/imagick@7.4 \
+    shivammathur/extensions/imap@7.4 \
+    shivammathur/extensions/mcrypt@7.4 \
+    shivammathur/extensions/memcache@7.4 \
+    shivammathur/extensions/memcached@7.4 \
+    shivammathur/extensions/mongodb@7.4 \
+    shivammathur/extensions/msgpack@7.4 \
+    shivammathur/extensions/phalcon5@7.4 \
+    shivammathur/extensions/protobuf@7.4 \
+    shivammathur/extensions/rdkafka@7.4 \
+    shivammathur/extensions/redis@7.4 \
+    shivammathur/extensions/snmp@7.4 \
+    shivammathur/extensions/ssh2@7.4 \
+    shivammathur/extensions/swoole@7.4 \
+    shivammathur/extensions/vips@7.4 \
+    shivammathur/extensions/xlswriter@7.4 \
+    shivammathur/extensions/yaml@7.4 \
+    shivammathur/extensions/zmq@7.4
 
-  brew install shivammathur/php/php@8.0 shivammathur/extensions/amqp@8.0 shivammathur/extensions/event@8.0 shivammathur/extensions/imagick@8.0 shivammathur/extensions/imap@8.0 shivammathur/extensions/mcrypt@8.0 shivammathur/extensions/memcache@8.0 shivammathur/extensions/memcached@8.0 shivammathur/extensions/mongodb@8.0 shivammathur/extensions/msgpack@8.0 shivammathur/extensions/phalcon5@8.0 shivammathur/extensions/protobuf@8.0 shivammathur/extensions/rdkafka@8.0 shivammathur/extensions/redis@8.0 shivammathur/extensions/snmp@8.0 shivammathur/extensions/ssh2@8.0 shivammathur/extensions/swoole@8.0 shivammathur/extensions/vips@8.0 shivammathur/extensions/xlswriter@8.0 shivammathur/extensions/yaml@8.0 shivammathur/extensions/zmq@8.0 shivammathur/extensions/apcu@8.0
+  # brew install shivammathur/php/php@8.0 shivammathur/extensions/amqp@8.0 shivammathur/extensions/event@8.0 shivammathur/extensions/imagick@8.0 shivammathur/extensions/imap@8.0 shivammathur/extensions/mcrypt@8.0 shivammathur/extensions/memcache@8.0 shivammathur/extensions/memcached@8.0 shivammathur/extensions/mongodb@8.0 shivammathur/extensions/msgpack@8.0 shivammathur/extensions/phalcon5@8.0 shivammathur/extensions/protobuf@8.0 shivammathur/extensions/rdkafka@8.0 shivammathur/extensions/redis@8.0 shivammathur/extensions/snmp@8.0 shivammathur/extensions/ssh2@8.0 shivammathur/extensions/swoole@8.0 shivammathur/extensions/vips@8.0 shivammathur/extensions/xlswriter@8.0 shivammathur/extensions/yaml@8.0 shivammathur/extensions/zmq@8.0 shivammathur/extensions/apcu@8.0
 
-  brew install shivammathur/php/php@8.1 shivammathur/extensions/amqp@8.1 shivammathur/extensions/event@8.1 shivammathur/extensions/grpc@8.1 shivammathur/extensions/imagick@8.1 shivammathur/extensions/imap@8.1 shivammathur/extensions/mcrypt@8.1 shivammathur/extensions/memcache@8.1 shivammathur/extensions/memcached@8.1 shivammathur/extensions/mongodb@8.1 shivammathur/extensions/msgpack@8.1 shivammathur/extensions/phalcon5@8.1 shivammathur/extensions/protobuf@8.1 shivammathur/extensions/rdkafka@8.1 shivammathur/extensions/redis@8.1 shivammathur/extensions/ssh2@8.1 shivammathur/extensions/swoole@8.1 shivammathur/extensions/vips@8.1 shivammathur/extensions/xlswriter@8.1 shivammathur/extensions/yaml@8.1 shivammathur/extensions/zmq@8.1 shivammathur/extensions/apcu@8.1
+  # brew install shivammathur/php/php@8.1 shivammathur/extensions/amqp@8.1 shivammathur/extensions/event@8.1 shivammathur/extensions/grpc@8.1 shivammathur/extensions/imagick@8.1 shivammathur/extensions/imap@8.1 shivammathur/extensions/mcrypt@8.1 shivammathur/extensions/memcache@8.1 shivammathur/extensions/memcached@8.1 shivammathur/extensions/mongodb@8.1 shivammathur/extensions/msgpack@8.1 shivammathur/extensions/phalcon5@8.1 shivammathur/extensions/protobuf@8.1 shivammathur/extensions/rdkafka@8.1 shivammathur/extensions/redis@8.1 shivammathur/extensions/ssh2@8.1 shivammathur/extensions/swoole@8.1 shivammathur/extensions/vips@8.1 shivammathur/extensions/xlswriter@8.1 shivammathur/extensions/yaml@8.1 shivammathur/extensions/zmq@8.1 shivammathur/extensions/apcu@8.1
 
-  brew install shivammathur/php/php@8.2 shivammathur/extensions/event@8.2 shivammathur/extensions/grpc@8.2 shivammathur/extensions/imagick@8.2 shivammathur/extensions/imap@8.2 shivammathur/extensions/mcrypt@8.2 shivammathur/extensions/memcached@8.2 shivammathur/extensions/mongodb@8.2 shivammathur/extensions/msgpack@8.2 shivammathur/extensions/phalcon5@8.2 shivammathur/extensions/protobuf@8.2 shivammathur/extensions/rdkafka@8.2 shivammathur/extensions/redis@8.2 shivammathur/extensions/swoole@8.2 shivammathur/extensions/xlswriter@8.2 shivammathur/extensions/yaml@8.2 shivammathur/extensions/zmq@8.2 shivammathur/extensions/apcu@8.2
+  # shivammathur/extensions/mcrypt@8.2
+  brew install \
+    shivammathur/php/php@8.2 \
+    shivammathur/extensions/amqp@8.2 \
+    shivammathur/extensions/apcu@8.2 \
+    shivammathur/extensions/event@8.2 \
+    shivammathur/extensions/grpc@8.2 \
+    shivammathur/extensions/igbinary@8.2 \
+    shivammathur/extensions/imagick@8.2 \
+    shivammathur/extensions/imap@8.2 \
+    shivammathur/extensions/memcached@8.2 \
+    shivammathur/extensions/mongodb@8.2 \
+    shivammathur/extensions/msgpack@8.2 \
+    shivammathur/extensions/pdo_sqlsrv@8.2 \
+    shivammathur/extensions/phalcon5@8.2 \
+    shivammathur/extensions/protobuf@8.2 \
+    shivammathur/extensions/rdkafka@8.2 \
+    shivammathur/extensions/redis@8.2 \
+    shivammathur/extensions/sqlsrv@8.2 \
+    shivammathur/extensions/swoole@8.2 \
+    shivammathur/extensions/xlswriter@8.2 \
+    shivammathur/extensions/yaml@8.2 \
+    shivammathur/extensions/zmq@8.2 \
+    shivammathur/extensions/zstd@8.2
+
+  # shivammathur/extensions/mcrypt@8.3
+  brew install \
+    shivammathur/php/php@8.3 \
+    shivammathur/extensions/amqp@8.3 \
+    shivammathur/extensions/apcu@8.3 \
+    shivammathur/extensions/event@8.3 \
+    shivammathur/extensions/grpc@8.3 \
+    shivammathur/extensions/igbinary@8.3 \
+    shivammathur/extensions/imagick@8.3 \
+    shivammathur/extensions/imap@8.3 \
+    shivammathur/extensions/memcached@8.3 \
+    shivammathur/extensions/mongodb@8.3 \
+    shivammathur/extensions/msgpack@8.3 \
+    shivammathur/extensions/pdo_sqlsrv@8.3 \
+    shivammathur/extensions/phalcon5@8.3 \
+    shivammathur/extensions/protobuf@8.3 \
+    shivammathur/extensions/rdkafka@8.3 \
+    shivammathur/extensions/redis@8.3 \
+    shivammathur/extensions/sqlsrv@8.3 \
+    shivammathur/extensions/swoole@8.3 \
+    shivammathur/extensions/xlswriter@8.3 \
+    shivammathur/extensions/yaml@8.3 \
+    shivammathur/extensions/zmq@8.3 \
+    shivammathur/extensions/zstd@8.3
+
+  # shivammathur/extensions/mcrypt@8.4
+  brew install \
+    shivammathur/php/php@8.4 \
+    shivammathur/extensions/amqp@8.4 \
+    shivammathur/extensions/apcu@8.4 \
+    shivammathur/extensions/event@8.4 \
+    shivammathur/extensions/grpc@8.4 \
+    shivammathur/extensions/igbinary@8.4 \
+    shivammathur/extensions/imagick@8.4 \
+    shivammathur/extensions/imap@8.4 \
+    shivammathur/extensions/memcached@8.4 \
+    shivammathur/extensions/mongodb@8.4 \
+    shivammathur/extensions/msgpack@8.4 \
+    shivammathur/extensions/pdo_sqlsrv@8.4 \
+    shivammathur/extensions/phalcon5@8.4 \
+    shivammathur/extensions/protobuf@8.4 \
+    shivammathur/extensions/rdkafka@8.4 \
+    shivammathur/extensions/redis@8.4 \
+    shivammathur/extensions/sqlsrv@8.4 \
+    shivammathur/extensions/swoole@8.4 \
+    shivammathur/extensions/xlswriter@8.4 \
+    shivammathur/extensions/yaml@8.4 \
+    shivammathur/extensions/zmq@8.4 \
+    shivammathur/extensions/zstd@8.4
 
   # Language Server Protocol
   brew install lua-language-server \
