@@ -2,13 +2,13 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 23:22:59
-# @LastEditTime: 2025-01-01 12:25:37
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-04-11 10:11:17
+ # @LastEditors: Cloudflying
 # @Description: Load Alias
 ###
 
-# 加载自定义 aliases
-# echo "[+] Loading alias"
+# 加载自定义 alias
+echo "[+] Loading Aliases"
 for aliasf in "${BOXS_CONF}/alias.d"/*.alias; do
   # echo "==> load $aliasf"
   source "${aliasf}"
@@ -23,12 +23,8 @@ elif [[ -d "/etc/apt/sources.list.d" ]]; then
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
   # macOS
   source "${BOXS_HOME}/conf/alias.d/os/brew.alias"
-fi
-
-if [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
-  source "${BOXS_HOME}/conf/alias.d/os/wsl.alias"
-fi
-
-if [[ -n "$(grep 'msys' /etc/os-release)" ]]; then
+elif [[ -n "$(grep 'msys' /etc/os-release)" ]]; then
   source "${BOXS_HOME}/conf/alias.d/os/mingw.alias"
+elif [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
+  source "${BOXS_HOME}/conf/alias.d/os/wsl.alias"
 fi
