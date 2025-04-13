@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# System backup script using rsync
+
+[ -f ~/.env ] && . ~/.env
+
+REMOTE_HOST=${RSYNC_BACKUP_HOST:-github.com}
+REMOTE_USER="root"
+REMOTE_PASS=""
+REMOTE_PORT="22"
+REMOTE_DIR="/mnt/backup/env"
+LOCAL_DIR="${HOME}"
+
+rsync_backup()
+{
+  rsync -avz \
+    --progress \
+    -delete \
+    --exclude=".git" \
+    --exclude="Library" \
+    --exclude="Parallels" \
+    --exclude="Sync" \
+    --exclude=".Trash" \
+    --exclude=".DS_Store" \
+    --exclude="iCloud Drive (Archive)" \
+    --exclude="Applications" \
+    --exclude="Applications (Parallels)" \
+    -e 'ssh -p 22' "${LOCAL_DIR}" "${REMOTE_USER:root}@${REMOTE_HOST}:${REMOTE_DIR}"
+  if [ $? -ne 0 ]; then
+      echo "Error: Backup fail to $REMOTE_DIR"
+      exit 1
+  fi
+  echo "Backup completed successfully to $REMOTE_DIR"
+}
+
+rsync_restore()
+{
+  rsync -avz --progress -e 'ssh -p 22' "${REMOTE_USER:-root}@${REMOTE_HOST:-github.com}:$REMOTE_DIR" "${LOCAL_DIR}"
+  echo "Restore completed successfully to ${LOCAL_DIR} -delete"
+}
+
+case $1 in
+    --backup|-b|backup|bak|b)
+        rsync_backup
+        ;;
+    --restore|-r|restore|r)
+        rsync_restore
+        ;;
+    --list)
+        # Check if the backup directory is provided
+        if [ -z "$2" ]; then
+            echo "Error: No backup directory specified."
+            exit 1
+        fi
+
+        BACKUP_DIR="$2"
+
+        # List the contents of the backup directory
+        echo "Contents of $BACKUP_DIR:"
+        ls -l "$BACKUP_DIR"
+        exit 0
+        ;;
+    --help)
+        echo "Usage: env-backup-rsync [OPTIONS]"
+        echo "Options:"
+        echo "  --help      Show this help message"
+        echo "  --version   Show version information"
+        exit 0
+        ;;
+    --version)
+        echo "env-backup-rsync version 1.0.0"
+        exit 0
+        ;;
+    *)
+        echo "Use --help for usage information."
+        exit 1
+        ;;
+esac
