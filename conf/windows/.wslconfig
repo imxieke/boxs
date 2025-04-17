@@ -1,0 +1,20 @@
+# https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#wslconfig
+
+[wsl2]
+memory=32GB
+swap=16GB
+processors=8
+# localhostForwarding=true        # 镜像模式该参数不可用
+# dnsTunneling=true                 # 开启 DNS Tunneling
+firewall=false                      # 开启 Windows 防火墙
+autoProxy=false                     # 开启自动同步代理
+guiApplications=true
+ipv6=true
+nestedVirtualization=true           # 开启嵌套虚拟化 (Windows 11)
+
+[experimental]
+networkingMode=mirrored             # 开启镜像网络
+autoMemoryReclaim=gradual           # 开启自动回收内存，可在 gradual, dropcache, disabled 之间选择
+dnsTunnelingIpAddress=223.5.5.5
+hostAddressLoopback=true            # 启用 WSL2/WSLg 子系统和 Windows 宿主之间的本地回环互通支持
+sparseVhd=true                      # 开启自动释放 WSL2 虚拟硬盘空间
