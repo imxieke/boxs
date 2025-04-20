@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:23:30
-# @LastEditTime: 2024-12-30 11:29:25
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-04-20 16:40:34
+ # @LastEditors: Cloudflying
 # @Description:
 ###
 
@@ -52,9 +52,6 @@ _install()
 
   # Mackerel graph viewer in terminal
   go install github.com/itchyny/mkrg/cmd/mkrg@latest
-
-  # 给IP加上地理信息的命令行小工具
-  go install github.com/zu1k/nali@latest
 
   # A Docker manager for the terminal
   go install github.com/moncho/dry@latest
