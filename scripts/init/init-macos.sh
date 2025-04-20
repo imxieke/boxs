@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:02:52
- # @LastEditTime: 2025-04-11 10:49:21
+ # @LastEditTime: 2025-04-20 16:34:50
  # @LastEditors: Cloudflying
 # @Description: init package for macOS brew package manager
 ###
@@ -165,8 +165,10 @@ init_pkgs()
   # bandwhich Terminal bandwidth utilization tool
   # doggo dog dns client
   # clash dog Deprecated
+  # nali 给IP加上地理信息的命令行小工具
   brew install curl whois iperf iperf3 netcat socat \
     doggo \
+    nali \
     syncthing rsync rclone \
     bandwhich
 
@@ -188,7 +190,7 @@ init_pkgs()
 
   # Programming language
   # go node python python2 python3 pip pip2 pip3 php composer ruby perl java
-  brew install shivammathur/php/php \
+  brew install \
     go \
     python \
     dotnet \
