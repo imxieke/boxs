@@ -94,3 +94,8 @@ yarn-error.log*
 *.pid
 *.seed
 *.pid.lock
+
+# Editor
+/.vscode
+/.idea
+/.qodo
