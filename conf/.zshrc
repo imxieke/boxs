@@ -1,18 +1,14 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
-# @LastEditTime: 2025-01-02 08:34:09
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-04-25 00:08:16
+ # @LastEditors: Cloudflying
 # @Description: zsh config filea
 ###
 
 # init PATH
 # 前面优先级高 覆盖系统自带的命令
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-
-if [[ -f "/mingw64.exe" ]]; then
-  export APTH="/mingw64/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
-fi
 
 # Set up the system environment in advance
 source ${HOME}/.boxs/conf/config/os/env.sh
@@ -39,8 +35,8 @@ export ZSH=$HOME/.oh-my-zsh
 zstyle ':omz:update' mode reminder
 
 HISTFILE="$HOME/.zsh_history" # The path to the history file.
-HISTSIZE=50000                # The maximum number of events to save in the internal history.
-SAVEHIST=50000                # The maximum number of events to save in the history file.
+HISTSIZE=100000                # The maximum number of events to save in the internal history.
+SAVEHIST=100000                # The maximum number of events to save in the history file.
 
 # CASE_SENSITIVE="true" # Case-sensitive completion.
 
@@ -60,7 +56,7 @@ ZSH_THEME="strug"
 
 # 用户自定义配置
 if [[ $(uname -s) == 'Darwin' ]]; then
-  plugins=(macos brew)
+  plugins=(macos)
 fi
 
 plugins+=(composer colored-man-pages docker docker-compose extract gh git history rust z)
