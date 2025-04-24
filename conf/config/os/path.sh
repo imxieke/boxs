@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
- # @LastEditTime: 2025-04-11 11:00:08
+ # @LastEditTime: 2025-04-25 00:08:38
  # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -175,4 +175,8 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/bzip2/lib"
     export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/bzip2/include"
   fi
+fi
+
+if [[ -f "/mingw64.exe" ]]; then
+  export PATH="/mingw64/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 fi
