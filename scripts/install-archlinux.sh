@@ -135,7 +135,7 @@ echo "
 echo 'LANG=en_US.UTF-8'  > /mnt/etc/locale.conf
 arch-chroot /mnt
 
-PASSWORD=ke19960318
+PASSWORD=
 RUNUSER=imxieke
 
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
