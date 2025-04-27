@@ -1,0 +1,10 @@
+#!/bin/sh
+
+APP_REAL_NAME=''
+if [ -d "${2}" ]; then
+  APP_REAL_NAME=$(echo "$2" | awk -F '/' '{print $3}' | awk -F '.' '{print $1}')
+
+  appid=$(osx-appid "$APP_REAL_NAME")
+  duti -s "${appid}" "${1}" all
+  echo "completed set ext: ${1} open by ${appid}"
+fi
