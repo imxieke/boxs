@@ -310,6 +310,9 @@ _install()
     gnome-logs gnome-calculator gnome-dictionary ocrfeeder peek gnome-podcasts \
     mdcat
 
+  pacman -S --confirm qt6-base  qt6-3d \
+    qt6-wayland
+
   # 镜像烧录
   # xfburn brasero gnome-multi-writer
 

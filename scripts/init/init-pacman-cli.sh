@@ -40,7 +40,9 @@ _install()
 
   # Compress
   # GUI Archive: file-roller
-  pacman -S --noconfirm arj bzip2 bzip3 cdrtools cpio lhasa rpmextract unzip unarchiver gzip tar p7zip unrar lzip lrzip xz zip zstd \
+  pacman -S --noconfirm arj bzip2 bzip3 cdrtools cpio lhasa rpmextract unzip unarchiver gzip tar p7zip unrar \
+    lzip lrzip xz zip \
+    zstd \
     squashfs-tools unace
 
   # Network
@@ -193,6 +195,10 @@ _install()
   # gitleaks Find secrets with Gitleaks 🔑
   pacman -S --noconfirm trivy \
     gitleaks
+
+  if [ -n "$(uname -r | grep -i wsl)" ]; then
+    echo "Install WSL2 Tools"
+  fi
 }
 
 _install
