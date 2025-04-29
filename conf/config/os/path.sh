@@ -41,6 +41,7 @@ PATHS=(
   "${HOME}/.composer/vendor/bin"
   "${HOME}/.config/composer/vendor/bin"
   "${HOME}/.cargo/bin"
+  "${HOME}/.local/share/gem/ruby/3.3.0/bin"
   "${HOME}/.local/share/gem/ruby/3.2.0/bin"
 )
 
