@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
- # @LastEditTime: 2025-04-25 00:08:38
+ # @LastEditTime: 2025-05-02 11:10:07
  # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -92,32 +92,32 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export PATH="/usr/local/opt/mariadb@10.2/bin:$PATH"
     export LDFLAGS="-L/usr/local/opt/mariadb@10.2/lib"
     export CPPFLAGS="-I/usr/local/opt/mariadb@10.2/include"
-    export PKG_CONFIG_PATH="/usr/local/opt/mariadb@10.2/share/pkgconfig"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/mariadb@10.2/share/pkgconfig"
   fi
 
   if [[ -d '/usr/local/opt/node@14' ]]; then
     export PATH="/usr/local/opt/node@14/bin:$PATH"
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/node@14/lib"
-    export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/node@14/include"
+    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/node@14/include"
   fi
 
   if [[ -d '/usr/local/opt/node@16' ]]; then
     export PATH="/usr/local/opt/node@16/bin:$PATH"
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/node@16/lib"
-    export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/node@16/include"
+    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/node@16/include"
   fi
 
   if [[ -d '/usr/local/opt/libiconv' ]]; then
     export PATH="/usr/local/opt/libiconv/bin:$PATH"
-    export LDFLAGS="$LDFLAGS  -L/usr/local/opt/libiconv/lib"
+    export LDFLAGS="${LDFLAGS}  -L/usr/local/opt/libiconv/lib"
     export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libiconv/include"
   fi
 
   if [[ -d '/usr/local/opt/krb5' ]]; then
     export PATH="/usr/local/opt/krb5/bin:$PATH"
-    export LDFLAGS="$LDFLAGS -L/usr/local/opt/krb5/lib"
-    export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/krb5/include"
-    export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/krb5/lib/pkgconfig"
+    export LDFLAGS="${LDFLAGS} -L/usr/local/opt/krb5/lib"
+    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/krb5/include"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/krb5/lib/pkgconfig"
   fi
 
   # Java (macOS)
@@ -129,18 +129,32 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export JAVA_HOME="/usr/local/opt/java"
   fi
 
+  if [[ -d '/usr/local/opt/mysql-client' ]]; then
+    export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+    export LDFLAGS="${LDFLAGS} -L/usr/local/opt/mysql-client/lib"
+    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/mysql-client/include"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/mysql-client/lib/pkgconfig"
+  fi
+
+  if [[ -d '/usr/local/opt/mysql' ]]; then
+    export PATH="/usr/local/opt/mysql/bin:$PATH"
+    export LDFLAGS="${LDFLAGS} -L/usr/local/opt/mysql/lib"
+    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/mysql/include"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/mysql/lib/pkgconfig"
+  fi
+
   if [[ -d '/usr/local/opt/mysql@5.7' ]]; then
     export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
     export LDFLAGS="${LDFLAGS} -L/usr/local/opt/mysql@5.7/lib"
     export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/mysql@5.7/include"
-    export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.7/lib/pkgconfig"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/mysql@5.7/lib/pkgconfig"
   fi
 
   if [[ -d '/usr/local/opt/openssl/' ]]; then
     export PATH="/usr/local/opt/openssl/bin:$PATH"
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/openssl/lib"
     export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openssl/include"
-    export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/openssl/lib/pkgconfig"
   fi
 
   # Node Env
@@ -155,14 +169,14 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export ICU_CFLAGS="$-L/usr/local/opt/icu4c/lib"
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/icu4c/lib"
     export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/icu4c/include"
-    export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/icu4c/lib/pkgconfig"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/icu4c/lib/pkgconfig"
   fi
 
   if [[ -d '/usr/local/opt/enchant' ]]; then
     export PATH="/usr/local/opt/enchant/bin:$PATH"
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/enchant/lib"
     export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/enchant/include"
-    export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/enchant/lib/pkgconfig"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/enchant/lib/pkgconfig"
   fi
 
   if [[ -d '/usr/local/opt/libiconv/lib' ]]; then
