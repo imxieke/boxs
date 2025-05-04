@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:02:52
- # @LastEditTime: 2025-04-20 16:34:50
+ # @LastEditTime: 2025-05-04 09:45:17
  # @LastEditors: Cloudflying
 # @Description: init package for macOS brew package manager
 ###
@@ -123,10 +123,11 @@ init_pkgs()
   brew install jq ccat gron ctop grex sd xsv jo lolcat
 
   # Database
-  brew install mysql@5.7 redis sqlite
+  # mysql@5.7
+  brew install redis sqlite
 
   # Database Client
-  brew dbeaver-community
+  # brew dbeaver-community
 
   # Lint
   brew dotenv-linter
@@ -144,12 +145,13 @@ init_pkgs()
   # brew install mounty
 
   # MultiMedia
+  # qqplayer removed
   brew install iina \
-    qqplayer qqmusic neteasemusic kugoumusic \
+    qqmusic neteasemusic kugoumusic \
     ffmpeg imagemagick
 
   # input
-  brew install sogouinput
+  # brew install sogouinput
 
   # Transfer
   brew install mountain-duck cyberduck
@@ -196,7 +198,6 @@ init_pkgs()
     dotnet \
     kotlin \
     openjdk \
-    node@20 \
     deno
 
   brew install \
@@ -315,15 +316,16 @@ init_pkgs()
   # Programming language Tools
   # brew install composer
   # Editor and IDE
-  brew install neovim zed \
+  # intellij-idea sublime-text@dev zed
+  brew install neovim \
     visual-studio-code vscodium \
-    sublime-text@dev \
-    android-studio \
-    intellij-idea
+    android-studio
+
   # phpstorm webstorm rider fleet pycharm clion appcode datagrip
 
   # Web Browser
-  brew install google-chrome firefox-developer-edition chromium microsoft-edge tor-browser
+  # chromium microsoft-edge
+  brew install google-chrome firefox-developer-edition tor-browser
 
   # Dev
   # Android Tools
@@ -393,3 +395,5 @@ init_bin()
     curl -sL https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-macosx-x86_64.tgz | tar -C ~/.bin/ -xvf - speedtest
   fi
 }
+
+init_pkgs
