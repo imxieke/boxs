@@ -682,28 +682,28 @@ __config_npm()
   case $1 in
     offcial)
       # yarn https://registry.yarnpkg.com
-      npm config set registry composer https://registry.npmjs.org
+      npm config set registry https://registry.npmjs.org
       ;;
     aliyun)
-      npm config set registry composer https://registry.npmmirror.com/
+      npm config set registry https://registry.npmmirror.com/
       ;;
     cnpmjs)
-      npm config set registry composer https://r.cnpmjs.org
+      npm config set registry https://r.cnpmjs.org
       ;;
     tencent)
-      npm config set registry composer http://mirrors.cloud.tencent.com/npm/
+      npm config set registry http://mirrors.cloud.tencent.com/npm/
       ;;
     huawei)
-      npm config set registry composer https://mirrors.huaweicloud.com/repository/npm/
+      npm config set registry https://mirrors.huaweicloud.com/repository/npm/
       ;;
     ustc)
-      npm config set registry composer https://npmreg.proxy.ustclug.org
+      npm config set registry https://npmreg.proxy.ustclug.org
       ;;
     nju)
-      npm config set registry composer https://repo.nju.edu.cn/repository/npm/
+      npm config set registry https://repo.nju.edu.cn/repository/npm/
       ;;
     zju)
-      npm config set registry composer https://mirrors.zju.edu.cn/npm
+      npm config set registry https://mirrors.zju.edu.cn/npm
       ;;
     *)
       echo "Usage: $(_yellow "${BOXS_PREFIX} npm aliyun")"
