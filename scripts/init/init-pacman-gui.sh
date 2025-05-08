@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
- # @LastEditTime: 2025-03-09 09:36:26
+ # @LastEditTime: 2025-05-08 21:24:56
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -28,12 +28,14 @@ _install()
   # kmouth 语音合成
   # kmousetool 似乎是鼠标自动化
   # kmag 屏幕放大器
+  # ksnip cross-platform screenshot and annotation tool
   pacman -S --noconfirm psmisc flameshot shutter jp2a d-feet kweather \
     marble-maps \
     activity-log-manager vokoscreen \
     gnome-multi-writer \
     kmouth kmousetool kmag \
-    bitwarden
+    bitwarden \
+    ksnip
 
   # Productive
   # geary Mail CLient
