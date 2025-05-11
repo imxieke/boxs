@@ -2,11 +2,10 @@
 ###
  # @Author: Cloudflying
  # @Date: 2025-03-07 10:04:27
- # @LastEditTime: 2025-03-07 10:06:44
+ # @LastEditTime: 2025-05-10 07:51:10
  # @LastEditors: Cloudflying
  # @Description: Init Trae
 ###
-
 
 EXTE_LISTS=(
   adguard.adblock
@@ -62,6 +61,6 @@ EXTE_LISTS=(
   yzhang.markdown-all-in-one
 )
 
-for ext in ${EXTE_LISTS[@]}; do
+for ext in "${EXTE_LISTS[@]}"; do
   trae --install-extension ${ext}
 done
