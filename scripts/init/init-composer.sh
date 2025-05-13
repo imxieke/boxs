@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-04-23 00:41:21
- # @LastEditTime: 2024-11-12 22:16:11
+ # @LastEditTime: 2025-05-13 15:11:08
  # @LastEditors: Cloudflying
 # @Description: Composer Global Init
 ###
@@ -37,8 +37,9 @@ composer global require --dev nunomaduro/phpinsights
 
 # Instant Upgrades and Automated Refactoring of any PHP 5.3+ code
 composer global require -n --dev rector/rector
+composer global require -n --dev brianium/paratest
 
 # Provides mechanisms for walking through any arbitrary PHP variable
 composer global require --dev symfony/var-dumper
 
-# composer global require --dev vimeo/psalm
+composer global require --dev vimeo/psalm
