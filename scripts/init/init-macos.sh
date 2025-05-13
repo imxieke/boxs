@@ -130,7 +130,10 @@ init_pkgs()
   # brew dbeaver-community
 
   # Lint
-  brew dotenv-linter
+  brew install dotenv-linter
+
+  # GNU
+  brew install x86_64-linux-gnu-binutils
 
   # Tools
   # grc Colorize logfiles and command output
