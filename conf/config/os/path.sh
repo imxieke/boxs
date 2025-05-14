@@ -185,6 +185,10 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libiconv/include"
   fi
 
+  if [[ -d "/usr/local/opt/dotnet" ]]; then
+    export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
+  fi
+
   if [[ -d '/usr/local/opt/bzip2/lib' ]]; then
     export PATH="/usr/local/opt/bzip2/bin:$PATH"
     export LDFLAGS="$LDFLAGS -L/usr/local/opt/bzip2/lib"
