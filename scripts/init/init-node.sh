@@ -7,6 +7,19 @@
 # @Description: Node Init
 ###
 
+__mcp()
+{
+  pnpm add -g @mcpmarket/mcp-auto-installer
+
+  pnpm add -g @modelcontextprotocol/server-everything
+  pnpm add -g @modelcontextprotocol/server-memory
+  pnpm add -g @modelcontextprotocol/server-aws-kb-retrieval
+  pnpm add -g @modelcontextprotocol/server-brave-search
+  pnpm add -g @modelcontextprotocol/server-filesystem
+  pnpm add -g @modelcontextprotocol/server-gdrive
+  pnpm add -g @modelcontextprotocol/server-gitlab
+}
+
 _install()
 {
   # Fabulously kill processes. Cross-platform
