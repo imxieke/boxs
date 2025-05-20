@@ -76,6 +76,8 @@ alias vi=${EDITOR}
 alias nano=${EDITOR}
 alias emacs=${EDITOR}
 
+export NALI_HOME=${HOME}/.config/nali
+
 # 初始化 Oh my zsh
 if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
   echo "==> Fetch oh my zsh"
