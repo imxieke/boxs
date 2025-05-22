@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2025-04-10 11:30:12
- # @LastEditors: Cloudflying
+# @LastEditTime: 2025-04-10 11:30:12
+# @LastEditors: Cloudflying
 # @Description: Boxs Manager Script(init os, set mirros,os check etc)
 ###
 
@@ -481,7 +481,7 @@ __init_systemd()
     wsl-wayland-socket
   )
 
-  for service in "${SYSTEMD_SERVICE[@]}" ; do
+  for service in "${SYSTEMD_SERVICE[@]}"; do
     if [[ ! -f "/etc/systemd/system/${service}.service" ]]; then
       echo "Enable ${service}"
       ln -sf ${BOXS_HOME}/etc/systemd/system/${service}.service /etc/systemd/system/${service}.service
