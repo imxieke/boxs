@@ -13,10 +13,11 @@
 # add `d` debug -vvv
 alias cmpa="composer require --optimize-autoloader"
 alias cmpad="composer require --dev --optimize-autoloader"
+alias cmpaa="composer install"
 alias cmpr="composer remove"
 alias cmpd="composer depends --recursive --tree"
 alias cmpu="composer update --optimize-autoloader"
-alias cmpi="composer install"
+alias cmpi="composer show -a"
 alias cmpo="composer outdated"
 alias cmp-open="composer browser"
 alias cmps="composer search"
