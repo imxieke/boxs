@@ -14,21 +14,22 @@
 alias cmpa="composer require --optimize-autoloader"
 alias cmpad="composer require --dev --optimize-autoloader"
 alias cmpr="composer remove"
+alias cmpd="composer depends --recursive --tree"
 alias cmpu="composer update --optimize-autoloader"
 alias cmpi="composer install"
-alias cmpo="composer browser"
+alias cmpo="composer outdated"
+alias cmp-open="composer browser"
 alias cmps="composer search"
 alias cmpuu="composer upgrade"
-alias cmpr73='php73 /usr/local/bin/composer require -vvv'
 
 # Create PHP Project
 alias create-laralvel-project="composer create-project laravel/laravel"
 alias create-thinkphp-project="composer create-project topthink/think"
 alias create-symfony-project="composer create-project symfony/skeleton"
 
-alias phpstan-analyse-composer="php -d memory_limit=1G ~/.bin/phpstan analyze -l 7 --autoload-file=./vendor/autoload.php"
+alias phpstan-analyse="php -d memory_limit=1G phpstan analyze -l 7 --autoload-file=./vendor/autoload.php"
 alias phpcs-stand="phpcs --standard=PSR12"
 
 alias think="php think"
 alias artisan="php artisan"
-alias lsrv="php artisan serve"
+alias larasrv="php artisan serve"
