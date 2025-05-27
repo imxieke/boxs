@@ -3,7 +3,7 @@
 
 # need root permission
 if [[ "$(uname -s)" == 'Darwin' ]]; then
-  sudo mtr $@ | nali
+  sudo mtr "$@" | nali
 else
-  mtr $@ | nali
+  mtr "$@" | nali
 fi

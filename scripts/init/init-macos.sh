@@ -70,6 +70,7 @@ init_brew()
     # brew tap symfony-cli/homebrew-tap
     # brew tap shivammathur/php
     # brew tap shivammathur/extensions
+    brew tap jsdelivr/globalping
   fi
 }
 
@@ -356,7 +357,10 @@ init_pkgs()
 
   # Security Tools
   # snyk-cli Scans and monitors projects for security vulnerabilities
-  brew install aircrack-ng wifi-password nmap sqlmap massdns snyk-cli
+  brew install aircrack-ng wifi-password nmap sqlmap massdns snyk-cli trivy
+
+  # Network
+  brew install trippy nexttrace globalping
 
   # Finance
   brew install tradingview
