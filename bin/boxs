@@ -4,7 +4,7 @@
 # @Date: 2024-3-18 18:06:18
 # @LastEditTime: 2025-04-10 11:30:12
 # @LastEditors: Cloudflying
-# @Description: Boxs Manager Script(init os, set mirros,os check etc)
+# @Description: Boxs Manager Script
 ###
 
 # 当缺省会使用下面用户密码
@@ -102,20 +102,10 @@ _parse_params()
     esac
   done
 
-  # shellcheck disable=SC2034
   USER_HOME="/home/${USERNAME}"
 }
 
 _parse_params "$@"
-
-# 检查 boxs 依赖
-check()
-{
-  if [ ! -d ${HOME}/.oh-my-zsh ]; then
-    echo "ohmyzsh not install"
-    exit 1
-  fi
-}
 
 __osname()
 {
@@ -207,24 +197,7 @@ __osenv()
   [ $(__cmd_yes_no htop) == '✓' ] && echo "Htop: $(htop --version | awk -F ' ' '{print $2}')"
 }
 
-__arch_repo()
-{
-  __rootness
-  MIRRORS_FILE='/etc/pacman.d/mirrorlist'
-  echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
-Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
-Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' >${MIRRORS_FILE}
-
-  sed -i "s/#\[multilib\]/\[multilib\]/g" /etc/pacman.conf
-  sed -i "s/#\[extra\]/\[extra\]/g" /etc/pacman.conf
-  sed -i "s/#\[core\]/\[core\]/g" /etc/pacman.conf
-}
-
-__debian_repo()
+__init_debian()
 {
   MIRRORS_FILE='/etc/apt/sources.list'
   MIRRORS_HOST="https://mirrors.ustc.edu.cn/debian/"
@@ -241,7 +214,7 @@ __debian_repo()
   deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main contrib non-free non-free-firmware" >${MIRRORS_FILE}
 }
 
-__ubuntu_repo()
+__init_ubuntu()
 {
   MIRRORS_FILE='/etc/apt/sources.list'
   MIRRORS_HOST="https://mirrors.ustc.edu.cn/ubuntu/"
@@ -257,7 +230,7 @@ __ubuntu_repo()
   deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main restricted universe multiverse" >${MIRRORS_FILE}
 }
 
-__kali_repo()
+__init_kali()
 {
   MIRRORS_FILE='/etc/apt/sources.list'
   MIRRORS_HOST="https://mirrors.ustc.edu.cn/kali/"
@@ -265,7 +238,14 @@ __kali_repo()
   deb-src ${MIRRORS_HOST} kali-rolling main contrib non-free non-free-firmware" >${MIRRORS_FILE}
 }
 
-#
+__init_alpine()
+{
+  . /etc/os-release
+  VERSION=${VERSION_ID%.*}
+  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/main" > /etc/apk/repositories
+  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/community" >> /etc/apk/repositories
+}
+
 _set_mirrors()
 {
   shift
@@ -342,6 +322,21 @@ init_platpak()
 __init_arch()
 {
   __rootness
+
+  __rootness
+  MIRRORS_FILE='/etc/pacman.d/mirrorlist'
+  echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
+Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
+Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' >${MIRRORS_FILE}
+
+  sed -i "s/#\[multilib\]/\[multilib\]/g" /etc/pacman.conf
+  sed -i "s/#\[extra\]/\[extra\]/g" /etc/pacman.conf
+  sed -i "s/#\[core\]/\[core\]/g" /etc/pacman.conf
+
   pacman-key --init
   pacman-key --populate
   pacman -Sy --noconfirm archlinux-keyring
@@ -441,28 +436,6 @@ __add_sudo_users()
   fi
 }
 
-# Operating System Repository Mirrors
-__os_repo()
-{
-  case "$(__osname)" in
-    ubuntu)
-      __ubuntu_repo $1
-      ;;
-    debian)
-      __debian_repo $1
-      ;;
-    kali)
-      __kali_repo $1
-      ;;
-    arch)
-      __arch_repo
-      ;;
-    *)
-      echo "Unknow Operating System ${PRETTY_NAME}"
-      ;;
-  esac
-}
-
 is_boxs_path()
 {
   FILE=$1
@@ -489,72 +462,6 @@ __init_systemd()
   done
 
   systemctl daemon-reload
-}
-
-# Packages Init
-__init_pkgs()
-{
-  # Set Git Config
-  # Priority: local > global > system
-  # if [[ -n "$(command -v git)" ]]; then
-  #   _info "==> Set Git Configuration"
-
-  #   # 只对 github.com 生效
-  #   git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
-  #   git config --global http.proxy socks5://127.0.0.1:7890
-  #   git config --global https.proxy socks5://127.0.0.1:7890
-  #   git config --global http.proxy http://127.0.0.1:7890
-  #   git config --global https.proxy https://127.0.0.1:7890
-  # fi
-
-  if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
-    echo "==> Install Nvm"
-    git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
-  fi
-
-  if [[ "$(uname -s)" == 'Linux' ]]; then
-    if [[ ! -d "${HOME}/.config/systemd/user" ]]; then
-      echo "Set User Systemd Service"
-      mkdir -p "${HOME}/.config/systemd"
-      ln -sf "${BOXS_HOME}/conf/.config/systemd/user" "${HOME}/.config/systemd/user"
-    fi
-  fi
-
-  if [[ ! -f "${HOME}/.bin/composer" ]]; then
-    mkdir -p ${HOME}/.bin
-    echo "==> Install Composer"
-    # https://mirrors.aliyun.com/composer/composer.phar
-    wget -cq https://mirrors.tencent.com/composer/composer.phar -O ${HOME}/.bin/composer
-    chmod +x ${HOME}/.bin/composer
-  fi
-
-  # 初始化 Oh-my-zsh
-  if [[ "$(is_boxs_path "${HOME}/.zshrc")" == "false" ]]; then
-    echo "Init Oh my zsh"
-    ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
-  fi
-
-  if [[ "$(is_boxs_path "${HOME}/.gitconfig")" == "false" ]]; then
-    echo "Init Global Git Config"
-    ln -sf "${BOXS_HOME}/conf/.gitconfig" "${HOME}/.gitconfig"
-  fi
-
-  if [[ "$(is_boxs_path "${HOME}/.npmrc")" == "false" ]]; then
-    echo "Init Global Node Config"
-    ln -sf "${BOXS_HOME}/conf/.npmrc" "${HOME}/.npmrc"
-  fi
-
-  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep ${BOXS_HOME})" ]; then
-    echo "Init Ruby Gem Config"
-    ln -sf "${BOXS_HOME}/conf/.gemrc" "${HOME}/.gemrc"
-  fi
-
-  if [[ ! -f "${HOME}/.config/pip/pip.conf" ]]; then
-    echo "Init Python Pip Config"
-    rm -fr "${HOME}/.config/pip"
-    ln -sf "${BOXS_HOME}/conf/.config/pip" "${HOME}/.config"
-  fi
-  echo "Configration ✿✿ヽ(°▽°)ノ✿ ❀ All Done !"
 }
 
 # 初始化依赖及软链接
@@ -802,14 +709,6 @@ Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/syste
   sudo systemctl restart docker
 }
 
-# 初始化软件配置
-init_config()
-{
-  if [[ -f "${HOME}/.env" ]]; then
-    echo ""
-  fi
-}
-
 # 私有配置文件信息
 __secret()
 {
@@ -826,13 +725,89 @@ __secret()
 
 __init()
 {
-
   if [[ ! -f "${HOME}/.env" ]]; then
-    _warn "Dot Env Not Fond"
-    exit 1
+    cp -fr "${BOXS_HOME}/.env" "${HOME}/.env"
+  else
+    _info "Dot Env Done."
   fi
 
-  # __init_pkgs
+  # Set Git Config
+  # Priority: local > global > system
+  # if [[ -n "$(command -v git)" ]]; then
+  #   _info "==> Set Git Configuration"
+
+  #   # 只对 github.com 生效
+  #   git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+  #   git config --global http.proxy socks5://127.0.0.1:7890
+  #   git config --global https.proxy socks5://127.0.0.1:7890
+  #   git config --global http.proxy http://127.0.0.1:7890
+  #   git config --global https.proxy https://127.0.0.1:7890
+  # fi
+
+  if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
+    echo "==> Install Nvm"
+    git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
+  else
+    _info "Node Version Manager Done."
+  fi
+
+  if [[ "$(uname -s)" == 'Linux' ]]; then
+    if [[ ! -d "${HOME}/.config/systemd/user" ]]; then
+      echo "Set User Systemd Service"
+      mkdir -p "${HOME}/.config/systemd"
+      ln -sf "${BOXS_HOME}/conf/.config/systemd/user" "${HOME}/.config/systemd/user"
+    else
+      _info "User Systemd Done."
+    fi
+  fi
+
+  if [[ ! -f "${HOME}/.bin/composer" ]]; then
+    mkdir -p ${HOME}/.bin
+    echo "==> Install Composer"
+    # https://mirrors.aliyun.com/composer/composer.phar
+    wget -cq https://mirrors.tencent.com/composer/composer.phar -O ${HOME}/.bin/composer
+    chmod +x ${HOME}/.bin/composer
+  else
+    _info "Composer Done."
+  fi
+
+  # 初始化 Oh-my-zsh
+  if [[ "$(is_boxs_path "${HOME}/.zshrc")" == "false" ]]; then
+    echo "Init Oh my zsh"
+    ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
+  else
+    _info "Oh My Zsh Done."
+  fi
+
+  if [[ "$(is_boxs_path "${HOME}/.gitconfig")" == "false" ]]; then
+    echo "Init Global Git Config"
+    ln -sf "${BOXS_HOME}/conf/.gitconfig" "${HOME}/.gitconfig"
+  else
+    _info "Git Config Done."
+  fi
+
+  if [[ "$(is_boxs_path "${HOME}/.npmrc")" == "false" ]]; then
+    echo "Init Global Node Config"
+    ln -sf "${BOXS_HOME}/conf/.npmrc" "${HOME}/.npmrc"
+  else
+    _info "Node Config Done."
+  fi
+
+  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep ${BOXS_HOME})" ]; then
+    echo "Init Ruby Gem Config"
+    ln -sf "${BOXS_HOME}/conf/.gemrc" "${HOME}/.gemrc"
+  else
+    _info "Gem Done."
+  fi
+
+  if [[ ! -f "${HOME}/.config/pip/pip.conf" ]]; then
+    echo "Init Python Pip Config"
+    rm -fr "${HOME}/.config/pip"
+    ln -sf "${BOXS_HOME}/conf/.config/pip" "${HOME}/.config"
+  else
+    _info "Pip Done."
+  fi
+  echo "Configration ✿✿ヽ(°▽°)ノ✿ ❀ All Done !"
 }
 
 _usage()
@@ -863,9 +838,6 @@ case $1 in
   secret)
     __secret
     ;;
-  remove)
-    echo "Remove"
-    ;;
   add-user | --add-user)
     __add_sudo_users $2 $3
     ;;
@@ -880,9 +852,6 @@ case $1 in
     ;;
   init-sudo | --init-sudo)
     __init_sudo
-    ;;
-  init-pkgs)
-    __init_pkgs
     ;;
   install-python-pkgs)
     _install_python_pkgs "$@"
