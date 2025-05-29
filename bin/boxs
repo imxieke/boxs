@@ -13,7 +13,7 @@ DEFAULT_PASSWD=$(openssl rand -hex 4)
 
 BOXS_PREFIX=${BOXS_PREFIX:-boxs}
 
-BOXS_HOME=$(dirname $(dirname $(realpath $0)))
+BOXS_HOME=$(dirname "$(dirname "$(realpath "$0")")")
 
 if [[ -f "${HOME}/.env" ]]; then
   . "${HOME}/.env"
@@ -68,7 +68,7 @@ __rootness()
 
 _cmd_exist()
 {
-  if [[ -z "$(command -v $1)" ]]; then
+  if [[ -z "$(command -v "$1")" ]]; then
     _warn "command $1 not found"
     exit 1
   fi
@@ -81,7 +81,7 @@ _sudo()
 
 __user()
 {
-  sudo -Hu ${USERNAME} "$@"
+  sudo -Hu "${USERNAME}" "$@"
 }
 
 # 解析参数与默认参数
@@ -90,10 +90,10 @@ _parse_params()
   for PARAM in "$@"; do
     case "${PARAM}" in
       --user* | -u*)
-        USERNAME=$(echo ${PARAM} | cut -d '=' -f 2)
+        USERNAME=$(echo "${PARAM}" | cut -d '=' -f 2)
         ;;
       --password* | -p*)
-        PASSWORD=$(echo ${PARAM} | cut -d '=' -f 2)
+        PASSWORD=$(echo "${PARAM}" | cut -d '=' -f 2)
         ;;
       *)
         [ -z "${USERNAME}" ] && USERNAME=${DEFAULT_USER}
@@ -163,7 +163,7 @@ __osname()
 
 __cmd_yes_no()
 {
-  if [[ -n "$(command -v $1)" ]]; then
+  if [[ -n "$(command -v "$1")" ]]; then
     echo "✓"
   else
     echo "x"
@@ -172,29 +172,29 @@ __cmd_yes_no()
 
 __osenv()
 {
-  [ $(__cmd_yes_no php) == '✓' ] && echo "PHP: $(php --version | head -n 1 | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no php74) == '✓' ] && echo "PHP74: $(php74 --version | head -n 1 | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no php80) == '✓' ] && echo "PHP80: $(php80 --version | head -n 1 | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no php81) == '✓' ] && echo "PHP81: $(php81 --version | head -n 1 | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no php82) == '✓' ] && echo "PHP82: $(php82 --version | head -n 1 | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no php83) == '✓' ] && echo "PHP83: $(php83 --version | head -n 1 | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no php84) == '✓' ] && echo "PHP84: $(php84 --version | head -n 1 | awk -F ' ' '{print $2}')" || echo "PHP84: x"
-  [ $(__cmd_yes_no composer) == '✓' ] && echo "Composer: $(composer --version 2>&1 | head -n 1 | awk -F ' ' '{print $3}')"
-  [ $(__cmd_yes_no ruby) == '✓' ] && echo "Ruby: $(ruby --version | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no gem) == '✓' ] && echo "Gem: $(gem --version)"
-  [ $(__cmd_yes_no python) == '✓' ] && echo "Python: $(python --version | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no pip) == '✓' ] && echo "Pip: $(pip --version | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no node) == '✓' ] && echo "Node: $(node --version | sed "s#v##g")"
-  [ $(__cmd_yes_no npm) == '✓' ] && echo "Npm: $(npm --version)"
-  [ $(__cmd_yes_no pnpm) == '✓' ] && echo "Pnpm: $(pnpm --version)"
-  [ $(__cmd_yes_no git) == '✓' ] && echo "Git: $(git --version | awk -F ' ' '{print $3}')"
-  [ $(__cmd_yes_no zsh) == '✓' ] && echo "Zsh: $(zsh --version | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no vim) == '✓' ] && echo "Vim: $(vim --version | head -n 1 | awk -F ' ' '{print $5}')"
-  [ $(__cmd_yes_no nvim) == '✓' ] && echo "Neovim: $(nvim --version | head -n 1 | awk -F ' ' '{print $2}' | sed "s#v##g")"
-  [ $(__cmd_yes_no wget) == '✓' ] && echo "Wget: $(wget --version | head -n 1 | awk -F ' ' '{print $3}')"
-  [ $(__cmd_yes_no curl) == '✓' ] && echo "Curl: $(curl --version | head -n 1 | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no tree) == '✓' ] && echo "Tree: $(tree --version | awk -F ' ' '{print $2}')"
-  [ $(__cmd_yes_no htop) == '✓' ] && echo "Htop: $(htop --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php)" == '✓' ] && echo "PHP: $(php --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php74)" == '✓' ] && echo "PHP74: $(php74 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php80)" == '✓' ] && echo "PHP80: $(php80 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php81)" == '✓' ] && echo "PHP81: $(php81 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php82)" == '✓' ] && echo "PHP82: $(php82 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php83)" == '✓' ] && echo "PHP83: $(php83 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php84)" == '✓' ] && echo "PHP84: $(php84 --version | head -n 1 | awk -F ' ' '{print $2}')" || echo "PHP84: x"
+  [ "$(__cmd_yes_no composer)" == '✓' ] && echo "Composer: $(composer --version 2>&1 | head -n 1 | awk -F ' ' '{print $3}')"
+  [ "$(__cmd_yes_no ruby)" == '✓' ] && echo "Ruby: $(ruby --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no gem)" == '✓' ] && echo "Gem: $(gem --version)"
+  [ "$(__cmd_yes_no python)" == '✓' ] && echo "Python: $(python --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no pip)" == '✓' ] && echo "Pip: $(pip --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no node)" == '✓' ] && echo "Node: $(node --version | sed "s#v##g")"
+  [ "$(__cmd_yes_no npm)" == '✓' ] && echo "Npm: $(npm --version)"
+  [ "$(__cmd_yes_no pnpm)" == '✓' ] && echo "Pnpm: $(pnpm --version)"
+  [ "$(__cmd_yes_no git)" == '✓' ] && echo "Git: $(git --version | awk -F ' ' '{print $3}')"
+  [ "$(__cmd_yes_no zsh)" == '✓' ] && echo "Zsh: $(zsh --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no vim)" == '✓' ] && echo "Vim: $(vim --version | head -n 1 | awk -F ' ' '{print $5}')"
+  [ "$(__cmd_yes_no nvim)" == '✓' ] && echo "Neovim: $(nvim --version | head -n 1 | awk -F ' ' '{print $2}' | sed "s#v##g")"
+  [ "$(__cmd_yes_no wget)" == '✓' ] && echo "Wget: $(wget --version | head -n 1 | awk -F ' ' '{print $3}')"
+  [ "$(__cmd_yes_no curl)" == '✓' ] && echo "Curl: $(curl --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no tree)" == '✓' ] && echo "Tree: $(tree --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no htop)" == '✓' ] && echo "Htop: $(htop --version | awk -F ' ' '{print $2}')"
 }
 
 __init_debian()
@@ -267,22 +267,22 @@ _set_mirrors()
   echo "==> Set ${PKG_NAME_PRETTY} Source Mirrors"
   case "${PKG_NAME}" in
     os)
-      __os_repo ${PKG_SOURCE}
+      __os_repo "${PKG_SOURCE}"
       ;;
     composer)
-      __config_composer ${PKG_SOURCE}
+      __config_composer "${PKG_SOURCE}"
       ;;
     pip)
-      __config_pip ${PKG_SOURCE}
+      __config_pip "${PKG_SOURCE}"
       ;;
     npm)
-      __config_npm ${PKG_SOURCE}
+      __config_npm "${PKG_SOURCE}"
       ;;
     ruby)
-      __config_ruby ${PKG_SOURCE}
+      __config_ruby "${PKG_SOURCE}"
       ;;
     docker | -d)
-      __set_docker ${PKG_SOURCE}
+      __set_docker "${PKG_SOURCE}"
       ;;
     *)
       echo "Unknow Source"
@@ -426,9 +426,9 @@ __add_sudo_users()
   fi
 
   # 创建用户
-  if [[ -z "$(grep ${USERNAME} /etc/passwd)" ]]; then
+  if [[ -z "$(grep "${USERNAME}" /etc/passwd)" ]]; then
     echo "==>Create ${USERNAME} with sudo"
-    useradd -m -s /bin/bash -g wheel ${USERNAME}
+    useradd -m -s /bin/bash -g wheel "${USERNAME}"
     echo "${USERNAME}:${PASSWORD}" | chpasswd
   else
     echo "${USERNAME} exists"
@@ -441,7 +441,7 @@ is_boxs_path()
   FILE=$1
   if [[ ! -f ${FILE} ]]; then
     echo false
-  elif [[ -z "$(ls -lha ${FILE} | grep ${BOXS_HOME})" ]]; then
+  elif [[ -z "$(ls -lha "${FILE}" | grep "${BOXS_HOME}")" ]]; then
     echo false
   fi
 }
@@ -457,7 +457,7 @@ __init_systemd()
   for service in "${SYSTEMD_SERVICE[@]}"; do
     if [[ ! -f "/etc/systemd/system/${service}.service" ]]; then
       echo "Enable ${service}"
-      ln -sf ${BOXS_HOME}/etc/systemd/system/${service}.service /etc/systemd/system/${service}.service
+      ln -sf "${BOXS_HOME}"/etc/systemd/system/"${service}".service /etc/systemd/system/"${service}".service
     fi
   done
 
@@ -474,6 +474,38 @@ init_boxs()
     git clone --depth 1 https://gitcode.com/imxieke/boxs.git
   else
     _info "==> Boxs Config Success"
+  fi
+}
+
+__init_php()
+{
+  # 7.4
+  if [[ -f "/usr/local/opt/php@5.6/bin/php" ]]; then
+    ln -sf /usr/local/opt/php@5.6/bin/php /usr/local/bin/php56
+  fi
+
+  if [[ -f "/usr/local/opt/php@7.4/bin/php" ]]; then
+    ln -sf /usr/local/opt/php@7.4/bin/php /usr/local/bin/php74
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.0/bin/php" ]]; then
+    ln -sf /usr/local/opt/php@8.0/bin/php /usr/local/bin/php80
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.1/bin/php" ]]; then
+    ln -sf /usr/local/opt/php@8.1/bin/php /usr/local/bin/php81
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.2/bin/php" ]]; then
+    ln -sf /usr/local/opt/php@8.2/bin/php /usr/local/bin/php82
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.3/bin/php" ]]; then
+    ln -sf /usr/local/opt/php@8.3/bin/php /usr/local/bin/php83
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.4/bin/php" ]]; then
+    ln -sf /usr/local/opt/php@8.4/bin/php /usr/local/bin/php84
   fi
 }
 
@@ -675,8 +707,8 @@ __config_neovim()
 
   if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
     # echo "==>Init Neovim Telescope SQLite Database"
-    mkdir -p ${HOME}/.local/share/nvim/databases
-    touch ${HOME}/.local/share/nvim/databases/telescope_history.sqlite3
+    mkdir -p "${HOME}"/.local/share/nvim/databases
+    touch "${HOME}"/.local/share/nvim/databases/telescope_history.sqlite3
   fi
 }
 
@@ -684,8 +716,8 @@ __config_neovim()
 #
 __set_docker()
 {
-  mkdir -p ${HOME}/.docker
-  DOCKER_CONFIG=${HOME}/.docker/config.json
+  mkdir -p "${HOME}/.docker"
+  DOCKER_CONFIG="${HOME}/.docker/config.json"
   sudo mkdir -p /etc/systemd/system/docker.service.d
   if [[ ! -f '/etc/systemd/system/docker.service.d/proxy.conf' ]]; then
     sudo touch /etc/systemd/system/docker.service.d/proxy.conf
@@ -697,13 +729,13 @@ Environment=\"HTTP_PROXY=${http_proxy}\"
 Environment=\"HTTPS_PROXY=${http_proxy}\"
 Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/systemd/system/docker.service.d/proxy.conf >/dev/null
 
-  if [[ ! -f ${DOCKER_CONFIG} ]]; then
-    touch ${DOCKER_CONFIG}
+  if [[ ! -f "${DOCKER_CONFIG}" ]]; then
+    touch "${DOCKER_CONFIG}"
   fi
 
   # docker run
-  cat ${DOCKER_CONFIG} | jq ".proxies.default.httpProxy = \"${http_proxy}\" | .proxies.default.httpsProxy = \"${http_proxy}\" | .proxies.default.noProxy = \"localhost,127.0.0.1,.example.com\"" >/tmp/docker-config.json
-  mv /tmp/docker-config.json ${DOCKER_CONFIG}
+  cat "${DOCKER_CONFIG}" | jq ".proxies.default.httpProxy = \"${http_proxy}\" | .proxies.default.httpsProxy = \"${http_proxy}\" | .proxies.default.noProxy = \"localhost,127.0.0.1,.example.com\"" >/tmp/docker-config.json
+  mv /tmp/docker-config.json "${DOCKER_CONFIG}"
 
   sudo systemctl daemon-reload
   sudo systemctl restart docker
@@ -715,9 +747,9 @@ __secret()
   if [[ -e ${BOXS_HOME} ]]; then
     echo "==> Secret Init"
     git config --global credential.helper store
-    echo "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com" >>${HOME}/.git-credentials
-    echo "https://${GITCODE_USERNAME}:${GITCODE_TOKEN}@gitcode.com" >>${HOME}/.git-credentials
-    chmod 600 ${HOME}/.git-credentials
+    echo "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com" >>"${HOME}/.git-credentials"
+    echo "https://${GITCODE_USERNAME}:${GITCODE_TOKEN}@gitcode.com" >>"${HOME}/.git-credentials"
+    chmod 600 "${HOME}/.git-credentials"
 
     git clone --depth 1 https://gitcode.com/imxieke/secret.git ~/.config/secret
   fi
@@ -761,12 +793,14 @@ __init()
     fi
   fi
 
+  __init_php
+
   if [[ ! -f "${HOME}/.bin/composer" ]]; then
-    mkdir -p ${HOME}/.bin
+    mkdir -p "${HOME}"/.bin
     echo "==> Install Composer"
     # https://mirrors.aliyun.com/composer/composer.phar
-    wget -cq https://mirrors.tencent.com/composer/composer.phar -O ${HOME}/.bin/composer
-    chmod +x ${HOME}/.bin/composer
+    wget -cq https://mirrors.tencent.com/composer/composer.phar -O "${HOME}"/.bin/composer
+    chmod +x "${HOME}"/.bin/composer
   else
     _info "Composer Done."
   fi
@@ -774,7 +808,7 @@ __init()
   # 初始化 Oh-my-zsh
   if [[ "$(is_boxs_path "${HOME}/.zshrc")" == "false" ]]; then
     echo "Init Oh my zsh"
-    ln -sf ${BOXS_HOME}/conf/.zshrc ${HOME}/.zshrc
+    ln -sf "${BOXS_HOME}"/conf/.zshrc "${HOME}"/.zshrc
   else
     _info "Oh My Zsh Done."
   fi
@@ -793,7 +827,7 @@ __init()
     _info "Node Config Done."
   fi
 
-  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha ${HOME}/.gemrc | grep ${BOXS_HOME})" ]; then
+  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha "${HOME}"/.gemrc | grep "${BOXS_HOME}")" ]; then
     echo "Init Ruby Gem Config"
     ln -sf "${BOXS_HOME}/conf/.gemrc" "${HOME}/.gemrc"
   else
@@ -839,7 +873,7 @@ case $1 in
     __secret
     ;;
   add-user | --add-user)
-    __add_sudo_users $2 $3
+    __add_sudo_users "$2" "$3"
     ;;
   mirrors | --mirrors | -m)
     _set_mirrors "$@"
