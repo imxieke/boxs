@@ -242,8 +242,8 @@ __init_alpine()
 {
   . /etc/os-release
   VERSION=${VERSION_ID%.*}
-  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/main" > /etc/apk/repositories
-  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/community" >> /etc/apk/repositories
+  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/main" >/etc/apk/repositories
+  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/community" >>/etc/apk/repositories
 }
 
 _set_mirrors()
@@ -480,32 +480,53 @@ init_boxs()
 __init_php()
 {
   # 7.4
-  if [[ -f "/usr/local/opt/php@5.6/bin/php" ]]; then
+  if [ -f "/usr/local/opt/php@5.6/bin/php" ] && [ ! -f "/usr/local/bin/php56" ]; then
+    _warn "Setting PHP 5.6"
     ln -sf /usr/local/opt/php@5.6/bin/php /usr/local/bin/php56
+  elif [[ -f "/usr/local/bin/php56" ]]; then
+    _info "PHP 5.6 Done"
   fi
 
-  if [[ -f "/usr/local/opt/php@7.4/bin/php" ]]; then
+  if [[ -f "/usr/local/opt/php@7.4/bin/php" && ! -f "/usr/local/bin/php74" ]]; then
+    _warn "Setting PHP 7.4"
     ln -sf /usr/local/opt/php@7.4/bin/php /usr/local/bin/php74
+  elif [[ -f "/usr/local/bin/php74" ]]; then
+    _info "PHP 7.4 Done"
   fi
 
-  if [[ -f "/usr/local/opt/php@8.0/bin/php" ]]; then
+  if [[ -f "/usr/local/opt/php@8.0/bin/php" && ! -f "/usr/local/bin/php80" ]]; then
+    _warn "Setting PHP 8.0"
     ln -sf /usr/local/opt/php@8.0/bin/php /usr/local/bin/php80
+  elif [[ -f "/usr/local/bin/php80" ]]; then
+    _info "PHP 8.0 Done"
   fi
 
-  if [[ -f "/usr/local/opt/php@8.1/bin/php" ]]; then
+  if [[ -f "/usr/local/opt/php@8.1/bin/php" && ! -f "/usr/local/bin/php81" ]]; then
+    _warn "Setting PHP 8.1"
     ln -sf /usr/local/opt/php@8.1/bin/php /usr/local/bin/php81
+  elif [[ -f "/usr/local/bin/php81" ]]; then
+    _info "PHP 8.1 Done"
   fi
 
-  if [[ -f "/usr/local/opt/php@8.2/bin/php" ]]; then
+  if [[ -f "/usr/local/opt/php@8.2/bin/php" && ! -f "/usr/local/bin/php82" ]]; then
+    _warn "Setting PHP 8.2"
     ln -sf /usr/local/opt/php@8.2/bin/php /usr/local/bin/php82
+  elif [[ -f "/usr/local/bin/php82" ]]; then
+    _info "PHP 8.2 Done"
   fi
 
-  if [[ -f "/usr/local/opt/php@8.3/bin/php" ]]; then
+  if [[ -f "/usr/local/opt/php@8.3/bin/php" && ! -f "/usr/local/bin/php83" ]]; then
+    _warn "Setting PHP 8.3"
     ln -sf /usr/local/opt/php@8.3/bin/php /usr/local/bin/php83
+  elif [[ -f "/usr/local/bin/php83" ]]; then
+    _info "PHP 8.3 Done"
   fi
 
-  if [[ -f "/usr/local/opt/php@8.4/bin/php" ]]; then
+  if [[ -f "/usr/local/opt/php@8.4/bin/php" && ! -f "/usr/local/bin/php84" ]]; then
+    _warn "Setting PHP 8.4"
     ln -sf /usr/local/opt/php@8.4/bin/php /usr/local/bin/php84
+  elif [[ -f "/usr/local/bin/php84" ]]; then
+    _info "PHP 8.4 Done"
   fi
 }
 
@@ -729,7 +750,7 @@ Environment=\"HTTP_PROXY=${http_proxy}\"
 Environment=\"HTTPS_PROXY=${http_proxy}\"
 Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/systemd/system/docker.service.d/proxy.conf >/dev/null
 
-  if [[ ! -f "${DOCKER_CONFIG}" ]]; then
+  if [[ ! -f ${DOCKER_CONFIG} ]]; then
     touch "${DOCKER_CONFIG}"
   fi
 
