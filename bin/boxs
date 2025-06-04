@@ -197,6 +197,28 @@ __osenv()
   [ "$(__cmd_yes_no htop)" == '✓' ] && echo "Htop: $(htop --version | awk -F ' ' '{print $2}')"
 }
 
+pkg_add()
+{
+  __rootness
+  echo "==> Install Depends $*"
+  if [[ -f "/etc/os-release" ]]; then
+    . /etc/os-release
+  fi
+
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    brew install "$@"
+  elif [[ ${ID} == 'ubuntu' ]]; then
+    apt install -y "$@"
+  elif [[ ${ID} == 'arch' ]]; then
+    pacman -S --noconfirm "$@"
+  elif [[ ${ID} == 'alpine' ]]; then
+    apk add "$@"
+  else
+    echo "Unknow Platform"
+    exit 1
+  fi
+}
+
 __init_debian()
 {
   MIRRORS_FILE='/etc/apt/sources.list'
@@ -269,18 +291,6 @@ _set_mirrors()
     os)
       __os_repo "${PKG_SOURCE}"
       ;;
-    composer)
-      __config_composer "${PKG_SOURCE}"
-      ;;
-    pip)
-      __config_pip "${PKG_SOURCE}"
-      ;;
-    npm)
-      __config_npm "${PKG_SOURCE}"
-      ;;
-    ruby)
-      __config_ruby "${PKG_SOURCE}"
-      ;;
     docker | -d)
       __set_docker "${PKG_SOURCE}"
       ;;
@@ -352,33 +362,11 @@ init_snap()
 init_deps()
 {
   if [[ "$(uname -s)" == 'Linux' ]]; then
-    [ -z "$(command -v sudo)" ] && _pkg_add sudo
+    [ -z "$(command -v sudo)" ] && pkg_add sudo
   fi
-  [ -z "$(command -v zsh)" ] && _pkg_add zsh
-  [ -z "$(command -v git)" ] && _pkg_add git
-  [ -z "$(command -v curl)" ] && _pkg_add curl
-}
-
-_pkg_add()
-{
-  __rootness
-  echo "==> Install Depends $*"
-  if [[ -f "/etc/os-release" ]]; then
-    . /etc/os-release
-  fi
-
-  if [[ "$(uname -s)" == "Darwin" ]]; then
-    brew install "$@"
-  elif [[ ${ID} == 'ubuntu' ]]; then
-    apt install -y "$@"
-  elif [[ ${ID} == 'arch' ]]; then
-    pacman -S --noconfirm "$@"
-  elif [[ ${ID} == 'alpine' ]]; then
-    apk add "$@"
-  else
-    echo "Unknow Platform"
-    exit 1
-  fi
+  [ -z "$(command -v zsh)" ] && pkg_add zsh
+  [ -z "$(command -v git)" ] && pkg_add git
+  [ -z "$(command -v curl)" ] && pkg_add curl
 }
 
 # Init SUDO Group (wheel)
@@ -464,19 +452,6 @@ __init_systemd()
   systemctl daemon-reload
 }
 
-# 初始化依赖及软链接
-init_boxs()
-{
-  # 初始化 Boxs
-  if [[ ! -d ${BOXS_HOME} ]]; then
-    _yellow "==> Fetch Boxs"
-    # git@gitcode.com:imxieke/boxs.git
-    git clone --depth 1 https://gitcode.com/imxieke/boxs.git
-  else
-    _info "==> Boxs Config Success"
-  fi
-}
-
 __init_php()
 {
   # 7.4
@@ -527,193 +502,6 @@ __init_php()
     ln -sf /usr/local/opt/php@8.4/bin/php /usr/local/bin/php84
   elif [[ -f "/usr/local/bin/php84" ]]; then
     _info "PHP 8.4 Done"
-  fi
-}
-
-__config_composer()
-{
-  _cmd_exist composer
-  case $2 in
-    offcial)
-      composer config -g repo.packagist composer https://repo.packagist.org
-      ;;
-    aliyun)
-      composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-      ;;
-    tencent)
-      composer config -g repo.packagist composer https://mirrors.tencent.com/composer/
-      ;;
-    huawei)
-      composer config -g repo.packagist composer https://mirrors.huaweicloud.com/repository/php/
-      ;;
-    sjtug)
-      composer config -g repo.packagist composer https://packagist.mirrors.sjtug.sjtu.edu.cn
-      ;;
-    cloudflare | cf)
-      # Global Cloudflare
-      composer config -g repo.packagist composer https://packagist.pages.dev
-      ;;
-    phpcomposer | pc)
-      composer config -g repo.packagist composer https://packagist.phpcomposer.com
-      ;;
-    *)
-      echo "Usage: $(_yellow "${BOXS_PREFIX} composer source")"
-      echo "provider: [offcial|aliyun|tencent|huawei|sjtug|cloudflare(cf)|phpcomposer(pc)]"
-      echo "unset mirrors? use $(_red 'composer config -g --unset repos.packagist')"
-      exit 0
-      ;;
-  esac
-  _green "Configration , Set Completion!"
-}
-
-__config_pip()
-{
-
-  _cmd_exist pip
-
-  case "$2" in
-    offcial)
-      MIRROR="https://pypi.org/simple"
-      ;;
-    ustc)
-      MIRROR="https://mirrors.ustc.edu.cn/pypi/simple"
-      ;;
-    bfsu)
-      MIRROR="https://mirrors.bfsu.edu.cn/pypi"
-      ;;
-    tuna)
-      MIRROR="https://pypi.tuna.tsinghua.edu.cn/simple"
-      ;;
-    aliyun)
-      MIRROR="https://mirrors.aliyun.com/pypi/simple"
-      ;;
-    tencent)
-      MIRROR="http://mirrors.cloud.tencent.com/pypi/simple"
-      ;;
-    huawei)
-      MIRROR="https://mirrors.huaweicloud.com/repository/pypi/simple"
-      ;;
-    nju)
-      MIRROR="https://mirror.nju.edu.cn/pypi/web/simple"
-      ;;
-    zju)
-      MIRROR="https://mirrors.zju.edu.cn/pypi/web/simple"
-      ;;
-    *)
-      _green "Usage: $(_yellow "${BOXS_PREFIX} pip aliyun")"
-      echo
-      _green "Provider: [offcial|aliyun|tencent|huawei|ustc|nju|zju|bfsu|tuna]"
-      echo ""
-      ;;
-  esac
-
-  if [[ -n ${MIRROR} ]]; then
-    TRUST_HOST=$(echo "${MIRROR}" | awk -F '/' '{print $3}')
-    if [[ -n "$(command -v pip)" ]]; then
-      pip config set global.index-url "${MIRROR}"
-      pip config set install.trusted-host "${TRUST_HOST}"
-    fi
-
-    if [[ -n "$(command -v pip2)" ]]; then
-      pip2 config set global.index-url "${MIRROR}"
-      pip2 config set install.trusted-host "${TRUST_HOST}"
-    fi
-
-    if [[ -n "$(command -v pip3)" ]]; then
-      pip3 config set global.index-url "${MIRROR}"
-      pip3 config set install.trusted-host "${TRUST_HOST}"
-    fi
-  fi
-}
-
-__config_npm()
-{
-  _cmd_exist npm
-
-  npm config set proxy=http://127.0.0.1:7890
-  npm config set https-proxy http://127.0.0.1:7890
-
-  pnpm config set proxy http://127.0.0.1:7890
-  pnpm config set https-proxy https://127.0.0.1:7890
-
-  yarn config set proxy http://127.0.0.1:7890
-  yarn config set https-proxy http://127.0.0.1:7890
-
-  case $1 in
-    offcial)
-      # yarn https://registry.yarnpkg.com
-      npm config set registry https://registry.npmjs.org
-      ;;
-    aliyun)
-      npm config set registry https://registry.npmmirror.com/
-      ;;
-    cnpmjs)
-      npm config set registry https://r.cnpmjs.org
-      ;;
-    tencent)
-      npm config set registry http://mirrors.cloud.tencent.com/npm/
-      ;;
-    huawei)
-      npm config set registry https://mirrors.huaweicloud.com/repository/npm/
-      ;;
-    ustc)
-      npm config set registry https://npmreg.proxy.ustclug.org
-      ;;
-    nju)
-      npm config set registry https://repo.nju.edu.cn/repository/npm/
-      ;;
-    zju)
-      npm config set registry https://mirrors.zju.edu.cn/npm
-      ;;
-    *)
-      echo "Usage: $(_yellow "${BOXS_PREFIX} npm aliyun")"
-      echo "provider: [offcial|aliyun|tencent|huawei|ustc|nju|zju]"
-      ;;
-  esac
-  _green "Configration , Set Completion!"
-}
-
-__config_ruby()
-{
-  _cmd_exist gem
-
-  case $2 in
-    offcial)
-      MIRROR=https://rubygems.org/
-      ;;
-    aliyun)
-      MIRROR=https://mirrors.aliyun.com/rubygems/
-      ;;
-    huawei)
-      # MIRROR=https://repo.huaweicloud.com/repository/rubygems/
-      MIRROR=https://mirrors.huaweicloud.com/repository/rubygems/
-      ;;
-    ustc)
-      MIRROR=https://mirrors.ustc.edu.cn/rubygems/
-      ;;
-    tuna)
-      MIRROR=https://mirrors.tuna.tsinghua.edu.cn/rubygems/
-      ;;
-    rubycn)
-      MIRROR=https://gems.ruby-china.com
-      ;;
-    nju)
-      MIRROR=https://mirror.nju.edu.cn/rubygems/
-      ;;
-    *)
-      echo "Usage: $(_yellow "${BOXS_PREFIX} ruby aliyun")"
-      echo "provider: [offcial|aliyun|huawei|ustc|tuna|rubycn|nju]"
-      exit 1
-      ;;
-  esac
-  if [[ -n ${MIRROR} ]]; then
-    gem sources --add ${MIRROR}
-    gem sources --remove https://rubygems.org
-    gem sources --remove https://rubygems.org/
-    if [[ -n "$(command -v bundle)" ]]; then
-      bundle config mirror.https://rubygems.org https://mirrors.huaweicloud.com/repository/rubygems/
-    fi
-    _green "Configration , Set Completion!"
   fi
 }
 
@@ -773,14 +561,24 @@ __secret()
     chmod 600 "${HOME}/.git-credentials"
 
     git clone --depth 1 https://gitcode.com/imxieke/secret.git ~/.config/secret
+  else
+    echo "Secret Variable Not Found"
   fi
 }
 
 __init()
 {
-  if [[ ! -f "${HOME}/.env" ]]; then
-    cp -fr "${BOXS_HOME}/.env" "${HOME}/.env"
+  # 初始化 Boxs
+  if [[ ! -d ${BOXS_HOME} ]]; then
+    _yellow "==> Fetch Boxs"
+    # git@gitcode.com:imxieke/boxs.git
+    git clone --depth 1 https://gitcode.com/imxieke/boxs.git
   else
+    _info "Boxs Config Success"
+  fi
+
+  if [ -f "${HOME}/.config/secret/home/.env" ]; then
+    ln -sf "${HOME}/.config/secret/home/.env" "${HOME}/.env"
     _info "Dot Env Done."
   fi
 
@@ -788,7 +586,6 @@ __init()
   # Priority: local > global > system
   # if [[ -n "$(command -v git)" ]]; then
   #   _info "==> Set Git Configuration"
-
   #   # 只对 github.com 生效
   #   git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
   #   git config --global http.proxy socks5://127.0.0.1:7890
@@ -827,42 +624,44 @@ __init()
   fi
 
   # 初始化 Oh-my-zsh
-  if [[ "$(is_boxs_path "${HOME}/.zshrc")" == "false" ]]; then
-    echo "Init Oh my zsh"
-    ln -sf "${BOXS_HOME}"/conf/.zshrc "${HOME}"/.zshrc
-  else
+  if [[ -f "${BOXS_HOME}/conf/.zshrc" ]]; then
+    ln -sf "${BOXS_HOME}/conf/.zshrc" "${HOME}"/.zshrc
     _info "Oh My Zsh Done."
   fi
 
-  if [[ "$(is_boxs_path "${HOME}/.gitconfig")" == "false" ]]; then
-    echo "Init Global Git Config"
+  if [[ -f "${BOXS_HOME}/conf/.gitconfig" ]]; then
     ln -sf "${BOXS_HOME}/conf/.gitconfig" "${HOME}/.gitconfig"
-  else
     _info "Git Config Done."
   fi
 
-  if [[ "$(is_boxs_path "${HOME}/.npmrc")" == "false" ]]; then
-    echo "Init Global Node Config"
+  # if [[ -n "$(command -v npm)" ]]; then
+  #   npm config set proxy=http://127.0.0.1:7890
+  #   npm config set https-proxy http://127.0.0.1:7890
+
+  #   pnpm config set proxy http://127.0.0.1:7890
+  #   pnpm config set https-proxy https://127.0.0.1:7890
+
+  #   yarn config set proxy http://127.0.0.1:7890
+  #   yarn config set https-proxy http://127.0.0.1:7890
+  # fi
+
+  if [[ -f "${BOXS_HOME}/conf/.npmrc" ]]; then
     ln -sf "${BOXS_HOME}/conf/.npmrc" "${HOME}/.npmrc"
-  else
     _info "Node Config Done."
   fi
 
-  if [ ! -f "${HOME}/.gemrc" ] || [ -z "$(ls -lha "${HOME}"/.gemrc | grep "${BOXS_HOME}")" ]; then
-    echo "Init Ruby Gem Config"
+  if [ -f "${BOXS_HOME}/conf/.gemrc" ]; then
     ln -sf "${BOXS_HOME}/conf/.gemrc" "${HOME}/.gemrc"
-  else
     _info "Gem Done."
   fi
 
-  if [[ ! -f "${HOME}/.config/pip/pip.conf" ]]; then
-    echo "Init Python Pip Config"
-    rm -fr "${HOME}/.config/pip"
-    ln -sf "${BOXS_HOME}/conf/.config/pip" "${HOME}/.config"
-  else
-    _info "Pip Done."
+  if [ -f "${BOXS_HOME}/conf/.config/pip/pip.conf" ]; then
+      mkdir -p "${HOME}/.config/pip"
+      ln -sf "${BOXS_HOME}/conf/.config/pip/pip.conf" "${HOME}/.config/pip/pip.conf"
+      _info "Pip Done."
   fi
-  echo "Configration ✿✿ヽ(°▽°)ノ✿ ❀ All Done !"
+
+  _green "        ^_^ \n   ✿✿ヽ(°▽°)ノ✿ ❀ \n  Config Completed. \n"
 }
 
 _usage()
@@ -910,18 +709,6 @@ case $1 in
     ;;
   install-python-pkgs)
     _install_python_pkgs "$@"
-    ;;
-  composer)
-    __config_composer "$@"
-    ;;
-  npm)
-    __config_npm "$@"
-    ;;
-  ruby)
-    __config_ruby "$@"
-    ;;
-  pip)
-    __config_pip "$@"
     ;;
   *)
     _usage "$@"

@@ -50,6 +50,7 @@ _install_python_pkgs()
   _pipadd checkov
 
   _pipadd numpy
+  _pipadd idna zstandard SQLAlchemy httpcore httpx pyyaml
 
 
   _pipadd transformers

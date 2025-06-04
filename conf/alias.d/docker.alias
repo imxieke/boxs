@@ -5,6 +5,26 @@
  # @LastEditors: Cloudflying
 # @Description:
 ###
+
+ORB_PATH="/Applications/OrbStack.app/Contents/MacOS/xbin/"
+
+if [ -z "$(command -v docker)" ] && [ -f "${ORB_PATH}docker" ]; then
+  alias docker="${ORB_PATH}docker"
+fi
+
+if [ -z "$(command -v docker-buildx)" ] && [ -f "${ORB_PATH}docker-buildx" ]; then
+  alias docker-buildx="${ORB_PATH}docker-buildx"
+fi
+
+if [ -z "$(command -v docker-compose)" ] && [ -f "${ORB_PATH}docker-compose" ]; then
+  alias docker-compose="${ORB_PATH}docker-compose"
+  alias compose="${ORB_PATH}docker-compose"
+fi
+
+if [ -z "$(command -v kubectl)" ] && [ -f "${ORB_PATH}kubectl" ]; then
+  alias kubectl="${ORB_PATH}kubectl"
+fi
+
 # Docker alias and function
 alias dri='docker rmi'
 alias drc='docker rm'

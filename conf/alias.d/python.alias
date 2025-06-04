@@ -1,4 +1,4 @@
-alias pyadd="pip install --break-system-packages"
+alias pya="pip install --break-system-packages"
 
 alias pys="pip_search"
 # Find python file
