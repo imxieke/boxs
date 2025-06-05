@@ -80,6 +80,13 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/php@${PHP_VERSION}/include"
   fi
 
+  if [[ -d "/usr/local/opt/curl/bin" ]]; then
+    export PATH="/usr/local/opt/curl/bin:${PATH}"
+    export PATH="/usr/local/opt/curl/sbin:${PATH}"
+    export LDFLAGS="${LDFLAGS} -L/usr/local/opt/curl/lib"
+    export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/curl/include"
+  fi
+
   # macOS 预置了老版本 需要覆盖
   if [[ -f "/usr/local/opt/ruby/bin/ruby" ]]; then
     export PATH="/usr/local/opt/ruby/bin:${PATH}"
