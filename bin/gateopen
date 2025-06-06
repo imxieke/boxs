@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ $(uname -s) == 'Darwin' ]]; then
+  echo "Opening the gates"
+  sudo spctl --master-disable
+  defaults write com.apple.LaunchServices LSQuarantine -bool NO
+fi

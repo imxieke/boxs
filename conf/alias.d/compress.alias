@@ -1,0 +1,6 @@
+alias cgz='gzip -9 -k'
+
+# Create tar.gz archive
+ctgz(){ tar -czvf "$1.tar.gz" "$1"; }
+cbz2(){ tar -cjvf "$1.tar.bz2" "$1"; }
+cxz(){ tar -cJvf "$1.tar.xz" "$1"; }

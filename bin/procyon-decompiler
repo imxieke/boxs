@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -f ${HOME}/.local/boxs/java/procyon-decompiler.jar ]]; then
+	java -jar ${HOME}/.local/boxs/java/procyon-decompiler.jar
+else
+	echo "procyon-decompiler.jar not found" 
+fi

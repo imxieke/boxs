@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ $(uname -s) == 'Darwin' ]]; then
+  echo "Gatekeeper re-activated"
+  sudo spctl --master-enable
+  defaults write com.apple.LaunchServices LSQuarantine -bool YES
+fi

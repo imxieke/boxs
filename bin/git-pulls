@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# 快速 pull 当前子目录所有的 git 仓库
+
+if [[ -z "$1" ]]; then
+	dir=$(pwd)
+else
+	dir=$(cd $1 && pwd)
+fi
+
+for i in $(ls $dir)
+do
+	echo $i
+    i=${dir}/${i}
+    if [[ -f "${i}/.git/config" ]]; then
+        cd $i
+        echo "Pull from: " $(grep 'url' .git/config  | awk -F '=' '{print $2}')
+        git pull
+		cd ..
+    fi
+done

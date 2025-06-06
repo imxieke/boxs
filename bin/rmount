@@ -1,0 +1,27 @@
+###
+ # @Author: Cloudflying
+ # @Date: 2025-03-14 15:28:02
+ # @LastEditTime: 2025-03-14 15:40:18
+ # @LastEditors: Cloudflying
+ # @Description: Rclone Mount
+###
+
+if [[ -z "$(command -v rclone)" ]]; then
+  echo "rclone Command Not Found"
+  exit 1
+fi
+
+if [[ -z "$(grep "\[$1" ~/.config/rclone/rclone.conf)" ]]; then
+  echo "$1 Not found"
+  exit 1
+else
+  mkdir -p ~/.local/volumes
+fi
+
+rclone mount \
+    $1:/ ~/.local/volumes/$2 \
+    --vfs-read-chunk-size 256M \
+    --vfs-read-chunk-size-limit off \
+    --log-file /tmp/rclone-$1.log \
+    --log-level INFO \
+    --direct-io

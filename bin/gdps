@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Clone Git Repo and save as username-reponame format
+# 输入 https://github.com/XXX/XXX 自动保存为目录 XXX-XXX
+
+repo=$1
+[ -z "$repo" ] && echo "Type repo please" && exit 1
+save_dir=$(echo $repo | awk -F '/' '{print $4"-"$5}' | sed 's/\.git//g')
+git clone --depth 1 $repo $save_dir $2 $3 $4

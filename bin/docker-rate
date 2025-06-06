@@ -1,0 +1,18 @@
+###
+# @Author: Cloudflying
+# @Date: 2024-11-18 16:11:02
+# @LastEditTime: 2024-11-18 16:28:25
+# @LastEditors: Cloudflying
+# @Description: Docker Rate Limit
+###
+
+DOCKER_TOKEN=$(curl -sL "https://auth.docker.io/token?service=registry.docker.io&scope=repository:ratelimitpreview/test:pull" | jq -r .token)
+
+curl -sL --head -H "Authorization: Bearer ${DOCKER_TOKEN}" https://registry-1.docker.io/v2/ratelimitpreview/test/manifests/latest >/tmp/docker-rate-header.txt
+
+TOTLE_LIMIT=$(cat /tmp/docker-rate-header.txt | grep "ratelimit-limit" | awk -F ':' '{print $2}' | awk -F ';' '{print $1}')
+TOTLE_REMAINING=$(cat /tmp/docker-rate-header.txt | grep "ratelimit-limit" | awk -F ':' '{print $2}' | awk -F ';' '{print $1}')
+
+echo "Docker Pull Limit"
+echo "Total Limit: ${TOTLE_LIMIT}"
+echo "Total Remaining: ${TOTLE_REMAINING}"

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# View File Infomation
+
+case "$1" in
+*.gpg)
+  gpg --quiet --batch -d "$@"
+  ;;
+*.html | html5 | htm)
+  bat --style='numbers' -l html "$@"
+  ;;
+*.css)
+  bat --style='numbers' -l css "$@"
+  ;;
+*.json)
+  bat --style='numbers' -l json "$@"
+  ;;
+*.c)
+  bat --style='numbers' -l c "$@"
+  ;;
+*.cpp)
+  bat --style='numbers' -l cpp "$@"
+  ;;
+*.js)
+  bat --style='numbers' -l javascript "$@"
+  ;;
+*)
+  bat --style='numbers' "$@"
+  ;;
+esac

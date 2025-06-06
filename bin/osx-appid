@@ -1,0 +1,4 @@
+#!/bin/sh
+# get macOS App Bundle ID
+
+osascript -e "id of app \"${1}\""

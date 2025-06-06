@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+// 类似 Linux cat 
+
+// print_r($argv);
+// $0 filename $1 file or param $2 param
+if (count($argv) < 3) {
+	$filename = realpath($argv[1]);
+	output($filename);
+}else
+{
+	$filename = realpath($argv[2]);
+	switch ($argv[1]) {
+		case '--dump':
+			dump_out($filename);
+			break;	
+		default:
+			// code...
+			break;
+	}
+}
+
+function dump_out($filename)
+{
+	$file = fopen($filename,"r");
+	while(! feof($file))
+	{
+	    var_dump(trim(fgets($file)));
+	    exit;
+	}
+	fclose($file);
+}
+
+function output($filename)
+{
+	// echo(file_get_contents($filename));
+	$file = fopen($filename,"r");
+	 
+	while(! feof($file))
+	{
+	    echo fgets($file);
+	}
+	fclose($file);
+}

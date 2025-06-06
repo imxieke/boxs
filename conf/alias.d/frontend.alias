@@ -1,0 +1,9 @@
+alias npag="pnpm add -g"
+alias nprg="pnpm rm -g"
+alias npa="pnpm add --save"
+alias npad="pnpm add --save-dev"
+
+alias npm-outdated="npm -g outdated"
+alias npm-upgrade="npm -g update"
+
+alias npmrd="npm run dev"

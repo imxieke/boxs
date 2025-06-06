@@ -1,0 +1,17 @@
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "128GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "registry-mirrors": [
+    "https://22bvsrc3.mirror.aliyuncs.com",
+    "https://hub-mirror.c.163.com",
+    "https://ustc-edu-cn.mirror.aliyuncs.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://mirror.baidubce.com",
+    "https://644d549ea6174314899ee5848acabcab.mirror.swr.myhuaweicloud.com"
+  ]
+}

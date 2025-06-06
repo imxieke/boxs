@@ -1,0 +1,50 @@
+eza_params="eza --all --long --icons --group --git --color-scale --classify --group-directories-first --time-style=long-iso"
+alias lla=${eza_params}
+
+# case-insensitively
+alias llf="${eza_params}  --sort filename"
+# case-sensitively
+alias llfc="${eza_params}  --sort Filename"
+# sort by size
+alias lls="${eza_params}  --sort size"
+alias llm="${eza_params}  --sort modified"
+alias llc="${eza_params}  --sort created"
+
+# 文件树🌲
+alias llt="${eza_params} --tree"
+
+# 忽略 .gitignore 文件
+alias llg="${eza_params} --git-ignore"
+
+# bat Diff
+alias bdiff='bat --diff'
+alias ndiff='nvim --diff'
+
+# Grep
+alias egrep="grep -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
+alias fgrep="grep -F --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
+
+alias cgrep='grep --color=auto'
+alias cfgrep='fgrep --color=auto'
+alias cegrep='egrep --color=auto'
+
+# replace df
+alias ldf="duf"
+
+# quick jump
+alias ~='cd ~'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+
+alias ':q'="exit"
+alias gdu='grc du -h'
+
+alias fsv='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+# rsync
+alias rsync-copy="rsync -avz --progress -h"
+alias rsync-move="rsync -avz --progress -h --remove-source-files"
+alias rsync-update="rsync -avzu --progress -h"
+alias rsync-synchronize="rsync -avzu --delete --progress -h"

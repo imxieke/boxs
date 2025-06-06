@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -f ${HOME}/.local/boxs/java/jd-gui.jar ]]; then
+	java -jar ${HOME}/.local/boxs/java/jd-gui.jar
+else
+	echo "jd-gui not found" 
+fi

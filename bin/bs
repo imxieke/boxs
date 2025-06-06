@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ "$(uname -s)" == 'Darwin' ]]; then
+	find /usr/local/Homebrew/Library/Taps -name '*.rb' | sed 's#/usr/local/Homebrew/Library/Taps/##g' | awk -F '/' '{print $NF}' | sed 's#.rb##g' | fzf
+fi

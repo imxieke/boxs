@@ -1,0 +1,1 @@
+alias ping='ping -c 6'

@@ -1,0 +1,167 @@
+# -*- mode: gitconfig; indent-tabs-mode: t; -*- vim: set ft=gitconfig nolist noet:
+
+[alias]
+  amend = commit --amend --no-edit
+  bl = blame
+  br = branch
+  ci = commit
+  cl = clone
+  co = checkout
+  cobm = checkout-branch-match
+  cp = cherry-pick
+
+  # History in one line per commit. Now in Technicolor!
+  # Abbrv hash, author name (16 chars), commit message (wrapped at 72 chars)
+  ol = "!git log $1 --format='%C(auto)%h %<(16,trunc)%an %w(72,0,25)%s'"
+
+  pff = pull --ff-only --no-stat
+  pr = pull --rebase
+  rbc = rebase --continue
+  rbi = rebase --interactive
+  root = rev-parse --show-toplevel
+  sh = show
+  st = status
+
+[init]
+  defaultBranch = master
+
+[user]
+  name = imxieke
+  email = oss@live.hk
+  useConfigOnly = true
+  signingkey = 01BD08D7AAD7CCB3
+
+[author]
+  name = imxieke
+  email = oss@live.hk
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[pull]
+  rebase = false
+  ff = only
+
+[push]
+  default = upstream
+
+[core]
+  editor = nvim
+  pager = delta
+  # File Permission Modify
+  fileMode = true
+  # 避免中文被转义
+  quotepath = false
+  ignorecase = false
+  bare = false
+  excludesfile = ~/.boxs/conf/.gitignore
+  longpaths = true
+  autocrlf = input
+  trustctime = false
+  attributesfile = ~/.boxs/conf/.gitattributes
+  untrackedcache = true
+
+[color]
+  ui = auto
+  status = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+
+[color "diff"]
+  meta = magenta bold
+  new = green
+  old = red italic
+  frag = magenta
+  commit = yellow
+  old = red
+  whitespace = red
+
+[color "status"]
+  added = green
+  changed = red
+  untracked = magenta
+
+[color "branch"]
+  remote = yellow
+
+[rebase]
+  autostash = true
+  backend = merge
+
+[help]
+  autocorrect = 1
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  # delta detects terminal colors automatically; set one of these to disable auto-detection
+  light = true
+  syntax-theme = "gruvbox-light"
+  # dark = true
+  hyperlinks = true
+  hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+  # or: hyperlinks-file-link-format = "idea://open?file={path}&line={line}"
+  # or: hyperlinks-file-link-format = "pycharm://open?file={path}&line={line}"
+  features = decorations
+  side-by-side = true
+  minus-style = red bold ul "#ffeeee"
+  line-numbers = true
+  line-numbers-minus-style = "red"
+  line-numbers-plus-style = "green"
+  line-numbers-zero-style = "brightyellow"
+  line-numbers-left-format = ""
+  line-numbers-right-format = "│ "
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file line-number syntax
+
+[diff]
+  tool = nvim
+  colorMoved = default
+
+[diff "text"]
+  textconv = cat
+
+[lfs]
+  concurrenttransfers = 32
+  fetchrecentrefsdays = 0
+  pruneoffsetdays = 0
+  dialtimeout = 3
+  tlstimeout = 3
+
+[lfs "transfer"]
+  maxretries = 1
+  maxretrydelay = 2
+
+[protocol]
+  version = 1
+
+[safe]
+  directory = *
+
+[credential]
+  helper = store
+
+[merge]
+  conflictstyle = diff3
+
+[mergetool]
+  keepBackup = false
+
+[merge "lfs-text"]
+  driver = git lfs merge-driver --ancestor %O --current %A --other %B --marker-size %L --output %A --program 'git merge-file --stdout --marker-size=%%L %%A %%O %%B >%%D'

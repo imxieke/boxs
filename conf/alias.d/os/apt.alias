@@ -1,0 +1,10 @@
+alias pma="sudo apt install"
+alias pmrs="sudo apt purge"
+alias pmu="sudo apt update"
+alias pmuu="sudo apt upgrade"
+alias pmi="apt show"
+alias pmd="sudo apt download"
+alias pmo="apt list --upgradable"
+alias pmc="sudo apt clean"
+# check depends
+alias pkg-check="sudo apt-get check"

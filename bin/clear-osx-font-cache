@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+###
+ # @Author: Cloudflying
+ # @Date: 2021-12-03 18:26:06
+ # @LastEditTime: 2022-07-17 18:00:17
+ # @LastEditors: Cloudflying
+ # @Description:
+###
+
+#
+# Orignal source:
+#   https://github.com/herrbischoff/awesome-osx-command-line/blob/master/functions.md#app-icons
+
+if [[ "$(uname -s)" != 'Darwin' ]]; then
+  echo 'Sorry, this script only works on macOS'
+  exit 1
+fi
+
+atsutil databases -removeUser
+atsutil server -shutdown
+atsutil server -ping

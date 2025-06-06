@@ -1,0 +1,1 @@
+alias arch="docker run -it --name=arch --hostname=arch --privileged -v ${HOME}:/home/${USER} registry.cn-shanghai.aliyuncs.com/dockenv/boxs:latest"

@@ -1,0 +1,2 @@
+alias pnpm-outdated="pnpm -g outdated"
+alias pnpm-upgrade="pnpm -g update"

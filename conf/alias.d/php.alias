@@ -1,0 +1,36 @@
+[ -f "${HOME}/.bin/php56" ] && alias php56="${HOME}/.bin/php56"
+[ -f "${HOME}/.bin/php70" ] && alias php70="${HOME}/.bin/php70"
+[ -f "${HOME}/.bin/php71" ] && alias php71="${HOME}/.bin/php71"
+[ -f "${HOME}/.bin/php72" ] && alias php72="${HOME}/.bin/php72"
+[ -f "${HOME}/.bin/php73" ] && alias php73="${HOME}/.bin/php73"
+[ -f "${HOME}/.bin/php74" ] && alias php74="${HOME}/.bin/php74"
+[ -f "${HOME}/.bin/php80" ] && alias php80="${HOME}/.bin/php80"
+[ -f "${HOME}/.bin/php81" ] && alias php81="${HOME}/.bin/php81"
+[ -f "${HOME}/.bin/php82" ] && alias php82="${HOME}/.bin/php82"
+[ -f "${HOME}/.bin/php83" ] && alias php83="${HOME}/.bin/php83"
+[ -f "${HOME}/.bin/php84" ] && alias php84="${HOME}/.bin/php84"
+
+# add `d` debug -vvv
+alias cmpa="composer require --optimize-autoloader"
+alias cmpad="composer require --dev --optimize-autoloader"
+alias cmpaa="composer install"
+alias cmpr="composer remove"
+alias cmpd="composer depends --recursive --tree"
+alias cmpu="composer update --optimize-autoloader"
+alias cmpi="composer show -a"
+alias cmpo="composer outdated"
+alias cmp-open="composer browser"
+alias cmps="composer search"
+alias cmpuu="composer upgrade"
+
+# Create PHP Project
+alias create-laralvel-project="composer create-project laravel/laravel"
+alias create-thinkphp-project="composer create-project topthink/think"
+alias create-symfony-project="composer create-project symfony/skeleton"
+
+alias phpstan-analyse="php -d memory_limit=1G phpstan analyze -l 7 --autoload-file=./vendor/autoload.php"
+alias phpcs-stand="phpcs --standard=PSR12"
+
+alias think="php think"
+alias artisan="php artisan"
+alias larasrv="php artisan serve"

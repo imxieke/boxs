@@ -1,0 +1,19 @@
+[Unit]
+Description=Example Service
+After=network.target
+Requires=xorg.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.config/fah
+ExecStart=/usr/bin/FAHClient
+ExecStop=/usr/bin/tmux kill-server
+Environment=DISPLAY=:0
+EnvironmentFile=/tmp/gpg-agent-info
+CPUSchedulingPolicy=idle
+IOSchedulingClass=3
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

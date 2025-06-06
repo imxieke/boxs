@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+LISTS=$(ollama list | grep -v '^NAME' | awk -F " " '{print $1}')
+
+for image in ${LISTS[@]}; do
+  if [[ -n "${image}" ]]; then
+    echo "==> Pulling ${image}"
+    ollama pull ${image}
+  fi
+done
