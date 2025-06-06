@@ -20,6 +20,10 @@ alias llg="${eza_params} --git-ignore"
 alias bdiff='bat --diff'
 alias ndiff='nvim --diff'
 
+# Grep
+alias egrep="grep -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
+alias fgrep="grep -F --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
+
 alias cgrep='grep --color=auto'
 alias cfgrep='fgrep --color=auto'
 alias cegrep='egrep --color=auto'

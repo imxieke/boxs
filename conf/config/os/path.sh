@@ -71,6 +71,11 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
   # "/usr/local/opt/coreutils/bin"
   # "/usr/local/opt/coreutils/libexec/gnubin" 有 env 可执行文件 影响系统
 
+  if [[ -d "/usr/local/opt/grep/libexec/gnubin" ]]; then
+    export PATH="/usr/local/opt/grep/libexec/gnubin:${PATH}"
+    export MANPATH="/usr/local/opt/grep/libexec/gnuman:${MANPATH}"
+  fi
+
   # 加载自定义版本 PHP
   if [[ -d "/usr/local/opt/php@${PHP_VERSION}/bin" ]]; then
     echo "[+] Set PHP To ${PHP_VERSION}"

@@ -75,23 +75,16 @@ alias surl='curl -sL'
 alias dl="wget -c --no-check-certificate"
 alias swget='wget -c --content-disposition --no-check-certificate --user-agent="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0"'
 alias site-mirror="wget -H 'user-agent: Mozilla' -H 'Referer: https://www.google.com/search?q=coin' -U 'Mozilla' --recursive --page-requisites --no-parent --convert-links --tries=3 --continue --timeout=3 --no-check-certificate"
-
-alias unproxy='unset http_proxy;unset https_proxy;unset all_proxy;unset rsync_proxy;unset ftp_proxy;unset;unset no_proxy;'
-
 alias flushdns="dscacheutil -flushcache"
 
 # open application
 alias st='open -a "Sublime Text"'
 alias font="open -a 'Font Book'"
 
-if [[ -f ~/.acme.sh/acme.sh ]]; then
-  alias acme="~/.acme.sh/acme.sh"
+if [[ -f "${HOME}/.acme.sh/acme.sh" ]]; then
+  alias acme="${HOME}/.acme.sh/acme.sh"
   export LE_WORKING_DIR="${HOME}/.acme.sh"
 fi
-
-# Grep
-alias egrep="grep -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
-alias fgrep="grep -F --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
 
 # Secure Alias
 alias hexpass='openssl rand -hex 24'
