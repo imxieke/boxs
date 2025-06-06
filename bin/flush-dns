@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# I always forget this crap.
+#
+
+if [ "$(uname -s)" = ^darwin ]; then
+  sudo killall -HUP mDNSResponder
+  sudo killall mDNSResponderHelper
+  sudo dscacheutil -flushcache
+else
+  echo "Not implemented on $(uname -s) yet." >&2
+fi

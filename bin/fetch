@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# 从远程获取文件
+
+if [[ -n "${2}" ]]; then
+  _WGET_OUTPUT="-O $2"
+  _AXEL_OUTPUT="-o $2"
+fi
+
+if [[ -n "$(command -v axel)" ]]; then
+  axel -k -v -a -n 4 $1 $_AXEL_OUTPUT
+elif [[ -n "$(command -v wget)" ]]; then
+  wget -c --no-check-certificate $1 $_WGET_OUTPUT
+fi

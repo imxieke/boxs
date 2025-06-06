@@ -1,0 +1,1 @@
+alias lima-create-archlinux="limactl create --name=default --arch=x86_64 --cpus=2 --memory=4 --disk=64 --mount-writable --mount-type=9p --vm-type=qemu template://archlinux"

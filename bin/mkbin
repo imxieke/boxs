@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+###
+# @Author: Cloudflying
+# @Date: 2021-12-04 13:42:05
+# @LastEditTime: 2024-09-03 20:43:13
+# @LastEditors: Cloudflying
+# @Description: Create Binary Command
+###
+
+# format cmd language name
+
+SAVETO=${BOXS_HOME}/bin/
+
+cd ${SAVETO} || exit 1
+
+_BIN_TYPE=$1
+_BIN_NAME=$2
+
+[ -z $_BIN_NAME ] && echo 'type the script name please' && exit
+[ -f $_BIN_NAME ] && echo 'script exist rename it please' && exit
+
+if [[ -d "${SAVETO}" ]]; then
+  if [[ -n $_BIN_TYPE ]]; then
+    case "$_BIN_TYPE" in
+    bash)
+      echo "#!/usr/bin/env bash" >$_BIN_NAME
+      ;;
+    sh)
+      echo "#!/usr/bin/env sh" >$_BIN_NAME
+      ;;
+    zsh)
+      echo "#!/usr/bin/env zsh" >$_BIN_NAME
+      ;;
+    fish)
+      echo "#!/usr/bin/env fish" >$_BIN_NAME
+      ;;
+    perl)
+      echo "#!/usr/bin/env perl" >$_BIN_NAME
+      ;;
+    php)
+      echo -E "#!/usr/bin/env php
+<?php" >$_BIN_NAME
+      ;;
+    py)
+      echo "#!/usr/bin/env python
+# -*- coding: utf-8 -*-" >$_BIN_NAME
+      ;;
+    *)
+      echo default
+      ;;
+    esac
+
+    # fix permission
+    chmod +x $_BIN_NAME
+    echo "Script ${_BIN_NAME} create success in ${SAVETO}${_BIN_NAME}"
+    sle ${_BIN_NAME}
+  else
+    echo 'type script type(language) please'
+  fi
+fi

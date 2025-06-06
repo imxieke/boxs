@@ -1,0 +1,3 @@
+alias godocs='cd /mnt/d/Code/Docs/docs'
+alias godi="cd ~/Code/Project/dockenv-images"
+alias goykt="cd ~/Code/Project/ykt-php"

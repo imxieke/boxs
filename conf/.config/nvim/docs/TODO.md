@@ -1,0 +1,16 @@
+## TODO
+- 禁用 Coc 的自动补全 通过 cmp 提供补全 lsp snippets 功能
+- 选择文本 进行操作 如 上下移动 类似 VSCode
+- 顶部菜单集成类似 VSCode 的功能
+  - Git
+  - Github
+- 自定义关键字高亮 如 LastEditors
+- 判断 项目的语言及类型  如 thinkphp laravel 等 
+- 检测是否存在 phpunit psalm 等
+- 根据不同语言不同项目加载不同的 snippets
+  - php 加载 php snippets 但是不加载 laravel 等框架及其他语言 但是 laravel 加载 php 的 snippets
+- toggleterm
+- 不工作
+- https://github.com/glepnir/lspsaga.nvim
+- https://github.com/simrat39/symbols-outline.nvim
+- https://github.com/jose-elias-alvarez/null-ls.nvim

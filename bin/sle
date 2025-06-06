@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Sublime editor
+# 对于变量有空格的会打开错误 使用 "" 修复
+# 如 sle ~/Downloads/App\ Code
+
+if [[ -f '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' ]]; then
+	"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" "$@"
+elif [[ -n "$(command -v subl)" ]]; then
+	subl "$@"
+else
+	echo 'Sublime Text Not Found'
+	exit 1
+fi

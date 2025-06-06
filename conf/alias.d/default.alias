@@ -1,0 +1,175 @@
+###
+# @Author: Cloudflying
+# @Date: 2021-12-28 20:01:25
+# @LastEditTime: 2024-12-30 14:35:54
+# @LastEditors: Cloudflying
+# @Description:
+###
+
+alias h='htop'
+alias lpath='echo $PATH | tr ":" "\n"'
+
+# Project Directory
+alias goc="cd ${HOME}/Code"
+alias gop="cd ${HOME}/Code/Project"
+alias god="cd ${HOME}/Code/Project/dockenv"
+alias gob="cd ${BOXS_HOME}"
+alias gon="cd ${HOME}/.config/nvim"
+alias goz="cd ${HOME}/Code/Project/Zeus"
+
+# Memory && CPU Usage
+# alias mem-top="ps -eo pcpu,pmem,pid,user,args | sort -k 3nr | head -10"
+# alias mem-top="ps aux | head -1; ps aux | sort -rnk 4 | head -n 20"
+# alias cpu-top="ps aux | head -1; ps aux | sort -rnk 3 | head -n 20"
+
+alias mem-top="ps -eo pcpu,pmem,pid,user,args | sort -k 2nr | head -n 20"
+alias cpu-top="ps -eo pcpu,pmem,pid,user,args | sort -k 1nr | head -n 20"
+
+# VM
+alias ssh-arch='ssh imxieke@192.168.2.233'
+alias ssh-uos='ssh imxieke@192.168.2.198'
+alias clash-log='tail -f "`ls ~/Library/Logs/ClashX/com.west2online.ClashX* | grep $(date "+%Y-%m-%d")`"'
+alias pip-upgrade-all='pip install --upgrade $(pip list --outdated --format=freeze | cut -d = -f 1)'
+alias npm-upgrade-all='npm update -g'
+
+## Edit Config
+alias visle="sle ~/Library/Application\ Support/Sublime\ Text/"
+alias vivsc="sle ~/Library/Application\ Support/Code/"
+
+if [[ -n "$(command -v batcat)" ]]; then
+  alias bat='batcat'
+fi
+
+# GNU Command
+[ -n "$(command -v gsed)" ] && alias sed='gsed'
+
+alias history-top="history | awk -F ' ' '{print $2}' | sort | uniq -c | sort -n -r  | head -n 10"
+alias ezsh="nvim ~/.zshrc"
+
+# Supercharge Custom Alias
+# Path List
+alias pls='echo ${PATH} | tr ':' "\n" | sort'
+alias dfh='df -h'
+
+alias timestamp="date +%s"
+alias now='date "+%Y-%m-%d %H:%I:%S"'
+alias pdl="proxychains4 wget"
+alias genpass="openssl rand -hex "
+alias myip="curl -sL http://myip.ipip.net"
+# alias myrawip="curl -sL https://ip.sb"
+alias vidotfile='subl ~/.config/dotfile'
+alias viclash='sle ~/.config/clash'
+alias visubl='sle ~/Library/Application\ Support/Sublime\ Text'
+alias aria2web='open http://127.0.0.1:6801'
+
+alias jobl='jobs -l'
+
+alias tailf='tail -f'
+alias myip="wget -qO- https://wtfismyip.com/text"
+alias enjoke='curl https://icanhazdadjoke.com'
+
+# Downloader
+alias get='aria2c -c -x 4'
+alias sdl='axel -n 16 -c -k -a -U "Mozilla/5.0"'
+alias surl='curl -sL'
+alias dl="wget -c --no-check-certificate"
+alias swget='wget -c --content-disposition --no-check-certificate --user-agent="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0"'
+alias site-mirror="wget -H 'user-agent: Mozilla' -H 'Referer: https://www.google.com/search?q=coin' -U 'Mozilla' --recursive --page-requisites --no-parent --convert-links --tries=3 --continue --timeout=3 --no-check-certificate"
+alias flushdns="dscacheutil -flushcache"
+
+# open application
+alias st='open -a "Sublime Text"'
+alias font="open -a 'Font Book'"
+
+if [[ -f "${HOME}/.acme.sh/acme.sh" ]]; then
+  alias acme="${HOME}/.acme.sh/acme.sh"
+  export LE_WORKING_DIR="${HOME}/.acme.sh"
+fi
+
+# Secure Alias
+alias hexpass='openssl rand -hex 24'
+
+# Set Proxy Alias
+if [[ -n $(command -v proxychains4) ]]; then
+  alias ap='proxychains4'
+  alias proxychains='proxychains4'
+elif [[ -n $(command -v proxychains) ]]; then
+  alias ap='proxychains'
+elif [[ -n $(command -v proxychains-ng) ]]; then
+  alias ap='proxychains-ng'
+  alias proxychains='proxychains-ng'
+fi
+
+# 区分操作系统
+if [[ ${OSTYPE} == 'Darwin' ]]; then
+  alias sdu='/usr/bin/du -h -d 1 -I ~/Library -I /Applications -I /dev -I node_modules'
+  # VSCode
+  if [[ -f "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ]]; then
+    alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+    alias code-tunnel="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code-tunnel"
+  fi
+
+  # macOS 默认的 openssh 版本很老
+  alias ssh="/usr/local/bin/ssh -o ServerAliveInterval=60"
+  alias wifi-info='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I'
+
+  # Atom short command cli
+  if [[ -f '/Applications/Atom.app/Contents/Resources/app/atom.sh' ]]; then
+    alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
+    alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
+    alias anode="/Applications/Atom.app/Contents/Resources/app/apm/bin/node"
+    alias anpm="/Applications/Atom.app/Contents/Resources/app/apm/bin/npm"
+  fi
+
+  # HBuildX short command cli
+  if [[ -f '/Applications/HBuilderX.app/Contents/MacOS/cli' ]]; then
+    alias hbx="/Applications/HBuilderX.app/Contents/MacOS/cli"
+  fi
+
+  # alias cwine is crossover version wine
+  if [[ -f '/Applications/CrossOver.app/Contents/SharedSupport/CrossOver/bin/wine' ]]; then
+    alias cwine='/Applications/CrossOver.app/Contents/SharedSupport/CrossOver/bin/wine'
+  fi
+
+  # Recursively delete `.DS_Store` files
+  alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+
+  # VirtualBox
+  if [ -f "/Applications/VirtualBox.app/Contents/MacOS/VBoxManage" ]; then
+    alias vmbox='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
+  fi
+
+  # Google Chrome linux is set by default
+  if [ -f "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]; then
+    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+  fi
+
+  alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+  alias sdiff='diff -ri'
+
+  # “XXXXX” is damaged and can’t be opened. You should move it to the Trash
+  alias fix-damaged="sudo xattr -d com.apple.quarantine"
+
+else
+  alias ssh="ssh -o ServerAliveInterval=60"
+  alias sdu='du -h -d 1 --exclude="/proc" --exclude="/dev" --exclude="node_modules" --exclude="vendor"'
+  if [[ -f "/usr/share/code/bin/code" ]]; then
+    alias code="/usr/share/code/bin/code"
+    alias code-tunnel="/usr/share/code/bin/code-tunnel"
+    alias vsc="/usr/share/code/bin/code"
+    alias vsc-tunnel="/usr/share/code/bin/code-tunnel"
+  fi
+fi
+
+[ -f /Applications/kate.app/Contents/MacOS/kate ] && alias kate="/Applications/kate.app/Contents/MacOS/kate"
+
+# VSCode
+alias vsc="code"
+alias vsc-tunnel="code-tunnel"
+
+# man page
+alias bathelp='bat --plain --language=help'
+help()
+{
+  "$@" --help 2>&1 | bathelp
+}

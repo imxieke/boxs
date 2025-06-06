@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [[ -n "$(command -v limactl)" ]]; then
+	if [[ -n "$LIMA_INSTANCE" ]]; then
+		limactl shell $LIMA_INSTANCE
+	else
+		limactl shell default
+	fi
+elif [[ -n "$(command -v multipass)" ]]; then
+	multipass shell ubuntu
+fi

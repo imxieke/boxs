@@ -1,0 +1,36 @@
+# Git
+alias ga='git add'
+alias gaa='git add --all'
+alias gdp="git clone --depth=1"
+alias git-ignore-files='git check-ignore -v'
+# alias git-pull-all-dirs="for i in $(ls); do { if [ -d ${i}/.git ]; then git -C $i pull; } fi ;done"
+alias delta-config="delta --diff-so-fancy --show-config"
+alias glogls="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+
+# Diff
+alias gdiff='git diff --name-only --relative --diff-filter=d | xargs bat --diff'
+
+# GPG Sign Commit
+alias gsc="git commit -S -m"
+
+# GPG Sign All Commits
+alias gsac="git commit --all --gpg-sign -m"
+
+# Git log all
+alias glogla='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
+# Git log stat
+alias glogst='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
+
+# Git Log Sort By Date
+alias glogds='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
+
+# LFS
+alias glfsi='git lfs install'
+alias glfst='git lfs track'
+alias glfsls='git lfs ls-files'
+alias glfsmi='git lfs migrate import --include='
+
+# Remote
+
+alias gitrv="git remote -v"
+alias git-add-orgin="git remote set-url --add origin"

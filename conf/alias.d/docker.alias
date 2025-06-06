@@ -1,0 +1,110 @@
+###
+# @Author: Cloudflying
+# @Date: 2022-07-01 01:00:37
+ # @LastEditTime: 2025-03-20 22:42:34
+ # @LastEditors: Cloudflying
+# @Description:
+###
+
+ORB_PATH="/Applications/OrbStack.app/Contents/MacOS/xbin/"
+
+if [ -z "$(command -v docker)" ] && [ -f "${ORB_PATH}docker" ]; then
+  alias docker="${ORB_PATH}docker"
+fi
+
+if [ -z "$(command -v docker-buildx)" ] && [ -f "${ORB_PATH}docker-buildx" ]; then
+  alias docker-buildx="${ORB_PATH}docker-buildx"
+fi
+
+if [ -z "$(command -v docker-compose)" ] && [ -f "${ORB_PATH}docker-compose" ]; then
+  alias docker-compose="${ORB_PATH}docker-compose"
+  alias compose="${ORB_PATH}docker-compose"
+fi
+
+if [ -z "$(command -v kubectl)" ] && [ -f "${ORB_PATH}kubectl" ]; then
+  alias kubectl="${ORB_PATH}kubectl"
+fi
+
+# Docker alias and function
+alias dri='docker rmi'
+alias drc='docker rm'
+
+# Docker remove Container after run
+alias drr='docker run -it --rm'
+
+# Docker sudo run
+alias drrs='docker run -it --rm --privileged'
+alias dim='docker images'
+
+# Get latest container ID
+alias dpsl="docker ps -l -q"
+
+# Get container process
+alias dps="docker ps"
+
+# docker logs
+alias dlog='docker logs'
+
+# Get process included stop container
+alias dpsa="docker ps -a"
+
+# Get images
+alias di="docker images --digests | grep -v '^REPOSITORY' | sort"
+
+# remove docker images
+alias dri='docker rmi'
+
+# docker build
+alias dbu="docker build . --build-arg \"HTTP_PROXY=${PROXY_ADDR}\" --build-arg \"HTTPS_PROXY=${PROXY_ADDR}\" --build-arg \"NO_PROXY=localhost,127.0.0.1,.example.com\" -t"
+
+alias drp="docker run -it --rm -e http_proxy=${PROXY_ADDR} -e https_proxy=${PROXY_ADDR} -e all_proxy=${PROXY_ADDR} -e HTTP_PROXY=${PROXY_ADDR} -e HTTPS_PROXY=${PROXY_ADDR} -e ALL_PROXY=${PROXY_ADDR}"
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+alias dit='docker images --format "{{.Repository}}:{{.Tag}}"'
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container
+alias drun="docker exec -it"
+alias dep="docker exec -it -e http_proxy=${PROXY_ADDR} -e https_proxy=${PROXY_ADDR} -e all_proxy=${PROXY_ADDR} -e HTTP_PROXY=${PROXY_ADDR} -e HTTPS_PROXY=${PROXY_ADDR} -e ALL_PROXY=${PROXY_ADDR}"
+
+# docker volume
+alias dvls='docker volume ls $*'
+alias dvrm_all='docker volume rm $(docker volume ls -q)'
+
+alias dip='docker inspect --format "{{ .NetworkSettings.IPAddress }}" $*'
+
+# Stop all containers
+docker-stop-all()
+{
+  docker stop $(docker ps -a -q)
+}
+
+# Remove all containers
+# drm() { docker rm $(docker ps -a -q); }
+
+# Stop and Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+# Remove all images
+docker-rm-all-images()
+{
+  docker rmi $(docker images -q)
+}
+
+# Show all alias related docker
+docker-alias()
+{
+  alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/" | sed "s/['|\']//g" | sort
+}
+
+# Bash into running container
+dbash()
+{
+  docker exec -it $(docker ps -aqf "name=$1") bash
+}

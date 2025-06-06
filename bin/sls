@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Size sort ls
+
+ls -lha "$@" | grep -v '^total ' | grep -v '\.$' | awk -F ' ' '{print $5" "$9}' | sort --human-numeric-sort

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+if [[ "$(uname -s)" == 'Darwin' ]]; then
+	mv -f "$@" ~/.Trash/
+elif [[ "$(uname -s)" == 'Linux' ]]; then
+	mv -f "$@" ~/.local/share/Trash/files/
+fi

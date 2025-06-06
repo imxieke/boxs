@@ -1,0 +1,11 @@
+[Unit]
+Description=Fcitx5
+
+[Service]
+ExecStart=fcitx5 -D --replace --verbose '*'=0
+Restart=always
+Environment="HOME=/home/imxieke"
+Environment="XDG_RUNTIME_DIR=/run/user/1001"
+
+[Install]
+WantedBy=default.target

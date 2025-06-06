@@ -1,0 +1,101 @@
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# PHP
+vendor
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Word Auto Backup File
+Backup of *.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsd*
+
+# javascript
+node_modules
+jspm_packages/
+bower_components
+coverage
+
+# dist
+.grunt
+.tmp
+app/bower_components
+.tern-project
+.lock-wscript
+build/Release
+.yarn-integrity
+
+# Compressed files
+*.tgz
+*.zip
+*.tar.gz
+*.xz
+*.bz2
+*.gz
+
+# ruby
+# *.ruby-version
+.bundle
+
+# vim swap files
+*.swp
+*.swo
+swoopBuf
+.tern-port
+*.orig
+
+# vim sessions and log files
+*.session
+logfile.log
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Editor
+/.vscode
+/.idea
+/.qodo

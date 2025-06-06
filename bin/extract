@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# usage:
+#   extract path
+#
+# description:
+#   extract unzips files
+#
+######################################################################
+
+cmdname="$(basename "${BASH_SOURCE[0]}")"
+target="$1"
+target_abspath="$(realpath "$target")"
+name="$(basename "$target")"
+
+if [ -z "${target}" ]; then
+  echo "too few argument" 1>&2
+  exit 1
+fi
+
+if [ -f "$1" ]; then
+  echo "$1: invalid file" 1>&2
+  exit 1
+fi
+
+if [[ "$(file --brief --mime-type "$target" || :)" == "text"* ]]; then
+  echo "$cmdname: $target is a text file" >/dev/stderr
+  exit 1
+fi
+
+# ~/.oh-my-zsh/plugins/extract
+# TODO lzh safariextz crx lzma jar war ear rpm
+# TODO extract to special directory
+# safariextz xar ${verbose} ${test:--x} -f "$1"
+# gz gzip -d "$name"
+# bz2 bzip2 -dc
+case "$1" in
+  *.7z) 7z x "$1" ;;
+  *.arj) unarj "$1" ;;
+  *.deb) ar x "$1" ;;
+  *.tar.bz2) tar xvjf "$1" ;;
+  *.tar.gz) tar xvzf "$1" ;;
+  *.tar.xz) tar xvJf "$1" ;;
+  *.tar.zst) tar xf "$1" ;;
+  *.tar.lzma) tar xvf --lzma "$1" ;;
+  *.gz) gunzip "$1" ;;
+  *.bz2) bunzip2 -d "$1" ;;
+  *.tbz2) tar xvjf "$1" ;;
+  *.tgz | *.txz) tar xvzf "$1" ;;
+  *.tar) tar xvf "$1" ;;
+  *.rar) unrar x "$1" ;;
+  *.xz) xz -d "$1" ;;
+  *.zip) unzip "$1" ;;
+  *.Z) uncompress "$1" ;;
+  *)
+    echo "$1: oops, cannot be extracted" 1>&2
+    exit 1
+    ;;
+esac

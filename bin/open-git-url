@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+GIT_PATH=$1
+
+if [[ -z "${GIT_PATH}" ]]; then
+	if [[ -f .git/config ]]; then
+		open $(grep "url = " .git/config | awk -F '= ' '{print $2}' | sed "s#git@#https://#g" | sed "s#com:#com/#g" | sed "s#\.git##g")
+	fi
+else
+	open $(grep "url = " ${GIT_PATH}/.git/config | awk -F '= ' '{print $2}' | sed "s#git@#https://#g" | sed "s#com:#com/#g" | sed "s#\.git##g")
+fi

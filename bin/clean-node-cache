@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [[ -n "$(which yarn)" ]]; then
+  echo "==> Clean Yarn Cache"
+  yarn cache clean
+fi
+
+if [[ -n "$(which npm)" ]]; then
+  echo "==> Clean Npm Cache"
+  npm cache clean --force
+fi

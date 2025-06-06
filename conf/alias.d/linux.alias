@@ -1,0 +1,8 @@
+if [[ -n $(command -v xdg-open) ]]; then
+  alias open="xdg-open"
+fi
+
+alias userlist="cut -d: -f1 /etc/passwd"
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias update-font='sudo fc-cache -fv'
+alias mem-get="free --mega | sed -n -E '2s/^[^0-9]*([0-9]+) *([0-9]+).*/'"${space}"'\2 \/ \1 MB/p'"

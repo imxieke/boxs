@@ -1,0 +1,716 @@
+#!/usr/bin/env bash
+###
+# @Author: Cloudflying
+# @Date: 2024-3-18 18:06:18
+# @LastEditTime: 2025-04-10 11:30:12
+# @LastEditors: Cloudflying
+# @Description: Boxs Manager Script
+###
+
+# 当缺省会使用下面用户密码
+DEFAULT_USER="imxieke"
+DEFAULT_PASSWD=$(openssl rand -hex 4)
+
+BOXS_PREFIX=${BOXS_PREFIX:-boxs}
+
+BOXS_HOME=$(dirname "$(dirname "$(realpath "$0")")")
+
+if [[ -f "${HOME}/.env" ]]; then
+  . "${HOME}/.env"
+fi
+
+[ -f '/etc/os-release' ] && . /etc/os-release
+
+_red()
+{
+  printf '\033[1;31;31m%b\033[0m' "$1"
+}
+
+_green()
+{
+  printf '\033[1;31;32m%b\033[0m' "$1"
+}
+
+_yellow()
+{
+  printf '\033[1;31;33m%b\033[0m' "$1"
+}
+
+_info()
+{
+  _green "[Info] "
+  printf -- "%s" "$1"
+  printf "\n"
+}
+
+_warn()
+{
+  _yellow "[Warning] "
+  printf -- "%s" "$1"
+  printf "\n"
+}
+
+_error()
+{
+  _red "[Error] "
+  printf -- "%s" "$1"
+  printf "\n"
+  exit 1
+}
+
+__rootness()
+{
+  if [[ "$(id -u)" -ne 0 ]]; then
+    echo "==> Current User No Permission"
+    exit 1
+  fi
+}
+
+_cmd_exist()
+{
+  if [[ -z "$(command -v "$1")" ]]; then
+    _warn "command $1 not found"
+    exit 1
+  fi
+}
+
+_sudo()
+{
+  sudo "$@"
+}
+
+__user()
+{
+  sudo -Hu "${USERNAME}" "$@"
+}
+
+# 解析参数与默认参数
+_parse_params()
+{
+  for PARAM in "$@"; do
+    case "${PARAM}" in
+      --user* | -u*)
+        USERNAME=$(echo "${PARAM}" | cut -d '=' -f 2)
+        ;;
+      --password* | -p*)
+        PASSWORD=$(echo "${PARAM}" | cut -d '=' -f 2)
+        ;;
+      *)
+        [ -z "${USERNAME}" ] && USERNAME=${DEFAULT_USER}
+        [ -z "${PASSWORD}" ] && PASSWORD=${DEFAULT_PASSWD}
+        ;;
+    esac
+  done
+
+  USER_HOME="/home/${USERNAME}"
+}
+
+_parse_params "$@"
+
+__osname()
+{
+  case "${ID}" in
+    ubuntu)
+      echo "ubuntu"
+      ;;
+    debian)
+      echo "debian"
+      ;;
+    kali)
+      echo "kali"
+      ;;
+    arch)
+      echo "arch"
+      ;;
+    manjaro)
+      echo "manjaro"
+      ;;
+    clear-linux-os)
+      echo "clear"
+      ;;
+    alpine)
+      echo "alpine"
+      ;;
+    fedora)
+      echo "fedora"
+      ;;
+    opensuse-tumbleweed)
+      echo "tumbleweed"
+      ;;
+    ol)
+      echo "oracle"
+      ;;
+    rocky)
+      echo "rocky"
+      ;;
+    rhel)
+      echo "rhel"
+      ;;
+    alinux)
+      echo "alinux"
+      ;;
+    almalinux)
+      echo "alma"
+      ;;
+    centos)
+      echo "centos"
+      ;;
+    *)
+      echo "Unknow OS"
+      ;;
+  esac
+}
+
+__cmd_yes_no()
+{
+  if [[ -n "$(command -v "$1")" ]]; then
+    echo "✓"
+  else
+    echo "x"
+  fi
+}
+
+__osenv()
+{
+  [ "$(__cmd_yes_no php)" == '✓' ] && echo "PHP: $(php --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php74)" == '✓' ] && echo "PHP74: $(php74 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php80)" == '✓' ] && echo "PHP80: $(php80 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php81)" == '✓' ] && echo "PHP81: $(php81 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php82)" == '✓' ] && echo "PHP82: $(php82 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php83)" == '✓' ] && echo "PHP83: $(php83 --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no php84)" == '✓' ] && echo "PHP84: $(php84 --version | head -n 1 | awk -F ' ' '{print $2}')" || echo "PHP84: x"
+  [ "$(__cmd_yes_no composer)" == '✓' ] && echo "Composer: $(composer --version 2>&1 | head -n 1 | awk -F ' ' '{print $3}')"
+  [ "$(__cmd_yes_no ruby)" == '✓' ] && echo "Ruby: $(ruby --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no gem)" == '✓' ] && echo "Gem: $(gem --version)"
+  [ "$(__cmd_yes_no python)" == '✓' ] && echo "Python: $(python --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no pip)" == '✓' ] && echo "Pip: $(pip --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no node)" == '✓' ] && echo "Node: $(node --version | sed "s#v##g")"
+  [ "$(__cmd_yes_no npm)" == '✓' ] && echo "Npm: $(npm --version)"
+  [ "$(__cmd_yes_no pnpm)" == '✓' ] && echo "Pnpm: $(pnpm --version)"
+  [ "$(__cmd_yes_no git)" == '✓' ] && echo "Git: $(git --version | awk -F ' ' '{print $3}')"
+  [ "$(__cmd_yes_no zsh)" == '✓' ] && echo "Zsh: $(zsh --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no vim)" == '✓' ] && echo "Vim: $(vim --version | head -n 1 | awk -F ' ' '{print $5}')"
+  [ "$(__cmd_yes_no nvim)" == '✓' ] && echo "Neovim: $(nvim --version | head -n 1 | awk -F ' ' '{print $2}' | sed "s#v##g")"
+  [ "$(__cmd_yes_no wget)" == '✓' ] && echo "Wget: $(wget --version | head -n 1 | awk -F ' ' '{print $3}')"
+  [ "$(__cmd_yes_no curl)" == '✓' ] && echo "Curl: $(curl --version | head -n 1 | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no tree)" == '✓' ] && echo "Tree: $(tree --version | awk -F ' ' '{print $2}')"
+  [ "$(__cmd_yes_no htop)" == '✓' ] && echo "Htop: $(htop --version | awk -F ' ' '{print $2}')"
+}
+
+pkg_add()
+{
+  __rootness
+  echo "==> Install Depends $*"
+  if [[ -f "/etc/os-release" ]]; then
+    . /etc/os-release
+  fi
+
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    brew install "$@"
+  elif [[ ${ID} == 'ubuntu' ]]; then
+    apt install -y "$@"
+  elif [[ ${ID} == 'arch' ]]; then
+    pacman -S --noconfirm "$@"
+  elif [[ ${ID} == 'alpine' ]]; then
+    apk add "$@"
+  else
+    echo "Unknow Platform"
+    exit 1
+  fi
+}
+
+__init_debian()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/debian/"
+  MIRRORS_HOST_SECURITY="https://mirrors.ustc.edu.cn/debian-security/"
+  echo "deb ${MIRRORS_HOST} ${VERSION_CODENAME} main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed-updates main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST_SECURITY} ${VERSION_CODENAME}-security main contrib non-free non-free-firmware
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME} main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed-updates main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST_SECURITY} ${VERSION_CODENAME}-security main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main contrib non-free non-free-firmware" >${MIRRORS_FILE}
+}
+
+__init_ubuntu()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/ubuntu/"
+  echo "deb ${MIRRORS_HOST} ${VERSION_CODENAME} main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-security main restricted universe multiverse
+  deb ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME} main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-backports main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-proposed main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-security main restricted universe multiverse
+  deb-src ${MIRRORS_HOST} ${VERSION_CODENAME}-updates main restricted universe multiverse" >${MIRRORS_FILE}
+}
+
+__init_kali()
+{
+  MIRRORS_FILE='/etc/apt/sources.list'
+  MIRRORS_HOST="https://mirrors.ustc.edu.cn/kali/"
+  echo "deb ${MIRRORS_HOST} kali-rolling main contrib non-free non-free-firmware
+  deb-src ${MIRRORS_HOST} kali-rolling main contrib non-free non-free-firmware" >${MIRRORS_FILE}
+}
+
+__init_alpine()
+{
+  . /etc/os-release
+  VERSION=${VERSION_ID%.*}
+  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/main" >/etc/apk/repositories
+  echo "https://mirrors.cloud.tencent.com/alpine/v${VERSION}/community" >>/etc/apk/repositories
+}
+
+_set_mirrors()
+{
+  shift
+  PKG_NAME=$1
+  PKG_SOURCE=$2
+
+  case "${PKG_NAME}" in
+    os)
+      PKG_NAME_PRETTY="Current Operating System"
+      ;;
+    arch* | ubuntu | debian | kali | depin)
+      PKG_NAME_PRETTY=${PRETTY_NAME}
+      ;;
+    *)
+      PKG_NAME_PRETTY=${PKG_NAME}
+      ;;
+  esac
+
+  echo "==> Set ${PKG_NAME_PRETTY} Source Mirrors"
+  case "${PKG_NAME}" in
+    os)
+      __os_repo "${PKG_SOURCE}"
+      ;;
+    docker | -d)
+      __set_docker "${PKG_SOURCE}"
+      ;;
+    *)
+      echo "Unknow Source"
+      exit 1
+      ;;
+  esac
+}
+
+# 安装 微软软件仓库签名
+_init_deb_microsoft_keyring()
+{
+  curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
+  sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+  rm -f packages.microsoft.gpg
+}
+
+# 安装 VSCode Debian 系仓库
+_init_deb_vscode()
+{
+  _init_deb_microsoft_keyring
+  echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
+}
+
+# 安装 Microsoft Edge Browser Debian 系仓库
+_init_deb_edge()
+{
+  _init_deb_microsoft_keyring
+  echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/edge/ stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
+}
+
+init_platpak()
+{
+  flatpak install flathub com.usebottles.bottles
+  flatpak run com.usebottles.bottles
+}
+
+__init_arch()
+{
+  __rootness
+
+  __rootness
+  MIRRORS_FILE='/etc/pacman.d/mirrorlist'
+  echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
+Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
+Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' >${MIRRORS_FILE}
+
+  sed -i "s/#\[multilib\]/\[multilib\]/g" /etc/pacman.conf
+  sed -i "s/#\[extra\]/\[extra\]/g" /etc/pacman.conf
+  sed -i "s/#\[core\]/\[core\]/g" /etc/pacman.conf
+
+  pacman-key --init
+  pacman-key --populate
+  pacman -Sy --noconfirm archlinux-keyring
+  # pacman -Sy --noconfirm archlinuxcn-keyring
+}
+
+init_snap()
+{
+  snap install snap-store
+}
+
+# Depends Install
+init_deps()
+{
+  if [[ "$(uname -s)" == 'Linux' ]]; then
+    [ -z "$(command -v sudo)" ] && pkg_add sudo
+  fi
+  [ -z "$(command -v zsh)" ] && pkg_add zsh
+  [ -z "$(command -v git)" ] && pkg_add git
+  [ -z "$(command -v curl)" ] && pkg_add curl
+}
+
+# Init SUDO Group (wheel)
+__init_sudo()
+{
+  __rootness
+  [ -z "$(command -v sudo)" ] && {
+    echo "sudo Command Not Found，install sudo first"
+    exit 1
+  }
+  [ ! -f "/etc/sudoers" ] && {
+    echo "sudo Config File Not Found，install sudo first"
+    exit 1
+  }
+
+  if [[ -z "$(grep wheel /etc/group)" ]]; then
+    echo "==>Create User: ${USERNAME}:${PASSWORD} On Wheel Group"
+    groupadd wheel
+  fi
+
+  # 赋予 wheel 群组 ROOT 权限
+  if [[ -z "$(grep -v "#" /etc/sudoers | grep "wheel")" ]]; then
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/wheel >/dev/null
+  else
+    sed -i 's@^%wheel@#%wheel@g' /etc/sudoers
+    sed -i 's@^wheel@#wheel@g' /etc/sudoers
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/wheel >/dev/null
+  fi
+}
+
+# 初始化用户 在所有操作之前(远程获取脚本操作)
+__add_sudo_users()
+{
+  __rootness
+
+  USERNAME=${1}
+  PASSWORD=${2}
+
+  if [[ -z ${USERNAME} ]]; then
+    read -p "Input User Name: " USERNAME
+  fi
+
+  if [[ -z ${PASSWORD} ]]; then
+    read -s -p "Input ${USERNAME}'s Password: " PASSWORD
+  fi
+
+  # 创建用户
+  if [[ -z "$(grep "${USERNAME}" /etc/passwd)" ]]; then
+    echo "==>Create ${USERNAME} with sudo"
+    useradd -m -s /bin/bash -g wheel "${USERNAME}"
+    echo "${USERNAME}:${PASSWORD}" | chpasswd
+  else
+    echo "${USERNAME} exists"
+    exit 1
+  fi
+}
+
+is_boxs_path()
+{
+  FILE=$1
+  if [[ ! -f ${FILE} ]]; then
+    echo false
+  elif [[ -z "$(ls -lha "${FILE}" | grep "${BOXS_HOME}")" ]]; then
+    echo false
+  fi
+}
+
+__init_systemd()
+{
+  __rootness
+  SYSTEMD_SERVICE=(
+    wslg
+    wsl-wayland-socket
+  )
+
+  for service in "${SYSTEMD_SERVICE[@]}"; do
+    if [[ ! -f "/etc/systemd/system/${service}.service" ]]; then
+      echo "Enable ${service}"
+      ln -sf "${BOXS_HOME}"/etc/systemd/system/"${service}".service /etc/systemd/system/"${service}".service
+    fi
+  done
+
+  systemctl daemon-reload
+}
+
+__init_php()
+{
+  # 7.4
+  if [ -f "/usr/local/opt/php@5.6/bin/php" ] && [ ! -f "/usr/local/bin/php56" ]; then
+    _warn "Setting PHP 5.6"
+    ln -sf /usr/local/opt/php@5.6/bin/php /usr/local/bin/php56
+  elif [[ -f "/usr/local/bin/php56" ]]; then
+    _info "PHP 5.6 Done"
+  fi
+
+  if [[ -f "/usr/local/opt/php@7.4/bin/php" && ! -f "/usr/local/bin/php74" ]]; then
+    _warn "Setting PHP 7.4"
+    ln -sf /usr/local/opt/php@7.4/bin/php /usr/local/bin/php74
+  elif [[ -f "/usr/local/bin/php74" ]]; then
+    _info "PHP 7.4 Done"
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.0/bin/php" && ! -f "/usr/local/bin/php80" ]]; then
+    _warn "Setting PHP 8.0"
+    ln -sf /usr/local/opt/php@8.0/bin/php /usr/local/bin/php80
+  elif [[ -f "/usr/local/bin/php80" ]]; then
+    _info "PHP 8.0 Done"
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.1/bin/php" && ! -f "/usr/local/bin/php81" ]]; then
+    _warn "Setting PHP 8.1"
+    ln -sf /usr/local/opt/php@8.1/bin/php /usr/local/bin/php81
+  elif [[ -f "/usr/local/bin/php81" ]]; then
+    _info "PHP 8.1 Done"
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.2/bin/php" && ! -f "/usr/local/bin/php82" ]]; then
+    _warn "Setting PHP 8.2"
+    ln -sf /usr/local/opt/php@8.2/bin/php /usr/local/bin/php82
+  elif [[ -f "/usr/local/bin/php82" ]]; then
+    _info "PHP 8.2 Done"
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.3/bin/php" && ! -f "/usr/local/bin/php83" ]]; then
+    _warn "Setting PHP 8.3"
+    ln -sf /usr/local/opt/php@8.3/bin/php /usr/local/bin/php83
+  elif [[ -f "/usr/local/bin/php83" ]]; then
+    _info "PHP 8.3 Done"
+  fi
+
+  if [[ -f "/usr/local/opt/php@8.4/bin/php" && ! -f "/usr/local/bin/php84" ]]; then
+    _warn "Setting PHP 8.4"
+    ln -sf /usr/local/opt/php@8.4/bin/php /usr/local/bin/php84
+  elif [[ -f "/usr/local/bin/php84" ]]; then
+    _info "PHP 8.4 Done"
+  fi
+}
+
+__config_neovim()
+{
+  # 配置 Neovim 輕量模式
+  if [[ ! -f "${HOME}/.config/nvim/full.lua" ]]; then
+    # echo "==> Config neovim"
+    mkdir -p "${HOME}/.config"
+    ln -sf "${BOXS_HOME}/conf/.config/nvim" "${HOME}/.config"
+  fi
+
+  if [[ ! -f "${HOME}/.local/share/nvim/databases/telescope_history.sqlite3" ]]; then
+    # echo "==>Init Neovim Telescope SQLite Database"
+    mkdir -p "${HOME}"/.local/share/nvim/databases
+    touch "${HOME}"/.local/share/nvim/databases/telescope_history.sqlite3
+  fi
+}
+
+# Docker Mirrors
+#
+__set_docker()
+{
+  mkdir -p "${HOME}/.docker"
+  DOCKER_CONFIG="${HOME}/.docker/config.json"
+  sudo mkdir -p /etc/systemd/system/docker.service.d
+  if [[ ! -f '/etc/systemd/system/docker.service.d/proxy.conf' ]]; then
+    sudo touch /etc/systemd/system/docker.service.d/proxy.conf
+  fi
+
+  # docker pull
+  echo "[Service]
+Environment=\"HTTP_PROXY=${http_proxy}\"
+Environment=\"HTTPS_PROXY=${http_proxy}\"
+Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/systemd/system/docker.service.d/proxy.conf >/dev/null
+
+  if [[ ! -f ${DOCKER_CONFIG} ]]; then
+    touch "${DOCKER_CONFIG}"
+  fi
+
+  # docker run
+  cat "${DOCKER_CONFIG}" | jq ".proxies.default.httpProxy = \"${http_proxy}\" | .proxies.default.httpsProxy = \"${http_proxy}\" | .proxies.default.noProxy = \"localhost,127.0.0.1,.example.com\"" >/tmp/docker-config.json
+  mv /tmp/docker-config.json "${DOCKER_CONFIG}"
+
+  sudo systemctl daemon-reload
+  sudo systemctl restart docker
+}
+
+# 私有配置文件信息
+__secret()
+{
+  if [[ -e ${BOXS_HOME} ]]; then
+    echo "==> Secret Init"
+    git config --global credential.helper store
+    echo "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com" >>"${HOME}/.git-credentials"
+    echo "https://${GITCODE_USERNAME}:${GITCODE_TOKEN}@gitcode.com" >>"${HOME}/.git-credentials"
+    chmod 600 "${HOME}/.git-credentials"
+
+    git clone --depth 1 https://gitcode.com/imxieke/secret.git ~/.config/secret
+  else
+    echo "Secret Variable Not Found"
+  fi
+}
+
+__init()
+{
+  # 初始化 Boxs
+  if [[ ! -d ${BOXS_HOME} ]]; then
+    _yellow "==> Fetch Boxs"
+    # git@gitcode.com:imxieke/boxs.git
+    git clone --depth 1 https://gitcode.com/imxieke/boxs.git
+  else
+    _info "Boxs Config Success"
+  fi
+
+  if [ -f "${HOME}/.config/secret/home/.env" ]; then
+    ln -sf "${HOME}/.config/secret/home/.env" "${HOME}/.env"
+    _info "Dot Env Done."
+  fi
+
+  # Set Git Config
+  # Priority: local > global > system
+  # if [[ -n "$(command -v git)" ]]; then
+  #   _info "==> Set Git Configuration"
+  #   # 只对 github.com 生效
+  #   git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+  #   git config --global http.proxy socks5://127.0.0.1:7890
+  #   git config --global https.proxy socks5://127.0.0.1:7890
+  #   git config --global http.proxy http://127.0.0.1:7890
+  #   git config --global https.proxy https://127.0.0.1:7890
+  # fi
+
+  if [[ ! -d "${HOME}/.local/share/nvm" ]]; then
+    echo "==> Install Nvm"
+    git clone --depth 1 https://gitcode.com/rsync/nvm.git ~/.local/share/nvm
+  else
+    _info "Node Version Manager Done."
+  fi
+
+  if [[ "$(uname -s)" == 'Linux' ]]; then
+    if [[ ! -d "${HOME}/.config/systemd/user" ]]; then
+      echo "Set User Systemd Service"
+      mkdir -p "${HOME}/.config/systemd"
+      ln -sf "${BOXS_HOME}/conf/.config/systemd/user" "${HOME}/.config/systemd/user"
+    else
+      _info "User Systemd Done."
+    fi
+  fi
+
+  __init_php
+
+  if [[ ! -f "${HOME}/.bin/composer" ]]; then
+    mkdir -p "${HOME}"/.bin
+    echo "==> Install Composer"
+    # https://mirrors.aliyun.com/composer/composer.phar
+    wget -cq https://mirrors.tencent.com/composer/composer.phar -O "${HOME}"/.bin/composer
+    chmod +x "${HOME}"/.bin/composer
+  else
+    _info "Composer Done."
+  fi
+
+  # 初始化 Oh-my-zsh
+  if [[ -f "${BOXS_HOME}/conf/.zshrc" ]]; then
+    ln -sf "${BOXS_HOME}/conf/.zshrc" "${HOME}"/.zshrc
+    _info "Oh My Zsh Done."
+  fi
+
+  if [[ -f "${BOXS_HOME}/conf/.gitconfig" ]]; then
+    ln -sf "${BOXS_HOME}/conf/.gitconfig" "${HOME}/.gitconfig"
+    _info "Git Config Done."
+  fi
+
+  # if [[ -n "$(command -v npm)" ]]; then
+  #   npm config set proxy=http://127.0.0.1:7890
+  #   npm config set https-proxy http://127.0.0.1:7890
+
+  #   pnpm config set proxy http://127.0.0.1:7890
+  #   pnpm config set https-proxy https://127.0.0.1:7890
+
+  #   yarn config set proxy http://127.0.0.1:7890
+  #   yarn config set https-proxy http://127.0.0.1:7890
+  # fi
+
+  if [[ -f "${BOXS_HOME}/conf/.npmrc" ]]; then
+    ln -sf "${BOXS_HOME}/conf/.npmrc" "${HOME}/.npmrc"
+    _info "Node Config Done."
+  fi
+
+  if [ -f "${BOXS_HOME}/conf/.gemrc" ]; then
+    ln -sf "${BOXS_HOME}/conf/.gemrc" "${HOME}/.gemrc"
+    _info "Gem Done."
+  fi
+
+  if [ -f "${BOXS_HOME}/conf/.config/pip/pip.conf" ]; then
+      mkdir -p "${HOME}/.config/pip"
+      ln -sf "${BOXS_HOME}/conf/.config/pip/pip.conf" "${HOME}/.config/pip/pip.conf"
+      _info "Pip Done."
+  fi
+
+  _green "        ^_^ \n   ✿✿ヽ(°▽°)ノ✿ ❀ \n  Config Completed. \n"
+}
+
+_usage()
+{
+  echo "Usage: boxs install|backup|recovery|init|deps|mirrors|secret"
+  echo "Usage: boxs composer|gem|pip|npm $(_yellow "(Software Source)")"
+  echo "Usage: boxs install-python-pkgs"
+  echo "Params Examples:"
+  echo "  boxs user --user|-u=username --password|-p=password"
+  echo "  boxs mirrors  Change Software Mirrors"
+}
+
+init_deps
+
+case $1 in
+  install)
+    echo "Install"
+    ;;
+  backup)
+    echo "backup"
+    ;;
+  check)
+    __osenv
+    ;;
+  deps)
+    init_deps
+    ;;
+  secret)
+    __secret
+    ;;
+  add-user | --add-user)
+    __add_sudo_users "$2" "$3"
+    ;;
+  mirrors | --mirrors | -m)
+    _set_mirrors "$@"
+    ;;
+  init)
+    __init
+    ;;
+  --init-systemd)
+    __init_systemd
+    ;;
+  init-sudo | --init-sudo)
+    __init_sudo
+    ;;
+  install-python-pkgs)
+    _install_python_pkgs "$@"
+    ;;
+  *)
+    _usage "$@"
+    ;;
+esac

@@ -1,0 +1,12 @@
+[Unit]
+Description=Fix wslg X11 socket
+After=systemd-tmpfiles-setup.service
+
+[Service]
+Type=oneshot
+ExecStart=rm -fr /tmp/.X11-unix
+ExecStart=ln -sf /mnt/wslg/.X11-unix /tmp/
+# ExecStart=mount -o bind,ro,X-mount.mkdir -t none /mnt/wslg/.X11-unix /tmp/.X11-unix
+
+[Install]
+WantedBy=sysinit.target

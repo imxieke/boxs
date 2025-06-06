@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+DIR=$1
+
+if [[ -f .git/config ]]; then
+    grep 'url =' .git/config | awk -F '= ' '{print $2}'
+elif [[ -f "${DIR}/.git/config" ]]; then
+    grep 'url =' "${DIR}/.git/config" | awk -F '= ' '{print $2}'
+else
+    grep 'url =' ${DIR}/*/.git/config | awk -F '= ' '{print $2}'
+fi

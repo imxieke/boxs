@@ -1,0 +1,45 @@
+export PATH="/mingw64/bin:/mingw64/libexec:/ucrt64/bin:/clang64/bin:${PATH}"
+
+if [[ -n ${USERNAME} ]]; then
+  WIN_HOME="/c/Users/${USERNAME}"
+elif [[ -n ${USER} ]]; then
+  WIN_HOME="/c/Users/${USER}"
+elif [[ -n ${LOGNAME} ]]; then
+  WIN_HOME="/c/Users/${LOGNAME}"
+fi
+
+WIN_SYSTEM32="/c/Windows/System32"
+WIN_APPDATA="${WIN_HOME}/AppData/Roaming"
+WIN_LOCAL_APPDATA="${WIN_HOME}/AppData/Local"
+WIN_WINDOWS_APPS="${WIN_LOCAL_APPDATA}/Microsoft/WindowsApps"
+WIN_DESKTOP="${WIN_HOME}/Desktop"
+WIN_DOCUMENTS="${WIN_HOME}/Documents"
+WIN_DOWNLOADS="${WIN_HOME}/Downloads"
+WIN_MUSIC="${WIN_HOME}/Music"
+WIN_PICTURES="${WIN_HOME}/Pictures"
+WIN_VIDEOS="${WIN_HOME}/Videos"
+
+alias wsl="${WIN_SYSTEM32}/wsl.exe"
+alias wslconfig="${WIN_SYSTEM32}/wslconfig.exe"
+
+if [[ -f '/c/Program Files/WSL/wslg.exe' ]]; then
+  alias wslg='/c/Program\ Files/WSL/wslg.exe'
+elif [[ -f "${WIN_SYSTEM32}/wslg.exe" ]]; then
+  alias wslg="${WIN_SYSTEM32}/wslg.exe"
+fi
+
+if [[ -f "${WIN_WINDOWS_APPS}/winget.exe" ]]; then
+  alias winget="${WIN_WINDOWS_APPS}/winget.exe"
+fi
+
+if [[ -f "${WIN_APPDATA}/nvm/nvm.exe" ]]; then
+  alias nvm="${WIN_APPDATA}/nvm/nvm.exe"
+fi
+
+if [[ -f "/c/Program Files/nodejs/node.exe" ]]; then
+  export PATH="/c/Program Files/nodejs:${PATH}"
+fi
+
+if [[ -f "${WIN_HOME}/.cargo/bin/rustup.exe" ]]; then
+  export PATH="${WIN_HOME}/.cargo/bin:${PATH}"
+fi

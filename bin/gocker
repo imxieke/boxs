@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Github Docker Registry
+
+docker pull ghcr.io/dockenv/$@

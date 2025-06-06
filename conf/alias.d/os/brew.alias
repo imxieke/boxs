@@ -1,0 +1,18 @@
+alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
+alias service='sudo brew services'
+
+alias pma="brew install"
+alias pmac="brew install --cask"
+alias pmaf="brew install --formula"
+alias pmr="brew uninstall"
+alias pmu="brew update"
+alias pmuu="brew upgrade"
+alias pmuuf="brew upgrade --formula"
+alias pmuuc="brew upgrade --cask"
+alias pmi="brew info"
+alias pmo="brew outdated --greedy-auto-updates"
+alias pml="brew list --full-name | tr '' '\n'"
+alias pms="brew search"
+alias pmc="brew cleanup"
+alias pmcc="brew cleanup --prune=all"
+alias gotaps="cd /usr/local/Homebrew/Library/Taps"

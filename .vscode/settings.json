@@ -1,0 +1,13 @@
+{
+  "Lua.diagnostics.globals": [
+    "vim",
+    "use"
+  ],
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "aiXcoder.showTrayIcon": false,
+  "editor.inlineSuggest.enabled": true,
+  "diffEditor.codeLens": true,
+  "editor.tabCompletion": "on",
+  "editor.inlineSuggest.showToolbar": "onHover",
+  "explorer.excludeGitIgnore": false
+}

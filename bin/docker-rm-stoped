@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+###
+ # @Author: Cloudflying
+ # @Date: 2021-12-07 00:37:02
+ # @LastEditTime: 2021-12-07 00:37:16
+ # @LastEditors: Cloudflying
+ # @Description:
+###
+docker rm $(docker ps -aq)

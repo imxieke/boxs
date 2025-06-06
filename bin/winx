@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# winx => wine x
+
+WINEPREFIX=~/.wine
+
+if [[ -n "$(command -v wine64)" ]]; then
+	if [[ "$(uname -s)" == 'Darwin' ]]; then
+			wine64 $@
+	fi
+elif [[ -n "$(command -v wine)" ]]; then
+	wine $@
+fi
