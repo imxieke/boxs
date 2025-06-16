@@ -64,7 +64,7 @@ _install()
     jdk-openjdk \
     php \
     deno \
-    lua51 \
+    lua \
     ruby
 
   # Rust
@@ -129,7 +129,7 @@ _install()
   # Package management
   # App Store
   # snapd yay not in Archlinux
-  pacman -S --noconfirm dpkg pacman-mirrors
+  # pacman -S --noconfirm dpkg pacman-mirrors
 
   # Media
   pacman -S --noconfirm ffmpeg
