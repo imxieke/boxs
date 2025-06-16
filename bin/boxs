@@ -555,12 +555,8 @@ __secret()
 {
   if [[ -e ${BOXS_HOME} ]]; then
     echo "==> Secret Init"
-    git config --global credential.helper store
-    echo "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com" >>"${HOME}/.git-credentials"
-    echo "https://${GITCODE_USERNAME}:${GITCODE_TOKEN}@gitcode.com" >>"${HOME}/.git-credentials"
-    chmod 600 "${HOME}/.git-credentials"
-
-    git clone --depth 1 https://gitcode.com/imxieke/secret.git ~/.config/secret
+    GITCODE_TOKEN=${2}
+    git clone --depth 1 "https://${GITCODE_USERNAME:-imxieke}:${GITCODE_TOKEN}@gitcode.com/imxieke/secret.git" ~/.config/secret
   else
     echo "Secret Variable Not Found"
   fi
@@ -573,6 +569,8 @@ __init()
     _yellow "==> Fetch Boxs"
     # git@gitcode.com:imxieke/boxs.git
     git clone --depth 1 https://gitcode.com/imxieke/boxs.git
+    cd boxs || exit 1
+    git remote set-url origin git@gitcode.com:imxieke/boxs.git
   else
     _info "Boxs Config Success"
   fi
@@ -580,6 +578,17 @@ __init()
   if [ -f "${HOME}/.config/secret/home/.env" ]; then
     ln -sf "${HOME}/.config/secret/home/.env" "${HOME}/.env"
     _info "Dot Env Done."
+  fi
+
+  if [[ -d "${HOME}/.config/secret" ]]; then
+    mkdir -p "${HOME}/.ssh"
+    cp -fr "${HOME}"/.config/secret/home/.ssh/id* "${HOME}/.ssh/"
+    chmod 600 "${HOME}"/.ssh/id_*
+
+    ln -sf "${HOME}/.config/secret/home/.env" "${HOME}/.env"
+    ln -sf "${HOME}/.config/secret/home/.git-credentials" "${HOME}/.git-credentials"
+    ln -sf "${HOME}/.config/secret/home/.ssh/config" "${HOME}/.ssh/config"
+    ln -sf "${HOME}/.config/secret/home/.config/rclone" "${HOME}/.config/rclone"
   fi
 
   # Set Git Config
@@ -690,7 +699,7 @@ case $1 in
     init_deps
     ;;
   secret)
-    __secret
+    __secret "$@"
     ;;
   add-user | --add-user)
     __add_sudo_users "$2" "$3"

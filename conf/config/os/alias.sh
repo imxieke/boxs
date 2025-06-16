@@ -25,6 +25,8 @@ elif [[ "$(uname -s)" == 'Darwin' ]]; then
   source "${BOXS_HOME}/conf/alias.d/os/brew.alias"
 elif [[ -n "$(grep 'msys' /etc/os-release)" ]]; then
   source "${BOXS_HOME}/conf/alias.d/os/mingw.alias"
-elif [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
+fi
+
+if [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
   source "${BOXS_HOME}/conf/alias.d/os/wsl.alias"
 fi
