@@ -591,6 +591,9 @@ __init()
     ln -sf "${HOME}/.config/secret/home/.config/rclone" "${HOME}/.config"
   fi
 
+  sudo ln -sf "${BOXS_HOME}/etc/systemd/system/docker.service.d" /etc/systemd/system
+  sudo ln -sf "${BOXS_HOME}/etc/systemd/system/ollama.service.d" /etc/systemd/system
+
   # Set Git Config
   # Priority: local > global > system
   # if [[ -n "$(command -v git)" ]]; then
