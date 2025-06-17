@@ -191,6 +191,9 @@ _install()
   # Lint
   pacman -S --noconfirm shellcheck
 
+  # AI
+  pacman -S --noconfirm ollama
+
   # trivy Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
   # gitleaks Find secrets with Gitleaks 🔑
   pacman -S --noconfirm trivy \
