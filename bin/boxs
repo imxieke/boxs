@@ -588,7 +588,7 @@ __init()
     ln -sf "${HOME}/.config/secret/home/.env" "${HOME}/.env"
     ln -sf "${HOME}/.config/secret/home/.git-credentials" "${HOME}/.git-credentials"
     ln -sf "${HOME}/.config/secret/home/.ssh/config" "${HOME}/.ssh/config"
-    ln -sf "${HOME}/.config/secret/home/.config/rclone" "${HOME}/.config/rclone"
+    ln -sf "${HOME}/.config/secret/home/.config/rclone" "${HOME}/.config"
   fi
 
   # Set Git Config
