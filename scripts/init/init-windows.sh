@@ -21,15 +21,15 @@ winget install Mozilla.Firefox.DeveloperEdition
 
 # Office 365
 winget install --accept-package-agreements 9WZDNCRD29V9
-winget install Kingsoft.WPSOffice.CN
+# winget install --accept-package-agreements Kingsoft.WPSOffice.CN
 
 # Terminal
 # Flutter Treminal
-winget install --accept-package-agreements 9P2KRLMFXF9T
+# winget install --accept-package-agreements 9P2KRLMFXF9T
 # Windows Terminal
 winget install --accept-package-agreements 9N0DX20HK701
 # Windows Terminal Preview
-winget install --accept-package-agreements 9N8G5RFZ9XK3
+# winget install --accept-package-agreements 9N8G5RFZ9XK3
 
 winget install JanDeDobbeleer.OhMyPosh -s winget
 
@@ -46,19 +46,15 @@ winget install --accept-package-agreements 9WZDNCRFJ3PS
 # Microsoft Whiteboard
 winget install --accept-package-agreements 9MSPC6MP8FM4
 
-# Remote Tunnel Access
-winget install Cloudflare.cloudflared
-
 # 火绒
 winget install --accept-package-agreements XPDNH1FMW7NB40
 
 winget install Microsoft.OneDrive
-winget install Tencent.WeCom
+# winget install Tencent.WeCom
 winget install Youqu.ToDesk
 # winget install Tencent.WeCom
 winget install Iterate.Cyberduck
 winget install Ruihu.Apifox
-winget install Alibaba.QuarkCloudDrive
 
 # winget install Mozilla.Thunderbird
 
@@ -100,8 +96,14 @@ winget install EclipseAdoptium.Temurin.21.JRE
 
 # Nuget Package Manager
 winget install Microsoft.NuGet
+
+# Network
+winget install ISC.Bind
 # Microsoft Network Monitor
-winget install Microsoft.NetMon
+# winget install Microsoft.NetMon
+
+# Remote Tunnel Access
+winget install Cloudflare.cloudflared
 
 # winget install FilesCommunity.Files
 winget install CoreyButler.NVMforWindows
