@@ -42,7 +42,7 @@ winget install Microsoft.PowerShell
 # Microsoft PC Manager
 winget install --accept-package-agreements 9PM860492SZD
 # Microsoft Remote Desktop
-winget install --accept-package-agreements 9WZDNCRFJ3PS
+# winget install --accept-package-agreements 9WZDNCRFJ3PS
 # Microsoft Whiteboard
 winget install --accept-package-agreements 9MSPC6MP8FM4
 
@@ -51,7 +51,6 @@ winget install --accept-package-agreements XPDNH1FMW7NB40
 
 winget install Microsoft.OneDrive
 # winget install Tencent.WeCom
-winget install Youqu.ToDesk
 # winget install Tencent.WeCom
 winget install Iterate.Cyberduck
 winget install Ruihu.Apifox
@@ -60,7 +59,7 @@ winget install Ruihu.Apifox
 
 winget install Apple.iTunes
 winget install Apple.iCloud
-winget install Xiaomi.XiaomiCloud
+# winget install Xiaomi.XiaomiCloud
 # winget install Git.Git
 # winget install GitHub.cli
 # winget install GitHub.GitLFS
@@ -103,6 +102,12 @@ winget install ISC.Bind
 # winget install Microsoft.NetMon
 
 # Remote Tunnel Access
+winget install Cloudflare.cloudflared
+
+# Remote
+# winget install RustDesk.RustDesk
+# winget install TeamViewer.TeamViewer
+winget install Youqu.ToDesk
 winget install Cloudflare.cloudflared
 
 # winget install FilesCommunity.Files
