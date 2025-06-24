@@ -325,6 +325,11 @@ init_pkgs()
     visual-studio-code vscodium \
     android-studio
 
+  # mini-program-studio 支付宝小程序开发工具
+  brew install --cask wechatwebdevtools \
+     mini-program-studio \
+     hbuilderx
+
   # phpstorm webstorm rider fleet pycharm clion appcode datagrip
 
   # Web Browser

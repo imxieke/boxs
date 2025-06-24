@@ -100,6 +100,9 @@ _install()
     dockerlint \
     dockerfilelint \
     dockerfile_lint
+
+  # 支付宝小程序 Cli
+  pnpm add -g minidev
 }
 
 _install
