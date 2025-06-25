@@ -2,6 +2,7 @@ alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simul
 alias service='sudo brew services'
 
 alias pma="brew install"
+alias pmrs="brew reinstall"
 alias pmac="brew install --cask"
 alias pmaf="brew install --formula"
 alias pmr="brew uninstall"
