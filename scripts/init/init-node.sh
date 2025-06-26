@@ -103,6 +103,8 @@ _install()
 
   # 支付宝小程序 Cli
   pnpm add -g minidev
+  pnpm add -g @qodo/gen
+  pnpm add -g @google/gemini-cli
 }
 
 _install
