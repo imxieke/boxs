@@ -7,7 +7,9 @@ WIN_LOCAL_APPDATA="${WIN_HOME}/AppData/Local"
 WIN_WINDOWS_APPS="${WIN_LOCAL_APPDATA}/Microsoft/WindowsApps"
 
 if [[ -d "/mnt/c/Program Files/Microsoft VS Code/bin" ]]; then
-  alias we="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code"
+  alias wel="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code --profile WSL"
+  alias weu="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code --profile Unix"
+  alias wew="/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code --profile WinX"
 fi
 
 alias wsl="${WIN_SYSTEM32}/wsl.exe"
