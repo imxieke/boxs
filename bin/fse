@@ -2,6 +2,8 @@
 
 # # top windows preview "'~4,+{2}+4/3,<80(up)'"
 
+# FZF Search Edit
+
 RELOAD='reload:rg --color=always --column --no-heading --line-number --with-filename --smart-case {q} || :'
 
 # shellcheck disable=SC2016
@@ -20,4 +22,18 @@ fzf --disabled --ansi --multi \
   --delimiter : \
   --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
   --preview-window 'right:50%' \
-  --query "$*"
+  --query "$*" \
+  --color 'bg:#334455' \
+  --color 'fg:#bbccdd' \
+  --color 'fg+:#ddeeff' \
+  --color 'border:#778899' \
+  --color 'label:#cccccc' \
+  --color 'preview-label:#ccccff' \
+  --color 'preview-border:#9999cc' \
+  --color 'preview-bg:#223344' \
+  --color 'list-border:#669966' \
+  --color 'list-label:#99cc99' \
+  --color 'input-border:#996666' \
+  --color 'input-label:#ffcccc' \
+  --color 'header-border:#6699cc' \
+  --color 'header-label:#99ccff'

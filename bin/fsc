@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# FZF Search Code
+
+RELOAD='reload:rg --color=always --column --no-heading --line-number --with-filename --smart-case {q} || :'
+
+fzf --style full \
+  --ansi \
+  --multi \
+  --sync \
+  --border \
+  --layout=reverse \
+  --highlight-line \
+  --info=inline \
+  --bind "start:$RELOAD" \
+  --bind "change:$RELOAD" \
+  --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+  --delimiter : \
+  --preview-label ' Preview ' \
+  --list-label ' Lists ' \
+  --input-label ' Input ' \
+  --header-label ' File Type ' \
+  --prompt=' Search Code > ' \
+  --preview 'bat --style=full --color=always --style=numbers --highlight-line {2} {1}' \
+  --preview-window 'right:50%' \
+  --query "$*" \
+  --color 'bg:#334455' \
+  --color 'fg:#bbccdd' \
+  --color 'fg+:#ddeeff' \
+  --color 'border:#778899' \
+  --color 'label:#cccccc' \
+  --color 'preview-label:#ccccff' \
+  --color 'preview-border:#9999cc' \
+  --color 'preview-bg:#223344' \
+  --color 'list-border:#669966' \
+  --color 'list-label:#99cc99' \
+  --color 'input-border:#996666' \
+  --color 'input-label:#ffcccc' \
+  --color 'header-border:#6699cc' \
+  --color 'header-label:#99ccff'
