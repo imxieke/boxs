@@ -41,10 +41,6 @@ alias .....='cd ../../../../'
 alias ':q'="exit"
 alias gdu='grc du -h'
 
-alias fsv='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
-
-alias search-by-code="sk --ansi -i -c 'rg --color=always --line-number "{}"'"
-
 # rsync
 alias rsync-copy="rsync -avz --progress -h"
 alias rsync-move="rsync -avz --progress -h --remove-source-files"

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# FZF Search Process
+
+ps -ef |
+  fzf --bind 'ctrl-r:reload(ps -ef)' \
+      --header 'Press CTRL-R to reload' \
+      --header-lines=1 \
+      --layout=default
