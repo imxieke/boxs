@@ -92,6 +92,11 @@ if [[ ! -d ~/.local/share/zinit ]]; then
   git clone --depth 1 https://gitcode.com/rsync/zinit.git ${HOME}/.local/share/zinit
 fi
 
+if [[ ! -d "${HOME}/.config/nvim" ]]; then
+  echo "==> NeoCode Configuration"
+  git clone --depth 1 https://gitcode.com/imxieke/NeoCode.git ${HOME}/.config/nvim
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ -f "${BOXS_HOME}/conf/.p10k.zsh" ]] && echo "[+] Loading p10k" && source "${BOXS_HOME}/conf/.p10k.zsh"
 
