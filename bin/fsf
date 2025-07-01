@@ -3,7 +3,7 @@
 # FZF Search File
 
 fzf --style full \
-  --preview 'fzf-preview.sh {}' \
+  --preview 'bat --style=full --color=always --style=numbers --highlight-line {2} {1}' \
   --bind 'focus:transform-header:file --brief {}' \
   --preview-label ' Preview ' \
   --list-label ' Lists ' \
