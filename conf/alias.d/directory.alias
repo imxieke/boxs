@@ -1,3 +1,11 @@
-alias godocs='cd /mnt/d/Code/Docs/docs'
+# Project Directory
+alias gob='cd ${BOXS_HOME}'
+alias goc='cd ${HOME}/Code'
+alias gop='cd ${HOME}/Code/Project'
+alias god='cd ${HOME}/Code/Project/dockenv'
 alias godi="cd ~/Code/Project/dockenv-images"
+alias gon='cd ${HOME}/.config/nvim'
+alias goz='cd ${HOME}/Code/Project/Zeus'
+alias godocs='cd /mnt/d/Code/Docs/docs'
+alias gos='cd ${HOME}/.config/secret'
 alias goykt="cd ~/Code/Project/ykt-php"

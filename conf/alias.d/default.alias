@@ -9,14 +9,6 @@
 alias h='htop'
 alias lpath='echo $PATH | tr ":" "\n"'
 
-# Project Directory
-alias goc="cd ${HOME}/Code"
-alias gop="cd ${HOME}/Code/Project"
-alias god="cd ${HOME}/Code/Project/dockenv"
-alias gob="cd ${BOXS_HOME}"
-alias gon="cd ${HOME}/.config/nvim"
-alias goz="cd ${HOME}/Code/Project/Zeus"
-
 # Memory && CPU Usage
 # alias mem-top="ps -eo pcpu,pmem,pid,user,args | sort -k 3nr | head -10"
 # alias mem-top="ps aux | head -1; ps aux | sort -rnk 4 | head -n 20"
