@@ -57,8 +57,10 @@ winget install Ruihu.Apifox
 
 # winget install Mozilla.Thunderbird
 
-winget install Apple.iTunes
-winget install Apple.iCloud
+# winget install Apple.iTunes
+# Apple iCloud
+winget install --accept-package-agreements 9PKTQ5699M62
+
 # winget install Xiaomi.XiaomiCloud
 # winget install Git.Git
 # winget install GitHub.cli
@@ -130,7 +132,6 @@ winget install GoLang.Go
 winget install 123.123pan
 winget install Alibaba.QuarkCloudDrive
 winget install Alibaba.aDrive
-winget install Apple.iCloud
 # winget install Google.GoogleDrive
 # winget install Xiaomi.XiaomiCloud
 # winget install Rclone.Rclone
