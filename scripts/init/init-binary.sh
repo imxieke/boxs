@@ -125,10 +125,10 @@ _install_lib()
 install_spc()
 {
   VERSIONS=(
-    "8.4.4"
-    "8.3.17"
-    "8.2.27"
-    "8.1.31"
+    "8.4.6"
+    "8.3.20"
+    "8.2.28"
+    "8.1.32"
     "8.0.30"
   )
   for version in "${VERSIONS[@]}"; do
@@ -154,16 +154,8 @@ case "$1" in
   jar)
     _install_jar
     ;;
-  os)
+  spc)
     install_spc
-    # if [[ "$(uname -s)" == 'Darwin' ]]; then
-    #   _install_macos
-    # elif [[ "$(uname -s)" == 'Linux' ]]; then
-    #   _install_linux
-    # else
-    echo "UnSupport OS"
-    exit 1
-    # fi
     ;;
   lib | -l)
     _install_lib
