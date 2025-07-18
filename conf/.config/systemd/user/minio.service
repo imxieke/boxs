@@ -1,0 +1,34 @@
+# /etc/systemd/system/minio.service
+[Unit]
+Description=MinIO
+Documentation=https://docs.min.io
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/opt/minio/minio
+
+[Service]
+WorkingDirectory=/opt/minio
+Environment="MINIO_ROOT_USER=wfz"
+Environment="MINIO_ROOT_PASSWORD=Wfz287033"
+
+User=root
+Group=root
+ProtectProc=invisible
+
+ExecStart=/opt/minio/minio server --address=0.0.0.0:8081 --console-address=0.0.0.0:8082 /www/wwwroot/oss
+
+# Let systemd restart this service always
+Restart=always
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Specifies the maximum number of threads this process can create
+TasksMax=infinity
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=infinity
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target
