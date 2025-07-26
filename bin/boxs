@@ -556,6 +556,12 @@ __secret()
   if [[ -e ${BOXS_HOME} ]]; then
     echo "==> Secret Init"
     GITCODE_TOKEN=${2}
+
+    if [[ -z ${GITCODE_TOKEN} ]]; then
+      echo "==> Secret Variable Not Found"
+      exit 1
+    fi
+
     git clone --depth 1 "https://${GITCODE_USERNAME:-imxieke}:${GITCODE_TOKEN}@gitcode.com/imxieke/secret.git" ~/.config/secret
   else
     echo "Secret Variable Not Found"
