@@ -18,6 +18,7 @@ __mcp()
   pnpm add -g @modelcontextprotocol/server-filesystem
   pnpm add -g @modelcontextprotocol/server-gdrive
   pnpm add -g @modelcontextprotocol/server-gitlab
+  pnpm add -g mcp-remote
 }
 
 _install()
