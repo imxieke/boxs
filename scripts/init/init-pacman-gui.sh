@@ -78,7 +78,7 @@ _install()
   # easytag Simple application for viewing and editing tags in audio files
   # meld visual diff and merge tool for files, folders and version control.
   # File Manager: nautilus
-  pacman -S --noconfirm diffutils easytag meld nautilus gnome-disk-utility
+  pacman -S --noconfirm diffutils easytag meld nautilus gnome-disk-utility kdiff3
 
   # Database Client
   pacman -S --noconfirm sqlitebrowser
@@ -104,7 +104,8 @@ _install()
     yelp yelp-tools yelp-xsl \
     gnome-books \
     xreader \
-    xfce4-dict
+    xfce4-dict \
+    okular
 
   # BitTorrent && Downloader
   pacman -S --noconfirm deluge qbittorrent ktorrent transmission-gtk uget
@@ -136,8 +137,16 @@ _install()
 
   # MultiMedia Player
   # smplayer Media player with built-in codecs that can play virtually all video and audio formats
-  pacman -S --noconfirm vlc kmplayer mpv dragon smplayer smplayer celluloid \
-    gnome-subtitles totem
+  pacman -S --noconfirm vlc \
+    kmplayer \
+    mpv \
+    dragon \
+    smplayer \
+    smplayer \
+    celluloid \
+    gnome-subtitles \
+    totem \
+    haruna
 
   # Music Player
   # lollypop Music player for GNOME
@@ -150,6 +159,7 @@ _install()
   # sagemath matplab 开源替代品
   # qtcreator Lightweight, cross-platform integrated development environment
   # pacman -S --noconfirm sagemath qtcreator
+  pacman -S --noconfirm kommit kdesvn
 
   # Electron
   pacman -S --noconfirm asar electron electron18
@@ -190,13 +200,22 @@ _install()
   # pacman -S --noconfirm libreoffice-fresh libreoffice-fresh-zh-cn libreoffice-extension-texmaths libreoffice-extension-writer2latex
 
   # NetWork
-  pacman -S --noconfirm gnome-nettool
+  # smb4k 功能强大的网上邻居浏览器和 Samba 共享挂载工具
+  pacman -S --noconfirm gnome-nettool smb4k
 
   # KDE Plasma Desktop
   # pacman -S --noconfirm plasma
 
   # KDE Applications
-  pacman -S --noconfirm kde-graphics kde-multimedia kde-network kde-pim kde-system kde-utilities kde-games kde-applications
+  pacman -S --noconfirm kde-graphics \
+    kde-multimedia \
+    kde-network \
+    kde-pim \
+    kde-system \
+    kde-utilities \
+    kde-games \
+    kde-applications
+
   pacman -S --noconfirm dolphin-plugins
 
   # SDDM 仅对于非 sddm 桌面环境管理器
@@ -268,6 +287,7 @@ _install()
   # rnote 一款基于矢量的开源绘图应用程序，用于素描、手写笔记以及注释文档和图片
   # librecad A 2D CAD drawing tool based on the community edition of QCad
   # drawing simple image editor (similar to MS Paint)
+  # krita 数字绘图
   pacman -S --noconfirm inkscape \
     openshot \
     shotcut \
@@ -278,10 +298,14 @@ _install()
     pinta \
     rnote \
     librecad \
-    drawing
+    drawing \
+    krita
 
   # gmic GREYC's Magic Image Converter: image processing framework
   # pacman -S --noconfirm gmic
+
+  # App Store
+  pacman -S --noconfirm discover
 
   # Disk Utils
   pacman -S --noconfirm gpart gparted parted
@@ -312,7 +336,7 @@ _install()
     gnome-logs gnome-calculator gnome-dictionary ocrfeeder peek gnome-podcasts \
     mdcat
 
-  pacman -S --confirm qt6-base  qt6-3d \
+  pacman -S --noconfirm qt6-base  qt6-3d \
     qt6-wayland
 
   # 镜像烧录
