@@ -7,9 +7,6 @@
 # @Description: Composer Global Init
 ###
 
-# The Laravel application installer.
-composer global require laravel/installer
-
 # Composer plugin for automatic installation of PHPStan extensions.
 # automatic load rules
 # composer global require --dev phpstan/extension-installer
@@ -41,5 +38,3 @@ composer global require -n --dev brianium/paratest
 
 # Provides mechanisms for walking through any arbitrary PHP variable
 composer global require --dev symfony/var-dumper
-
-composer global require --dev vimeo/psalm

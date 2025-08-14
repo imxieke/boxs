@@ -23,3 +23,5 @@ default.target.wants
 /conf/zplug
 /conf/nvim/plugged/*
 .qodo
+
+/local/share/boxs-binary
