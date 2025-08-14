@@ -139,5 +139,6 @@ add_bin https://pods.xie.ke/pkgs/phar/phpcs.phar ${BIN_PATH}/phpcs
 
 # PHP Mutation Testing library
 add_bin https://pods.xie.ke/pkgs/phar/infection.phar ${BIN_PATH}/infection
+add_bin https://pods.xie.ke/pkgs/phar/laravel.phar ${BIN_PATH}/laravel
 
 chmod +x ${BIN_PATH}/*
