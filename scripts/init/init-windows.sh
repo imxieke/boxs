@@ -27,7 +27,8 @@ winget install --accept-package-agreements 9WZDNCRD29V9
 # Flutter Treminal
 # winget install --accept-package-agreements 9P2KRLMFXF9T
 # Windows Terminal
-winget install --accept-package-agreements 9N0DX20HK701
+# winget install --accept-package-agreements 9N0DX20HK701
+winget install Microsoft.WindowsTerminal
 # Windows Terminal Preview
 # winget install --accept-package-agreements 9N8G5RFZ9XK3
 
