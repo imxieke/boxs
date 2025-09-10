@@ -106,6 +106,7 @@ _install()
   pnpm add -g minidev
   pnpm add -g @qodo/command
   pnpm add -g @google/gemini-cli
+  pnpm add -g @tencent-ai/codebuddy-code
 }
 
 _install
