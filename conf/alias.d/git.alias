@@ -1,5 +1,6 @@
 # Git
 alias ga='git add'
+alias gdsm="git diff --summary"
 alias gaa='git add --all'
 alias gdp="git clone --depth=1"
 alias git-ignore-files='git check-ignore -v'
