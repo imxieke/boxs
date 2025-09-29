@@ -552,7 +552,7 @@ Environment=\"NO_PROXY=localhost,127.0.0.1,.example.com\"" | sudo tee /etc/syste
 
 __set_locale()
 {
-  ls -lha /etc/locale.gen
+  __rootness
   sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
   sed -i 's/#zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
   locale-gen
