@@ -107,6 +107,7 @@ _install()
   pnpm add -g @qodo/command
   pnpm add -g @google/gemini-cli
   pnpm add -g @tencent-ai/codebuddy-code
+  pnpm add -g @qwen-code/qwen-code
 }
 
 _install
