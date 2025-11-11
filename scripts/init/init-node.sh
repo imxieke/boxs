@@ -103,11 +103,19 @@ _install()
     dockerfile_lint
 
   # 支付宝小程序 Cli
-  pnpm add -g minidev
-  pnpm add -g @qodo/command
-  pnpm add -g @google/gemini-cli
-  pnpm add -g @tencent-ai/codebuddy-code
-  pnpm add -g @qwen-code/qwen-code
+  pnpm i -g minidev
+  pnpm i -g @qodo/command
+  pnpm i -g @google/gemini-cli
+  pnpm i -g @tencent-ai/codebuddy-code
+  pnpm i -g @qwen-code/qwen-code
+  pnpm i -g @openai/codex
+  pnpm i -g @anthropic-ai/claude-code
+  pnpm i -g @vibe-kit/grok-cli
+  pnpm i -g @webdevtoday/grok-cli
+  pnpm i -g @cloudbase/cli
+  pnpm i -g @qoder-ai/qodercli
+  pnpm i -g @iflow-ai/iflow-cli
+  pnpm i -g @continuedev/cli
 }
 
 _install
