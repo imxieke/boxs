@@ -19,6 +19,14 @@ SHELL_PATH="${ROOT_PATH}/shell"
 # GITHUB_MIRROR='https://ghproxy.com/'
 GITHUB_MIRROR='https://gh-proxy.com/'
 
+_init_gh_extension()
+{
+  gh extension install github/gh-models
+  gh extension install dlvhdr/gh-dash
+  gh extension install github/gh-copilot
+  gh extension install jrnxf/gh-eco
+}
+
 # macOS 可执行脚本
 _install_scripts()
 {
@@ -125,10 +133,10 @@ _install_lib()
 install_spc()
 {
   VERSIONS=(
-    "8.4.6"
-    "8.3.20"
-    "8.2.28"
-    "8.1.32"
+    "8.4.11"
+    "8.3.24"
+    "8.2.29"
+    "8.1.33"
     "8.0.30"
   )
   for version in "${VERSIONS[@]}"; do
@@ -145,6 +153,7 @@ install_spc()
     version=${version//./}
     mv /tmp/php-bin/php ~/.bin/php"${version:0:2}"
   done
+  # ln -sf ~/.bin/php84 /usr/local/bin/php
 }
 
 case "$1" in
