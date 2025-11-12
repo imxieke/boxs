@@ -116,6 +116,7 @@ _install()
   pnpm i -g @qoder-ai/qodercli
   pnpm i -g @iflow-ai/iflow-cli
   pnpm i -g @continuedev/cli
+  pnpm i -g @github/copilot
 }
 
 _install
