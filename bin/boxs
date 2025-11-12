@@ -329,30 +329,6 @@ init_platpak()
   flatpak run com.usebottles.bottles
 }
 
-__init_arch()
-{
-  __rootness
-
-  __rootness
-  MIRRORS_FILE='/etc/pacman.d/mirrorlist'
-  echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
-Server = https://mirrors.huaweicloud.com/archlinux/$repo/os/$arch
-Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' >${MIRRORS_FILE}
-
-  sed -i "s/#\[multilib\]/\[multilib\]/g" /etc/pacman.conf
-  sed -i "s/#\[extra\]/\[extra\]/g" /etc/pacman.conf
-  sed -i "s/#\[core\]/\[core\]/g" /etc/pacman.conf
-
-  pacman-key --init
-  pacman-key --populate
-  pacman -Sy --noconfirm archlinux-keyring
-  # pacman -Sy --noconfirm archlinuxcn-keyring
-}
-
 init_snap()
 {
   snap install snap-store
