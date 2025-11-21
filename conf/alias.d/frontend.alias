@@ -1,4 +1,6 @@
 # Frontend Package Manager
+alias fmi="pnpm i"
+alias fmig="pnpm i -g"
 alias fmag="pnpm add -g"
 alias fma="pnpm add --save"
 alias fmad="pnpm add --save-dev"
