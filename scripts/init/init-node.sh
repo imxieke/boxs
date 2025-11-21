@@ -2,24 +2,10 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
-# @LastEditTime: 2025-01-11 22:56:05
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2025-11-21 15:23:00
+ # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
-
-__mcp()
-{
-  pnpm add -g @mcpmarket/mcp-auto-installer
-
-  pnpm add -g @modelcontextprotocol/server-everything
-  pnpm add -g @modelcontextprotocol/server-memory
-  pnpm add -g @modelcontextprotocol/server-aws-kb-retrieval
-  pnpm add -g @modelcontextprotocol/server-brave-search
-  pnpm add -g @modelcontextprotocol/server-filesystem
-  pnpm add -g @modelcontextprotocol/server-gdrive
-  pnpm add -g @modelcontextprotocol/server-gitlab
-  pnpm add -g mcp-remote
-}
 
 _install()
 {
@@ -27,7 +13,7 @@ _install()
   npm i -g pnpm
 
   # vsce VSCode Extension Manager
-  pnpm add -g typescript \
+  pnpm i -g typescript \
     bower \
     bun \
     fkill-cli \
@@ -40,7 +26,7 @@ _install()
     @vscode/vsce
 
   # Pack
-  pnpm add -g grunt \
+  pnpm i -g grunt \
     gulp-cli \
     webpack \
     webpack-cli \
@@ -49,15 +35,15 @@ _install()
     vite
 
   # Bug Scanner
-  # pnpm add -g snyk@latest
+  # pnpm i -g snyk@latest
   # TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files
-  pnpm add -g tsx
+  pnpm i -g tsx
 
   # intelephense php autocomplete PHP language server
   # tsserver typescript-language-server
   # https://github.com/hrsh7th/vscode-langservers-extracted
   # https://github.com/joe-re/sql-language-server
-  pnpm add -g intelephense \
+  pnpm i -g intelephense \
     bash-language-server \
     typescript-language-server \
     yaml-language-server-parser \
@@ -67,7 +53,7 @@ _install()
     sql-language-server
 
   # Language
-  pnpm add -g prettier \
+  pnpm i -g prettier \
     @prettier/plugin-ruby \
     @prettier/plugin-php \
     @prettier/plugin-xml \
@@ -79,7 +65,7 @@ _install()
 
   # Frontend
   # Salesforce Apex
-  pnpm add -g prettier-plugin-wxml \
+  pnpm i -g prettier-plugin-wxml \
     @shufo/prettier-plugin-blade \
     prettier-plugin-nginx \
     prettier-plugin-latex \
@@ -91,12 +77,12 @@ _install()
 
   # 用不到
   # @shopify/prettier-plugin-liquid prettier-plugin-go-template eslint-plugin-prettier-vue prettier-plugin-tvmsolidity @prettier/plugin-pug
-  pnpm add -g eslint \
+  pnpm i -g eslint \
     eslint-plugin-jsonc \
     eslint-plugin-json
 
   # Lint
-  pnpm add -g sql-lint \
+  pnpm i -g sql-lint \
     jsonlint \
     dockerlint \
     dockerfilelint \
@@ -117,6 +103,8 @@ _install()
   pnpm i -g @iflow-ai/iflow-cli
   pnpm i -g @continuedev/cli
   pnpm i -g @github/copilot
+  pnpm i -g opencode-ai@latest
+  pnpm i -g @volcengine/vecli@latest
 }
 
 _install
