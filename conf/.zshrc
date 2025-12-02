@@ -79,3 +79,6 @@ chpwd_functions=(auto-color-ls $chpwd_functions)
 # alway show quote
 # export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
 [ -n "$(command -v fortune)" ] && fortune | cowsay | lolcat
+
+# Added by Antigravity
+export PATH="/Users/imxieke/.antigravity/antigravity/bin:$PATH"
