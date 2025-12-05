@@ -1,0 +1,15 @@
+[Unit]
+Description=App
+After=network.target
+
+[Service]
+Type=exec
+User=satan
+ExecStart=/usr/bin/clash
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=App for %i.
+After=network.target
+
+[Service]
+Type=exec
+User=%i
+ExecStart=/usr/bin/clash
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

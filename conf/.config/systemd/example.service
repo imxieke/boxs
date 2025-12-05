@@ -1,0 +1,28 @@
+# /etc/systemd/system/myapp.service
+[Unit]
+Description=App
+# Documentation=https://docs.example.com
+# Documentation=man:sshd(8) man:sshd_config(5)
+#Wants=mysql.service
+#After=mysql.service
+
+[Service]
+Type=exec
+# System Level
+# User=satan
+# Group=satan
+# ProtectProc=invisible
+# Environment=
+# EnvironmentFile=/home/user/.env
+WorkingDirectory=/opt/myapp
+# ExecStartPre=
+ExecStart=
+# ExecStop=
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+# Alias=name.service
