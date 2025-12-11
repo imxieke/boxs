@@ -23,11 +23,11 @@
   st = status
 
 [init]
-  defaultBranch = master
+	defaultBranch = main
 
 [user]
-  name = imxieke
-  email = oss@live.hk
+	name = imxieke
+	email = oss@live.hk
   useConfigOnly = true
   signingkey = 01BD08D7AAD7CCB3
 

@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
- # @LastEditTime: 2025-05-02 11:10:07
+ # @LastEditTime: 2025-12-11 18:20:19
  # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -12,7 +12,7 @@
 
 # Load Node Version Manager
 if [[ -f "${HOME}/.local/share/nvm/nvm.sh" ]]; then
-  source ${HOME}/.local/share/nvm/nvm.sh
+  source "${HOME}/.local/share/nvm/nvm.sh"
 fi
 
 if [[ -z "$(command -v node)" ]]; then
@@ -34,6 +34,8 @@ PATHS=(
   "/usr/local/games"
   "${PNPM_HOME}"
   "${HOME}/.bin"
+  "${HOME}/.bun/bin"
+  "${HOME}/.yarn/bin"
   "${HOME}/.boxs/bin"
   "${HOME}/.local/bin"
   "${HOME}/.local/share/boxs/bin"
