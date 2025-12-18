@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-17 20:02:52
- # @LastEditTime: 2025-05-04 09:45:17
+ # @LastEditTime: 2025-12-18 23:11:45
  # @LastEditors: Cloudflying
 # @Description: init package for macOS brew package manager
 ###
@@ -144,6 +144,10 @@ init_pkgs()
 
   # Server
   brew install openssh
+
+  # AI
+  brew install --formula ollama
+  brew install --cask cherry-studio
 
   # ntfs
   # brew install mounty
