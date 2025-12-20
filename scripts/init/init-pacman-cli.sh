@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2025-03-31 22:04:36
+ # @LastEditTime: 2025-12-20 18:15:46
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -193,6 +193,9 @@ _install()
 
   # AI
   pacman -S --noconfirm ollama
+
+  # Kubernetes
+  pacman -S --noconfirm kubernetes-tools helm minikube
 
   # trivy Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
   # gitleaks Find secrets with Gitleaks 🔑

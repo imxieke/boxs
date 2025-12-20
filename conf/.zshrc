@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2025-04-25 00:08:16
+ # @LastEditTime: 2025-12-20 18:16:10
  # @LastEditors: Cloudflying
 # @Description: zsh config filea
 ###
@@ -82,3 +82,8 @@ chpwd_functions=(auto-color-ls $chpwd_functions)
 
 # Added by Antigravity
 export PATH="/Users/imxieke/.antigravity/antigravity/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="${PATH}:${HOME}.lmstudio/bin"
+# End of LM Studio CLI section
+
