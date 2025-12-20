@@ -25,3 +25,4 @@ default.target.wants
 .qodo
 
 /local/share/boxs-binary
+conf/.config/systemd/user/multi-user.target.wants/ollama.service
