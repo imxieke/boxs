@@ -165,3 +165,11 @@
 
 [merge "lfs-text"]
   driver = git lfs merge-driver --ancestor %O --current %A --other %B --marker-size %L --output %A --program 'git merge-file --stdout --marker-size=%%L %%A %%O %%B >%%D'
+[lfs "customtransfer.xet"]
+	path = git-xet
+	args = transfer
+	concurrent = true
+[https]
+	proxy = http://127.0.0.1:7890
+[http]
+	proxy = http://127.0.0.1:7890
