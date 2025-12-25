@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2025-11-21 15:23:00
+ # @LastEditTime: 2025-12-25 23:51:13
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -11,6 +11,9 @@ _install()
 {
   # Fabulously kill processes. Cross-platform
   npm i -g pnpm
+
+  # Dev Tools
+  pnpm install -g @devcontainers/cli
 
   # vsce VSCode Extension Manager
   pnpm i -g typescript \
