@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:27:10
- # @LastEditTime: 2024-12-26 00:07:53
+ # @LastEditTime: 2025-12-26 16:31:21
  # @LastEditors: Cloudflying
 # @Description: Zinit Init
 ###
@@ -44,9 +44,8 @@ if [[ -f "${HOME}/.local/share/zinit/zinit.zsh" ]]; then
   zinit load zdharma-continuum/history-search-multi-word
   # zinit load trystan2k/zsh-tab-title
 
-  # git clone depth
-  # zinit ice depth=1
-  # zinit load romkatv/powerlevel10k
+  zinit ice depth=1
+  zinit load romkatv/powerlevel10k
   # zinit light jeffreytse/zsh-vi-mode
   if [[ -n "$(command -v fzf)" ]]; then
     #   # Replace zsh's default completion selection menu with fzf!

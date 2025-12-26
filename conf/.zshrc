@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2025-12-20 18:16:10
+ # @LastEditTime: 2025-12-26 16:32:43
  # @LastEditors: Cloudflying
 # @Description: zsh config filea
 ###
@@ -20,14 +20,14 @@ source "${BOXS_CONF}/config/os/proxy.sh"
 source "${BOXS_CONF}/config/os/zinit.sh"
 
 # Check zsh load time for debug
-# zmodload zsh/zprof
+zmodload zsh/zprof
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh" ]]; then
-#   source ${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh
-# fi
+if [[ -r "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh" ]]; then
+  source "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh"
+fi
 
 export ZSH=$HOME/.oh-my-zsh
 # If you come from bash you might have to change your $PATH.

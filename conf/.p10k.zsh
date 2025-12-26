@@ -1716,7 +1716,8 @@
       OSNAME="macOS"
     fi
     TEXT="${RUNUSER}@${HOSTNAME} On ${ARCH}"
-    p10k segment -b 8 -f 3 -t "${TEXT}"
+    # p10k segment -b "#D2691E" -f "#F8F8FF" -t "${TEXT}"
+    p10k segment -b 5 -f "#F8F8FF" -t "${TEXT}"
   }
 
   [ -f ${BOXS_HOME}/etc/p10k/promt.sh ] && source ${BOXS_HOME}/etc/p10k/promt.sh
