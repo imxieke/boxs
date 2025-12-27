@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2025-12-25 23:51:13
+ # @LastEditTime: 2025-12-27 23:46:45
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -108,6 +108,7 @@ _install()
   pnpm i -g @github/copilot
   pnpm i -g opencode-ai@latest
   pnpm i -g @volcengine/vecli@latest
+  pnpm i -g cline
 }
 
 _install
