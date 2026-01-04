@@ -1,23 +1,32 @@
 alias pmu="sudo pacman -Syy"
-alias pmuu="sudo pacman -Syyu"
+alias pmuu="sudo pacman -Su"
 alias pma="sudo pacman -S --noconfirm"
 # Remove Package with depends
 alias pmr="sudo pacman -Rsc"
+alias pmrs="sudo pacman -Rns"
 alias pms="pacman -Ss"
-alias pmi="pacman -Si"
 # Installed Packages
 alias pml="pacman -Qn"
 # Archlinux Package File Lists
-alias pml="pacman -Ql"
+alias pmll="pacman -Ql"
 alias pmc="sudo pacman -Scc"
-alias pmrs="sudo pacman -Rns"
 alias pmaf="sudo pacman -U"
-alias pmlf="pacman -Qip"
 alias pmd="sudo pacman -Sw"
 # Outdated Packages
-alias pmo='pacman -Qo'
+alias pmo='pacman -Q --upgrades'
 # fzf Search Package
 alias pmss="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 # Change Mirror to better site
 alias update-pkg-source="sudo pacman-mirrors -a --geoip --protocols https -m random"
+
+
+# Package Info
+function pmi()
+{
+  if [[ -f "$1" ]]; then
+    pacman -Qip "${1}"
+  else
+    pacman -Si "${1}"
+  fi
+}
