@@ -1,1 +1,8 @@
 alias arch='docker run -it --name=arch --hostname=arch --privileged -v ${HOME}:/home/${USER} registry.cn-shanghai.aliyuncs.com/dockenv/boxs:latest'
+
+# Service
+alias nginx="docker exec -it nginx nginx"
+alias redis-cli="docker exec -it redis redis-cli"
+
+alias zeus="docker exec -it php83 php /data/Project/Zeus/artisan"
+alias aicy="docker exec -it php83 php /data/Project/aicy/webman"
