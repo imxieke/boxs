@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2025-12-20 18:15:46
+ # @LastEditTime: 2026-01-06 19:20:34
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -129,7 +129,7 @@ _install()
   # Package management
   # App Store
   # snapd yay not in Archlinux
-  # pacman -S --noconfirm dpkg pacman-mirrors
+  # pacman -S --noconfirm dpkg pacman-mirrors yay
 
   # Media
   pacman -S --noconfirm ffmpeg

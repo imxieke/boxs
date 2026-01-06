@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
- # @LastEditTime: 2025-05-08 21:24:56
+ # @LastEditTime: 2026-01-06 19:22:59
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -40,13 +40,18 @@ _install()
   # Productive
   # geary Mail CLient
   # endeavour TODO
-  pacman -S --noconfirm geary endeavour
+  # sticky 便签
+  pacman -S --noconfirm geary endeavour sticky
 
   # System Tools
   # tmon Monitoring and Testing Tool for Linux kernel thermal subsystem
   # perf Linux kernel performance auditing tool
   # sysprof Kernel based performance profiler
-  pacman -S --noconfirm tmon perf sysprof simple-scan
+  # onboard 虚拟键盘
+  # systemdgenie Systemd management utility
+  # drkonqi The KDE crash handler
+  # imagewriter A graphical utility for writing raw disk images & hybrid isos to USB keys
+  pacman -S --noconfirm tmon perf sysprof systemdgenie drkonqi imagewriter pacmanlogviewer
 
   # Aur: etcher
   # Deepin Family
@@ -78,7 +83,8 @@ _install()
   # easytag Simple application for viewing and editing tags in audio files
   # meld visual diff and merge tool for files, folders and version control.
   # File Manager: nautilus
-  pacman -S --noconfirm diffutils easytag meld nautilus gnome-disk-utility kdiff3
+  # bulky Rename multiple files at once.
+  pacman -S --noconfirm diffutils easytag meld nautilus gnome-disk-utility kdiff3 bulky
 
   # Database Client
   pacman -S --noconfirm sqlitebrowser
@@ -98,6 +104,7 @@ _install()
 
   # Documents
   # yelp views Mallard, DocBook, man, info, and HTML documents
+  # xreader Document viewer for files like PDF and Postscript
   pacman -S --noconfirm calibre \
     evince \
     pdfmod \
@@ -119,10 +126,15 @@ _install()
   # Rustscan Port Scanner
   pacman -S --noconfirm metasploit ghidra jadx rustscan
 
+  # Scanner 打印机
+  # pacman -S --noconfirm simple-scan
+
   # Editor
   # gtk markdown editor
   # ghostwriter MarkDown
-  pacman -S --noconfirm code kate marker ghex gnome-builder xed ghostwriter gnome-text-editor
+  # xed 文本编辑器
+  pacman -S --noconfirm code kate marker ghex gnome-builder xed ghostwriter gnome-text-editor \
+    gedit gedit-plugins
 
   # Wine
   pacman -S --noconfirm wine vkd3d wine-gecko winetricks wine-mono
@@ -133,7 +145,9 @@ _install()
   # Pictures
   # picture view: ristretto pix
   # shotwell A digital photo organizer designed for the GNOME desktop environment
-  pacman -S --noconfirm nomacs ristretto pix gthumb eog shotwell digikam gnome-photos photoflare
+  # xviewer Fast and functional graphics viewer
+  pacman -S --noconfirm nomacs ristretto pix gthumb eog shotwell digikam gnome-photos photoflare \
+    xviewer xviewer-plugins
 
   # MultiMedia Player
   # smplayer Media player with built-in codecs that can play virtually all video and audio formats
@@ -195,6 +209,10 @@ _install()
     chromium \
     falkon
 
+  # Password Manager
+  # seahorse managing PGP keys
+  pacman -S --noconfirm seahorse
+
   # Office
   # libreoffice-fresh beta version
   # pacman -S --noconfirm libreoffice-fresh libreoffice-fresh-zh-cn libreoffice-extension-texmaths libreoffice-extension-writer2latex
@@ -202,6 +220,9 @@ _install()
   # NetWork
   # smb4k 功能强大的网上邻居浏览器和 Samba 共享挂载工具
   pacman -S --noconfirm gnome-nettool smb4k
+
+  # Firewall
+  pacman -S --noconfirm gufw
 
   # KDE Plasma Desktop
   # pacman -S --noconfirm plasma
@@ -217,6 +238,9 @@ _install()
     kde-applications
 
   pacman -S --noconfirm dolphin-plugins
+
+  # Theme Tools
+  pacman -S --noconfirm kvantum kvantum-manjaro
 
   # SDDM 仅对于非 sddm 桌面环境管理器
   # pacman -S --noconfirm sddm sddm-kcm
@@ -237,13 +261,18 @@ _install()
   pacman -S --noconfirm linux-firmware linux-api-headers
 
   # Productive
-  # pacman -S --noconfirm thunderbird thunderbird-i18n-zh-cn
+  # thingy TODO List
+  # pacman -S --noconfirm thunderbird thunderbird-i18n-zh-cn thingy
 
   # Input Method
   pacman -S --noconfirm fcitx fcitx-configtool fcitx-sogoupinyin
 
   # 修复缺失库
   pacman -S --noconfirm libvoikko nuspell hspell
+
+  # 指纹 Fingerprint
+  # fingwit 指纹配置
+  # pacman -S --noconfirm fingwit
 
   # pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-chinese-addons
 
@@ -335,6 +364,16 @@ _install()
   pacman -S --noconfirm figlet asciiquarium sl dmidecode sshfs supervisor \
     gnome-logs gnome-calculator gnome-dictionary ocrfeeder peek gnome-podcasts \
     mdcat
+
+
+  # Characters 字符
+  pacman -S --noconfirm gnome-characters
+
+  # Calendar
+  pacman -S --noconfirm gnome-calendar
+
+  # Backup
+  pacman -S --noconfirm timeshift
 
   pacman -S --noconfirm qt6-base  qt6-3d \
     qt6-wayland
