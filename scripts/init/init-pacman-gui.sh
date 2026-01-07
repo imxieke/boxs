@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
- # @LastEditTime: 2026-01-06 19:22:59
+ # @LastEditTime: 2026-01-07 11:57:17
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -51,7 +51,9 @@ _install()
   # systemdgenie Systemd management utility
   # drkonqi The KDE crash handler
   # imagewriter A graphical utility for writing raw disk images & hybrid isos to USB keys
-  pacman -S --noconfirm tmon perf sysprof systemdgenie drkonqi imagewriter pacmanlogviewer
+  pacman -S --noconfirm tmon perf sysprof systemdgenie drkonqi imagewriter pacmanlogviewer \
+    btrfs-assistant \
+    btrfs-heatmap
 
   # Aur: etcher
   # Deepin Family
@@ -86,9 +88,6 @@ _install()
   # bulky Rename multiple files at once.
   pacman -S --noconfirm diffutils easytag meld nautilus gnome-disk-utility kdiff3 bulky
 
-  # Database Client
-  pacman -S --noconfirm sqlitebrowser
-
   # Chat
   # aur slack-desktop
   # fractal Matrix messaging client
@@ -105,13 +104,13 @@ _install()
   # Documents
   # yelp views Mallard, DocBook, man, info, and HTML documents
   # xreader Document viewer for files like PDF and Postscript
+  # evince Document viewer (PDF, PostScript, XPS, djvu, dvi, tiff, cbr, cbz, cb7, cbt)
   pacman -S --noconfirm calibre \
     evince \
     pdfmod \
     yelp yelp-tools yelp-xsl \
     gnome-books \
     xreader \
-    xfce4-dict \
     okular
 
   # BitTorrent && Downloader
@@ -122,10 +121,6 @@ _install()
   # pro-audio 音频剪辑等软件包群组 一键安装常用剪辑软件
   pacman -S --noconfirm pitivi
 
-  # Security
-  # Rustscan Port Scanner
-  pacman -S --noconfirm metasploit ghidra jadx rustscan
-
   # Scanner 打印机
   # pacman -S --noconfirm simple-scan
 
@@ -133,20 +128,33 @@ _install()
   # gtk markdown editor
   # ghostwriter MarkDown
   # xed 文本编辑器
-  pacman -S --noconfirm code kate marker ghex gnome-builder xed ghostwriter gnome-text-editor \
-    gedit gedit-plugins
+  pacman -S --noconfirm code \
+    kate \
+    marker \
+    ghex \
+    gnome-builder \
+    xed \
+    ghostwriter \
+    gnome-text-editor \
+    gedit gedit-plugins \
+    micro micro-manjaro \
+    msedit \
+    kwrited
 
   # Wine
   pacman -S --noconfirm wine vkd3d wine-gecko winetricks wine-mono
   # Wine Depends
-  pacman -S --noconfirm lib32-sdl2 lib32-pcsclite lib32-libcups lib32-alsa-plugins lib32-gnutls lib32-gst-plugins-base \
-    lib32-libxcomposite
+  pacman -S --noconfirm lib32-sdl2 lib32-pcsclite lib32-libcups lib32-alsa-plugins \
+    lib32-gnutls lib32-gst-plugins-base lib32-libxcomposite
 
   # Pictures
   # picture view: ristretto pix
   # shotwell A digital photo organizer designed for the GNOME desktop environment
   # xviewer Fast and functional graphics viewer
-  pacman -S --noconfirm nomacs ristretto pix gthumb eog shotwell digikam gnome-photos photoflare \
+  # eog Eye of Gnome: An image viewing and cataloging program
+  pacman -S --noconfirm nomacs ristretto pix gthumb \
+    eog eog-plugins \
+    shotwell digikam gnome-photos photoflare \
     xviewer xviewer-plugins
 
   # MultiMedia Player
@@ -181,8 +189,11 @@ _install()
   # Databases
   # kexi A visual database applications creator
   # dbeaver Free universal SQL Client for developers and database administrators (community edition) java
-  pacman -S --noconfirm mysql-workbench kexi \
-    dbeaver dbeaver-plugin-office
+  pacman -S --noconfirm \
+    mysql-workbench \
+    kexi \
+    dbeaver dbeaver-plugin-office \
+    sqlitebrowser
 
   # Games
   # 不玩游戏 谢谢
@@ -202,12 +213,14 @@ _install()
 
   # Browser
   # aur tor-browser edge google-chrome
+  # epiphany A GNOME web browser based on the WebKit rendering engine
   pacman -S --noconfirm \
     vivaldi vivaldi-ffmpeg-codecs \
     firefox firefox-i18n-zh-cn \
     firefox-developer-edition firefox-developer-edition-i18n-zh-cn \
     chromium \
-    falkon
+    falkon \
+    epiphany
 
   # Password Manager
   # seahorse managing PGP keys
@@ -221,8 +234,8 @@ _install()
   # smb4k 功能强大的网上邻居浏览器和 Samba 共享挂载工具
   pacman -S --noconfirm gnome-nettool smb4k
 
-  # Firewall
-  pacman -S --noconfirm gufw
+  # Network Firewall
+  pacman -S --noconfirm plasma-firewall gufw firewalld ufw
 
   # KDE Plasma Desktop
   # pacman -S --noconfirm plasma
@@ -251,7 +264,7 @@ _install()
 
   # Gnome Apps
   # sushi A quick previewer for Nautilus
-  pacman -S --noconfirm baobab eog epiphany evince file-roller gnome-font-viewer gnome-maps gnome-weather rygel sushi
+  pacman -S --noconfirm baobab file-roller gnome-font-viewer gnome-maps gnome-weather rygel sushi
 
   # ElementaryOS Desktop conflict with Deepin Desktop
   # pacman -S --noconfirm pantheon
@@ -259,6 +272,9 @@ _install()
 
   # Kernel
   pacman -S --noconfirm linux-firmware linux-api-headers
+
+  # Program
+  pacman -S --noconfirm cppcheck
 
   # Productive
   # thingy TODO List
@@ -337,7 +353,8 @@ _install()
   pacman -S --noconfirm discover
 
   # Disk Utils
-  pacman -S --noconfirm gpart gparted parted
+  # kdiskmark HDD and SSD benchmark tool with a very friendly graphical user interface
+  pacman -S --noconfirm gpart gparted parted plasma-disks kdiskmark
 
   # remmina remote desktop client written in GTK+
   pacman -S --noconfirm remmina gnome-connections filezilla vinagre teamviewer
@@ -361,6 +378,7 @@ _install()
   # sl ASCII 小火车
   # see hardware info
   # peek GIF screen recorder
+  # ocrfeeder Document layout analysis and optical character recognition application
   pacman -S --noconfirm figlet asciiquarium sl dmidecode sshfs supervisor \
     gnome-logs gnome-calculator gnome-dictionary ocrfeeder peek gnome-podcasts \
     mdcat
@@ -382,12 +400,9 @@ _install()
   # xfburn brasero gnome-multi-writer
 
   # Virtual Machine && Container
-  # gnome-boxes
-  # use kernel version
-  # pacman -S --noconfirm \
-  # docker \
-  # libvirt \
-  # qemu-system-x86 qemu-virtiofsd
+  # pacman -S --noconfirm qemu-full \
+    # libvirt virt-install virt-manager \
+    # gnome-boxes
 
   # VirtualBox 如果在 Linux 类系统完全没必要安装虚拟机
   # pacman -S --noconfirm virtualbox virtualbox-guest-utils virtualbox-host-dkms linux518-virtualbox-host-modules

@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2026-01-06 19:20:34
+ # @LastEditTime: 2026-01-07 13:36:02
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -138,16 +138,20 @@ _install()
   # So Large pandoc-cli pandoc-plot
   pacman -S --noconfirm poppler poppler-data
 
-  # Security
-  # osv-scanner Vulnerability scanner
-  # trivy A Simple and Comprehensive Vulnerability Scanner for Containers
-  pacman -S --noconfirm nmap rustscan osv-scanner sqlmap masscan trivy
+  # Password && Encrypt
+  pacman -S --noconfirm gnupg gpg-tui
 
   # Virtual Machine && Container
   # Docker
   pacman -S --noconfirm docker docker-buildx docker-compose docker-scan docker-machine
   # podman-docker conflict with docker
   # pacman -S --noconfirm podman podman-compose podman-docker
+
+  # Kubernetes
+  # pacman -S --noconfirm podman podman-compose podman-docker
+
+  # Kubernetes
+  # pacman -S --noconfirm kubernetes-tools helm minikube
 
   # Virtual Machine && Container Depency
   # pacman -S --noconfirm fuse-overlayfs
@@ -193,14 +197,6 @@ _install()
 
   # AI
   pacman -S --noconfirm ollama
-
-  # Kubernetes
-  pacman -S --noconfirm kubernetes-tools helm minikube
-
-  # trivy Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more
-  # gitleaks Find secrets with Gitleaks 🔑
-  pacman -S --noconfirm trivy \
-    gitleaks
 
   if [ -n "$(uname -r | grep -i wsl)" ]; then
     echo "Install WSL2 Tools"
