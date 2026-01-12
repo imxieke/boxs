@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2026-01-07 13:36:02
+ # @LastEditTime: 2026-01-12 14:41:01
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -194,6 +194,9 @@ _install()
 
   # Lint
   pacman -S --noconfirm shellcheck
+
+  # Scanner 打印机
+  # pacman -S --noconfirm simple-scan
 
   # AI
   pacman -S --noconfirm ollama
