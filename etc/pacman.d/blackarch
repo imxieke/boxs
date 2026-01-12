@@ -1,0 +1,26 @@
+# China
+Server = https://mirrors.hust.edu.cn/blackarch/$repo/os/$arch
+Server = https://mirror.sjtu.edu.cn/blackarch/$repo/os/$arch
+Server = https://mirrors.nju.edu.cn/blackarch/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/blackarch/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/blackarch/$repo/os/$arch
+Server = https://mirrors.aliyun.com/blackarch/$repo/os/$arch
+Server = https://mirrors.xjtu.edu.cn/blackarch/$repo/os/$arch
+
+# Singapore
+#Server = https://sg.mirrors.cicku.me/blackarch/$repo/os/$arch
+#Server = https://download.nus.edu.sg/mirror/blackarch/$repo/os/$arch
+
+# Taiwan
+#Server = https://blackarch.cs.nycu.edu.tw/$repo/os/$arch
+#Server = https://mirror.archlinux.tw/BlackArch/$repo/os/$arch
+#Server = https://tw.mirrors.cicku.me/blackarch/$repo/os/$arch
+
+# US
+#Server = http://mirror.math.princeton.edu/pub/blackarch/$repo/os/$arch
+#Server = https://mirror.team-cymru.com/blackarch/$repo/os/$arch
+#Server = ftp://mirror.team-cymru.com/blackarch/$repo/os/$arch
+#Server = https://mirrors.ocf.berkeley.edu/blackarch/$repo/os/$arch
+#Server = http://mirrors.ocf.berkeley.edu/blackarch/$repo/os/$arch
+#Server = https://ftp2.osuosl.org/pub/blackarch/$repo/os/$arch
+#Server = http://ftp2.osuosl.org/pub/blackarch/$repo/os/$arch

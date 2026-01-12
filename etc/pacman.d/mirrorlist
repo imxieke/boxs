@@ -1,0 +1,18 @@
+## Country : China
+Server = https://mirrors.aliyun.com/manjaro/stable/$repo/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/manjaro/stable/$repo/$arch
+Server = https://mirrors.ustc.edu.cn/manjaro/stable/$repo/$arch
+Server = https://mirror.nyist.edu.cn/manjaro/stable/$repo/$arch
+Server = https://mirror.nju.edu.cn/manjaro/stable/$repo/$arch
+Server = https://mirrors.pku.edu.cn/manjaro/stable/$repo/$arch
+Server = https://mirrors.sjtug.sjtu.edu.cn/manjaro/stable/$repo/$arch
+Server = https://mirrors.jlu.edu.cn/manjaro/stable/$repo/$arch
+
+# United States
+Server = https://mirror.fcix.net/manjaro/stable/$repo/$arch
+Server = https://repo.ialab.dsu.edu/manjaro/stable/$repo/$arch
+Server = https://mirrors.ocf.berkeley.edu/manjaro/stable/$repo/$arch
+Server = https://mirror.math.princeton.edu/pub/manjaro/stable/$repo/$arch
+Server = https://southfront.mm.fcix.net/manjaro/stable/$repo/$arch
+Server = https://mirrors.sonic.net/manjaro/stable/$repo/$arch
+Server = https://mirrors.gigenet.com/manjaro/stable/$repo/$arch
