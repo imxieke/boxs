@@ -2,8 +2,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
-# @LastEditTime: 2025-04-10 11:30:12
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2026-01-14 11:23:24
+ # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script
 ###
 
@@ -582,6 +582,8 @@ __init()
     ln -sf "${HOME}/.config/secret/home/.ssh/config" "${HOME}/.ssh/config"
     ln -sf "${HOME}/.config/secret/home/.config/rclone" "${HOME}/.config"
   fi
+
+  ln -sf "${HOME}/.boxs/conf/.bunfig.toml" ~/.bunfig.toml
 
   sudo ln -sf "${BOXS_HOME}/etc/systemd/system/docker.service.d" /etc/systemd/system
   sudo ln -sf "${BOXS_HOME}/etc/systemd/system/ollama.service.d" /etc/systemd/system
