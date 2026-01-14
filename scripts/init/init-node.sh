@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2025-12-27 23:46:45
+ # @LastEditTime: 2026-01-14 12:10:35
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -93,22 +93,24 @@ _install()
 
   # 支付宝小程序 Cli
   pnpm i -g minidev
-  pnpm i -g @qodo/command
-  pnpm i -g @google/gemini-cli
-  pnpm i -g @tencent-ai/codebuddy-code
-  pnpm i -g @qwen-code/qwen-code
-  pnpm i -g @openai/codex
-  pnpm i -g @anthropic-ai/claude-code
-  pnpm i -g @vibe-kit/grok-cli
   pnpm i -g @webdevtoday/grok-cli
   pnpm i -g @cloudbase/cli
-  pnpm i -g @qoder-ai/qodercli
   pnpm i -g @iflow-ai/iflow-cli
+  pnpm i -g @volcengine/vecli@latest
+
+  # Code Cli
+  pnpm i -g @openai/codex
+  pnpm i -g @google/gemini-cli
+  pnpm i -g @anthropic-ai/claude-code
+  pnpm i -g @qodo/command
+  pnpm i -g @tencent-ai/codebuddy-code
+  pnpm i -g @qwen-code/qwen-code
+  pnpm i -g @vibe-kit/grok-cli
+  pnpm i -g @qoder-ai/qodercli
   pnpm i -g @continuedev/cli
   pnpm i -g @github/copilot
-  pnpm i -g opencode-ai@latest
-  pnpm i -g @volcengine/vecli@latest
   pnpm i -g cline
+  pnpm i -g opencode-ai@latest
 }
 
 _install
