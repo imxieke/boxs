@@ -1,2 +1,4 @@
 [install]
+verbose = true
+progress = true
 registry = "https://registry.npmmirror.com"
