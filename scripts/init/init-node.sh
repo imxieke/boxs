@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2026-01-14 12:10:35
+ # @LastEditTime: 2026-01-15 09:56:07
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -10,15 +10,15 @@
 _install()
 {
   # Fabulously kill processes. Cross-platform
-  npm i -g pnpm
+  npm i -g pnpm bun
+  bun i -g bun
 
   # Dev Tools
   pnpm install -g @devcontainers/cli
 
   # vsce VSCode Extension Manager
-  pnpm i -g typescript \
+  bun i -g typescript \
     bower \
-    bun \
     fkill-cli \
     fx \
     tldr \
@@ -94,6 +94,7 @@ _install()
   # 支付宝小程序 Cli
   pnpm i -g minidev
   pnpm i -g @webdevtoday/grok-cli
+  # Tencent CloudBase Cli
   pnpm i -g @cloudbase/cli
   pnpm i -g @iflow-ai/iflow-cli
   pnpm i -g @volcengine/vecli@latest

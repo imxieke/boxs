@@ -1,0 +1,19 @@
+
+# Bun
+alias bmi="bun i"
+alias bmig="bun i -g"
+
+alias bma="bun a"
+alias bmag="bun a -g"
+
+alias bmrg="bun rm"
+alias bmrg="bun rm -g"
+
+alias bml="bun list"
+alias bmlg="bun list -g"
+
+alias bmo="bun outdated"
+alias bmog="bun outdated -g"
+
+
+# PNPM
