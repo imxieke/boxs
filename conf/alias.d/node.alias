@@ -15,5 +15,10 @@ alias bmlg="bun list -g"
 alias bmo="bun outdated"
 alias bmog="bun outdated -g"
 
+alias bmr="bun remove"
+alias bmrg="bun remove -g"
+
+alias bmu="bun update"
+alias bmug="bun update -g"
 
 # PNPM
