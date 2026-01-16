@@ -8,6 +8,10 @@ Description=App
 
 [Service]
 Type=exec
+# CPU Num * 100%
+CPUQuota=50%
+# K, M, G, T
+MemoryLimit=256M
 # System Level
 # User=satan
 # Group=satan
