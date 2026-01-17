@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
- # @LastEditTime: 2026-01-07 11:57:17
+ # @LastEditTime: 2026-01-17 14:56:11
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -408,6 +408,12 @@ _install()
   # pacman -S --noconfirm virtualbox virtualbox-guest-utils virtualbox-host-dkms linux518-virtualbox-host-modules
   # 仅运行在vbox虚拟机内
   # systemctl enable vboxservice.service
+
+  # GPU
+  # Nvidia
+  pacman -S --noconfirm cuda nccl \
+    nvidia-utils nvidia-settings nvidia-container-toolkit \
+    nvtop
 }
 
 _install
