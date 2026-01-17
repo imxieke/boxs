@@ -29,7 +29,7 @@
 	name = imxieke
 	email = oss@live.hk
   useConfigOnly = true
-  signingkey = 01BD08D7AAD7CCB3
+  signingkey = F9FC9D63D56C20545B528A9FED35E1C1368057E9
 
 [author]
   name = imxieke

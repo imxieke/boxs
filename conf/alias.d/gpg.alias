@@ -1,0 +1,1 @@
+alias gpg-sign="gpg --local-user F9FC9D63D56C20545B528A9FED35E1C1368057E9 --armor --detach-sign"
