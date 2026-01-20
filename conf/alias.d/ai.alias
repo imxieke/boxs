@@ -1,0 +1,2 @@
+alias gguf-parser-json="gguf-parser --json --path"
+alias gguf-parser-raw="gguf-parser --raw --path"
