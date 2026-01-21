@@ -1,8 +1,8 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
-# @LastEditTime: 2024-12-30 14:35:54
-# @LastEditors: Cloudflying
+ # @LastEditTime: 2026-01-21 17:51:34
+ # @LastEditors: Cloudflying
 # @Description:
 ###
 
@@ -61,7 +61,7 @@ alias myip="wget -qO- https://wtfismyip.com/text"
 alias enjoke='curl https://icanhazdadjoke.com'
 
 # Downloader
-alias get='aria2c -c -x 4'
+alias get='aria2c -c -x 16'
 alias sdl='axel -n 16 -c -k -a -U "Mozilla/5.0"'
 alias surl='curl -sL'
 alias dl="wget -c --no-check-certificate"
