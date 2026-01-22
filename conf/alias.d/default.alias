@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-12-28 20:01:25
- # @LastEditTime: 2026-01-21 17:51:34
+ # @LastEditTime: 2026-01-22 17:58:19
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -59,15 +59,6 @@ alias jobl='jobs -l'
 alias tailf='tail -f'
 alias myip="wget -qO- https://wtfismyip.com/text"
 alias enjoke='curl https://icanhazdadjoke.com'
-
-# Downloader
-alias get='aria2c -c -x 16'
-alias sdl='axel -n 16 -c -k -a -U "Mozilla/5.0"'
-alias surl='curl -sL'
-alias dl="wget -c --no-check-certificate"
-alias swget='wget -c --content-disposition --no-check-certificate --user-agent="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0"'
-alias site-mirror="wget -H 'user-agent: Mozilla' -H 'Referer: https://www.google.com/search?q=coin' -U 'Mozilla' --recursive --page-requisites --no-parent --convert-links --tries=3 --continue --timeout=3 --no-check-certificate"
-alias flushdns="dscacheutil -flushcache"
 
 # open application
 alias st='open -a "Sublime Text"'

@@ -1,1 +1,12 @@
+# Downloader
+alias xget='aria2c -c -x 16'
+alias sdl='axel -n 16 -c -k -a -U "Mozilla/5.0"'
+alias surl='curl -sSL'
+alias get="wget -c --content-disposition -H 'user-agent: Mozilla'"
+alias site-mirror="wget -H 'user-agent: Mozilla' -H 'Referer: https://www.google.com' -U 'Mozilla' --recursive --page-requisites --no-parent --convert-links --tries=3 --continue --timeout=3 --no-check-certificate"
+
+# Network
 alias ping='ping -c 6'
+
+# DNS
+alias flushdns="dscacheutil -flushcache"
