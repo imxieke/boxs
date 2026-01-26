@@ -1,0 +1,46 @@
+[Unit]
+Description=RustFS Object Storage Server
+Documentation=https://rustfs.com/docs/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+NotifyAccess=main
+# User=root
+# Group=root
+Environment="RUSTFS_VOLUMES=/data/web/rustfs"
+Environment="RUSTFS_ADDRESS=0.0.0.0:9090"
+Environment="RUSTFS_CONSOLE_ADDRESS=0.0.0.0:9091"
+Environment="RUSTFS_CONSOLE_ENABLE=true"
+Environment="RUSTFS_CORS_ALLOWED_ORIGINS=*"
+Environment="RUSTFS_CONSOLE_CORS_ALLOWED_ORIGINS=*"
+Environment="RUSTFS_ACCESS_KEY=satan"
+Environment="RUSTFS_SECRET_KEY=Xiaoke960318."
+Environment="RUSTFS_OBS_LOGGER_LEVEL=info"
+WorkingDirectory=/data/opt/rustfs
+ExecStart=/data/opt/rustfs/rustfs
+LimitNOFILE=1048576
+LimitNPROC=32768
+TasksMax=infinity
+Restart=always
+RestartSec=10s
+OOMScoreAdjust=-1000
+SendSIGKILL=no
+TimeoutStartSec=30s
+TimeoutStopSec=30s
+NoNewPrivileges=true
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectClock=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+StandardOutput=append:/data/opt/rustfs/logs/rustfs.log
+StandardError=append:/data/opt/rustfs/logs/rustfs-err.log
+
+[Install]
+WantedBy=multi-user.target
