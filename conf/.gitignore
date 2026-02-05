@@ -96,6 +96,6 @@ yarn-error.log*
 *.pid.lock
 
 # Editor
-/.vscode
-/.idea
-/.qodo
+# /.vscode
+# /.idea
+# /.qodo
