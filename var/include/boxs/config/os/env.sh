@@ -2,32 +2,18 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
- # @LastEditTime: 2025-12-26 16:32:04
+ # @LastEditTime: 2026-03-04 01:15:15
  # @LastEditors: Cloudflying
 # @Description: Boxs Env Config
 ###
 
-# Set locale and language
-export LANG="en_US.UTF-8"
-export LANGUAGE="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export LC_NUMERIC="en_US.UTF-8"
-export LC_TIME="en_US.UTF-8"
-export LC_COLLATE="en_US.UTF-8"
-export LC_MONETARY="en_US.UTF-8"
-export LC_MESSAGES="en_US.UTF-8"
-export LC_PAPER="en_US.UTF-8"
-export LC_NAME="en_US.UTF-8"
-export LC_ADDRESS="en_US.UTF-8"
-export LC_TELEPHONE="en_US.UTF-8"
-export LC_MEASUREMENT="en_US.UTF-8"
-export LC_IDENTIFICATION="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 
-# export BOXS_HOME=${HOME}/.boxs
-export BOXS_HOME="$(dirname $(dirname $(dirname $(dirname $0))))"
-export BOXS_CONF="${BOXS_HOME}/conf"
+export BOXS_APP_PATH="${BOXS_HOME}/var/include/boxs"
+export BOXS_ALIAS_PATH="${HOME}/.config/alias"
+export BOXS_CONF_PATH="${BOXS_HOME}/var/include/boxs/config"
 export BOXS_LOGS="${BOXS_HOME}/logs"
+export BOXS_SECRET_HOME="${HOME}/.config/secret"
 
 # Config System Environment
 

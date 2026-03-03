@@ -1,26 +1,21 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2025-12-26 16:32:43
+ # @LastEditTime: 2026-03-04 01:10:28
  # @LastEditors: Cloudflying
-# @Description: zsh config filea
+# @Description: zsh config file
 ###
 
-# init PATH
-# 前面优先级高 覆盖系统自带的命令
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+export BOXS_HOME="${HOME}/.boxs"
 
 # Set up the system environment in advance
-source ${HOME}/.boxs/conf/config/os/env.sh
+source "${BOXS_HOME}/var/include/boxs/config/os/env.sh"
 
 # High Priority
-source "${BOXS_CONF}/config/os/path.sh"
-source "${BOXS_CONF}/config/os/alias.sh"
-source "${BOXS_CONF}/config/os/proxy.sh"
-source "${BOXS_CONF}/config/os/zinit.sh"
-
-# Check zsh load time for debug
-zmodload zsh/zprof
+source "${BOXS_CONF_PATH}/os/path.sh"
+source "${BOXS_CONF_PATH}/os/alias.sh"
+source "${BOXS_CONF_PATH}/os/proxy.sh"
+source "${BOXS_CONF_PATH}/os/zinit.sh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -34,9 +29,9 @@ export ZSH=$HOME/.oh-my-zsh
 
 zstyle ':omz:update' mode reminder
 
-HISTFILE="$HOME/.zsh_history" # The path to the history file.
-HISTSIZE=100000                # The maximum number of events to save in the internal history.
-SAVEHIST=100000                # The maximum number of events to save in the history file.
+HISTFILE="$HOME/.zsh_history"   # The path to the history file.
+HISTSIZE=1000000                # The maximum number of events to save in the internal history.
+SAVEHIST=1000000                # The maximum number of events to save in the history file.
 
 # CASE_SENSITIVE="true" # Case-sensitive completion.
 
@@ -87,3 +82,7 @@ export PATH="/Users/imxieke/.antigravity/antigravity/bin:$PATH"
 export PATH="${PATH}:${HOME}.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+
+# Added by CodeBuddy CN
+export PATH="/Users/imxieke/.codebuddy/bin:$PATH"
