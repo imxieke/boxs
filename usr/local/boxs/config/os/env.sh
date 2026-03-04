@@ -2,18 +2,18 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:44:12
- # @LastEditTime: 2026-03-04 01:15:15
+ # @LastEditTime: 2026-03-04 20:53:31
  # @LastEditors: Cloudflying
 # @Description: Boxs Env Config
 ###
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 
-export BOXS_APP_PATH="${BOXS_HOME}/var/include/boxs"
-export BOXS_ALIAS_PATH="${HOME}/.config/alias"
-export BOXS_CONF_PATH="${BOXS_HOME}/var/include/boxs/config"
-export BOXS_LOGS="${BOXS_HOME}/logs"
+export BOXS_APP_PATH="${BOXS_HOME}/usr/local/boxs"
+export BOXS_CONF_PATH="${BOXS_APP_PATH}/config"
+export BOXS_ALIAS_PATH="${BOXS_APP_PATH}/alias.d"
 export BOXS_SECRET_HOME="${HOME}/.config/secret"
+export BOXS_LOGS="${BOXS_HOME}/logs"
 
 # Config System Environment
 
@@ -25,42 +25,11 @@ else
   source ${HOME}/.env
 fi
 
-# Set Default Editor
-if [[ -n $(command -v nvim) ]]; then
-  export SYSTEMD_EDITOR='nvim'
-  export EDITOR='nvim'
-  export VISUAL='nvim'
-elif [[ -n $(command -v vim) ]]; then
-  export SYSTEMD_EDITOR='vim'
-  export EDITOR='vim'
-  export VISUAL='vim'
-fi
-
 # 设定所属国家 否则默认为中国
 # shellcheck disable=SC2143
 if [[ -z "$(grep "CURRENT_COUNTRY" "${HOME}/.env")" ]]; then
   export CURRENT_COUNTRY='CN'
 fi
-
-# Github Cli
-if [[ -n ${GITHUB_TOKEN} ]]; then
-  export GH_TOKEN=${GITHUB_TOKEN}
-fi
-
-# Gnupg
-if [[ -n "$(command -v gpg)" ]]; then
-  export GPG_TTY=$(tty)
-fi
-
-export CVSEDITOR="${EDITOR}"
-export SVN_EDITOR="${EDITOR}"
-export GIT_EDITOR="${EDITOR}"
-
-# alias e="${EDITOR}"
-alias vi=${EDITOR}
-# alias vim=${EDITOR}
-alias nano=${EDITOR}
-alias emacs=${EDITOR}
 
 export NALI_HOME=${HOME}/.config/nali
 
@@ -87,7 +56,7 @@ fi
 [[ -f "${BOXS_HOME}/conf/.p10k.zsh" ]] && echo "[+] Loading p10k" && source "${BOXS_HOME}/conf/.p10k.zsh"
 
 echo "[+] Loading Config"
-for config in "${BOXS_CONF}/config/pkg/"*.sh; do
+for config in "${BOXS_CONF_PATH}/pkg/"*.sh; do
   source "${config}"
 done
 
@@ -97,28 +66,3 @@ done
 #     ln -sf ${HOME}/.bin/php${PHP_VERSION} ${HOME}/.bin/php
 #   fi
 # fi
-
-# WSL Block Notify
-if [[ -f '/etc/wsl.conf' ]] || [[ -d "/mnt/d" ]]; then
-  export DONT_PROMPT_WSL_INSTALL=true
-fi
-
-# Linux Operating System Config
-if [[ "$(uname -s)" == 'Linux' ]]; then
-
-  # Compilation flags
-  export ARCHFLAGS="-arch $(uname -m)"
-
-  # Linux Input Method
-  if [[ -n "$(command -v fcitx5)" ]]; then
-    export GTK_IM_MODULE=fcitx
-    export GTK_IM_MODULE_DEFAULT=fcitx
-    export QT_IM_MODULE=fcitx
-    export QT_IM_MODULE_DEFAULT=fcitx
-    # export XMODIFIERS="@im=fcitx"
-    export XMODIFIERS=@im=fcitx
-    export XMODIFIERS_DEFAULT=@im=fcitx
-    export SDL_IM_MODULE_DEFAULT=fcitx
-    export DefaultIMModule=fcitx
-  fi
-fi

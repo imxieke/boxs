@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 21:53:30
- # @LastEditTime: 2025-12-11 18:20:19
+ # @LastEditTime: 2026-03-04 20:55:19
  # @LastEditors: Cloudflying
 # @Description: $PATH Init
 ###
@@ -45,6 +45,9 @@ PATHS=(
   "${HOME}/.cargo/bin"
   "${HOME}/.local/share/gem/ruby/3.3.0/bin"
   "${HOME}/.local/share/gem/ruby/3.2.0/bin"
+  "${HOME}/.lmstudio/bin"
+  "${HOME}/.codebuddy/bin"
+  "${HOME}/.antigravity/antigravity/bin"
 )
 
 for APP_PATH in "${PATHS[@]}"; do

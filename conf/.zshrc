@@ -1,7 +1,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2026-03-04 01:10:28
+ # @LastEditTime: 2026-03-04 20:39:40
  # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
@@ -9,7 +9,7 @@
 export BOXS_HOME="${HOME}/.boxs"
 
 # Set up the system environment in advance
-source "${BOXS_HOME}/var/include/boxs/config/os/env.sh"
+source "${BOXS_HOME}/usr/local/boxs/config/os/env.sh"
 
 # High Priority
 source "${BOXS_CONF_PATH}/os/path.sh"
@@ -74,15 +74,3 @@ chpwd_functions=(auto-color-ls $chpwd_functions)
 # alway show quote
 # export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
 [ -n "$(command -v fortune)" ] && fortune | cowsay | lolcat
-
-# Added by Antigravity
-export PATH="/Users/imxieke/.antigravity/antigravity/bin:$PATH"
-
-# Added by LM Studio CLI (lms)
-export PATH="${PATH}:${HOME}.lmstudio/bin"
-# End of LM Studio CLI section
-
-
-
-# Added by CodeBuddy CN
-export PATH="/Users/imxieke/.codebuddy/bin:$PATH"
