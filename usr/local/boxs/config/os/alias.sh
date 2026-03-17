@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 23:22:59
- # @LastEditTime: 2026-03-04 20:46:18
+ # @LastEditTime: 2026-03-17 16:06:57
  # @LastEditors: Cloudflying
 # @Description: Load Alias
 ###
@@ -22,10 +22,10 @@ elif [[ -d "/etc/apt/sources.list.d" ]]; then
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
   # macOS
   source "${BOXS_ALIAS_PATH}/os/brew.alias"
-elif [[ -n "$(grep 'msys' /etc/os-release)" ]]; then
-  source "${BOXS_ALIAS_PATH}/os/mingw.alias"
+# elif [[ -n "$(grep 'msys' /etc/os-release)" ]]; then
+#   source "${BOXS_ALIAS_PATH}/os/mingw.alias"
 fi
 
-if [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
-  source "${BOXS_ALIAS_PATH}/os/wsl.alias"
-fi
+# if [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
+#   source "${BOXS_ALIAS_PATH}/os/wsl.alias"
+# fi
