@@ -74,3 +74,8 @@ chpwd_functions=(auto-color-ls $chpwd_functions)
 # alway show quote
 # export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
 [ -n "$(command -v fortune)" ] && fortune | cowsay | lolcat
+# icode-cli
+export PATH="/home/imxieke/.icode/bin:$PATH"
+
+# OpenClaw Completion
+source "/home/imxieke/.openclaw/completions/openclaw.zsh"

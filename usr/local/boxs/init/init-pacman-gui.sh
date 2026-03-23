@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2022-09-12 22:14:17
- # @LastEditTime: 2026-01-17 14:56:11
+ # @LastEditTime: 2026-03-23 12:13:48
  # @LastEditors: Cloudflying
 # @Description:
 ###
@@ -281,7 +281,7 @@ _install()
   # pacman -S --noconfirm thunderbird thunderbird-i18n-zh-cn thingy
 
   # Input Method
-  pacman -S --noconfirm fcitx fcitx-configtool fcitx-sogoupinyin
+  # pacman -S --noconfirm fcitx fcitx-configtool fcitx-sogoupinyin
 
   # 修复缺失库
   pacman -S --noconfirm libvoikko nuspell hspell
@@ -290,7 +290,7 @@ _install()
   # fingwit 指纹配置
   # pacman -S --noconfirm fingwit
 
-  # pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-chinese-addons
+  # pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-chinese-addons fcitx5-material-color
 
   # xorg
   pacman -S --noconfirm xorg xorg-apps

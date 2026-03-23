@@ -2,7 +2,7 @@
 ###
  # @Author: Cloudflying
  # @Date: 2026-03-04 20:49:54
- # @LastEditTime: 2026-03-04 20:53:51
+ # @LastEditTime: 2026-03-23 12:16:16
  # @LastEditors: Cloudflying
  # @Description: Fcitx Config
 ###
@@ -19,7 +19,7 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     export GTK_IM_MODULE_DEFAULT=fcitx
     export QT_IM_MODULE=fcitx
     export QT_IM_MODULE_DEFAULT=fcitx
-    # export XMODIFIERS="@im=fcitx"
+    export XMODIFIERS="@im=fcitx"
     export XMODIFIERS=@im=fcitx
     export XMODIFIERS_DEFAULT=@im=fcitx
     export SDL_IM_MODULE_DEFAULT=fcitx
