@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2026-01-15 09:56:07
+ # @LastEditTime: 2026-03-24 18:09:07
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -106,7 +106,6 @@ _install()
   pnpm i -g @qodo/command
   pnpm i -g @tencent-ai/codebuddy-code
   pnpm i -g @qwen-code/qwen-code
-  pnpm i -g @vibe-kit/grok-cli
   pnpm i -g @qoder-ai/qodercli
   pnpm i -g @continuedev/cli
   pnpm i -g @github/copilot
