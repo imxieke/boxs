@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2026-03-24 18:09:07
+ # @LastEditTime: 2026-04-02 17:29:19
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -12,6 +12,8 @@ _install()
   # Fabulously kill processes. Cross-platform
   npm i -g pnpm bun
   bun i -g bun
+
+  bun i -g skills
 
   # Dev Tools
   pnpm install -g @devcontainers/cli
