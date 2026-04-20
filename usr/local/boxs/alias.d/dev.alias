@@ -6,3 +6,8 @@ alias redis-cli="docker exec -it redis redis-cli"
 
 alias zeus="docker exec -it php84 php /data/Project/Zeus/artisan"
 alias aicy="docker exec -it php83 php /data/Project/aicy/webman"
+
+
+# Skills
+alias skm="skills add"
+alias skmg="skills add -g"
