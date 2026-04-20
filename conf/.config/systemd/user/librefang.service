@@ -1,0 +1,16 @@
+[Unit]
+Description=LibreFang Agent OS Daemon
+Documentation=https://librefang.ai
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/imxieke/.bin/librefang start --foreground
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=/home/imxieke/.librefang
+EnvironmentFile=-/home/imxieke/.librefang/env
+
+[Install]
+WantedBy=default.target

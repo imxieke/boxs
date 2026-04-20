@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2026-04-02 17:29:19
+ # @LastEditTime: 2026-04-20 14:58:29
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -43,6 +43,9 @@ _install()
   # pnpm i -g snyk@latest
   # TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files
   pnpm i -g tsx
+
+  bun i -g agent-browser
+  bun i -g @playwright/cli@latest
 
   # intelephense php autocomplete PHP language server
   # tsserver typescript-language-server
