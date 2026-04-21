@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2026-04-20 14:58:29
+ # @LastEditTime: 2026-04-21 15:06:51
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -40,7 +40,8 @@ _install()
     vite
 
   # Bug Scanner
-  # pnpm i -g snyk@latest
+  bun i -g snyk@latest
+
   # TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files
   pnpm i -g tsx
 
