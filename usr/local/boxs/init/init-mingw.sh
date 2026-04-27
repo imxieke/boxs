@@ -2,13 +2,13 @@
 ###
 # @Author: Cloudflying
 # @Date: 2025-01-01 11:07:36
- # @LastEditTime: 2025-01-08 16:57:03
+ # @LastEditTime: 2026-04-25 13:33:40
  # @LastEditors: Cloudflying
 # @Description: Mingw64 Config
 ###
 
 # # MSYS2
-pacman -S --noconfirm mingw-w64-x86_64-neovim
+pacman -S --noconfirm mingw-w64-clang-x86_64-neovim
 pacman -S --noconfirm rsync
 pacman -S --noconfirm zsh
 
