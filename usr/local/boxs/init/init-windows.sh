@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-08-15 13:54:32
- # @LastEditTime: 2025-03-27 17:20:47
+ # @LastEditTime: 2026-04-27 18:30:12
  # @LastEditors: Cloudflying
 # @Description: MinGW
 ###
@@ -106,12 +106,12 @@ winget install ISC.Bind
 
 # Remote Tunnel Access
 winget install Cloudflare.cloudflared
+winget install Tailscale.Tailscale
 
 # Remote
 # winget install RustDesk.RustDesk
 # winget install TeamViewer.TeamViewer
 winget install Youqu.ToDesk
-winget install Cloudflare.cloudflared
 
 # winget install FilesCommunity.Files
 winget install CoreyButler.NVMforWindows
