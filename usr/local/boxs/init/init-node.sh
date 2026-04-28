@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2026-04-21 15:06:51
+ # @LastEditTime: 2026-04-28 17:31:35
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -13,10 +13,12 @@ _install()
   npm i -g pnpm bun
   bun i -g bun
 
+  # AI
   bun i -g skills
+  bun i -g kanban
 
   # Dev Tools
-  pnpm install -g @devcontainers/cli
+  bun i -g @devcontainers/cli
 
   # vsce VSCode Extension Manager
   bun i -g typescript \
@@ -31,7 +33,7 @@ _install()
     @vscode/vsce
 
   # Pack
-  pnpm i -g grunt \
+  bun i -g grunt \
     gulp-cli \
     webpack \
     webpack-cli \
@@ -43,7 +45,7 @@ _install()
   bun i -g snyk@latest
 
   # TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files
-  pnpm i -g tsx
+  bun i -g tsx
 
   bun i -g agent-browser
   bun i -g @playwright/cli@latest
@@ -52,7 +54,7 @@ _install()
   # tsserver typescript-language-server
   # https://github.com/hrsh7th/vscode-langservers-extracted
   # https://github.com/joe-re/sql-language-server
-  pnpm i -g intelephense \
+  bun i -g intelephense \
     bash-language-server \
     typescript-language-server \
     yaml-language-server-parser \
@@ -62,7 +64,7 @@ _install()
     sql-language-server
 
   # Language
-  pnpm i -g prettier \
+  bun i -g prettier \
     @prettier/plugin-ruby \
     @prettier/plugin-php \
     @prettier/plugin-xml \
@@ -74,7 +76,7 @@ _install()
 
   # Frontend
   # Salesforce Apex
-  pnpm i -g prettier-plugin-wxml \
+  bun i -g prettier-plugin-wxml \
     @shufo/prettier-plugin-blade \
     prettier-plugin-nginx \
     prettier-plugin-latex \
@@ -86,37 +88,37 @@ _install()
 
   # 用不到
   # @shopify/prettier-plugin-liquid prettier-plugin-go-template eslint-plugin-prettier-vue prettier-plugin-tvmsolidity @prettier/plugin-pug
-  pnpm i -g eslint \
+  bun i -g eslint \
     eslint-plugin-jsonc \
     eslint-plugin-json
 
   # Lint
-  pnpm i -g sql-lint \
+  bun i -g sql-lint \
     jsonlint \
     dockerlint \
     dockerfilelint \
     dockerfile_lint
 
   # 支付宝小程序 Cli
-  pnpm i -g minidev
-  pnpm i -g @webdevtoday/grok-cli
+  bun i -g minidev
+  bun i -g @webdevtoday/grok-cli
   # Tencent CloudBase Cli
-  pnpm i -g @cloudbase/cli
-  pnpm i -g @iflow-ai/iflow-cli
-  pnpm i -g @volcengine/vecli@latest
+  bun i -g @cloudbase/cli
+  bun i -g @iflow-ai/iflow-cli
+  bun i -g @volcengine/vecli@latest
 
   # Code Cli
-  pnpm i -g @openai/codex
-  pnpm i -g @google/gemini-cli
-  pnpm i -g @anthropic-ai/claude-code
-  pnpm i -g @qodo/command
-  pnpm i -g @tencent-ai/codebuddy-code
-  pnpm i -g @qwen-code/qwen-code
-  pnpm i -g @qoder-ai/qodercli
-  pnpm i -g @continuedev/cli
-  pnpm i -g @github/copilot
-  pnpm i -g cline
-  pnpm i -g opencode-ai@latest
+  bun i -g @openai/codex
+  bun i -g @google/gemini-cli
+  bun i -g @anthropic-ai/claude-code
+  bun i -g @qodo/command
+  bun i -g @tencent-ai/codebuddy-code
+  bun i -g @qwen-code/qwen-code
+  bun i -g @qoder-ai/qodercli
+  bun i -g @continuedev/cli
+  bun i -g @github/copilot
+  bun i -g cline
+  bun i -g opencode-ai@latest
 }
 
 _install
