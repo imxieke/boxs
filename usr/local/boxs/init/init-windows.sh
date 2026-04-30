@@ -147,5 +147,8 @@ winget install Youdao.YoudaoTranslate
 # Chat
 winget install Tencent.WeChat
 
+# Program Language
+winget install PHP.PHP.8.4
+
 # App Store
 winget install --exact --id MartiCliment.UniGetUI --source winget
