@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-05-31 23:22:59
- # @LastEditTime: 2026-03-17 16:06:57
+ # @LastEditTime: 2026-05-27 12:07:42
  # @LastEditors: Cloudflying
 # @Description: Load Alias
 ###
@@ -26,6 +26,6 @@ elif [[ "$(uname -s)" == 'Darwin' ]]; then
 #   source "${BOXS_ALIAS_PATH}/os/mingw.alias"
 fi
 
-# if [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
-#   source "${BOXS_ALIAS_PATH}/os/wsl.alias"
-# fi
+if [[ -n "$(uname -r | grep -i 'wsl')" ]]; then
+  source "${BOXS_ALIAS_PATH}/os/wsl.alias"
+fi
