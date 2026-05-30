@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:13:06
- # @LastEditTime: 2026-01-12 14:41:01
+ # @LastEditTime: 2026-05-28 23:19:11
  # @LastEditors: Cloudflying
 # @Description: manjaro contains all archlinux packages, but archlinux has many packages that do not exist
 ###
@@ -143,7 +143,7 @@ _install()
 
   # Virtual Machine && Container
   # Docker
-  pacman -S --noconfirm docker docker-buildx docker-compose docker-scan docker-machine
+  pacman -S --noconfirm docker docker-buildx docker-compose docker-machine
   # podman-docker conflict with docker
   # pacman -S --noconfirm podman podman-compose podman-docker
 
