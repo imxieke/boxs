@@ -2,7 +2,7 @@
 ###
 # @Author: Cloudflying
 # @Date: 2023-03-27 20:24:49
- # @LastEditTime: 2026-05-08 20:26:54
+ # @LastEditTime: 2026-06-01 21:53:23
  # @LastEditors: Cloudflying
 # @Description: Node Init
 ###
@@ -10,8 +10,8 @@
 _install()
 {
   # Fabulously kill processes. Cross-platform
-  npm i -g pnpm bun
-  bun i -g bun
+  # npm i -g pnpm bun
+  # bun i -g bun
 
   # AI
   bun i -g skills
@@ -121,7 +121,7 @@ _install()
   bun i -g opencode-ai@latest
 
   # Compile
-  bun i -g @perryts/perry
+  # bun i -g @perryts/perry
 }
 
 _install
