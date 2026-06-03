@@ -147,6 +147,9 @@ winget install Youdao.YoudaoTranslate
 # Chat
 winget install Tencent.WeChat
 
+
+winget install BurntSushi.ripgrep.MSVC
+
 # Program Language
 winget install PHP.PHP.8.4
 
