@@ -122,7 +122,7 @@ winget install Flow-Launcher.Flow-Launcher
 winget install BlastApps.FluentSearch
 
 # Program
-winget install Python.Python.3.12
+winget install Python.Python.3.14
 # winget install Rustlang.Rustup
 winget install GoLang.Go
 

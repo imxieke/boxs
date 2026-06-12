@@ -118,7 +118,8 @@ _install()
   bun i -g @continuedev/cli
   bun i -g @github/copilot
   bun i -g cline
-  bun i -g opencode-ai@latest
+  bun i -g opencode-ai
+  bun i -g @mimo-ai/cli
 
   # Compile
   # bun i -g @perryts/perry
