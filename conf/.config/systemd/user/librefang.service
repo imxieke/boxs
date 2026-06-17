@@ -6,11 +6,17 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/home/imxieke/.bin/librefang start --foreground
+ExecStart=${HOME}/.bin/librefang start --foreground
 Restart=on-failure
 RestartSec=5
-WorkingDirectory=/home/imxieke/.librefang
-EnvironmentFile=-/home/imxieke/.librefang/env
+TimeoutStopSec=30
+WorkingDirectory=${HOME}/.librefang
+EnvironmentFile=-${HOME}/.librefang/env
+EnvironmentFile=-${HOME}/.librefang/secrets.env
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
 
 [Install]
 WantedBy=default.target
