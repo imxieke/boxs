@@ -2,87 +2,22 @@
 ###
 # @Author: Cloudflying
 # @Date: 2024-3-18 18:06:18
- # @LastEditTime: 2026-01-14 11:23:24
+ # @LastEditTime: 2026-06-27 01:40:04
  # @LastEditors: Cloudflying
 # @Description: Boxs Manager Script
 ###
+
+# BOXS_HOME=$(dirname "$(cd "$(dirname "$0")"; pwd)")")
+BOXS_HOME=$(dirname "$(cd "$(dirname "$0")"; pwd)")
+. "${BOXS_HOME}/include/env.sh"
+
+echo $BOXS_HOME
 
 # 当缺省会使用下面用户密码
 DEFAULT_USER="imxieke"
 DEFAULT_PASSWD=$(openssl rand -hex 4)
 
 BOXS_PREFIX=${BOXS_PREFIX:-boxs}
-
-BOXS_HOME=$(dirname "$(dirname "$(realpath "$0")")")
-
-if [[ -f "${HOME}/.env" ]]; then
-  . "${HOME}/.env"
-fi
-
-[ -f '/etc/os-release' ] && . /etc/os-release
-
-_red()
-{
-  printf '\033[1;31;31m%b\033[0m' "$1"
-}
-
-_green()
-{
-  printf '\033[1;31;32m%b\033[0m' "$1"
-}
-
-_yellow()
-{
-  printf '\033[1;31;33m%b\033[0m' "$1"
-}
-
-_info()
-{
-  _green "[Info] "
-  printf -- "%s" "$1"
-  printf "\n"
-}
-
-_warn()
-{
-  _yellow "[Warning] "
-  printf -- "%s" "$1"
-  printf "\n"
-}
-
-_error()
-{
-  _red "[Error] "
-  printf -- "%s" "$1"
-  printf "\n"
-  exit 1
-}
-
-__rootness()
-{
-  if [[ "$(id -u)" -ne 0 ]]; then
-    echo "==> Current User No Permission"
-    exit 1
-  fi
-}
-
-_cmd_exist()
-{
-  if [[ -z "$(command -v "$1")" ]]; then
-    _warn "command $1 not found"
-    exit 1
-  fi
-}
-
-_sudo()
-{
-  sudo "$@"
-}
-
-__user()
-{
-  sudo -Hu "${USERNAME}" "$@"
-}
 
 # 解析参数与默认参数
 _parse_params()
@@ -161,15 +96,6 @@ __osname()
   esac
 }
 
-__cmd_yes_no()
-{
-  if [[ -n "$(command -v "$1")" ]]; then
-    echo "✓"
-  else
-    echo "x"
-  fi
-}
-
 __osenv()
 {
   [ "$(__cmd_yes_no php)" == '✓' ] && echo "PHP: $(php --version | head -n 1 | awk -F ' ' '{print $2}')"
@@ -195,28 +121,6 @@ __osenv()
   [ "$(__cmd_yes_no curl)" == '✓' ] && echo "Curl: $(curl --version | head -n 1 | awk -F ' ' '{print $2}')"
   [ "$(__cmd_yes_no tree)" == '✓' ] && echo "Tree: $(tree --version | awk -F ' ' '{print $2}')"
   [ "$(__cmd_yes_no htop)" == '✓' ] && echo "Htop: $(htop --version | awk -F ' ' '{print $2}')"
-}
-
-pkg_add()
-{
-  __rootness
-  echo "==> Install Depends $*"
-  if [[ -f "/etc/os-release" ]]; then
-    . /etc/os-release
-  fi
-
-  if [[ "$(uname -s)" == "Darwin" ]]; then
-    brew install "$@"
-  elif [[ ${ID} == 'ubuntu' ]]; then
-    apt install -y "$@"
-  elif [[ ${ID} == 'arch' ]]; then
-    pacman -S --noconfirm "$@"
-  elif [[ ${ID} == 'alpine' ]]; then
-    apk add "$@"
-  else
-    echo "Unknow Platform"
-    exit 1
-  fi
 }
 
 __init_debian()
@@ -556,6 +460,9 @@ __secret()
 
 __init()
 {
+  # Init Directory
+  mkdir -p "${HOME}/.config/pip"
+
   # 初始化 Boxs
   if [[ ! -d ${BOXS_HOME} ]]; then
     _yellow "==> Fetch Boxs"
@@ -585,8 +492,8 @@ __init()
 
   ln -sf "${HOME}/.boxs/conf/.bunfig.toml" ~/.bunfig.toml
 
-  sudo ln -sf "${BOXS_HOME}/etc/systemd/system/docker.service.d" /etc/systemd/system
-  sudo ln -sf "${BOXS_HOME}/etc/systemd/system/ollama.service.d" /etc/systemd/system
+  # sudo ln -sf "${BOXS_HOME}/etc/systemd/system/docker.service.d" /etc/systemd/system
+  # sudo ln -sf "${BOXS_HOME}/etc/systemd/system/ollama.service.d" /etc/systemd/system
 
   # Set Git Config
   # Priority: local > global > system
@@ -619,26 +526,7 @@ __init()
 
   __init_php
 
-  if [[ ! -f "${HOME}/.bin/composer" ]]; then
-    mkdir -p "${HOME}"/.bin
-    echo "==> Install Composer"
-    # https://mirrors.aliyun.com/composer/composer.phar
-    wget -cq https://mirrors.tencent.com/composer/composer.phar -O "${HOME}"/.bin/composer
-    chmod +x "${HOME}"/.bin/composer
-  else
-    _info "Composer Done."
-  fi
-
-  # 初始化 Oh-my-zsh
-  if [[ -f "${BOXS_HOME}/conf/.zshrc" ]]; then
-    ln -sf "${BOXS_HOME}/conf/.zshrc" "${HOME}"/.zshrc
-    _info "Oh My Zsh Done."
-  fi
-
-  if [[ -f "${BOXS_HOME}/conf/.gitconfig" ]]; then
-    ln -sf "${BOXS_HOME}/conf/.gitconfig" "${HOME}/.gitconfig"
-    _info "Git Config Done."
-  fi
+  _init_pkg composer
 
   # if [[ -n "$(command -v npm)" ]]; then
   #   npm config set proxy=http://127.0.0.1:7890
@@ -651,21 +539,11 @@ __init()
   #   yarn config set https-proxy http://127.0.0.1:7890
   # fi
 
-  if [[ -f "${BOXS_HOME}/conf/.npmrc" ]]; then
-    ln -sf "${BOXS_HOME}/conf/.npmrc" "${HOME}/.npmrc"
-    _info "Node Config Done."
-  fi
-
-  if [ -f "${BOXS_HOME}/conf/.gemrc" ]; then
-    ln -sf "${BOXS_HOME}/conf/.gemrc" "${HOME}/.gemrc"
-    _info "Gem Done."
-  fi
-
-  if [ -f "${BOXS_HOME}/conf/.config/pip/pip.conf" ]; then
-      mkdir -p "${HOME}/.config/pip"
-      ln -sf "${BOXS_HOME}/conf/.config/pip/pip.conf" "${HOME}/.config/pip/pip.conf"
-      _info "Pip Done."
-  fi
+  _lnf "${BOXS_HOME}/conf/.zshrc" "${HOME}"/.zshrc
+  _lnf "${BOXS_HOME}/conf/.gitconfig" "${HOME}/.gitconfig"
+  _lnf "${BOXS_HOME}"/conf/.npmrc "${HOME}"/.npmrc
+  _lnf "${BOXS_HOME}"/conf/.gemrc "${HOME}"/.gemrc
+  _lnf "${BOXS_HOME}"/conf/.config/pip/pip.conf "${HOME}"/.config/pip/pip.conf
 
   _green "        ^_^ \n   ✿✿ヽ(°▽°)ノ✿ ❀ \n  Config Completed. \n"
 }

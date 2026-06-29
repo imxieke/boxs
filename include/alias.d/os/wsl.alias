@@ -1,4 +1,4 @@
-WIN_SYSTEM32="${/mnt/c/Windows/System32}"
+WIN_SYSTEM32="$/mnt/c/Windows/System32"
 # shellcheck disable=SC1003
 WINUSER="$(/mnt/c/Windows/System32/whoami.exe | cut -d '\' -f2 | sed "s#\r##g")"
 WIN_HOME="/mnt/c/Users/${WINUSER}"

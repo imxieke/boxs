@@ -1,31 +1,65 @@
 ###
 # @Author: Cloudflying
 # @Date: 2021-09-19 01:49:42
- # @LastEditTime: 2026-03-26 21:35:41
+ # @LastEditTime: 2026-06-27 01:18:47
  # @LastEditors: Cloudflying
 # @Description: zsh config file
 ###
 
-export BOXS_HOME="${HOME}/.boxs"
-
 # Set up the system environment in advance
-source "${BOXS_HOME}/usr/local/boxs/config/os/env.sh"
-
-# High Priority
-source "${BOXS_CONF_PATH}/os/path.sh"
-source "${BOXS_CONF_PATH}/os/alias.sh"
-source "${BOXS_CONF_PATH}/os/proxy.sh"
-source "${BOXS_CONF_PATH}/os/zinit.sh"
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh" ]]; then
-  source "${BOXS_HOME}/etc/p10k/p10k-instant-prompt.zsh"
-fi
+source "${HOME}/.boxs/include/env.sh"
 
 export ZSH=$HOME/.oh-my-zsh
 # If you come from bash you might have to change your $PATH.
+
+if [[ -f "${HOME}/.local/share/zinit/zinit.zsh" ]]; then
+  # shellcheck disable=SC1091
+  source "${HOME}/.local/share/zinit/zinit.zsh"
+  autoload -U compinit
+  compinit
+  # (( ${+_comps} )) && _comps[zinit]=_zinit
+  # setopt promptsubst
+  # ZSH_THEME='strug'
+  zinit load zsh-users/zsh-syntax-highlighting
+  # 灰色显示历史运行的命令
+  zinit load zsh-users/zsh-autosuggestions
+  zinit load zsh-users/zsh-history-substring-search
+  # 会阻止 zsh 默认的上下选择历史命令记录
+  # 🤖 Real-time type-ahead completion for Zsh. Asynchronous find-as-you-type autocompletion.
+  # 会实时显示对应数据 如 `cd directory` 会显示对应目录文件 似乎会导致 ~ 变成 /
+  # zinit load marlonrichert/zsh-autocomplete
+  # Additional completion definitions for Zsh.
+  # _cmd file 官方不存在的自动补全
+  zinit load zsh-users/zsh-completions
+  # 快速跳转至文件夹
+  zinit load agkozak/zsh-z
+  # Enhanced colors for zsh
+  zinit load zpm-zsh/colors
+  # Colorize command output using grc and lscolors
+  # zinit load unixorn/warhol.plugin.zsh
+  #📎 ZSH plugin that reminds you to use existing aliases for commands you just typed
+  zinit load MichaelAquilina/zsh-you-should-use
+  # zinit load mafredri/zsh-async
+  # 🔖 Quickly navigate your work path!
+  zinit load wfxr/formarks
+
+  # Git
+  zinit load wfxr/forgit
+
+  zinit load zdharma-continuum/history-search-multi-word
+  # zinit load trystan2k/zsh-tab-title
+
+  zinit ice depth=1
+  zinit load romkatv/powerlevel10k
+  # zinit light jeffreytse/zsh-vi-mode
+  if [[ -n "$(command -v fzf)" ]]; then
+    #   # Replace zsh's default completion selection menu with fzf!
+    #   # 似乎和其他插件有功能重复
+    # zinit load chitoku-k/fzf-zsh-completions
+    # fzf 提供分行参数 一行一个
+    zinit load Aloxaf/fzf-tab
+  fi
+fi
 
 zstyle ':omz:update' mode reminder
 
@@ -56,7 +90,9 @@ fi
 
 plugins+=(composer colored-man-pages docker docker-compose extract gh git history rust z)
 
-source $ZSH/oh-my-zsh.sh
+source "${ZSH}"/oh-my-zsh.sh
+
+[ -f "${BOXS_HOME}/conf/.p10k.zsh" ] && . "${BOXS_HOME}/conf/.p10k.zsh"
 
 # 执行切换目录命令行自动执行下面命令
 auto-color-ls()
@@ -68,11 +104,12 @@ auto-color-ls()
   fi
 }
 
-chpwd_functions=(auto-color-ls $chpwd_functions)
+chpwd_functions=(auto-color-ls "${chpwd_functions}")
 
 # hacker quotes
 # alway show quote
 # export ZSH_HACKER_QUOTES_ENABLE_WHEN_INTERACTIVE=true
 [ -n "$(command -v fortune)" ] && fortune | cowsay | lolcat
+
 # Added by Comate (zulu-cli)
 export PATH="/home/imxieke/.comate/zulu-cli/bin:$PATH"
