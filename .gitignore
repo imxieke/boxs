@@ -11,6 +11,10 @@
 *.ttc
 *.otf
 
+# Nali
+qqwry.dat
+zxipv6wry.db
+
 default.target.wants
 
 /.env.conf
