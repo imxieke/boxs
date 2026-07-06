@@ -9,7 +9,7 @@ databases:
       types:
         - IPv4
       download-urls:
-        - https://raw.githubusercontent.com/FW27623/qqwry/main/qqwry.dat
+        - https://pods.xie.ke/ipdb/qqwry/qqwry.dat
     - name: zxipv6wry
       name-alias:
         - zxipv6
@@ -60,8 +60,7 @@ databases:
       types:
         - IPv4
       download-urls:
-        - https://cdn.jsdelivr.net/gh/lionsoul2014/ip2region/data/ip2region.xdb
-        - https://raw.githubusercontent.com/lionsoul2014/ip2region/master/data/ip2region.xdb
+        - https://pods.xie.ke/ipdb/ip2region/ip2region.xdb
     - name: ip2location
       format: ip2location
       file: IP2LOCATION-LITE-DB3.IPV6.BIN
