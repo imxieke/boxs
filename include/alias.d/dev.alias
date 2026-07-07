@@ -11,3 +11,4 @@ alias aicy="docker exec -it php83 php /data/Project/aicy/webman"
 # Skills
 alias skm="skills add"
 alias skmg="skills add -g"
+alias skca="skillhub install --dir=${HOME}/.agents/skills"
