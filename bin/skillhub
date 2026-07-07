@@ -3716,6 +3716,7 @@ def startup_self_upgrade_prompt(
         return upgraded
 
     # choice = _prompt_self_upgrade_choice(current, latest)
+    choice = "no"
     if choice == "no":
         write_ignored_self_update_version(config_path, latest)
         try:
