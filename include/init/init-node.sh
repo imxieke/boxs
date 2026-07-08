@@ -123,6 +123,8 @@ _install()
 
   # Compile
   # bun i -g @perryts/perry
+  # Lark
+  bun i -g @larksuite/cli@latest
 }
 
 _install
