@@ -9,9 +9,6 @@
 
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 CUR_DIR=$(cd "$(dirname "$0")"; pwd)
-echo "CURRENT_DIR: ${CUR_DIR}"
-echo "SCRIPT_DIR: ${SCRIPT_DIR}"
-echo "$(readlink -f $0)"
 
 . "${CUR_DIR}/function/messages.sh"
 

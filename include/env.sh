@@ -7,7 +7,7 @@
  # @Description: Boxs Env
 ###
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/games:/usr/local/games:${HOME}/.bin:${HOME}/.local/bin:${HOME}/.bun/bin:${HOME}/.yarn/bin:${HOME}/.boxs/bin:${HOME}/.cargo/bin:${HOME}/.lmstudio/bin:${HOME}/.codebuddy/bin:${HOME}/.antigravity/antigravity/bin:${HOME}/.composer/vendor/bin:${HOME}/.config/composer/vendor/bin:${HOME}/.local/share/zinit/polaris/bin:${HOME}/.local/share/pnpm"
+export PATH="${HOME}/.bin:${HOME}/.local/bin:${HOME}/.bun/bin:${HOME}/.yarn/bin:${HOME}/.boxs/bin:${HOME}/.cargo/bin:${HOME}/.lmstudio/bin:${HOME}/.codebuddy/bin:${HOME}/.antigravity/antigravity/bin:${HOME}/.composer/vendor/bin:${HOME}/.config/composer/vendor/bin:${HOME}/.local/share/zinit/polaris/bin:${HOME}/.local/share/pnpm:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/games:/usr/local/games"
 
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
