@@ -125,6 +125,10 @@ _install()
   # bun i -g @perryts/perry
   # Lark
   bun i -g @larksuite/cli@latest
+
+  # Trade
+  bun i -g @okx_ai/okx-trade-mcp
+  bun i -g @okx_ai/okx-trade-cli
 }
 
 _install
