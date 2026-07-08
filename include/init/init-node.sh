@@ -47,6 +47,7 @@ _install()
   # TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files
   bun i -g tsx
 
+  # Automation
   bun i -g agent-browser
   bun i -g @playwright/cli@latest
 
