@@ -138,6 +138,9 @@ winget install Alibaba.aDrive
 # winget install Rclone.Rclone
 # winget install AList.AList
 
+# RClone Depends
+winget install WinFsp.WinFsp
+
 # Dict && Translate
 winget install Youdao.YoudaoTranslate
 
