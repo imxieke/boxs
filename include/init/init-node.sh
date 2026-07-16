@@ -122,6 +122,7 @@ _install()
   bun i -g opencode-ai
   bun i -g @mimo-ai/cli
   bun i -g @deveco/deveco-code
+  bun i -g @kilocode/cli
 
   # Compile
   # bun i -g @perryts/perry
