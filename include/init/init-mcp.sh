@@ -64,4 +64,8 @@ _node()
 
   # Productive
   bun i -g @notionhq/notion-mcp-server
+
+  # Trade
+  bun i -g @okx_ai/okx-trade-mcp
+  bun i -g @okx_ai/okx-trade-cli
 }
